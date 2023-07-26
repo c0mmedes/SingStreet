@@ -12,16 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EntSaveRequestDto {
     private String entName;
-    private User userId;
     private Boolean isAutoAccepted;
     private String entInfo;
     private String entImg;
     private String entTagList;
 
     @Builder
-    public EntSaveRequestDto(String entName,User userId, Boolean isAutoAccepted,String entInfo,String entImg, String entTagList){
+    public EntSaveRequestDto(String entName, Boolean isAutoAccepted,String entInfo,String entImg, String entTagList){
         this.entName = entName;
-        this.userId = userId;
         this.isAutoAccepted = isAutoAccepted;
         this.entInfo = entInfo;
         this.entImg = entImg;
@@ -31,7 +29,6 @@ public class EntSaveRequestDto {
     public Ent toEntEntity(){
         return Ent.builder()
                 .entName(entName)
-                .user(userId)
                 .isAutoAccepted(isAutoAccepted)
                 .entInfo(entInfo)
                 .entImg(entImg)
