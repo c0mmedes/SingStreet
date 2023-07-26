@@ -14,7 +14,7 @@ public class EntApiController {
 
     //추가
     @PostMapping("/ent")
-    public void save(@RequestBody EntSaveRequestDto requestDto){
+    public void create(@RequestBody EntSaveRequestDto requestDto){
         entService.save(requestDto);
     }
 }
