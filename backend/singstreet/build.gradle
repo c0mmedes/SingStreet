@@ -32,6 +32,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
 }
 
 tasks.named('test') {
