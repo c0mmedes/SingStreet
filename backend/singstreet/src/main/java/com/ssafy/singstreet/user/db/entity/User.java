@@ -47,10 +47,4 @@ public class User extends BaseTimeEntity {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-
-    public void updatePassword(String newPassword) {
-        // You can add any password validation or hashing logic here before updating the password.
-        this.password = newPassword;
-    }
-
 }
