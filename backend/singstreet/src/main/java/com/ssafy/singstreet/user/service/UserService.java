@@ -126,12 +126,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(int user_id){
-        User member=userRepository.getReferenceById(user_id);
-        if(member==null){
+    public User getUser(int user_id) throws UserNotFoundException {
+        Optional<User> member=userRepository.findById(user_id);
+        if(!member.isPresent()){
             throw new UserNotFoundException("유저 아이디 번호가 존재하지 않습니다.");
         }
-        return member;
+        User user=member.get();
+        return user;
     }
 
     public void softDeleteUser(Integer userId) throws UserNotFoundException {
