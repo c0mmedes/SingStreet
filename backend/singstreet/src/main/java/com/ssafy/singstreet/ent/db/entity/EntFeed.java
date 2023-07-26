@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor // 기본 생성자
-@Builder // 생성자 만들기
-@AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
 @Table(name = "ent_feed")
 public class EntFeed extends BaseTimeEntity {
@@ -22,7 +20,7 @@ public class EntFeed extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feed_id")
-    private Long feedId;
+    private Integer feedId;
 
     @ManyToOne
     @JoinColumn(name = "ent_id" , nullable = false)

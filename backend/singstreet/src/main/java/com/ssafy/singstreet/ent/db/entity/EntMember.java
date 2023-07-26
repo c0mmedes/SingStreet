@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor // 기본 생성자
-@Builder // 생성자 만들기
-@AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
 @Table(name = "ent_member")
 public class EntMember {

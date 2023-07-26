@@ -10,8 +10,6 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor // 기본 생성자
-@Builder // 생성자 만들기
-@AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
 @Table(name = "ent_tag")
 public class EntTag {
@@ -30,4 +28,10 @@ public class EntTag {
 
     @Column(name = "tag_name", nullable = false, length = 20)
     private String tagName;
+
+    @Builder
+    public EntTag(Ent ent, String tagName){
+        this.ent = ent;
+        this.tagName = tagName;
+    }
 }
