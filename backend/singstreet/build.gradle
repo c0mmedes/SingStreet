@@ -24,7 +24,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'junit:junit:4.13.1'
     compileOnly 'org.projectlombok:lombok'
@@ -32,8 +32,11 @@ dependencies {
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	testImplementation 'org.springframework.security:spring-security-test'
-	implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }
 
 tasks.named('test') {

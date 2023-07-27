@@ -116,11 +116,11 @@ public class UserController {
     public ResponseEntity<String> softDeleteUser(@RequestParam("user_id") Integer userId) {
         try {
             userService.softDeleteUser(userId);
-            return ResponseEntity.ok("User with ID " + userId + " soft deleted successfully.");
+            return ResponseEntity.ok("유저 ID " + userId + "가 삭제되었습니다");
         } catch (UserNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error soft deleting user.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제가 실패했네요");
         }
     }
 
