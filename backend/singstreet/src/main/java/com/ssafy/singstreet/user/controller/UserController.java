@@ -94,7 +94,7 @@ public class UserController {
    public ResponseEntity<String> updateUser(@RequestParam Integer user_id,
                                             @RequestParam String newNickname,
                                             @RequestParam String newUserImg,
-                                            @RequestParam String newGender,
+                                            @RequestParam Character newGender,
                                             @RequestParam String newPassword) {
        try {
            User updatedUser = userService.updateUser(user_id, newNickname, newUserImg, newGender, newPassword);

@@ -115,7 +115,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(Integer userId, String newNickname, String newUserImg, String newGender, String newPassword) throws UserNotFoundException {
+    public User updateUser(Integer userId, String newNickname, String newUserImg, Character newGender, String newPassword) throws UserNotFoundException {
         Optional<User> userOptional = userRepository.findById(userId);
         if (!userOptional.isPresent()) {
             throw new UserNotFoundException("User with ID " + userId + " not found.");

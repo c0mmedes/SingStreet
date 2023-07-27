@@ -32,7 +32,7 @@ public class User extends BaseTimeEntity {
     private String email;
 
     @Column(name = "gender", nullable = false, length = 1)
-    private String gender;
+    private Character gender;
 
     @Column(name = "password", nullable = false, length = 255)
     private String password;
@@ -57,7 +57,7 @@ public class User extends BaseTimeEntity {
         // You can add any password validation or hashing logic here before updating the password.
         this.password = newPassword;
     }
-    public void updateUserInfo(String newNickname, String newUserImg, String newGender, String newPassword) {
+    public void updateUserInfo(String newNickname, String newUserImg, Character newGender, String newPassword) {
         this.nickname = newNickname;
         this.userImg = newUserImg;
         this.gender = newGender;
