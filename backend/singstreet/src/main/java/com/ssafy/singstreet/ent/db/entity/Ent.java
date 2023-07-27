@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ent")
@@ -46,6 +48,13 @@ public class Ent extends BaseTimeEntity {
     @Builder
     public Ent(User user, String entName, Boolean isAutoAccepted, String entInfo, String entImg){
         this.user = user;
+        this.entName = entName;
+        this.isAutoAccepted = isAutoAccepted;
+        this.entInfo = entInfo;
+        this.entImg = entImg;
+    }
+
+    public void update(String entName, Boolean isAutoAccepted, String entInfo, String entImg){
         this.entName = entName;
         this.isAutoAccepted = isAutoAccepted;
         this.entInfo = entInfo;
