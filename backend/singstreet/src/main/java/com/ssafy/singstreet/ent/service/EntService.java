@@ -52,6 +52,7 @@ public class EntService {
 
     @Transactional
     public void update(EntSaveRequestDto requestDto, int requestEntId){
+        System.out.println("hi?????????????????????l");
         Ent ent = repository.findById(requestEntId).orElseThrow(()->
                 new IllegalArgumentException("해당 엔터 없습니다. id=" + requestEntId));
 
@@ -59,11 +60,14 @@ public class EntService {
 
         if(!requestDto.getEntTagList().isEmpty()){
             Ent entId = repository.findByEntId(requestEntId);
-
-            tagRepository.deleteByEntId(entId);
-
-            String[] tagList = requestDto.getEntTagList().split("\\s*#\\s*");
-            saveTagList(tagList, entId);
+            List<EntTag> currentTagList = tagRepository.findAllByEntId(entId);
+//-------------------코드 수정필요------------------------------ 너무 비효율적임
+            for(EntTag tag:currentTagList){
+                tagRepository.delete(tag);
+            }
+//------------------------------------------------------------
+            String[] newtagList = requestDto.getEntTagList().split("\\s*#\\s*");
+            saveTagList(newtagList, entId);
         }
     }
 }
