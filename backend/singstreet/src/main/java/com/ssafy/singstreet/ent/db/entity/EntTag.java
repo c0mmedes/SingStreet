@@ -21,7 +21,7 @@ public class EntTag {
 
     @ManyToOne
     @JoinColumn(name = "ent_id" , nullable = false)
-    private Ent ent;
+    private Ent entId;
 
 //    @Column(name = "ent_id", nullable = false)
 //    private Integer entId; // Assuming ent_id references the ent table's ent_id
@@ -30,8 +30,8 @@ public class EntTag {
     private String tagName;
 
     @Builder
-    public EntTag(Ent ent, String tagName){
-        this.ent = ent;
+    public EntTag(Ent entId, String tagName){
+        this.entId = entId;
         this.tagName = tagName;
     }
 }

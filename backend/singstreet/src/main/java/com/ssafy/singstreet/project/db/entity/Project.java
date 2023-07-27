@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.project.db.entity;
 
+import com.ssafy.singstreet.common.BaseTimeEntity;
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.user.db.entity.User;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,8 +75,8 @@ public class Project {
     @Column(name = "last_enter_date")
     private LocalDate lastEnterDate;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+//    @Column(name = "created_at", nullable = false)
+//    private LocalDateTime createdAt;
 
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
