@@ -108,7 +108,8 @@ class EntApiControllerTest {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
         List<Ent> all = entRepository.findAll();
-        List<EntTag> tagAll = entTagRepository.findAll();
+        Ent entId = entRepository.findByEntId(1);
+        List<EntTag> tagAll = entTagRepository.findAllByEntId(entId);
         assertThat(all.get(0).getEntName()).isEqualTo(entName);
         assertThat(all.get(0).getEntInfo()).isEqualTo(entInfo);
         assertThat(all.get(0).getEntImg()).isEqualTo(entImg);
