@@ -45,9 +45,6 @@ public class Ent extends BaseTimeEntity {
 //    @Column(name = "created_at", nullable = false)
 //    private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "entId")
-    List<EntTag> tags = new ArrayList<>();
-
     @Builder
     public Ent(User user, String entName, Boolean isAutoAccepted, String entInfo, String entImg){
         this.user = user;
