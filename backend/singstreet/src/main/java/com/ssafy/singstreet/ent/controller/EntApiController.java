@@ -1,9 +1,9 @@
 package com.ssafy.singstreet.ent.controller;
 
-import com.ssafy.singstreet.ent.model.EntDetailResponseDto;
-import com.ssafy.singstreet.ent.model.EntPageListResponseDto;
-import com.ssafy.singstreet.ent.model.EntResponseDto;
-import com.ssafy.singstreet.ent.model.EntSaveRequestDto;
+import com.ssafy.singstreet.ent.model.entDto.EntDetailResponseDto;
+import com.ssafy.singstreet.ent.model.entDto.EntPageListResponseDto;
+import com.ssafy.singstreet.ent.model.entDto.EntResponseDto;
+import com.ssafy.singstreet.ent.model.entDto.EntSaveRequestDto;
 import com.ssafy.singstreet.ent.service.EntService;
 import lombok.RequiredArgsConstructor;
 
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
-@RequiredArgsConstructor
+@RequiredArgsConstructor//final생성자 자동생성
 @RestController
 public class EntApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
