@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -118,5 +115,26 @@ class EntApiControllerTest {
         assertThat(tagAll.get(1).getTagName()).isEqualTo("123");
         assertThat(tagAll.get(2).getTagName()).isEqualTo("456");
         assertThat(tagAll.get(3).getTagName()).isEqualTo("789");
+    }
+
+    @Test
+    public void Ent_삭제() throws Exception{
+        //given
+        String url = "http://localhost:" + port + "/ent/delete/2";
+
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<?> requestEntity = new HttpEntity<>(headers);
+
+        // when
+        ResponseEntity<Boolean> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Boolean.class
+        );
+
+        // then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isEqualTo(true); // 예상 결과에 따라 수정
     }
 }
