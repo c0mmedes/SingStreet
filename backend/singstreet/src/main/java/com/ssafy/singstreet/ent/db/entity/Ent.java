@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ent")
@@ -40,8 +42,8 @@ public class Ent extends BaseTimeEntity {
     @Column(name = "ent_img", length = 255)
     private String entImg;
 
-//    @Column(name = "created_at", nullable = false)
-//    private LocalDateTime createdAt;
+    @Column(name = "is_deleted", columnDefinition = "BOOLEAN DEFAULT false")
+    private boolean isDeleted;
 
     @Builder
     public Ent(User user, String entName, Boolean isAutoAccepted, String entInfo, String entImg){
@@ -50,6 +52,17 @@ public class Ent extends BaseTimeEntity {
         this.isAutoAccepted = isAutoAccepted;
         this.entInfo = entInfo;
         this.entImg = entImg;
+    }
+
+    public void update(String entName, Boolean isAutoAccepted, String entInfo, String entImg){
+        this.entName = entName;
+        this.isAutoAccepted = isAutoAccepted;
+        this.entInfo = entInfo;
+        this.entImg = entImg;
+    }
+
+    public void delete(){
+        this.isDeleted = true;
     }
 
 }

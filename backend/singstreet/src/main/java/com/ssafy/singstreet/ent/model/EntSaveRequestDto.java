@@ -26,13 +26,4 @@ public class EntSaveRequestDto {
         this.entTagList = entTagList;
     }
 
-    public Ent toEntEntity(){
-        return Ent.builder()
-                .entName(entName)
-                .isAutoAccepted(isAutoAccepted)
-                .entInfo(entInfo)
-                .entImg(entImg)
-                .build();
-    }
-
 }

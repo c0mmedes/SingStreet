@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,7 +32,7 @@ public class User extends BaseTimeEntity {
     private String email;
 
     @Column(name = "gender", nullable = false, length = 1)
-    private String gender;
+    private Character gender;
 
     @Column(name = "password", nullable = false, length = 255)
     private String password;
@@ -47,4 +48,26 @@ public class User extends BaseTimeEntity {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    public void updatePassword(String newPassword) {
+        // You can add any password validation or hashing logic here before updating the password.
+        this.password = newPassword;
+    }
+    public void updateUserInfo(String newNickname, String newUserImg, Character newGender, String newPassword) {
+        this.nickname = newNickname;
+        this.userImg = newUserImg;
+        this.gender = newGender;
+        this.password=newPassword;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+    public void setDeletedAt(LocalDateTime l){
+        deletedAt=l;
+    }
 }
