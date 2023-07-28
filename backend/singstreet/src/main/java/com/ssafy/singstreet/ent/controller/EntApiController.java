@@ -2,6 +2,7 @@ package com.ssafy.singstreet.ent.controller;
 
 import com.ssafy.singstreet.ent.model.EntDetailResponseDto;
 import com.ssafy.singstreet.ent.model.EntPageListResponseDto;
+import com.ssafy.singstreet.ent.model.EntResponseDto;
 import com.ssafy.singstreet.ent.model.EntSaveRequestDto;
 import com.ssafy.singstreet.ent.service.EntService;
 import lombok.RequiredArgsConstructor;
@@ -25,16 +26,23 @@ public class EntApiController {
     //page는 0부터 시작
     @GetMapping("/ent")
     public EntPageListResponseDto read(@RequestParam int page,@RequestParam int size){
-        log.debug("[readAll] readRequest");
+        log.debug("[readAll]");
 
         return entService.read(page, size);
     }
     //Ent상세조회
     @GetMapping("/ent/{entId}")
     public EntDetailResponseDto readDetail(@PathVariable int entId){
-        log.debug("[readDetail] readRequest");
+        log.debug("[readDetail]entId = ", entId);
 
         return entService.readDetail(entId);
+    }
+    //MyEnt 목록 조회
+    @GetMapping("/ent/myEnt/{userId}")
+    public EntResponseDto readMyEnt(@PathVariable int userId){
+        log.debug("[readMyEntList] = ", userId);
+
+        return entService.readMyEnt(userId);
     }
 
 

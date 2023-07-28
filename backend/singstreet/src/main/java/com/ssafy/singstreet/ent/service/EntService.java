@@ -6,7 +6,9 @@ import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.db.repo.EntTagRepository;
 import com.ssafy.singstreet.ent.model.EntDetailResponseDto;
 import com.ssafy.singstreet.ent.model.EntPageListResponseDto;
+import com.ssafy.singstreet.ent.model.EntResponseDto;
 import com.ssafy.singstreet.ent.model.EntSaveRequestDto;
+import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -34,14 +36,19 @@ public class EntService {
         List<EntTag> tagList = tagRepository.findByEntIdList(entIdList);
         return new EntPageListResponseDto(entSlice,tagList);
     }
-
     public EntDetailResponseDto readDetail(int entId){
         Ent ent = repository.findByEntId(entId);
         List<EntTag> tagList = tagRepository.findAllByEntId(ent);
 
         return new EntDetailResponseDto(ent, tagList);
     }
+    public EntResponseDto readMyEnt(int userId){
+        User user = userRepository.findByUserId(userId);
+        List<Ent> entList = repository.findByUser(user);
+        List<EntTag> tagList = tagRepository.findByEntIdList(entList);
 
+        return new EntResponseDto(entList, tagList);
+    }
 
     @Transactional
     public int save(EntSaveRequestDto requestDto, int userId){
