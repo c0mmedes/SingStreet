@@ -1,4 +1,4 @@
-package com.ssafy.singstreet.ent.model;
+package com.ssafy.singstreet.ent.model.entDto;
 
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.ent.db.entity.EntTag;
