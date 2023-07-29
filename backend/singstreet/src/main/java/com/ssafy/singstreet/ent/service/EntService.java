@@ -1,7 +1,9 @@
 package com.ssafy.singstreet.ent.service;
 
 import com.ssafy.singstreet.ent.db.entity.Ent;
+import com.ssafy.singstreet.ent.db.entity.EntMember;
 import com.ssafy.singstreet.ent.db.entity.EntTag;
+import com.ssafy.singstreet.ent.db.repo.EntMemberRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.db.repo.EntTagRepository;
 import com.ssafy.singstreet.ent.model.entDto.EntDetailResponseDto;
@@ -26,6 +28,7 @@ public class EntService {
     private final EntRepository repository;
     private final EntTagRepository tagRepository;
     private final UserRepository userRepository;
+    private final EntMemberRepository memberRepository;
 
     public EntPageListResponseDto read(int page, int size){
         Slice<Ent> entSlice = repository.findByIsDeleted(false ,PageRequest.of(page,size, Sort.Direction.ASC, "entId"));
@@ -59,8 +62,16 @@ public class EntService {
                 .entInfo(requestDto.getEntInfo())
                 .entImg(requestDto.getEntImg())
                 .build();
-
         repository.save(ent);
+
+
+        EntMember entMember = EntMember.builder()
+                .ent(ent)
+                .user(ent.getUser())
+                .isLeader(true)
+                .build();
+        memberRepository.save(entMember);
+
 
         if(requestDto.getEntTagList() != null) {
             Ent entId = repository.findByEntId(ent.getEntId());
