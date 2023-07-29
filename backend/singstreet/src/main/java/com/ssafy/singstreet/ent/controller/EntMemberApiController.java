@@ -1,14 +1,14 @@
 package com.ssafy.singstreet.ent.controller;
 
+import com.ssafy.singstreet.ent.db.entity.EntApplicant;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.service.EntMemberService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -17,6 +17,13 @@ public class EntMemberApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EntMemberService entMemberService;
 
+    //EntApplicant 목록
+    @GetMapping("ent/apply/{entId}")
+    public List<EntApplicant> readAppl(@PathVariable int entId){
+        return entMemberService.readAppl(entId);
+    }
+
+
     //EntApplicant생성
     @PostMapping("/ent/apply")
     public boolean create(@RequestBody EntApplyRequestDto requestDto){
@@ -24,5 +31,8 @@ public class EntMemberApiController {
 
         return entMemberService.save(requestDto);
     }
+
+
+
 
 }
