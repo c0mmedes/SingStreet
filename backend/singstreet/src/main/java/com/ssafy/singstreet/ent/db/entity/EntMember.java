@@ -43,4 +43,8 @@ public class EntMember extends BaseTimeEntity {
         this.user = user;
         this.isLeader = isLeader;
     }
+
+    public void delete(){
+        this.isDeleted = true;
+    }
 }

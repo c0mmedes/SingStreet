@@ -28,7 +28,6 @@ public class EntMemberService {
 
         return applicantRepository.findEntApplicantsByEntId(entId);
     }
-
     public boolean saveAppl(EntApplyRequestDto requestDto){
         EntApplicant entApplicant = EntApplicant.builder()
                 .entId(repository.findByEntId(requestDto.getEntId()))
@@ -74,6 +73,16 @@ public class EntMemberService {
         if(entMember.getMemberId() == null)
             return false;
 
+        return true;
+    }
+    public boolean deleteMember(int memberId){
+        EntMember member = memberRepository.findByMemberId(memberId);
+        if (member.isLeader() == true)
+            return false;
+        member.delete();
+        memberRepository.save(member);
+        if(member.isDeleted() != true)
+            return false;
         return true;
     }
 }

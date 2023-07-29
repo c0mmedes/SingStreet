@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface EntMemberRepository extends JpaRepository<EntMember, EntMemberId> {
     List<EntMember> findAllByEnt(Ent ent);
+    EntMember findByMemberId(int memberID);
 }

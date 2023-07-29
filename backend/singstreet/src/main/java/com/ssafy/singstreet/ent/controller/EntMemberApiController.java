@@ -29,7 +29,7 @@ public class EntMemberApiController {
 
     //EntApplicant생성
     @PostMapping("/ent/apply")
-    public boolean create(@RequestBody EntApplyRequestDto requestDto){
+    public boolean createAppl(@RequestBody EntApplyRequestDto requestDto){
         log.debug("[create]EntApplicant = ",requestDto);
 
         return entMemberService.saveAppl(requestDto);
@@ -45,13 +45,17 @@ public class EntMemberApiController {
 
     //EntMember생성
     @PostMapping("/ent/member/{applId}")
-    public boolean create(@PathVariable int applId){
+    public boolean createMember(@PathVariable int applId){
         log.debug("[create]EntMember = ",applId);
 
         return entMemberService.saveMember(applId);
     }
 
-
-
+    //Ent 탈퇴
+    @PutMapping("/ent/leave/{memberId}")
+    public boolean deleteMember(@PathVariable int memberId){
+        log.debug("[delete]EntMember =", memberId );
+        return entMemberService.deleteMember(memberId);
+    }
 
 }
