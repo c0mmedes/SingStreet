@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.ent.controller;
 
 import com.ssafy.singstreet.ent.db.entity.EntApplicant;
+import com.ssafy.singstreet.ent.db.entity.EntMember;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.service.EntMemberService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,11 @@ public class EntMemberApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EntMemberService entMemberService;
 
+    //지원자 -------------------------------------------------------------------
     //EntApplicant 목록
     @GetMapping("ent/apply/{entId}")
     public List<EntApplicant> readAppl(@PathVariable int entId){
+        log.debug("[read]readAppl =", entId);
         return entMemberService.readAppl(entId);
     }
 
@@ -30,6 +33,14 @@ public class EntMemberApiController {
         log.debug("[create]EntApplicant = ",requestDto);
 
         return entMemberService.saveAppl(requestDto);
+    }
+
+    //엔터 멤버 -------------------------------------------------------------------
+    //EntMember 목록
+    @GetMapping("/ent/member/{entId}")
+    public List<EntMember> readMember(@PathVariable int entId){
+        log.debug("[read]readMember =", entId);
+        return entMemberService.readMember(entId);
     }
 
     //EntMember생성

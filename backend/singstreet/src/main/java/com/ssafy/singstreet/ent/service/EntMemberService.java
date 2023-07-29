@@ -22,6 +22,7 @@ public class EntMemberService {
     private final EntRepository repository;
     private final EntMemberRepository memberRepository;
 
+    // 지원자 ---------------------------------------------------------------
     public List<EntApplicant> readAppl(int requestEntId){
         Ent entId = repository.findByEntId(requestEntId);
 
@@ -51,6 +52,13 @@ public class EntMemberService {
         return true;
     }
 
+    // 멤버 -----------------------------------------------------------------
+    public List<EntMember> readMember(int entId){
+        Ent ent = repository.findByEntId(entId);
+        List<EntMember> memberList = memberRepository.findAllByEnt(ent);
+
+        return memberList;
+    }
     public boolean saveMember(int applId){
         EntApplicant entApplicant = applicantRepository.findEntApplicantByApplId(applId);
         entApplicant.accept();
