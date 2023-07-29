@@ -29,7 +29,15 @@ public class EntMemberApiController {
     public boolean create(@RequestBody EntApplyRequestDto requestDto){
         log.debug("[create]EntApplicant = ",requestDto);
 
-        return entMemberService.save(requestDto);
+        return entMemberService.saveAppl(requestDto);
+    }
+
+    //EntMember생성
+    @PostMapping("/ent/member/{applId}")
+    public boolean create(@PathVariable int applId){
+        log.debug("[create]EntMember = ",applId);
+
+        return entMemberService.saveMember(applId);
     }
 
 

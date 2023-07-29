@@ -2,7 +2,10 @@ package com.ssafy.singstreet.ent.service;
 
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.ent.db.entity.EntApplicant;
+import com.ssafy.singstreet.ent.db.entity.EntMember;
+import com.ssafy.singstreet.ent.db.entity.EntMemberId;
 import com.ssafy.singstreet.ent.db.repo.EntApplicantRepository;
+import com.ssafy.singstreet.ent.db.repo.EntMemberRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
@@ -14,19 +17,20 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class EntMemberService {
-    private final EntApplicantRepository entApplicantRepository;
+    private final EntApplicantRepository applicantRepository;
     private final UserRepository userRepository;
-    private final EntRepository entRepository;
+    private final EntRepository repository;
+    private final EntMemberRepository memberRepository;
 
     public List<EntApplicant> readAppl(int requestEntId){
-        Ent entId = entRepository.findByEntId(requestEntId);
+        Ent entId = repository.findByEntId(requestEntId);
 
-        return entApplicantRepository.findEntApplicantsByEntId(entId);
+        return applicantRepository.findEntApplicantsByEntId(entId);
     }
 
-    public boolean save(EntApplyRequestDto requestDto){
+    public boolean saveAppl(EntApplyRequestDto requestDto){
         EntApplicant entApplicant = EntApplicant.builder()
-                .entId(entRepository.findByEntId(requestDto.getEntId()))
+                .entId(repository.findByEntId(requestDto.getEntId()))
                 .userId(userRepository.findByUserId(requestDto.getUserId()))
                 .hope(requestDto.getHope())
                 .artist(requestDto.getArtist())
@@ -37,13 +41,31 @@ public class EntMemberService {
             entApplicant.builder().audioName(requestDto.getAudioName()).build();
         }
 
-        entApplicantRepository.save(entApplicant);
+        applicantRepository.save(entApplicant);
 
-        EntApplicant id = entApplicantRepository.findEntApplicantByApplId(entApplicant.getApplId());
+        EntApplicant id = applicantRepository.findEntApplicantByApplId(entApplicant.getApplId());
 
         if (id == null){
             return false;
         }
+        return true;
+    }
+
+    public boolean saveMember(int applId){
+        EntApplicant entApplicant = applicantRepository.findEntApplicantByApplId(applId);
+        entApplicant.accept();
+        applicantRepository.save(entApplicant);
+        if (entApplicant.getIsAccepted() != true)
+            return false;
+
+        EntMember entMember = EntMember.builder()
+                .ent(entApplicant.getEntId())
+                .user(entApplicant.getUserId())
+                .build();
+        memberRepository.save(entMember);
+        if(entMember.getMemberId() == null)
+            return false;
+
         return true;
     }
 }
