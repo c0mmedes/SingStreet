@@ -56,10 +56,6 @@ public class EntApplicant extends BaseTimeEntity {
     @Column(name = "is_accepted")
     private Boolean isAccepted;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
     @Builder
     public EntApplicant(Ent entId, User userId, String hope, String artist, Integer age,String content,String audioName,Boolean isConfirmed,Boolean isAccepted){
         this.entId = entId;
@@ -71,5 +67,10 @@ public class EntApplicant extends BaseTimeEntity {
         this.audioName = audioName;
         this.isConfirmed = isConfirmed;
         this.isAccepted = isAccepted;
+    }
+
+    public void accept(){
+        this.isConfirmed = true;
+        this.isAccepted = true;
     }
 }
