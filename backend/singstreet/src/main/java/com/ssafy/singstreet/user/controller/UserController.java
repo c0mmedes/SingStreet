@@ -2,6 +2,8 @@ package com.ssafy.singstreet.user.controller;
 
 import com.ssafy.singstreet.user.Exception.UserNotFoundException;
 import com.ssafy.singstreet.user.db.entity.User;
+import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
+import com.ssafy.singstreet.user.model.TokenInfo;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
 import com.ssafy.singstreet.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,15 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+
+    @PostMapping("/auth/login")
+    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+        String memberId = memberLoginRequestDto.getEmail();
+        String password = memberLoginRequestDto.getPassword();
+        TokenInfo tokenInfo = userService.login(memberId, password);
+        return tokenInfo;
     }
 
     @GetMapping("/auth/email/{email}")

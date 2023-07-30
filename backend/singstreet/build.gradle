@@ -35,8 +35,11 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
-	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+//	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	// jwt
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
 tasks.named('test') {
