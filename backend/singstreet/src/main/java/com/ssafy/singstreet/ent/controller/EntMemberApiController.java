@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor //final생성자 자동생성
 @RestController
 public class EntMemberApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
