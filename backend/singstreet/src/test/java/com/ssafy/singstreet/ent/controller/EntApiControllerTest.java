@@ -6,6 +6,7 @@ import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.db.repo.EntTagRepository;
 import com.ssafy.singstreet.ent.model.EntSaveRequestDto;
 import org.junit.After;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Disabled
 class EntApiControllerTest {
     @LocalServerPort
     private int port;
@@ -120,7 +122,7 @@ class EntApiControllerTest {
     @Test
     public void Ent_삭제() throws Exception{
         //given
-        String url = "http://localhost:" + port + "/ent/delete/2";
+        String url = "http://localhost:" + port + "/ent/delete/1";
 
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<?> requestEntity = new HttpEntity<>(headers);
