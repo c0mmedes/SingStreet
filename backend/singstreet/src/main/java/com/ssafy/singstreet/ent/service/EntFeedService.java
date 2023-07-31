@@ -18,6 +18,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -80,7 +81,6 @@ public class EntFeedService {
         return true;
     }
 
-
     // feed Update ------------------------------
     @Transactional
     public boolean updateFeed(EntFeedUpdateRequestDto requestDto){
@@ -101,6 +101,21 @@ public class EntFeedService {
         return true;
     }
 
+
+    // feed Delete ------------------------------ 고치고싶다....
+    @Transactional
+    public boolean delete(int feedId){
+        EntFeed feed = feedRepository.findByFeedId(feedId);
+//        likeRepository.deleteAllByIdEntFeed(feed);
+
+        List<EntLike> entLikes = likeRepository.findAllByIdFeed(feed);
+        for(EntLike like : entLikes){
+            likeRepository.delete(like);
+        }
+
+        feedRepository.delete(feed);
+        return true;
+    }
 
 
 

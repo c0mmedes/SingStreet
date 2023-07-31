@@ -61,7 +61,11 @@ public class EntFeedApiController {
 
 
     // feed delete -------------------------
-
+    @DeleteMapping("/ent/feed/{feedId}")
+    public ResponseEntity<Boolean> delete(@PathVariable int feedId){
+        log.debug("[entFeed Delete] feedId : ", feedId);
+        return new ResponseEntity(feedService.delete(feedId),HttpStatus.OK);
+    }
 
 
 
