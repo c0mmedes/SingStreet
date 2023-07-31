@@ -30,32 +30,25 @@ public class EntFeed extends BaseTimeEntity {
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
-
-//    @Column(name = "user_id", nullable = false)
-//    private Integer userId; // Assuming user_id references the user table's user_id
-//
-//    @Column(name = "ent_id", nullable = false)
-//    private Integer entId; // Assuming ent_id references the ent table's ent_id
-//
-//    @Column(name = "project_id", nullable = false)
-//    private Integer projectId; // Assuming project_id references the project table's project_id
-
     @Column(name = "title", nullable = false, length = 30)
     private String title;
 
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
 
-    @Column(name = "type", nullable = false)
-    private Byte type;
+    @Column(name = "is_notice", columnDefinition = "BOOLEAN default false")
+    private Boolean isNotice;
 
-    @Column(name = "hit_count", nullable = false)
-    private Integer hitCount;
+    @Column(name = "file_name")
+    private String fileName;
 
-//    @Column(name = "created_at", nullable = false)
-//    private LocalDateTime createdAt;
-
+    @Builder
+    public EntFeed(Ent ent, User user, String title, String contnet, Boolean isNotice, String fileName){
+        this.ent = ent;
+        this.user = user;
+        this.title = title;
+        this.content = contnet;
+        this.isNotice = isNotice;
+        this.fileName = fileName;
+    }
 }
