@@ -9,9 +9,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EntRepository extends JpaRepository<Ent, Integer> {
-    Ent findByEntId(int ent);
+    Ent findByEntId(int entId);
 
     Slice<Ent> findByIsDeleted(Boolean isDeleted, Pageable pageable);
 
     List<Ent> findByUser(User user);
+
 }

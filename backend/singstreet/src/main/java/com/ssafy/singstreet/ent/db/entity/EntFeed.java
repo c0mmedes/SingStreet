@@ -43,12 +43,22 @@ public class EntFeed extends BaseTimeEntity {
     private String fileName;
 
     @Builder
-    public EntFeed(Ent ent, User user, String title, String contnet, Boolean isNotice, String fileName){
+    public EntFeed(Ent ent, User user, String title, String content, Boolean isNotice, String fileName){
         this.ent = ent;
         this.user = user;
         this.title = title;
-        this.content = contnet;
+        this.content = content;
         this.isNotice = isNotice;
         this.fileName = fileName;
     }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
+    public void updateFileName(String fileName){
+        this.fileName=fileName;
+    }
+
 }
