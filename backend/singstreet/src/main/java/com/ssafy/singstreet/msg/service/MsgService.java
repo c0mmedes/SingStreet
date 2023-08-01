@@ -51,6 +51,9 @@ public class MsgService {
         Message msg = messageRepository.findById(msgId).orElseThrow(()->
                 new IllegalArgumentException("해당 쪽지는 없습니다. msgId"+ msgId));
 
+        msg.updateIsConfirmed();
+        messageRepository.save(msg);
+
         return convertMessageToDetailDto(msg);
     }
 
@@ -62,9 +65,9 @@ public class MsgService {
                 new IllegalArgumentException("해당 쪽지가 없습니다 msgId :" +msgId));
 
         if(msg.getReceiver().getUserId() == userId){
-            msg.updatereceiverDeleted();
+            msg.updateReceiverDeleted();
         } else if (msg.getSender().getUserId() == userId) {
-            msg.updatesenderDeleted();
+            msg.updateSenderDeleted();
         }
 
         messageRepository.save(msg);
