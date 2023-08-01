@@ -1,4 +1,4 @@
-package com.ssafy.singstreet.board.model;
+package com.ssafy.singstreet.board.model.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,12 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class BoardRequestDto {
+public class BoardCommentRequestDto {
     private int userId;
-    private String title;
-    private Character type;    //Q:QnA, C:Common
+    private int boardId;
     private String content;
 }

@@ -1,18 +1,21 @@
-package com.ssafy.singstreet.board.model;
+package com.ssafy.singstreet.board.model.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BoardUpdateRequestDto {
-
-    private int boardId;
+public class BoardCommentResponseDto {
     private int userId;
-    private String title;
+    private String nickname;
+    private String userImg;
     private String content;
+    private LocalDateTime createdAt;
+
 }
