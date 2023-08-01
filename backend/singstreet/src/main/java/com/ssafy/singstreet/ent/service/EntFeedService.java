@@ -165,6 +165,15 @@ public class EntFeedService {
         return true;
     }
 
+    // Comment Delete
+    @Transactional
+    public boolean deleteComment(int commentId){
+        commentRepository.deleteById(commentId);
+        return true;
+    }
+
+
+
 
     // convert ------------------------------------------
     public EntFeedResponseDto convertFeedToDto(EntFeed feed){

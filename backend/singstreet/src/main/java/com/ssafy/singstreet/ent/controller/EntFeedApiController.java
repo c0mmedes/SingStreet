@@ -45,7 +45,7 @@ public class EntFeedApiController {
     }
     // feed Create
     @PostMapping("/ent/feed")
-    public ResponseEntity<Boolean> create(@RequestBody EntFeedCreateRequestDto requestDto){
+    public ResponseEntity<Boolean> createFeed(@RequestBody EntFeedCreateRequestDto requestDto){
         log.debug("[entFeedCreate] EntFeedSaveRequestDto :", requestDto);
 
         return new ResponseEntity(feedService.saveFeed(requestDto), HttpStatus.CREATED);
@@ -53,14 +53,14 @@ public class EntFeedApiController {
 
     // feed Update
     @PutMapping("/ent/feed")
-    public ResponseEntity<Boolean> update(@RequestBody EntFeedUpdateRequestDto requestDto){
+    public ResponseEntity<Boolean> updateFeed(@RequestBody EntFeedUpdateRequestDto requestDto){
         log.debug("[entFeed Update] EntFeedUpdateRequestDto : ", requestDto);
         return new ResponseEntity(feedService.updateFeed(requestDto), HttpStatus.OK);
     }
 
     // feed Delete
     @DeleteMapping("/ent/feed/{feedId}")
-    public ResponseEntity<Boolean> delete(@PathVariable int feedId){
+    public ResponseEntity<Boolean> deleteFeed(@PathVariable int feedId){
         log.debug("[entFeed Delete] feedId : ", feedId);
         return new ResponseEntity(feedService.delete(feedId),HttpStatus.OK);
     }
@@ -83,17 +83,21 @@ public class EntFeedApiController {
     // Comment -------------------------------------------------------
     // Comment Read
     @GetMapping("/ent/feed/comment/{feedId}")
-    public ResponseEntity<EntFeedCommentResponseDto> read(@PathVariable int feedId){
+    public ResponseEntity<EntFeedCommentResponseDto> readComment(@PathVariable int feedId){
         log.debug("[Feed Comment] feedId : ",feedId);
         return new ResponseEntity(feedService.readComment(feedId), HttpStatus.OK);
     }
 
     // Comment Create
     @PostMapping("/ent/feed/comment")
-    public ResponseEntity<Boolean> create(@RequestBody EntFeedCommentRequestDto requestDto){
+    public ResponseEntity<Boolean> createComment(@RequestBody EntFeedCommentRequestDto requestDto){
         log.debug("[Feed Comment Create] : ", requestDto);
         return new ResponseEntity(feedService.saveComment(requestDto),HttpStatus.ACCEPTED);
     }
 
-
+    @DeleteMapping("/ent/feed/comment/{commentId}")
+    public ResponseEntity<Boolean> deleteComment(@PathVariable int commentId){
+        log.debug("[Comment Delete] commentId : ", commentId);
+        return new ResponseEntity(feedService.deleteComment(commentId),HttpStatus.OK);
+    }
 }
