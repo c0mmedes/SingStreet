@@ -1,5 +1,7 @@
 package com.ssafy.singstreet.ent.controller;
 
+import com.ssafy.singstreet.ent.model.entFeedCommentDto.EntFeedCommentRequestDto;
+import com.ssafy.singstreet.ent.model.entFeedCommentDto.EntFeedCommentResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedLikeRequestDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedCreateRequestDto;
@@ -19,7 +21,8 @@ public class EntFeedApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EntFeedService feedService;
 
-    // feed Read--------------------------
+    // Feed -------------------------------------------------------------
+    // feed Read
     @GetMapping("/ent/feed/{entId}")
     public ResponseEntity<EntFeedResponseDto> readAll(@PathVariable int entId, @RequestParam int page, @RequestParam int size){
         log.debug("[EntFeed readALL] endId :",entId);
@@ -40,9 +43,7 @@ public class EntFeedApiController {
 
         return new ResponseEntity(feedService.readCommon(entId, page, size),HttpStatus.OK);
     }
-
-
-    // feed create -------------------------
+    // feed Create
     @PostMapping("/ent/feed")
     public ResponseEntity<Boolean> create(@RequestBody EntFeedCreateRequestDto requestDto){
         log.debug("[entFeedCreate] EntFeedSaveRequestDto :", requestDto);
@@ -50,17 +51,14 @@ public class EntFeedApiController {
         return new ResponseEntity(feedService.saveFeed(requestDto), HttpStatus.CREATED);
     }
 
-
-
-    // feed update -------------------------
+    // feed Update
     @PutMapping("/ent/feed")
     public ResponseEntity<Boolean> update(@RequestBody EntFeedUpdateRequestDto requestDto){
         log.debug("[entFeed Update] EntFeedUpdateRequestDto : ", requestDto);
         return new ResponseEntity(feedService.updateFeed(requestDto), HttpStatus.OK);
     }
 
-
-    // feed delete -------------------------
+    // feed Delete
     @DeleteMapping("/ent/feed/{feedId}")
     public ResponseEntity<Boolean> delete(@PathVariable int feedId){
         log.debug("[entFeed Delete] feedId : ", feedId);
@@ -69,12 +67,33 @@ public class EntFeedApiController {
 
 
 
-    // like -------------------------------
+
+    // like ---------------------------------------------------------
     @PostMapping("/ent/feed/like")
     public ResponseEntity<String> like(@RequestBody EntFeedLikeRequestDto requestDto){
         log.debug("[entFeed] EntFeedLikeRequestDto : ",requestDto);
 
         return new ResponseEntity(feedService.like(requestDto),HttpStatus.OK);
     }
+
+
+
+
+
+    // Comment -------------------------------------------------------
+    // Comment Read
+    @GetMapping("/ent/feed/comment/{feedId}")
+    public ResponseEntity<EntFeedCommentResponseDto> read(@PathVariable int feedId){
+        log.debug("[Feed Comment] feedId : ",feedId);
+        return new ResponseEntity(feedService.readComment(feedId), HttpStatus.OK);
+    }
+
+    // Comment Create
+    @PostMapping("/ent/feed/comment")
+    public ResponseEntity<Boolean> create(@RequestBody EntFeedCommentRequestDto requestDto){
+        log.debug("[Feed Comment Create] : ", requestDto);
+        return new ResponseEntity(feedService.saveComment(requestDto),HttpStatus.ACCEPTED);
+    }
+
 
 }

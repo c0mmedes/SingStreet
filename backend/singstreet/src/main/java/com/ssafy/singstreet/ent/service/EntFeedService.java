@@ -1,12 +1,12 @@
 package com.ssafy.singstreet.ent.service;
 
-import com.ssafy.singstreet.ent.db.entity.Ent;
-import com.ssafy.singstreet.ent.db.entity.EntFeed;
-import com.ssafy.singstreet.ent.db.entity.EntLike;
-import com.ssafy.singstreet.ent.db.entity.EntLikeId;
+import com.ssafy.singstreet.ent.db.entity.*;
+import com.ssafy.singstreet.ent.db.repo.EntFeedCommentRepository;
 import com.ssafy.singstreet.ent.db.repo.EntFeedRepository;
 import com.ssafy.singstreet.ent.db.repo.EntLikeRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
+import com.ssafy.singstreet.ent.model.entFeedCommentDto.EntFeedCommentRequestDto;
+import com.ssafy.singstreet.ent.model.entFeedCommentDto.EntFeedCommentResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedLikeRequestDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedCreateRequestDto;
@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -28,9 +29,11 @@ public class EntFeedService {
     private final UserRepository userRepository;
     private final EntFeedRepository feedRepository;
     private final EntLikeRepository likeRepository;
+    private final EntFeedCommentRepository commentRepository;
 
 
-    // feed Read -------------------------------
+    // Feed=========================================================
+    // Feed Read
     public Slice<EntFeedResponseDto> readAll(int entId, int page, int size){
         Ent ent = repository.findById(entId).orElseThrow(()->
                 new IllegalArgumentException("해당 엔터가 없습니다. id" + entId));
@@ -55,9 +58,7 @@ public class EntFeedService {
         return feedList.map(this::convertFeedToDto);
     }
 
-
-
-    // feed Save -------------------------------
+    // feed Save
     @Transactional
     public boolean saveFeed(EntFeedCreateRequestDto requestDto){
         EntFeed feed = EntFeed.builder()
@@ -81,7 +82,7 @@ public class EntFeedService {
         return true;
     }
 
-    // feed Update ------------------------------
+    // feed Update
     @Transactional
     public boolean updateFeed(EntFeedUpdateRequestDto requestDto){
         EntFeed feed = feedRepository.findById(requestDto.getFeedId())
@@ -101,12 +102,13 @@ public class EntFeedService {
         return true;
     }
 
-
     // feed Delete ------------------------------ 고치고싶다....
     @Transactional
     public boolean delete(int feedId){
         EntFeed feed = feedRepository.findByFeedId(feedId);
 //        likeRepository.deleteAllByIdEntFeed(feed);
+
+        //댓글 삭제도 추가해야함
 
         List<EntLike> entLikes = likeRepository.findAllByIdFeed(feed);
         for(EntLike like : entLikes){
@@ -119,7 +121,7 @@ public class EntFeedService {
 
 
 
-    // feed Like ---------------------------------------
+    // Like ---------------------------------------------------------
     public String like(EntFeedLikeRequestDto requestDto){
         EntLikeId likeId = EntLikeId.builder()
                 .user(userRepository.findByUserId(requestDto.getUserId()))
@@ -141,6 +143,29 @@ public class EntFeedService {
 
 
 
+    // Comment ------------------------------------------------------
+    // Comment Read
+    public List<EntFeedCommentResponseDto> readComment(int feedId){
+        EntFeed feed = feedRepository.findByFeedId(feedId);
+        List<EntFeedComment> commentList = commentRepository.findEntFeedCommentByFeed(feed);
+        return commentList.stream().map(this::convertCommentToDto).collect(Collectors.toList());
+    }
+
+    // Comment Save
+    @Transactional
+    public boolean saveComment(EntFeedCommentRequestDto requestDto){
+        EntFeedComment comment = EntFeedComment.builder()
+                .feed(feedRepository.findByFeedId(requestDto.getFeedId()))
+                .user(userRepository.findByUserId(requestDto.getUserId()))
+                .content(requestDto.getContent())
+                .build();
+
+        commentRepository.save(comment);
+
+        return true;
+    }
+
+
     // convert ------------------------------------------
     public EntFeedResponseDto convertFeedToDto(EntFeed feed){
         return EntFeedResponseDto.builder()
@@ -151,6 +176,15 @@ public class EntFeedService {
                 .filename(feed.getFileName())
                 .isNotice(feed.getIsNotice())
                 .title(feed.getTitle())
+                .build();
+    }
+    public EntFeedCommentResponseDto convertCommentToDto(EntFeedComment comment){
+        return EntFeedCommentResponseDto.builder()
+                .commentId(comment.getCommentId())
+                .userId(comment.getUser().getUserId())
+                .nickname(comment.getUser().getNickname())
+                .content(comment.getContent())
+                .createdAt(comment.getCreatedAt())
                 .build();
     }
 
