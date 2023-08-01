@@ -54,6 +54,12 @@ public class MsgController {
     }
 
 
+    //Delete Msg -> 리펙토링 필요 어떻게 가져올지 고민....이렇게 넣어도 됨?
+    @PutMapping("/msg/delete/{userId}")
+    public ResponseEntity<Boolean> delete(@PathVariable int userId, @RequestParam int msgId){
+        return new ResponseEntity(msgService.DeleteMsg(userId, msgId), HttpStatus.OK);
+    }
+
     // Create Msg
     @PostMapping("/msg")
     public ResponseEntity<Boolean> createMsg(@RequestBody MsgRequestDto requestDto){

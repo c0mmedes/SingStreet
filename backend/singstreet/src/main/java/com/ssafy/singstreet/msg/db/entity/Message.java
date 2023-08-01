@@ -82,4 +82,6 @@ public class Message {
     public void updateReplyId(int replyId){
         this.replyId = replyId;
     }
+    public void updatesenderDeleted(){this.senderDeleted = true;}
+    public void updatereceiverDeleted(){this.receiverDeleted = true;}
 }

@@ -55,6 +55,23 @@ public class MsgService {
     }
 
 
+    // Delete Msg
+    @Transactional
+    public Boolean DeleteMsg(int userId, int msgId){
+        Message msg = messageRepository.findById(msgId).orElseThrow(()->
+                new IllegalArgumentException("해당 쪽지가 없습니다 msgId :" +msgId));
+
+        if(msg.getReceiver().getUserId() == userId){
+            msg.updatereceiverDeleted();
+        } else if (msg.getSender().getUserId() == userId) {
+            msg.updatesenderDeleted();
+        }
+
+        messageRepository.save(msg);
+
+        return true;
+    }
+
 
     // Create Msg
     @Transactional
