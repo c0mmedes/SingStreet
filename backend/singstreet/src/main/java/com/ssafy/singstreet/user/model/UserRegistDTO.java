@@ -5,7 +5,7 @@ public class UserRegistDTO {
     private String nickname;
     private String userImg;
     private String email;
-    private String gender;
+    private Character gender;
     private String password;
 
     // Add getters and setters for all fields
@@ -34,11 +34,11 @@ public class UserRegistDTO {
         this.email = email;
     }
 
-    public String getGender() {
+    public Character getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Character gender) {
         this.gender = gender;
     }
 
