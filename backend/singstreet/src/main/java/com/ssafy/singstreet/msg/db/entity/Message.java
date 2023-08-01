@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "msg")
 public class Message {
 
@@ -46,6 +49,7 @@ public class Message {
     @Column(name = "reply_id")
     private Integer replyId;
 
+    @CreatedDate
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
@@ -55,9 +59,14 @@ public class Message {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "is_confirmed")
+    @Column(name = "is_confirmed", columnDefinition = "Boolean default false")
     private Boolean isConfirmed;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", columnDefinition = "Boolean default false")
     private Boolean isDeleted;
+
+
+    public void updateReplyId(int replyId){
+        this.replyId = replyId;
+    }
 }
