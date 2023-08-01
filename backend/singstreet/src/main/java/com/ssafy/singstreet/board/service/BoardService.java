@@ -33,6 +33,8 @@ public class BoardService {
     public BoardDetailResponseDto readBoardDetail(int boardId){
         Board board = boardRepository.findById(boardId).orElseThrow(()->
                 new IllegalArgumentException("해당 게시글이 없습니다. id: "+boardId));
+        board.updateHit();
+        boardRepository.save(board);
 
         return convertBoardDetailToDto(board);
     }
@@ -45,6 +47,7 @@ public class BoardService {
                 .user(userRepository.findByUserId(requestDto.getUserId()))
                 .title(requestDto.getTitle())
                 .type(requestDto.getType())
+                .hitCount(0)
                 .content(requestDto.getContent())
                 .build();
 

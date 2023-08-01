@@ -41,8 +41,8 @@ public class Board extends BaseTimeEntity {
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "hit_count",columnDefinition = "Integer default 0")
-    private Integer hitCount;
+    @Column(name = "hit_count")
+    private Integer hitCount = 0;
 
     @Column(name = "answer_text", length = 1000)
     private String answerText;
@@ -50,7 +50,7 @@ public class Board extends BaseTimeEntity {
     @Column(name = "answerd_at")
     private LocalDateTime anseredAt;
 
-    @Column(name = "is_deleted",columnDefinition = "BOOLEAN DEFAULT false")
+    @Column(name = "is_deleted")
     private boolean isDeleted;
 
     @Column(name = "deletedAt")
@@ -64,6 +64,10 @@ public class Board extends BaseTimeEntity {
     public void delete(){
         this.isDeleted = true;
         this.deletedAt = LocalDateTime.now();
+    }
+
+    public void updateHit(){
+        this.hitCount++;
     }
 
 }
