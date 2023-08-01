@@ -5,6 +5,7 @@ import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
 import com.ssafy.singstreet.user.model.TokenInfo;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
+import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,11 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @PostMapping("myuser")
+    public String getMyuser(){
+        return SecurityUtil.getCurrentMemberId();
+    }
 
     @PostMapping("/auth/login")
     public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {

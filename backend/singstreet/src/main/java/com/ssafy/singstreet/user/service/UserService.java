@@ -31,10 +31,14 @@ public class UserService {
     private static final String EMAIL_USERNAME = "human3452@naver.com";
     private static final String EMAIL_PASSWORD = "trustworthy1!";
 
+    private AuthenticationManagerBuilder authenticationManagerBuilder;
+    private JwtTokenProvider jwtTokenProvider;
     //유저리포지토리 받아오기
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, AuthenticationManagerBuilder authenticationManagerBuilder, JwtTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
+        this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
 
@@ -163,9 +167,6 @@ public class UserService {
         user.setDeletedAt(LocalDateTime.now());
         userRepository.save(user);
     }
-
-    private AuthenticationManagerBuilder authenticationManagerBuilder;
-    private JwtTokenProvider jwtTokenProvider;
 
     @Transactional
     public TokenInfo login(String memberId, String password) {
