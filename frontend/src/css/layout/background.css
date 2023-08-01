@@ -1,3 +1,4 @@
+/*대소문자변경*/
 body {
   display: grid;
   grid-template-rows: 1fr auto;
