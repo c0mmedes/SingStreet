@@ -27,7 +27,6 @@ public class EntApiController {
     @GetMapping("/ent")
     public EntPageListResponseDto read(@RequestParam int page,@RequestParam int size){
         log.debug("[readAll]");
-
         return entService.read(page, size);
     }
     //Ent상세조회

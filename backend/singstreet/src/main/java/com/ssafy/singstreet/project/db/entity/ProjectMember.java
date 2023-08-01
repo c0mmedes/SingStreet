@@ -1,9 +1,6 @@
 package com.ssafy.singstreet.project.db.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
+@Setter
 @Table(name = "project_member")
 public class ProjectMember {
 

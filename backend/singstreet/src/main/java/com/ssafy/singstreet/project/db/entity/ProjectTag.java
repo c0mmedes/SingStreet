@@ -23,7 +23,7 @@ public class ProjectTag {
 
     @ManyToOne
     @JoinColumn(name = "project_id" , nullable = false)
-    private Project project;
+    private Project projectId;
 
     @Column(name = "tag_name", nullable = false, length = 20)
     private String tagName;

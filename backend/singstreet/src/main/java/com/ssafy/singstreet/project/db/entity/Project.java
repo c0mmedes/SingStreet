@@ -3,10 +3,7 @@ package com.ssafy.singstreet.project.db.entity;
 import com.ssafy.singstreet.common.BaseTimeEntity;
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.user.db.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +14,7 @@ import java.time.LocalDateTime;
 @Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
+@Setter
 @Table(name = "project")
 public class Project extends BaseTimeEntity {
 

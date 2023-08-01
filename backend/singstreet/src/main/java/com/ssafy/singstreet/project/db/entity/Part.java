@@ -15,7 +15,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "part")
 public class Part {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "part_id")
@@ -29,12 +28,6 @@ public class Part {
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
 
-
-//    @Column(name = "project_id", nullable = false)
-//    private Integer projectId; // Assuming project_id references the project table's project_id
-
-//    @Column(name = "user_id", nullable = false)
-//    private Integer userId; // Assuming user_id references the user table's user_id
 
     @Column(name = "part_name", length = 30)
     private String partName;
