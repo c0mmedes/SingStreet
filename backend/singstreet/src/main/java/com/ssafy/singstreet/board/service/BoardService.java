@@ -3,12 +3,19 @@ package com.ssafy.singstreet.board.service;
 import com.ssafy.singstreet.board.db.entity.Board;
 import com.ssafy.singstreet.board.db.repo.BoardCommentRepository;
 import com.ssafy.singstreet.board.db.repo.BoardRepository;
+import com.ssafy.singstreet.board.model.BoardListResponseDto;
 import com.ssafy.singstreet.board.model.BoardRequestDto;
 import com.ssafy.singstreet.board.model.BoardUpdateRequestDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -16,6 +23,17 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardCommentRepository commentRepository;
     private final UserRepository userRepository;
+
+    // Read
+    public Page<BoardListResponseDto> readBoardList(char type, int page, int size){
+        Page<Board> boardList;
+        if(type == 'A') { boardList = boardRepository.findAllByDeleted(PageRequest.of(page, size));}
+        else {boardList = boardRepository.findByType(type, PageRequest.of(page,size));}
+
+        return boardList.map(this::convertBoardToDto);
+    }
+
+
 
     @Transactional
     // Save
@@ -51,5 +69,19 @@ public class BoardService {
         board.delete();
         boardRepository.save(board);
         return true;
+    }
+
+
+
+    // Convert
+    public BoardListResponseDto convertBoardToDto(Board board){
+        return BoardListResponseDto.builder()
+                .boardId(board.getBoardId())
+                .userId(board.getUser().getUserId())
+                .nickname(board.getUser().getNickname())
+                .type(board.getType())
+                .title(board.getTitle())
+                .hitCount(board.getHitCount())
+                .build();
     }
 }
