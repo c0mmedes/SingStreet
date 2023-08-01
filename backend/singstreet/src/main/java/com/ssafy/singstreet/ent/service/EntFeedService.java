@@ -108,12 +108,11 @@ public class EntFeedService {
         EntFeed feed = feedRepository.findByFeedId(feedId);
 //        likeRepository.deleteAllByIdEntFeed(feed);
 
-        //댓글 삭제도 추가해야함
+        List<EntFeedComment> comments = commentRepository.findEntFeedCommentByFeed(feed);
+        commentRepository.deleteAll(comments);
 
         List<EntLike> entLikes = likeRepository.findAllByIdFeed(feed);
-        for(EntLike like : entLikes){
-            likeRepository.delete(like);
-        }
+        likeRepository.deleteAll(entLikes);
 
         feedRepository.delete(feed);
         return true;
