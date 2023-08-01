@@ -17,4 +17,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     @Query(value = "SELECT board FROM Board board WHERE board.isDeleted = false")
     Page<Board> findAllByDeleted(Pageable pageable);
 
+    Board findByBoardId(int boardId);
+
 }

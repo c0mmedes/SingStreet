@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -30,11 +31,12 @@ public class BoardComment {
 
     @ManyToOne
     @JoinColumn(name = "board_id" , nullable = false)
-    private Board boards;
+    private Board board;
 
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
 
+    @CreatedDate
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 

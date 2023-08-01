@@ -4,6 +4,7 @@ import com.ssafy.singstreet.board.model.board.BoardDetailResponseDto;
 import com.ssafy.singstreet.board.model.board.BoardListResponseDto;
 import com.ssafy.singstreet.board.model.board.BoardRequestDto;
 import com.ssafy.singstreet.board.model.board.BoardUpdateRequestDto;
+import com.ssafy.singstreet.board.model.comment.BoardCommentRequestDto;
 import com.ssafy.singstreet.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -36,7 +37,6 @@ public class BoardApiController {
         return new ResponseEntity(boardService.readBoardDetail(boardId),HttpStatus.OK);
     }
 
-
     // Create Board
     @PostMapping("/board")
     public ResponseEntity<Boolean> createBoard(@RequestBody BoardRequestDto requestDto){
@@ -60,5 +60,5 @@ public class BoardApiController {
 
         return new ResponseEntity(boardService.deleteBoard(boardId),HttpStatus.OK);
     }
-
+    
 }
