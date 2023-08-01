@@ -4,8 +4,7 @@ import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.ent.db.entity.EntTag;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.db.repo.EntTagRepository;
-import com.ssafy.singstreet.ent.model.EntSaveRequestDto;
-import org.junit.After;
+import com.ssafy.singstreet.ent.model.entDto.EntSaveRequestDto;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -64,7 +62,6 @@ class EntApiControllerTest {
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        System.out.println("testeste");
 		List<Ent> all = entRepository.findAll();
 		List<EntTag> tagAll = entTagRepository.findAll();
 		assertThat(all.get(0).getEntName()).isEqualTo(entName);

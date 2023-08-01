@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
+@EntityListeners(AuditingEntityListener.class)  //Auditing기능(시간 자동으로 값 넣어주는..) 포함
 @Table(name = "board_comment")
 public class BoardComment {
 
@@ -29,12 +31,6 @@ public class BoardComment {
     @ManyToOne
     @JoinColumn(name = "board_id" , nullable = false)
     private Board boards;
-
-//    @Column(name = "user_id")
-//    private Integer userId; // If type of the board is not 3, then user_id is required
-//
-//    @Column(name = "board_id", nullable = false)
-//    private Integer boardId;
 
     @Column(name = "content", nullable = false, length = 1000)
     private String content;

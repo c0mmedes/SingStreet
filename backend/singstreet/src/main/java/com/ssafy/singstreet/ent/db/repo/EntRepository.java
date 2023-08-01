@@ -14,4 +14,5 @@ public interface EntRepository extends JpaRepository<Ent, Integer> {
     Slice<Ent> findByIsDeleted(Boolean isDeleted, Pageable pageable);
 
     List<Ent> findByUser(User user);
+
 }
