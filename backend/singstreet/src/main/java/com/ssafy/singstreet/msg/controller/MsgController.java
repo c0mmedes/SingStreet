@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.msg.controller;
 
+import com.ssafy.singstreet.msg.model.MsgDetailResponseDto;
 import com.ssafy.singstreet.msg.model.MsgRequestDto;
 import com.ssafy.singstreet.msg.model.MsgResponseDto;
 import com.ssafy.singstreet.msg.service.MsgService;
@@ -19,7 +20,7 @@ public class MsgController {
     private final MsgService msgService;
 
     // Read Msg
-    // - Receive
+    // - Receiver ------------
     //받은 읽은 쪽지 조회
     @GetMapping("/msg/receive/confirmed/{userId}")
     public ResponseEntity<List<MsgResponseDto>> readReceiveConfirmedMsgList(@PathVariable int userId){
@@ -35,7 +36,7 @@ public class MsgController {
         return new ResponseEntity(msgService.readReceiveNotConfirmedMsgList(userId),HttpStatus.OK);
     }
 
-    // - Send
+    // - Sender -----------
     @GetMapping("/msg/send/{userId}")
     public ResponseEntity<List<MsgResponseDto>> readSendMsgList(@PathVariable int userId){
         log.debug("[Read SendMsgList] userId :" ,userId);
@@ -44,6 +45,13 @@ public class MsgController {
     }
 
 
+    // Read Detail
+    @GetMapping("/msg/detail/{msgId}")
+    public ResponseEntity<MsgDetailResponseDto> readDetail(@PathVariable int msgId){
+        log.debug("[Read Detail] msgId :" ,msgId);
+
+        return new ResponseEntity(msgService.readDetail(msgId),HttpStatus.OK);
+    }
 
 
     // Create Msg

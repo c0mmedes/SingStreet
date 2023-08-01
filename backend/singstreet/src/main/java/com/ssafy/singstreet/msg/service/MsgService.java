@@ -2,6 +2,7 @@ package com.ssafy.singstreet.msg.service;
 
 import com.ssafy.singstreet.msg.db.entity.Message;
 import com.ssafy.singstreet.msg.db.repo.MessageRepository;
+import com.ssafy.singstreet.msg.model.MsgDetailResponseDto;
 import com.ssafy.singstreet.msg.model.MsgRequestDto;
 import com.ssafy.singstreet.msg.model.MsgResponseDto;
 import com.ssafy.singstreet.user.db.entity.User;
@@ -45,6 +46,16 @@ public class MsgService {
     }
 
 
+    //Read Detail
+    public MsgDetailResponseDto readDetail(int msgId){
+        Message msg = messageRepository.findById(msgId).orElseThrow(()->
+                new IllegalArgumentException("해당 쪽지는 없습니다. msgId"+ msgId));
+
+        return convertMessageToDetailDto(msg);
+    }
+
+
+
     // Create Msg
     @Transactional
     public Boolean createMsg(MsgRequestDto requestDto){
@@ -77,5 +88,23 @@ public class MsgService {
                 .createdAt(msg.getCreatedAt())
                 .isConfirmed(msg.getIsConfirmed())
                 .build();
+    }
+    public MsgDetailResponseDto convertMessageToDetailDto(Message msg){
+        MsgDetailResponseDto result = MsgDetailResponseDto.builder()
+                .msgId(msg.getMsgId())
+                .receiverId(msg.getReceiver().getUserId())
+                .receiverNickname(msg.getReceiver().getNickname())
+                .senderId(msg.getSender().getUserId())
+                .senderNickname(msg.getSender().getNickname())
+                .title(msg.getMsgTitle())
+                .content(msg.getContent())
+                .createdAt(msg.getCreatedAt())
+                .isConfirmed(msg.getIsConfirmed())
+                .build();
+        if (msg.getReplyId() != null){
+            result.update(msg.getReplyId());
+        }
+
+        return result;
     }
 }
