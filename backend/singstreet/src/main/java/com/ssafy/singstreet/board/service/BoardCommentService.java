@@ -15,6 +15,7 @@ public class BoardCommentService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
 
+    // BoardComment Create
     public boolean createBoardComment(BoardCommentRequestDto requestDto){
         BoardComment comment = BoardComment.builder()
                 .user(userRepository.findByUserId(requestDto.getUserId()))
@@ -25,4 +26,14 @@ public class BoardCommentService {
         commentRepository.save(comment);
         return true;
     }
+
+    // BoardComment Update
+    public boolean deleteBoardComment(int commentId){
+        commentRepository.findById(commentId).orElseThrow(()->
+                new IllegalArgumentException("해당 댓글이 없습니다. commentId" + commentId));
+
+        commentRepository.deleteById(commentId);
+        return true;
+    }
+
 }

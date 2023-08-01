@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,4 +21,12 @@ public class BoardCommentApiController {
 
         return new ResponseEntity(commentService.createBoardComment(requestDto), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/board/comment/{commentId}")
+    public ResponseEntity<Boolean> updateBoardComment(@PathVariable int commentId){
+        log.debug("[Update BoardComment] commentId :" , commentId);
+
+        return new ResponseEntity(commentService.deleteBoardComment(commentId), HttpStatus.OK);
+    }
+
 }

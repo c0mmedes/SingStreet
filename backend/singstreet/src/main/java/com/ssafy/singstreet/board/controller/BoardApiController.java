@@ -60,5 +60,5 @@ public class BoardApiController {
 
         return new ResponseEntity(boardService.deleteBoard(boardId),HttpStatus.OK);
     }
-    
+
 }
