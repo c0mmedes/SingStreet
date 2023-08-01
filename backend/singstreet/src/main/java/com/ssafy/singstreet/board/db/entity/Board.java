@@ -53,4 +53,9 @@ public class Board extends BaseTimeEntity {
     @Column(name = "is_deleted",columnDefinition = "BOOLEAN DEFAULT false")
     private boolean isDeleted;
 
+    public void update(String title, String content){
+        this.title = title;
+        this.content =content;
+    }
+
 }

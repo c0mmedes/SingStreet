@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.board.controller;
 
 import com.ssafy.singstreet.board.model.BoardRequestDto;
+import com.ssafy.singstreet.board.model.BoardUpdateRequestDto;
 import com.ssafy.singstreet.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +24,13 @@ public class BoardApiController {
         log.debug("[Create Board(User)] requestDot", requestDto);
 
         return new ResponseEntity(boardService.saveBoard(requestDto), HttpStatus.CREATED );
+    }
+
+    @PutMapping("/board")
+    public ResponseEntity<Boolean> updateBoard(@RequestBody BoardUpdateRequestDto requestDto){
+        log.debug("[Update Board(User)] requestDto : ", requestDto);
+
+        return new ResponseEntity(boardService.updateBoard(requestDto),HttpStatus.OK);
     }
 
 
