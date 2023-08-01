@@ -1,8 +1,8 @@
 # Fetch base image for Java
-FROM openjdk:11-jdk-alpine
+FROM openjdk:11
 
 # Maintainer information (optional)
-LABEL maintainer="example@example.com"
+LABEL maintainer="human646581@gmail.com"
 
 # Set volume point to /tmp
 VOLUME /tmp
