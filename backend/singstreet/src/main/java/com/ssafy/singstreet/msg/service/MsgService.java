@@ -36,6 +36,13 @@ public class MsgService {
 
         return messageList.stream().map(this::convertMessageToDto).collect(Collectors.toList());
     }
+    // Read Sender Msg
+    public List<MsgResponseDto> readSendMsgList(int userId) {
+        User user = userRepository.findByUserId(userId);
+        List<Message> messageList = messageRepository.findAllBySender(user);
+
+        return messageList.stream().map(this::convertMessageToDto).collect(Collectors.toList());
+    }
 
 
     // Create Msg

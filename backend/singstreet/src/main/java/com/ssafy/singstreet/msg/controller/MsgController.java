@@ -19,6 +19,7 @@ public class MsgController {
     private final MsgService msgService;
 
     // Read Msg
+    // - Receive
     //받은 읽은 쪽지 조회
     @GetMapping("/msg/receive/confirmed/{userId}")
     public ResponseEntity<List<MsgResponseDto>> readReceiveConfirmedMsgList(@PathVariable int userId){
@@ -33,6 +34,15 @@ public class MsgController {
 
         return new ResponseEntity(msgService.readReceiveNotConfirmedMsgList(userId),HttpStatus.OK);
     }
+
+    // - Send
+    @GetMapping("/msg/send/{userId}")
+    public ResponseEntity<List<MsgResponseDto>> readSendMsgList(@PathVariable int userId){
+        log.debug("[Read SendMsgList] userId :" ,userId);
+
+        return new ResponseEntity(msgService.readSendMsgList(userId),HttpStatus.OK);
+    }
+
 
 
 
