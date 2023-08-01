@@ -4,8 +4,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
+import Header from "./components/layout/Header.js";
+import Footer from "./components/layout/Footer.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

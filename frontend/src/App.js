@@ -1,12 +1,12 @@
 import { Link, Route, Routes } from "react-router-dom";
-import Ent from "./routes/Ent";
-import Home from "./routes/Home";
-import Chart from "./routes/Chart";
-import Music from "./routes/Music";
-import Login from "./routes/Login";
-import Register from "./routes/Register";
+import Ent from "./components/ent/Ent";
+import Home from "./components/Home";
+import Chart from "./components/chart/Chart";
+import Music from "./components/work/Music";
+import Login from "./components/user/Login";
+import Register from "./components/user/Register";
 
-import "./style/App.css";
+import "./css/App.css";
 
 function App() {
   return (

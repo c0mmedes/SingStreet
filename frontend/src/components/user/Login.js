@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../style/Login.css";
-import Background from "../components/Background";
+import "../../css/user/Login.css";
+import Background from "../layout/Background.js";
+
 // import Register from "./Register";
 function Login() {
   const [inputId, setInputId] = useState("");

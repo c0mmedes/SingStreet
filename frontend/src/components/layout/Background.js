@@ -1,5 +1,5 @@
 import React from "react";
-import "./background.css";
+import "../../css/layout/Background.css";
 
 const Background = () => {
   const bubble1Style = {

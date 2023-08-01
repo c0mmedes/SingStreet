@@ -1,8 +1,8 @@
 import React from "react";
-import "../style/Home.css";
+import "../css/Home.css";
 import myImage from "../assets/sample1.png";
 import myImage2 from "../assets/sample2.png";
-import Footer from "../layout/Footer";
+import Footer from "./layout/Footer.js";
 
 const Home = () => {
   return (

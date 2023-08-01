@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../style/Header.css";
-import logo from "../assets/logo.png";
+import "../../css/layout/Header.css";
+import logo from "../../assets/logo.png";
 // import styled from "styled-components";
 
 // const [isLogin, setIsLogin] = useState(false); // 로그인 관리
