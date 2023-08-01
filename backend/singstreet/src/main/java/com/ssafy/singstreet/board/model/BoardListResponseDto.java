@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class BoardListResponseDto {
     private int boardId;
     private int userId;
+    private String userImg;
     private String nickname;
     private Character type;
     private String title;

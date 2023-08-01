@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.board.controller;
 
+import com.ssafy.singstreet.board.model.BoardDetailResponseDto;
 import com.ssafy.singstreet.board.model.BoardListResponseDto;
 import com.ssafy.singstreet.board.model.BoardRequestDto;
 import com.ssafy.singstreet.board.model.BoardUpdateRequestDto;
@@ -27,6 +28,14 @@ public class BoardApiController {
         log.debug("[Read BoardList(User)] type : ",type);
 
         return new ResponseEntity(boardService.readBoardList(type,page,size),HttpStatus.OK);
+    }
+
+    //Read BoardDetail
+    @GetMapping("/board/detail/{boardId}")
+    public ResponseEntity<BoardDetailResponseDto> readDetail(@PathVariable int boardId){
+        log.debug("[Read BoardDetail(User)] boardId : ",boardId);
+
+        return new ResponseEntity(boardService.readBoardDetail(boardId),HttpStatus.OK);
     }
 
 

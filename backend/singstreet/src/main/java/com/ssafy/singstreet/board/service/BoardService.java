@@ -3,6 +3,7 @@ package com.ssafy.singstreet.board.service;
 import com.ssafy.singstreet.board.db.entity.Board;
 import com.ssafy.singstreet.board.db.repo.BoardCommentRepository;
 import com.ssafy.singstreet.board.db.repo.BoardRepository;
+import com.ssafy.singstreet.board.model.BoardDetailResponseDto;
 import com.ssafy.singstreet.board.model.BoardListResponseDto;
 import com.ssafy.singstreet.board.model.BoardRequestDto;
 import com.ssafy.singstreet.board.model.BoardUpdateRequestDto;
@@ -33,6 +34,12 @@ public class BoardService {
         return boardList.map(this::convertBoardToDto);
     }
 
+    public BoardDetailResponseDto readBoardDetail(int boardId){
+        Board board = boardRepository.findById(boardId).orElseThrow(()->
+                new IllegalArgumentException("해당 게시글이 없습니다. id: "+boardId));
+
+        return convertBoardDetailToDto(board);
+    }
 
 
     @Transactional
@@ -79,9 +86,23 @@ public class BoardService {
                 .boardId(board.getBoardId())
                 .userId(board.getUser().getUserId())
                 .nickname(board.getUser().getNickname())
+                .userImg(board.getUser().getUserImg())
                 .type(board.getType())
                 .title(board.getTitle())
                 .hitCount(board.getHitCount())
+                .build();
+    }
+    public BoardDetailResponseDto convertBoardDetailToDto(Board board){
+        return BoardDetailResponseDto.builder()
+                .boardId(board.getBoardId())
+                .userId(board.getUser().getUserId())
+                .userImg(board.getUser().getUserImg())
+                .nickname(board.getUser().getNickname())
+                .title(board.getTitle())
+                .type(board.getType())
+                .content(board.getContent())
+                .answerText(board.getAnswerText())
+                .anseredAt(board.getAnseredAt())
                 .build();
     }
 }
