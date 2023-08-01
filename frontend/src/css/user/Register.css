@@ -1,0 +1,48 @@
+.RegisterWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+} */
+
+/* button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  background-color: #003566;
+} */
+
+button:focus {
+  outline: none;
+}

@@ -48,7 +48,7 @@ h1 {
   color: rgb(238, 231, 231);
 }
 
-button {
+.loginBtn {
   width: 100%;
   height: 40px;
   border-radius: 30px;
