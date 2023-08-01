@@ -1,9 +1,9 @@
 package com.ssafy.singstreet.board.controller;
 
-import com.ssafy.singstreet.board.model.BoardDetailResponseDto;
-import com.ssafy.singstreet.board.model.BoardListResponseDto;
-import com.ssafy.singstreet.board.model.BoardRequestDto;
-import com.ssafy.singstreet.board.model.BoardUpdateRequestDto;
+import com.ssafy.singstreet.board.model.board.BoardDetailResponseDto;
+import com.ssafy.singstreet.board.model.board.BoardListResponseDto;
+import com.ssafy.singstreet.board.model.board.BoardRequestDto;
+import com.ssafy.singstreet.board.model.board.BoardUpdateRequestDto;
 import com.ssafy.singstreet.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -12,8 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

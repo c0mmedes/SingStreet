@@ -1,4 +1,4 @@
-package com.ssafy.singstreet.board.model;
+package com.ssafy.singstreet.board.model.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

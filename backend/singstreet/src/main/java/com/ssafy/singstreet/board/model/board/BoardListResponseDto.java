@@ -1,4 +1,4 @@
-package com.ssafy.singstreet.board.model;
+package com.ssafy.singstreet.board.model.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,17 +8,15 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class BoardDetailResponseDto {
+public class BoardListResponseDto {
     private int boardId;
     private int userId;
-    private String nickname;
     private String userImg;
-    private String title;
+    private String nickname;
     private Character type;
-    private String content;
-    private String answerText;
-    private LocalDateTime anseredAt;
+    private String title;
+    private Integer hitCount;
 }

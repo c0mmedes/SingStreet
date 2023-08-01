@@ -3,20 +3,16 @@ package com.ssafy.singstreet.board.service;
 import com.ssafy.singstreet.board.db.entity.Board;
 import com.ssafy.singstreet.board.db.repo.BoardCommentRepository;
 import com.ssafy.singstreet.board.db.repo.BoardRepository;
-import com.ssafy.singstreet.board.model.BoardDetailResponseDto;
-import com.ssafy.singstreet.board.model.BoardListResponseDto;
-import com.ssafy.singstreet.board.model.BoardRequestDto;
-import com.ssafy.singstreet.board.model.BoardUpdateRequestDto;
+import com.ssafy.singstreet.board.model.board.BoardDetailResponseDto;
+import com.ssafy.singstreet.board.model.board.BoardListResponseDto;
+import com.ssafy.singstreet.board.model.board.BoardRequestDto;
+import com.ssafy.singstreet.board.model.board.BoardUpdateRequestDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
