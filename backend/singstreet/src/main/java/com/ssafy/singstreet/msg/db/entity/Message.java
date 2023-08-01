@@ -2,10 +2,13 @@ package com.ssafy.singstreet.msg.db.entity;
 
 import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.user.db.entity.User;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,9 +17,10 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor // 기본 생성자
-@Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
+@Builder
 @Entity
+@DynamicInsert //default를 위헤
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "msg")
 public class Message {
@@ -33,12 +37,6 @@ public class Message {
     @ManyToOne
     @JoinColumn(name = "msg_sender", referencedColumnName = "user_id" , nullable = false)
     private User sender;
-
-//    @Column(name = "msg_receiver", nullable = false)
-//    private Integer msgReceiver;
-//
-//    @Column(name = "msg_sender", nullable = false)
-//    private Integer msgSender;
 
     @Column(name = "msg_title", nullable = false, length = 20)
     private String msgTitle;
@@ -59,12 +57,21 @@ public class Message {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "is_confirmed", columnDefinition = "Boolean default false")
+    @Column(name = "is_confirmed", nullable = false)
     private Boolean isConfirmed;
 
-    @Column(name = "is_deleted", columnDefinition = "Boolean default false")
+    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted;
 
+    @PrePersist
+    private void prePersist(){
+        if(isConfirmed == null){
+            isConfirmed = false;
+        }
+        if (isDeleted == null){
+            isDeleted = false;
+        }
+    }
 
     public void updateReplyId(int replyId){
         this.replyId = replyId;

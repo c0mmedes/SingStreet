@@ -31,10 +31,10 @@ public class EntMember extends BaseTimeEntity {
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
 
-    @Column(name = "is_leader", columnDefinition = "BOOLEAN default false")
+    @Column(name = "is_leader",nullable = false, columnDefinition = "BOOLEAN default false")
     private boolean isLeader;
 
-    @Column(name = "is_deleted", columnDefinition = "BOOLEAN default false")
+    @Column(name = "is_deleted",nullable = false, columnDefinition = "BOOLEAN default false")
     private boolean isDeleted;
 
     @Builder
