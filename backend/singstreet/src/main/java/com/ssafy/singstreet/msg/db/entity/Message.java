@@ -31,7 +31,7 @@ public class Message {
     private Integer msgId;
 
     @ManyToOne
-    @JoinColumn(name = "msg_reciever", referencedColumnName = "user_id" , nullable = false)
+    @JoinColumn(name = "msg_receiever", referencedColumnName = "user_id" , nullable = false)
     private User receiver;
 
     @ManyToOne
@@ -60,16 +60,22 @@ public class Message {
     @Column(name = "is_confirmed", nullable = false)
     private Boolean isConfirmed;
 
-    @Column(name = "is_deleted", nullable = false)
-    private Boolean isDeleted;
+    @Column(name = "receiever_deleted", nullable = false)
+    private Boolean receiverDeleted;
+
+    @Column(name = "sender_deleted", nullable = false)
+    private Boolean senderDeleted;
 
     @PrePersist
     private void prePersist(){
         if(isConfirmed == null){
             isConfirmed = false;
         }
-        if (isDeleted == null){
-            isDeleted = false;
+        if (receiverDeleted == null){
+            receiverDeleted = false;
+        }
+        if (senderDeleted == null){
+            senderDeleted = false;
         }
     }
 
