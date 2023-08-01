@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.board.controller;
 
 import com.ssafy.singstreet.board.model.comment.BoardCommentRequestDto;
+import com.ssafy.singstreet.board.model.comment.BoardCommentResponseDto;
 import com.ssafy.singstreet.board.service.BoardCommentService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -9,11 +10,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class BoardCommentApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final BoardCommentService commentService;
+
+    @GetMapping("board/comment/{boardId}")
+    public ResponseEntity<List<BoardCommentResponseDto>> readBoardComments(@PathVariable int boardId){
+        log.debug("[Read BoardComments] boardId : ", boardId);
+
+        return new ResponseEntity(commentService.readBoardComments(boardId),HttpStatus.OK);
+    }
 
     @PostMapping("/board/comment")
     public ResponseEntity<Boolean> createBoardComment(@RequestBody BoardCommentRequestDto requestDto){
