@@ -47,15 +47,23 @@ public class Board extends BaseTimeEntity {
     @Column(name = "answer_text", length = 1000)
     private String answerText;
 
-    @Column(name = "date_answered")
-    private LocalDateTime dateAnswered;
+    @Column(name = "answerd_at")
+    private LocalDateTime anseredAt;
 
     @Column(name = "is_deleted",columnDefinition = "BOOLEAN DEFAULT false")
     private boolean isDeleted;
 
+    @Column(name = "deletedAt")
+    private LocalDateTime deletedAt;
+
     public void update(String title, String content){
         this.title = title;
         this.content =content;
+    }
+
+    public void delete(){
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
     }
 
 }
