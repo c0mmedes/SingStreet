@@ -11,6 +11,7 @@ import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -27,16 +28,20 @@ public class EntService {
     private final UserRepository userRepository;
     private final EntMemberRepository memberRepository;
 
-    public EntPageListResponseDto read(int page, int size){
+    // 엔터 전체 목록 조회
+    public Slice<EntResponseDto> read(int page, int size){
         Slice<Ent> entSlice = repository.findByIsDeleted(false ,PageRequest.of(page,size, Sort.Direction.ASC, "entId"));
         Slice<EntResponseDto> entSliceList = entSlice.map(this::convertEntToDto);
 
-        List<Ent> entIdList = entSlice.getContent().stream().distinct().collect(Collectors.toList());
-        List<EntTag> tags = tagRepository.findByEntIdList(entIdList);
-        List<EntTagResponseDto> tagList = tags.stream().map(this::convertTagToDto).collect(Collectors.toList());
-
-        return new EntPageListResponseDto(entSliceList,tagList);
+        for (EntResponseDto ent : entSliceList){
+            List<EntTag> tagList = tagRepository.findAllByEntId(repository.findByEntId(ent.getEntId()));
+            List<String> tagNameList = tagList.stream().map(this::convertTagToName).collect(Collectors.toList());
+            ent.update(tagNameList);
+        }
+        return entSliceList;
     }
+    
+    //엔터 상세 조회
     public EntDetailResponseDto readDetail(int entId){
         Ent ent = repository.findByEntId(entId);
         EntResponseDto entResponseDto = convertEntToDto(ent);
@@ -45,6 +50,8 @@ public class EntService {
 
         return new EntDetailResponseDto(entResponseDto, tagList);
     }
+    
+    // 내 엔터 목록 조회
     public EntListResponseDto readMyEnt(int userId){
         User user = userRepository.findByUserId(userId);
         List<Ent> entList = repository.findByUserAndIsDeleted(user, false);
@@ -56,6 +63,9 @@ public class EntService {
         return new EntListResponseDto(entResponseDtos, tagList);
     }
 
+
+
+    // 엔터 생성
     @Transactional
     public boolean create(EntSaveRequestDto requestDto, int userId){
         Ent ent = Ent.builder()
@@ -85,6 +95,7 @@ public class EntService {
         return true;
     }
 
+    // 엔터 수정
     @Transactional
     public boolean update(EntSaveRequestDto requestDto, int requestEntId){
         Ent ent = repository.findById(requestEntId).orElseThrow(()->
@@ -103,6 +114,7 @@ public class EntService {
         return true;
     }
 
+    // 엔터 삭제
     @Transactional
     public boolean delete(int requestEntId){
         Ent ent = repository.findById(requestEntId).orElseThrow(()->
@@ -154,6 +166,9 @@ public class EntService {
                 .entInfo(ent.getEntInfo())
                 .isAutoAccepted(ent.getIsAutoAccepted())
                 .build();
+    }
+    public String convertTagToName(EntTag tag){
+        return tag.getTagName();
     }
 
 
