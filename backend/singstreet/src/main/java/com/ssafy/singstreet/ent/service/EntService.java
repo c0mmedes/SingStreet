@@ -54,7 +54,7 @@ public class EntService {
     }
 
     @Transactional
-    public int save(EntSaveRequestDto requestDto, int userId){
+    public boolean create(EntSaveRequestDto requestDto, int userId){
         Ent ent = Ent.builder()
                 .user(userRepository.findByUserId(userId))
                 .entName(requestDto.getEntName())
@@ -79,13 +79,13 @@ public class EntService {
 
             saveTagList(tagList, entId);
         }
-        return userId;
+        return true;
     }
 
 
 
     @Transactional
-    public void update(EntSaveRequestDto requestDto, int requestEntId){
+    public boolean update(EntSaveRequestDto requestDto, int requestEntId){
         Ent ent = repository.findById(requestEntId).orElseThrow(()->
                 new IllegalArgumentException("해당 엔터 없습니다. id=" + requestEntId));
 
@@ -94,14 +94,13 @@ public class EntService {
         if(requestDto.getEntTagList() != null){
             Ent entId = repository.findByEntId(requestEntId);
             List<EntTag> currentTagList = tagRepository.findAllByEntId(entId);
-//-------------------코드 수정필요------------------------------ 너무 비효율적임
-            for(EntTag tag:currentTagList){
-                tagRepository.delete(tag);
-            }
-//------------------------------------------------------------
+
+            tagRepository.deleteAll(currentTagList);
+
             String[] newtagList = requestDto.getEntTagList().split("\\s*#\\s*");
             saveTagList(newtagList, entId);
         }
+        return true;
     }
 
 
@@ -118,7 +117,8 @@ public class EntService {
     }
 
     public void saveTagList(String[] tagList, Ent entId){// tag 생성
-        for (String tag : tagList) {
+        for(int i=1; i<tagList.length; i++){
+            String tag = tagList[i];
             tagRepository.save(EntTag
                     .builder()
                     .entId(entId)
