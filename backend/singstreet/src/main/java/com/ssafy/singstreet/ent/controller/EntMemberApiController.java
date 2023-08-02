@@ -3,10 +3,13 @@ package com.ssafy.singstreet.ent.controller;
 import com.ssafy.singstreet.ent.db.entity.EntApplicant;
 import com.ssafy.singstreet.ent.db.entity.EntMember;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
 import com.ssafy.singstreet.ent.service.EntMemberService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +24,9 @@ public class EntMemberApiController {
     //지원자 -------------------------------------------------------------------
     //EntApplicant 목록
     @GetMapping("ent/apply/{entId}")
-    public List<EntApplicant> readAppl(@PathVariable int entId){
+    public ResponseEntity<List<EntApplyResponseDto>> readAppl(@PathVariable int entId){
         log.debug("[read]readAppl =", entId);
-        return entMemberService.readAppl(entId);
+        return new ResponseEntity(entMemberService.readAppl(entId), HttpStatus.OK);
     }
 
 

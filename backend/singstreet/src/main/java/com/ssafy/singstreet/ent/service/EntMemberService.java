@@ -8,11 +8,13 @@ import com.ssafy.singstreet.ent.db.repo.EntApplicantRepository;
 import com.ssafy.singstreet.ent.db.repo.EntMemberRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -23,10 +25,11 @@ public class EntMemberService {
     private final EntMemberRepository memberRepository;
 
     // 지원자 ---------------------------------------------------------------
-    public List<EntApplicant> readAppl(int requestEntId){
+    public List<EntApplyResponseDto> readAppl(int requestEntId){
         Ent entId = repository.findByEntId(requestEntId);
+        List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmed(entId, false);
 
-        return applicantRepository.findEntApplicantsByEntId(entId);
+        return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
     }
     public boolean saveAppl(EntApplyRequestDto requestDto){
         EntApplicant entApplicant = EntApplicant.builder()
@@ -77,12 +80,24 @@ public class EntMemberService {
     }
     public boolean deleteMember(int memberId){
         EntMember member = memberRepository.findByMemberId(memberId);
-        if (member.isLeader() == true)
+        if (member.getIsLeader() == true)
             return false;
         member.delete();
         memberRepository.save(member);
-        if(member.isDeleted() != true)
+        if(member.getIsDeleted() != true)
             return false;
         return true;
     }
+
+
+
+    // Convert -----------------------------
+    public EntApplyResponseDto convertApplyToDto(EntApplicant apply){
+        return EntApplyResponseDto.builder()
+                .userId(apply.getUserId().getUserId())
+                .nickname(apply.getUserId().getNickname())
+                .createAt(apply.getCreatedAt())
+                .build();
+    }
+
 }
