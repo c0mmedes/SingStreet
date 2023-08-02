@@ -7,9 +7,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Embeddable
 @Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Embeddable
 public class ProjectMemberId implements Serializable {
 
     @ManyToOne

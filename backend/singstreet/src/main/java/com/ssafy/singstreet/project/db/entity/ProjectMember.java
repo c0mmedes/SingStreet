@@ -17,14 +17,19 @@ public class ProjectMember {
     @EmbeddedId
     private ProjectMemberId projectMemberId;
 
-    @Column(name = "is_leader")
+    @Column(name = "is_leader", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isLeader;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isDeleted;
+
+    // 회원 탈퇴
+    public void leave() {
+        this.isDeleted = true;
+    }
 }
 
 

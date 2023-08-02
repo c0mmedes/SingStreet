@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.project.controller;
 
 import com.ssafy.singstreet.project.db.entity.Project;
+import com.ssafy.singstreet.project.model.ProjectInvitedResponseDto;
 import com.ssafy.singstreet.project.model.ProjectSaveRequestDto;
 import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
 import com.ssafy.singstreet.project.service.ProjectService;
@@ -45,29 +46,13 @@ public class ProjectController {
 
     // 프로젝트 삭제여부 처리
     @PutMapping("/delete/{projectId}")
-    public ResponseEntity<Project> deleteProject(@PathVariable Integer projectId, @RequestBody ProjectSaveRequestDto dto) {
-        Project project = projectService.deleteProject(projectId, dto);
-        return new ResponseEntity<>(project, HttpStatus.OK);
-    }
-
-    // 프로젝트 전체 조회
-//    @GetMapping
-//    public ResponseEntity<List<ProjectSaveResponseDto>> getAllProjects() {
-//        List<ProjectSaveResponseDto> projectResponseDTOs = projectService.getAllProjects();
-//        if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(projectResponseDTOs, HttpStatus.OK);
-//    }
-
-    // 프로젝트 페이징 전체 조회
-    @GetMapping
-    public ResponseEntity<Page<ProjectSaveResponseDto>> getAllProjects(Pageable pageable) {
-        Page<ProjectSaveResponseDto> projectResponsePage = projectService.pageList(pageable);
-        if (projectResponsePage.isEmpty()) {
+    public ResponseEntity<Project> deleteProject(@PathVariable Integer projectId) {
+        Project project = projectService.deleteProject(projectId);
+        if (project != null) {
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(projectResponsePage, HttpStatus.OK);
     }
 
     // 프로젝트 상세조회
@@ -100,27 +85,30 @@ public class ProjectController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-//    // 프로젝트 페이징 전체 조회
-//    @GetMapping
-//    public ResponseEntity<Page<ProjectSaveResponseDto>> getProjectByKeyword(Pageable pageable) {
-//        Page<ProjectSaveResponseDto> projectResponsePage = projectService.pageList(pageable);
-//        if (projectResponsePage.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(projectResponsePage, HttpStatus.OK);
-//    }
+    // 프로젝트 페이징 전체 조회
+    @GetMapping
+    public ResponseEntity<Page<ProjectSaveResponseDto>> getAllProjects(Pageable pageable) {
+        Page<ProjectSaveResponseDto> projectResponsePage = projectService.pageList(pageable);
+        if (projectResponsePage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(projectResponsePage, HttpStatus.OK);
+    }
 
     // 프로젝트 페이징 키워드 검색
     @GetMapping("/{keyword}")
-    public Page<ProjectSaveResponseDto> getProjectsByKeyword(
-            @PathVariable(name = "keyword") String keyword,
-            Pageable pageable
-    ) {
+    public Page<ProjectSaveResponseDto> getProjectsByKeyword(@PathVariable(name = "keyword") String keyword, Pageable pageable) {
         return projectService.getProjectByKeyword(keyword, pageable);
     }
 
+    // 프로젝트 태그 검색
+    @GetMapping("/tag/{tag}")
+    public Page<ProjectSaveResponseDto> getProjectByTag(@PathVariable(name = "tag") String tag, Pageable pageable) {
+        return projectService.getProjectByTag(tag, pageable);
+    }
+
     // 내 프로젝트 목록
-    @GetMapping("/user/{user_id}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<ProjectSaveResponseDto>> getMyProject(@PathVariable Integer userId) {
         List<ProjectSaveResponseDto> projectResponseDTOs = projectService.getMyProject(userId);
         if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
@@ -130,9 +118,19 @@ public class ProjectController {
     }
 
     // 엔터 내 프로젝트 목록
-    @GetMapping("/ent/{ent_id}")
+    @GetMapping("/ent/{entId}")
     public ResponseEntity<List<ProjectSaveResponseDto>> getEntProject(@PathVariable Integer entId) {
         List<ProjectSaveResponseDto> projectResponseDTOs = projectService.getEntProject(entId);
+        if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(projectResponseDTOs, HttpStatus.OK);
+    }
+
+    // 초대된 프로젝트 목록
+    @GetMapping("/invitedList/{userId}")
+    public ResponseEntity<List<ProjectInvitedResponseDto>> getInvitedList(@PathVariable Integer userId) {
+        List<ProjectInvitedResponseDto> projectResponseDTOs = projectService.getInvitedList(userId);
         if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

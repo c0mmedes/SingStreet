@@ -2,7 +2,9 @@ package com.ssafy.singstreet.project.controller;
 
 import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.project.db.entity.ProjectInvited;
+import com.ssafy.singstreet.project.model.ProjectInvitedMemberDto;
 import com.ssafy.singstreet.project.model.ProjectInvitedRequestDto;
+import com.ssafy.singstreet.project.model.ProjectJoinDto;
 import com.ssafy.singstreet.project.model.ProjectMemberDto;
 import com.ssafy.singstreet.project.service.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -20,29 +21,58 @@ public class ProjectMemberController {
 
     private final ProjectMemberService projectMemberService;
 
-    @GetMapping("/{project_id}")
-    public ResponseEntity<List<ProjectMemberDto>> getProjectMembers(@PathVariable Integer project_id) {
-        List<ProjectMemberDto> ProjectMemberDtos = projectMemberService.getProjectMembers(project_id);
-        if (ProjectMemberDtos == null || ProjectMemberDtos.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // 프로젝트 떠나기
+    @PutMapping("/{projecId}/{userId}")
+    public ResponseEntity<String> projectLeaveMember(@PathVariable Integer projecId, @PathVariable Integer userId) {
+        try {
+            projectMemberService.projectLeaveMember(projecId, userId);
+            return ResponseEntity.ok("프로젝트 탈퇴가 처리되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("처리 중 오류가 발생했습니다.");
         }
-        return new ResponseEntity<>(ProjectMemberDtos, HttpStatus.OK);
     }
 
-    @PostMapping
+    // 프로젝트 초대
+    @PutMapping
     public ResponseEntity<ProjectInvited> projectInviteMember(@RequestBody ProjectInvitedRequestDto dto) {
         ProjectInvited projectInvited = projectMemberService.projectInviteMember(dto);
-        // 프로젝트가 성공적으로 생성되었을 때 201 Created 상태코드와 생성된 프로젝트를 응답합니다.
+
+        // 이미 프로젝트 멤버인 경우, 실패 상태와 함께 null 값을 반환
+        if (projectInvited == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
         return new ResponseEntity<>(projectInvited, HttpStatus.CREATED);
     }
 
+    // 프로젝트 참여
     @PutMapping("/joinProject")
-    public ResponseEntity<String> joinProject(@RequestBody ProjectInvitedRequestDto dto) {
+    public ResponseEntity<String> joinProject(@RequestBody ProjectJoinDto dto) {
         try {
+            System.out.println(dto.getUserId() + " " +  dto.getProjectId() + " "  + dto.getIsAccept());
             projectMemberService.acceptProjectInvite(dto);
             return ResponseEntity.ok("프로젝트 멤버 수락/거부가 처리되었습니다.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("처리 중 오류가 발생했습니다.");
         }
+    }
+
+    // 프로젝트 멤버 조회
+    @GetMapping("/{projectId}")
+    public ResponseEntity<List<ProjectMemberDto>> getProjectMembers(@PathVariable Integer projectId) {
+        List<ProjectMemberDto> ProjectMembers = projectMemberService.getProjectMembers(projectId);
+        if (ProjectMembers == null || ProjectMembers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(ProjectMembers, HttpStatus.OK);
+    }
+
+    // 프로젝트 초대자 목록 조회
+    @GetMapping("invited/{projectId}")
+    public ResponseEntity<List<ProjectInvitedMemberDto>> getProjectInvitedMembers(@PathVariable Integer projectId) {
+        List<ProjectInvitedMemberDto> invitedMembers = projectMemberService.getProjectInvitedMember(projectId);
+        if (invitedMembers == null || invitedMembers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(invitedMembers, HttpStatus.OK);
     }
 }

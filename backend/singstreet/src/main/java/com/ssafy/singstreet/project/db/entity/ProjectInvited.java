@@ -42,4 +42,12 @@ public class ProjectInvited {
 
     @Column(name = "confirm_date")
     private LocalDateTime confirmDate;
+
+    public void accept() {
+        this.isAccepted = true;
+    }
+
+    public void reject() {
+        this.isAccepted = false;
+    }
 }

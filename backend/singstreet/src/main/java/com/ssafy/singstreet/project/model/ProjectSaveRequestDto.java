@@ -20,5 +20,7 @@ public class ProjectSaveRequestDto {
     private String projectInfo;
     private String projectImg;
     private String projectTagList;
+    private Boolean isRecruited;
+    private Boolean isVisible;
     private List<String> partList;
 }

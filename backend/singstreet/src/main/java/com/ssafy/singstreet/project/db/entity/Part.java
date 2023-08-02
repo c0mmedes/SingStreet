@@ -25,11 +25,18 @@ public class Part {
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name = "user_id" , nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
-
 
     @Column(name = "part_name", length = 30)
     private String partName;
+
+    // 파트 업데이트
+    public void update(Integer partId, User user, String partName){
+        this.partId = partId;
+        this.user = user;
+        this.partName = partName;
+    }
+
 }
 

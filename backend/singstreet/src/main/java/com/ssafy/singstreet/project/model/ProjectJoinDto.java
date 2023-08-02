@@ -5,16 +5,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectInvitedResponseDto {
+public class ProjectJoinDto {
     private Integer projectId;
-    private Integer entId;
-    private LocalDateTime createdAt;
+    private Integer userId;
+    private Date createdAt;
     private Boolean isAccept;
 }

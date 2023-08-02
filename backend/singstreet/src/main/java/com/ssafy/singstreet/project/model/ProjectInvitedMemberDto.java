@@ -6,15 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectInvitedResponseDto {
-    private Integer projectId;
-    private Integer entId;
+public class ProjectInvitedMemberDto {
+    private Integer userId;
+    private String nickname;
     private LocalDateTime createdAt;
-    private Boolean isAccept;
 }

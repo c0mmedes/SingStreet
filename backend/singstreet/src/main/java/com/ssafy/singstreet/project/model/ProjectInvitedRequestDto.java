@@ -16,5 +16,4 @@ public class ProjectInvitedRequestDto {
     private Integer userId;
     private Integer entId;
     private Date createdAt;
-    private Boolean isAccept;
 }

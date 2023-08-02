@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface ProjectTagRepository extends JpaRepository<ProjectTag, Integer> {
     List<ProjectTag> findAllByProjectId(Project projectId);
-
     List<ProjectTag> findByTagName(String tag);
     //FK면 위와같이 객체를 써야한다.(!PK아님 주의!)
 
