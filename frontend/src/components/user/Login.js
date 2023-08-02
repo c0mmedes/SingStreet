@@ -29,8 +29,9 @@ function Login({setUser}) {
     }))
     .then((res) => {
         console.log(res);
-        console.log("res.data.userId :: ", res.data.userId);
-        console.log("res.data.msg :: ", res.data.msg);
+        console.log("res.data.accessToken :: ", res.data.accessToken);
+        console.log("res.data.grantType :: ", res.data.grantType);
+        console.log("res.data.refreshToken :: ", res.data.refreshToken);
         alert("로그인 성공");
       })
       .catch(() => {
