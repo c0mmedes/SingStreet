@@ -9,16 +9,16 @@ import Register from "./components/user/Register";
 import "./css/App.css";
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/ent" element={<Ent />} />
-      <Route path="/chart" element={<Chart />} />
-      <Route path="/music" element={<Music />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/ent" element={<Ent />} />
+			<Route path="/chart" element={<Chart />} />
+			<Route path="/music" element={<Music />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/register" element={<Register />} />
+		</Routes>
+	);
 }
 
 export default App;

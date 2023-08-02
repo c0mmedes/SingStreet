@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../css/user/Login.css";
 import Background from "../layout/Background.js";
 import { api } from "../../services/httpService";
@@ -9,14 +9,14 @@ const apiInstance = api();
 function Login({ setUser }) {
 	const [inputEmail, setInputEmail] = useState("");
 	const [inputPw, setInputPw] = useState("");
-
 	const handleInputEmail = (e) => {
 		setInputEmail(e.target.value);
 	};
-
 	const handleInputPw = (e) => {
 		setInputPw(e.target.value);
 	};
+
+	const history = useHistory();
 
 	const onClickLogin = async function login() {
 		try {
@@ -34,6 +34,8 @@ function Login({ setUser }) {
 			console.log("res.data.grantType :: ", res.data.grantType);
 			console.log("res.data.refreshToken :: ", res.data.refreshToken);
 			alert("로그인 성공");
+			// 로그인 성공 시 메인 페이지로 이동
+			history.push("/");
 		} catch (error) {
 			console.error("로그인 실패:", error);
 			alert("로그인 실패");
@@ -65,7 +67,7 @@ function Login({ setUser }) {
 			</div>
 			<div>
 				<button type="button" onClick={onClickLogin} className="loginBtn">
-					Log in
+					Login
 				</button>
 				<div className="register">
 					<span>회원이 아니십니까?</span>
