@@ -7,6 +7,7 @@ import com.ssafy.singstreet.ent.db.entity.EntMemberId;
 import com.ssafy.singstreet.ent.db.repo.EntApplicantRepository;
 import com.ssafy.singstreet.ent.db.repo.EntMemberRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyDetailResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
@@ -25,12 +26,22 @@ public class EntMemberService {
     private final EntMemberRepository memberRepository;
 
     // 지원자 ---------------------------------------------------------------
+    //지원자 목록
     public List<EntApplyResponseDto> readAppl(int requestEntId){
         Ent entId = repository.findByEntId(requestEntId);
         List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmed(entId, false);
 
         return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
     }
+
+    // 지원자 상세
+    public EntApplyDetailResponseDto readApplDetail(int applId){
+        EntApplicant apply = applicantRepository.findEntApplicantByApplId(applId);
+
+        return convertApplyDetailToDto(apply);
+    }
+
+    // 지원자 등록
     public boolean saveAppl(EntApplyRequestDto requestDto){
         EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntId(requestDto.getEntId()),userRepository.findByUserId(requestDto.getUserId()));
         if(done != null)
@@ -102,6 +113,23 @@ public class EntMemberService {
                 .nickname(apply.getUserId().getNickname())
                 .createAt(apply.getCreatedAt())
                 .build();
+    }
+    public EntApplyDetailResponseDto convertApplyDetailToDto(EntApplicant apply){
+        EntApplyDetailResponseDto result = EntApplyDetailResponseDto.builder()
+                .applId(apply.getApplId())
+                .entId(apply.getEntId().getEntId())
+                .userId(apply.getUserId().getUserId())
+                .nickname(apply.getUserId().getNickname())
+                .hope(apply.getHope())
+                .artist(apply.getArtist())
+                .age(apply.getAge())
+                .content(apply.getContent())
+                .audioName(apply.getAudioName())
+                .build();
+        if(apply.getAudioName() != null){
+            apply.updateAudioName(result.getAudioName());
+        }
+        return result;
     }
 
 }
