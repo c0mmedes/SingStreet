@@ -5,6 +5,7 @@ import com.ssafy.singstreet.ent.db.entity.EntMember;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyDetailResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntMemberResponseDto;
 import com.ssafy.singstreet.ent.service.EntMemberService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -53,24 +54,27 @@ public class EntMemberApiController {
     //엔터 멤버 -------------------------------------------------------------------
     // EntMember 목록
     @GetMapping("/ent/member/{entId}")
-    public List<EntMember> readMember(@PathVariable int entId){
+    public ResponseEntity<List<EntMemberResponseDto>> readMember(@PathVariable int entId){
         log.debug("[read]readMember =", entId);
-        return entMemberService.readMember(entId);
+
+        return new ResponseEntity(entMemberService.readMember(entId),HttpStatus.OK);
     }
+
 
     // EntMember 생성
     @PostMapping("/ent/member/{applId}")
-    public boolean createMember(@PathVariable int applId){
+    public ResponseEntity<Boolean> createMember(@PathVariable int applId){
         log.debug("[create]EntMember = ",applId);
 
-        return entMemberService.saveMember(applId);
+        return new ResponseEntity(entMemberService.saveMember(applId),HttpStatus.CREATED);
     }
 
     // Ent 탈퇴
     @PutMapping("/ent/leave/{memberId}")
-    public boolean deleteMember(@PathVariable int memberId){
+    public ResponseEntity<Boolean> deleteMember(@PathVariable int memberId){
         log.debug("[delete]EntMember =", memberId );
-        return entMemberService.deleteMember(memberId);
+
+        return new ResponseEntity(entMemberService.deleteMember(memberId),HttpStatus.OK);
     }
 
 }

@@ -43,9 +43,6 @@ public class EntApplicant extends BaseTimeEntity {
     @Column(name = "artist", nullable = false, length = 30)
     private String artist;
 
-    @Column(name = "age", nullable = false)
-    private Integer age;
-
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
 
@@ -66,12 +63,11 @@ public class EntApplicant extends BaseTimeEntity {
     }
 
     @Builder
-    public EntApplicant(Ent entId, User userId, String hope, String artist, Integer age,String content,String audioName,Boolean isConfirmed,Boolean isAccepted){
+    public EntApplicant(Ent entId, User userId, String hope, String artist, String content,String audioName,Boolean isConfirmed,Boolean isAccepted){
         this.entId = entId;
         this.userId = userId;
         this.hope=hope;
         this.artist = artist;
-        this.age = age;
         this.content = content;
         this.audioName = audioName;
         this.isConfirmed = isConfirmed;
