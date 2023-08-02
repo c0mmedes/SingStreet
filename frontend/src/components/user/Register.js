@@ -51,7 +51,7 @@ function Register() {
     axios
       .get(`http://i9b110.p.ssafy.io:4050/auth/nickname/${nickname}`)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.data.status === 200) {
           alert("사용 가능한 닉네임입니다.");
         }
       })
