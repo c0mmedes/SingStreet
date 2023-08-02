@@ -49,7 +49,7 @@ function Register() {
 
   const checkDuplicateNickname = () => {
     axios
-      .get(`/auth/nickname/${nickname}`)
+      .get(`http://i9b110.p.ssafy.io:4050/auth/nickname/${nickname}`)
       .then((res) => {
         if (res.status === 200) {
           alert("사용 가능한 닉네임입니다.");
