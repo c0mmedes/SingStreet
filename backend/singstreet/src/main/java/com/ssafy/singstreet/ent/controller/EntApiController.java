@@ -2,12 +2,14 @@ package com.ssafy.singstreet.ent.controller;
 
 import com.ssafy.singstreet.ent.model.entDto.EntDetailResponseDto;
 import com.ssafy.singstreet.ent.model.entDto.EntPageListResponseDto;
-import com.ssafy.singstreet.ent.model.entDto.EntResponseDto;
+import com.ssafy.singstreet.ent.model.entDto.EntListResponseDto;
 import com.ssafy.singstreet.ent.model.entDto.EntSaveRequestDto;
 import com.ssafy.singstreet.ent.service.EntService;
 import lombok.RequiredArgsConstructor;
 
 import org.slf4j.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,7 +39,7 @@ public class EntApiController {
     }
     //MyEnt 목록 조회
     @GetMapping("/ent/myEnt/{userId}")
-    public EntResponseDto readMyEnt(@PathVariable int userId){
+    public EntListResponseDto readMyEnt(@PathVariable int userId){
         log.debug("[readMyEntList] = ", userId);
 
         return entService.readMyEnt(userId);
@@ -46,27 +48,28 @@ public class EntApiController {
 
     //Ent추가
     @PostMapping("/ent/{userId}")
-    public int create(@RequestBody EntSaveRequestDto requestDto, @PathVariable int userId){
+    public ResponseEntity<Boolean> create(@RequestBody EntSaveRequestDto requestDto, @PathVariable int userId){
         log.debug("[create]EntSaveRequestDto = ", requestDto);
         log.debug("[create]userId = ", userId);
 
-        return entService.save(requestDto, userId);
+        return new ResponseEntity(entService.create(requestDto, userId), HttpStatus.CREATED);
     }
 
     //Ent 수정
     @PutMapping("/ent/{requestEntId}")
-    public void update(@RequestBody EntSaveRequestDto requestDto, @PathVariable int requestEntId){
+    public ResponseEntity<Boolean> update(@RequestBody EntSaveRequestDto requestDto, @PathVariable int requestEntId){
         log.debug("[update]EntSaveRequestDto = ", requestDto);
         log.debug("[update]requestEntId = ", requestEntId);
-        entService.update(requestDto,requestEntId);
+
+        return new ResponseEntity(entService.update(requestDto,requestEntId),HttpStatus.OK);
     }
 
     //Ent삭제
     @PutMapping("/ent/delete/{requestEntId}")
-    public boolean delete(@PathVariable int requestEntId){
+    public ResponseEntity<Boolean> delete(@PathVariable int requestEntId){
         log.debug("[delete]requestEntId = ",requestEntId);
 
-        return entService.delete(requestEntId);
+        return new ResponseEntity(entService.delete(requestEntId),HttpStatus.OK);
     }
 
 }

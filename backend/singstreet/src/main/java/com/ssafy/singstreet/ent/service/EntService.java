@@ -6,10 +6,7 @@ import com.ssafy.singstreet.ent.db.entity.EntTag;
 import com.ssafy.singstreet.ent.db.repo.EntMemberRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.db.repo.EntTagRepository;
-import com.ssafy.singstreet.ent.model.entDto.EntDetailResponseDto;
-import com.ssafy.singstreet.ent.model.entDto.EntPageListResponseDto;
-import com.ssafy.singstreet.ent.model.entDto.EntResponseDto;
-import com.ssafy.singstreet.ent.model.entDto.EntSaveRequestDto;
+import com.ssafy.singstreet.ent.model.entDto.*;
 import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,29 +29,35 @@ public class EntService {
 
     public EntPageListResponseDto read(int page, int size){
         Slice<Ent> entSlice = repository.findByIsDeleted(false ,PageRequest.of(page,size, Sort.Direction.ASC, "entId"));
-        //위의 결과에서 EntId만 뽑아 List를 만들꺼임 -> Stream API사용
-        //List<Integer> entList = entSlice.getContent().stream().map(Ent::getEntId).distinct().collect(Collectors.toList());
+        Slice<EntResponseDto> entSliceList = entSlice.map(this::convertEntToDto);
 
         List<Ent> entIdList = entSlice.getContent().stream().distinct().collect(Collectors.toList());
-        List<EntTag> tagList = tagRepository.findByEntIdList(entIdList);
-        return new EntPageListResponseDto(entSlice,tagList);
+        List<EntTag> tags = tagRepository.findByEntIdList(entIdList);
+        List<EntTagResponseDto> tagList = tags.stream().map(this::convertTagToDto).collect(Collectors.toList());
+
+        return new EntPageListResponseDto(entSliceList,tagList);
     }
     public EntDetailResponseDto readDetail(int entId){
         Ent ent = repository.findByEntId(entId);
-        List<EntTag> tagList = tagRepository.findAllByEntId(ent);
+        EntResponseDto entResponseDto = convertEntToDto(ent);
+        List<EntTag> tags = tagRepository.findAllByEntId(ent);
+        List<EntTagResponseDto> tagList = tags.stream().map(this::convertTagToDto).collect(Collectors.toList());
 
-        return new EntDetailResponseDto(ent, tagList);
+        return new EntDetailResponseDto(entResponseDto, tagList);
     }
-    public EntResponseDto readMyEnt(int userId){
+    public EntListResponseDto readMyEnt(int userId){
         User user = userRepository.findByUserId(userId);
-        List<Ent> entList = repository.findByUser(user);
-        List<EntTag> tagList = tagRepository.findByEntIdList(entList);
+        List<Ent> entList = repository.findByUserAndIsDeleted(user, false);
 
-        return new EntResponseDto(entList, tagList);
+        List<EntResponseDto> entResponseDtos = entList.stream().map(this::convertEntToDto).collect(Collectors.toList());
+        List<EntTag> tags = tagRepository.findByEntIdList(entList);
+        List<EntTagResponseDto> tagList = tags.stream().map(this::convertTagToDto).collect(Collectors.toList());
+
+        return new EntListResponseDto(entResponseDtos, tagList);
     }
 
     @Transactional
-    public int save(EntSaveRequestDto requestDto, int userId){
+    public boolean create(EntSaveRequestDto requestDto, int userId){
         Ent ent = Ent.builder()
                 .user(userRepository.findByUserId(userId))
                 .entName(requestDto.getEntName())
@@ -79,31 +82,26 @@ public class EntService {
 
             saveTagList(tagList, entId);
         }
-        return userId;
+        return true;
     }
 
-
-
     @Transactional
-    public void update(EntSaveRequestDto requestDto, int requestEntId){
+    public boolean update(EntSaveRequestDto requestDto, int requestEntId){
         Ent ent = repository.findById(requestEntId).orElseThrow(()->
                 new IllegalArgumentException("해당 엔터 없습니다. id=" + requestEntId));
 
         ent.update(requestDto.getEntName(),requestDto.getIsAutoAccepted(),requestDto.getEntInfo(),requestDto.getEntImg());
 
         if(requestDto.getEntTagList() != null){
-            Ent entId = repository.findByEntId(requestEntId);
-            List<EntTag> currentTagList = tagRepository.findAllByEntId(entId);
-//-------------------코드 수정필요------------------------------ 너무 비효율적임
-            for(EntTag tag:currentTagList){
-                tagRepository.delete(tag);
-            }
-//------------------------------------------------------------
-            String[] newtagList = requestDto.getEntTagList().split("\\s*#\\s*");
-            saveTagList(newtagList, entId);
-        }
-    }
+            List<EntTag> currentTagList = tagRepository.findAllByEntId(ent);
 
+            tagRepository.deleteAll(currentTagList);
+
+            String[] newtagList = requestDto.getEntTagList().split("\\s*#\\s*");
+            saveTagList(newtagList, ent);
+        }
+        return true;
+    }
 
     @Transactional
     public boolean delete(int requestEntId){
@@ -111,19 +109,52 @@ public class EntService {
                 new IllegalArgumentException("해당 엔터 없습니다. id=" + requestEntId));
 
         ent.delete();
-        if(ent.isDeleted() == true){
+        if(ent.getIsDeleted() == true){
             return true;
         }else
             return false;
     }
 
-    public void saveTagList(String[] tagList, Ent entId){// tag 생성
-        for (String tag : tagList) {
+
+
+
+
+
+
+    public void saveTagList(String[] tagList, Ent ent){// tag 생성
+        for(int i=1; i<tagList.length; i++){
+            String tag = tagList[i];
             tagRepository.save(EntTag
                     .builder()
-                    .entId(entId)
+                    .entId(ent)
                     .tagName(tag)
                     .build());
         }
     }
+
+
+
+
+
+
+    // Convert ---------------------------------------------
+    public EntTagResponseDto convertTagToDto(EntTag tag){
+        return EntTagResponseDto.builder()
+                .entTagId(tag.getEntTagId())
+                .entId(tag.getEntId().getEntId())
+                .tagName(tag.getTagName())
+                .build();
+    }
+
+    public EntResponseDto convertEntToDto(Ent ent){
+        return EntResponseDto.builder()
+                .entId(ent.getEntId())
+                .entName(ent.getEntName())
+                .entImg(ent.getEntImg())
+                .entInfo(ent.getEntInfo())
+                .isAutoAccepted(ent.getIsAutoAccepted())
+                .build();
+    }
+
+
 }
