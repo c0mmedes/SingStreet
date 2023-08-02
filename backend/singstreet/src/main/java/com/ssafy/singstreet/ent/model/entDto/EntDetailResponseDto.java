@@ -14,6 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class EntDetailResponseDto {
-    private Ent ent;
-    private List<EntTag> tagList;
+    private EntResponseDto ent;
+    private List<EntTagResponseDto> tagList;
 }

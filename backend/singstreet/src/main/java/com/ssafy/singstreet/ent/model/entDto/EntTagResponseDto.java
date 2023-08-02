@@ -5,16 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class EntResponseDto {
+public class EntTagResponseDto {
+    private int entTagId;
     private int entId;
-    private String entName;
-    private String entImg;
-    private String entInfo;
-    private boolean isAutoAccepted;
+    private String tagName;
 }

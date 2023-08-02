@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class EntPageListResponseDto {
-    private Slice<Ent> entList;
-    private List<EntTag> tagList;
+
+    private Slice<EntResponseDto> entList;
+    private List<EntTagResponseDto> tagList;
 }
