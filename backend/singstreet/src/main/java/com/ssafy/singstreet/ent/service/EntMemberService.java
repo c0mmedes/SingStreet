@@ -32,6 +32,10 @@ public class EntMemberService {
         return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
     }
     public boolean saveAppl(EntApplyRequestDto requestDto){
+        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntId(requestDto.getEntId()),userRepository.findByUserId(requestDto.getUserId()));
+        if(done != null)
+            return false;
+
         EntApplicant entApplicant = EntApplicant.builder()
                 .entId(repository.findByEntId(requestDto.getEntId()))
                 .userId(userRepository.findByUserId(requestDto.getUserId()))
@@ -41,7 +45,7 @@ public class EntMemberService {
                 .content(requestDto.getContent())
                 .build();
         if (requestDto.getAudioName() != null){
-            entApplicant.builder().audioName(requestDto.getAudioName()).build();
+            entApplicant.updateAudioName(requestDto.getAudioName());
         }
 
         applicantRepository.save(entApplicant);
