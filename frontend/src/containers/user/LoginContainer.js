@@ -10,6 +10,6 @@ const mapDispatchToProps = {
     setUser,
 };
 
-// Login 컴포넌트에선 리덕스 스토어의 상태를 사용하지않음
+// Login 컴포넌트에선 dispatch만 사용하고 리덕스 '스토어의 상태'를 사용하지않음 
 // => null
 export default connect(null, mapDispatchToProps)(Login);
