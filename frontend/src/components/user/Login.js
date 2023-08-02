@@ -35,7 +35,7 @@ function Login({ setUser }) {
 			console.log("res.data.refreshToken :: ", res.data.refreshToken);
 			alert("로그인 성공");
 			// 로그인 성공 시 메인 페이지로 이동
-			history.push("/");
+			history.push("/ent");
 		} catch (error) {
 			console.error("로그인 실패:", error);
 			alert("로그인 실패");
