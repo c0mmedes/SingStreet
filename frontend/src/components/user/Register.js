@@ -32,7 +32,7 @@ function Register() {
 
   const checkDuplicateEmail = () => {
     axios
-      .get(`/auth/email/${email}`)
+      .get(`http://i9b110.p.ssafy.io:4050//auth/email/${email}`)
       .then((res) => {
         if (res.status === 200) {
           alert("사용 가능한 이메일입니다.");
@@ -53,6 +53,7 @@ function Register() {
       .then((res) => {
         if (res.data.status === 200) {
           alert("사용 가능한 닉네임입니다.");
+          console.log("야호?");
         }
       })
       .catch((error) => {
@@ -79,7 +80,10 @@ function Register() {
     };
 
     axios
-      .post("/auth/password/sendTemporaryPassword", userData)
+      .post(
+        "http://i9b110.p.ssafy.io:4050//auth/password/sendTemporaryPassword",
+        userData
+      )
       .then((res) => {
         if (res.status === 200) {
           console.log("회원가입 성공");
