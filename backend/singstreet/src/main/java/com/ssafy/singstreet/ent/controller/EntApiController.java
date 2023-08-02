@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 @RequiredArgsConstructor//final생성자 자동생성
 @RestController
 public class EntApiController {
@@ -37,7 +39,7 @@ public class EntApiController {
     }
     //MyEnt 목록 조회
     @GetMapping("/ent/myEnt/{userId}")
-    public ResponseEntity<EntListResponseDto> readMyEnt(@PathVariable int userId){
+    public ResponseEntity<List<EntResponseDto>> readMyEnt(@PathVariable int userId){
         log.debug("[readMyEntList] = ", userId);
 
         return new ResponseEntity(entService.readMyEnt(userId),HttpStatus.OK);

@@ -52,15 +52,22 @@ public class EntService {
     }
     
     // 내 엔터 목록 조회
-    public EntListResponseDto readMyEnt(int userId){
-        User user = userRepository.findByUserId(userId);
-        List<Ent> entList = repository.findByUserAndIsDeleted(user, false);
-
+    public List<EntResponseDto> readMyEnt(int userId){
+//        User user = userRepository.findByUserId(userId);
+//        List<Ent> entList = repository.findByUserAndIsDeleted(user, false);
+//
+//        List<EntResponseDto> entResponseDtos = entList.stream().map(this::convertEntToDto).collect(Collectors.toList());
+//        List<EntTag> tags = tagRepository.findByEntIdList(entList);
+//        List<EntTagResponseDto> tagList = tags.stream().map(this::convertTagToDto).collect(Collectors.toList());
+        List<Ent> entList = repository.findAllByUser(userRepository.findByUserId(userId));
         List<EntResponseDto> entResponseDtos = entList.stream().map(this::convertEntToDto).collect(Collectors.toList());
-        List<EntTag> tags = tagRepository.findByEntIdList(entList);
-        List<EntTagResponseDto> tagList = tags.stream().map(this::convertTagToDto).collect(Collectors.toList());
 
-        return new EntListResponseDto(entResponseDtos, tagList);
+        for (EntResponseDto ent : entResponseDtos){
+            List<EntTag> tagList = tagRepository.findAllByEntId(repository.findByEntId(ent.getEntId()));
+            List<String> tagNameList = tagList.stream().map(this::convertTagToName).collect(Collectors.toList());
+            ent.update(tagNameList);
+        }
+        return entResponseDtos;
     }
 
 
