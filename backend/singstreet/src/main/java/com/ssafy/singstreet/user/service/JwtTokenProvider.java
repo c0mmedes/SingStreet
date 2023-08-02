@@ -50,6 +50,7 @@ public class JwtTokenProvider {
 
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
+                .setSubject(authentication.getName())  // Embed the user's ID
                 .setExpiration(new Date(now + 86400000))
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
@@ -82,7 +83,7 @@ public class JwtTokenProvider {
     }
 
     // 토큰 정보를 검증하는 메서드
-    public boolean validateToken(String token) {
+    public boolean validateToken(String token) throws JwtExpiredException {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
@@ -90,6 +91,7 @@ public class JwtTokenProvider {
             log.info("Invalid JWT Token", e);
         } catch (ExpiredJwtException e) {
             log.info("Expired JWT Token", e);
+            throw new JwtExpiredException("Jwt Token expired");
         } catch (UnsupportedJwtException e) {
             log.info("Unsupported JWT Token", e);
         } catch (IllegalArgumentException e) {
@@ -104,5 +106,28 @@ public class JwtTokenProvider {
         } catch (ExpiredJwtException e) {
             return e.getClaims();
         }
+    }
+
+    public String regenerateAccessToken(String refreshToken) throws JwtExpiredException {
+        // First validate the refresh token
+        if (!validateToken(refreshToken)) {
+            throw new RuntimeException("Invalid refresh token");
+        }
+
+        // Extract user information from the refresh token
+        Claims claims = parseClaims(refreshToken);
+        String username = claims.getSubject();
+
+        // Now generate a new access token
+        long now = (new Date()).getTime();
+        Date accessTokenExpiresIn = new Date(now + 86400000);
+        String newAccessToken = Jwts.builder()
+                .setSubject(username)
+                .claim("auth", claims.get("auth"))  // You may need to handle the user roles
+                .setExpiration(accessTokenExpiresIn)
+                .signWith(SignatureAlgorithm.HS256, key)
+                .compact();
+
+        return newAccessToken;
     }
 }

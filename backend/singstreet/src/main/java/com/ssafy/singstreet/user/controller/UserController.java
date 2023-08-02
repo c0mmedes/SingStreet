@@ -15,6 +15,7 @@ import javax.mail.*;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -79,7 +80,11 @@ public class UserController {
         VerifyCode.remove(email);
         return ResponseEntity.ok("인증번호가 확인되었습니다.");
     }
-
+    @GetMapping("/admin/user")
+    @ResponseBody
+    public List<User> getalluser(){
+        return userService.getAll();
+    }
     @GetMapping("/auth/nickname/{nickname}")
     @ResponseBody
     public ResponseEntity<String> nicknameCheck(
@@ -130,10 +135,11 @@ public class UserController {
    }
 
     @PutMapping("/user/leave")
-    public ResponseEntity<String> softDeleteUser(@RequestParam("user_id") Integer userId) {
+    public ResponseEntity<String> softDeleteUser() {
         try {
-            userService.softDeleteUser(userId);
-            return ResponseEntity.ok("유저 ID " + userId + "가 삭제되었습니다");
+            String userName=SecurityUtil.getCurrentMemberId();
+            userService.softDeleteUser(userName);
+            return ResponseEntity.ok("유저 ID " + userName + "가 삭제되었습니다");
         } catch (UserNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {

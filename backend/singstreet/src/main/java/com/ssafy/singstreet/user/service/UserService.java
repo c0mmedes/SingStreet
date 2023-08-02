@@ -4,6 +4,7 @@ import com.ssafy.singstreet.user.Exception.UserNotFoundException;
 import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import com.ssafy.singstreet.user.model.TokenInfo;
+import com.ssafy.singstreet.user.model.UserDetailDTO;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -40,7 +38,9 @@ public class UserService {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.jwtTokenProvider = jwtTokenProvider;
     }
-
+    public List<User> getAll(){
+        return userRepository.findAll();
+    }
 
     //유저 등록
     public User registerUser(UserRegistDTO registrationDTO) {
@@ -153,13 +153,18 @@ public class UserService {
             throw new UserNotFoundException("유저 아이디 번호가 존재하지 않습니다.");
         }
         User user=member.get();
+        UserDetailDTO udto=new UserDetailDTO();
+        udto.setEmail(user.getEmail());
+        udto.setUserImg(user.getUserImg());
+        udto.setGender(user.getGender());
+        udto.setNickname(user.getNickname());
         return user;
     }
 
-    public void softDeleteUser(Integer userId) throws UserNotFoundException {
-        Optional<User> userOptional = userRepository.findById(userId);
+    public void softDeleteUser(String userName) throws UserNotFoundException {
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findByEmail(userName));
         if (!userOptional.isPresent()) {
-            throw new UserNotFoundException("User with ID " + userId + " not found.");
+            throw new UserNotFoundException("User with ID " + userName + " not found.");
         }
 
         User user = userOptional.get();
