@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/user/Login.css";
 import Background from "../layout/Background.js";
 import { api } from "../../services/httpService";
@@ -16,7 +16,8 @@ function Login({ setUser }) {
 		setInputPw(e.target.value);
 	};
 
-	const history = useHistory();
+	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+	const navigate = useNavigate();
 
 	const onClickLogin = async function login() {
 		try {
@@ -35,7 +36,7 @@ function Login({ setUser }) {
 			console.log("res.data.refreshToken :: ", res.data.refreshToken);
 			alert("로그인 성공");
 			// 로그인 성공 시 메인 페이지로 이동
-			history.push("/ent");
+			navigate("/");
 		} catch (error) {
 			console.error("로그인 실패:", error);
 			alert("로그인 실패");
