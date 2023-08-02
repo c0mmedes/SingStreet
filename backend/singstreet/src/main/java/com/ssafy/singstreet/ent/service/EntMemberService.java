@@ -10,9 +10,11 @@ import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyDetailResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntMemberResponseDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,7 +54,6 @@ public class EntMemberService {
                 .userId(userRepository.findByUserId(requestDto.getUserId()))
                 .hope(requestDto.getHope())
                 .artist(requestDto.getArtist())
-                .age(requestDto.getAge())
                 .content(requestDto.getContent())
                 .build();
         if (requestDto.getAudioName() != null){
@@ -70,18 +71,23 @@ public class EntMemberService {
     }
 
     // 멤버 -----------------------------------------------------------------
-    public List<EntMember> readMember(int entId){
+    // 멤버 목록 조회
+    public
+    List<EntMemberResponseDto> readMember(int entId){
         Ent ent = repository.findByEntId(entId);
         List<EntMember> memberList = memberRepository.findAllByEnt(ent);
 
-        return memberList;
+        return memberList.stream().map(this::convertMemberToDto).collect(Collectors.toList());
     }
+    
+    // 멤버 추가
+    @Transactional
     public boolean saveMember(int applId){
         EntApplicant entApplicant = applicantRepository.findEntApplicantByApplId(applId);
+        if(entApplicant.getIsConfirmed() == true)
+            return false;
         entApplicant.accept();
         applicantRepository.save(entApplicant);
-        if (entApplicant.getIsAccepted() != true)
-            return false;
 
         EntMember entMember = EntMember.builder()
                 .ent(entApplicant.getEntId())
@@ -93,6 +99,9 @@ public class EntMemberService {
 
         return true;
     }
+    
+    // 멤버 삭제
+    @Transactional
     public boolean deleteMember(int memberId){
         EntMember member = memberRepository.findByMemberId(memberId);
         if (member.getIsLeader() == true)
@@ -122,7 +131,6 @@ public class EntMemberService {
                 .nickname(apply.getUserId().getNickname())
                 .hope(apply.getHope())
                 .artist(apply.getArtist())
-                .age(apply.getAge())
                 .content(apply.getContent())
                 .audioName(apply.getAudioName())
                 .build();
@@ -130,6 +138,16 @@ public class EntMemberService {
             apply.updateAudioName(result.getAudioName());
         }
         return result;
+    }
+
+    public EntMemberResponseDto convertMemberToDto(EntMember member){
+        return EntMemberResponseDto.builder()
+                .userId(member.getUser().getUserId())
+                .email(member.getUser().getEmail())
+                .createdAt(member.getCreatedAt())
+                .gender(member.getUser().getGender())
+                .nickname(member.getUser().getNickname())
+                .build();
     }
 
 }
