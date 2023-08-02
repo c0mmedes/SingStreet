@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor // 기본 생성자
 @Entity
+@DynamicInsert
 @Table(name = "ent_feed")
 public class EntFeed extends BaseTimeEntity {
 
@@ -36,11 +38,18 @@ public class EntFeed extends BaseTimeEntity {
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
 
-    @Column(name = "is_notice", columnDefinition = "BOOLEAN default false")
+    @Column(name = "is_notice", nullable = false)
     private Boolean isNotice;
 
     @Column(name = "file_name")
     private String fileName;
+
+    @PrePersist
+    private void prePersist(){
+        if(isNotice == null){
+            isNotice = false;
+        }
+    }
 
     @Builder
     public EntFeed(Ent ent, User user, String title, String content, Boolean isNotice, String fileName){
