@@ -24,8 +24,8 @@ function Login({setUser}) {
     console.log("PW : ", inputPw);
     
     await apiInstance.post("/auth/login", JSON.stringify({
-      user_id: inputEmail,
-      user_pw: inputPw,
+      email: inputEmail,
+      password: inputPw,
     }))
     .then((res) => {
         console.log(res);
