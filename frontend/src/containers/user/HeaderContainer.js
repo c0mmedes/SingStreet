@@ -3,7 +3,7 @@
 // mapDispatchToProps 객체를 통해 setUser 액션 생성자 함수를 props로 매핑해줌.
 import React from "react";
 import { connect } from "react-redux";
-import { setUser, setIsLogin } from "../../modules/user/user";
+import { addUserInfo, setIsLogin } from "../../modules/user/user";
 import Header from "../../components/layout/Header";
 
 const HeaderContainer = ({ isLogin, setIsLogin }) => {
@@ -12,12 +12,12 @@ const HeaderContainer = ({ isLogin, setIsLogin }) => {
 };
 
 const mapStateToProps = (state) => ({
-	user: state.user.user,
+	userInfo: state.user.userInfo,
 	isLogin: state.user.isLogin,
 });
 const mapDispatchToProps = (dispatch) => ({
-	setUser: () => {
-		dispatch(setUser());
+	addUserInfo: (userInfo) => {
+		dispatch(addUserInfo(userInfo));
 	},
 	setIsLogin: () => {
 		dispatch(setIsLogin());
