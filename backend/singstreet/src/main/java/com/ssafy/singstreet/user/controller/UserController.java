@@ -7,6 +7,7 @@ import com.ssafy.singstreet.user.model.TokenInfo;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
 import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +29,13 @@ public class UserController {
 
 
     @PostMapping("myuser")
+    @ApiOperation(value="내 이메일 가져오기", notes="로그인한 유저의 이메일을 가져오는 메서드입니다!")
     public String getMyuser(){
         return SecurityUtil.getCurrentMemberId();
     }
 
     @PostMapping("/auth/login")
+    @ApiOperation(value="로그인", notes="로그인 하는 메서드입니다!")
     public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
         String memberId = memberLoginRequestDto.getEmail();
         String password = memberLoginRequestDto.getPassword();
@@ -42,6 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/auth/logout")
+    @ApiOperation(value="로그아웃", notes="로그아웃 하는 메서드")
     public ResponseEntity<String> logout() {
         String email = SecurityUtil.getCurrentMemberId();
         if (email.equals("anonymousUser")){
