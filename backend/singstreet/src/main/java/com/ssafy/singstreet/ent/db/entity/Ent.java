@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import java.util.List;
 @Table(name = "ent")
 @Getter
 @NoArgsConstructor // 기본 생성자
+@DynamicInsert //default를 위헤
 public class Ent extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +28,6 @@ public class Ent extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
-
-//    @Column(name = "user_id", nullable = false)
-//    private Integer userId; // Assuming user_id references the user table's user_id
 
     @Column(name = "ent_name", nullable = false, length = 20)
     private String entName;
@@ -42,8 +41,15 @@ public class Ent extends BaseTimeEntity {
     @Column(name = "ent_img", length = 255)
     private String entImg;
 
-    @Column(name = "is_deleted", columnDefinition = "BOOLEAN DEFAULT false")
-    private boolean isDeleted;
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted;
+
+    @PrePersist
+    private void prePersist(){
+        if (isDeleted == null){
+            isDeleted = false;
+        }
+    }
 
     @Builder
     public Ent(User user, String entName, Boolean isAutoAccepted, String entInfo, String entImg){

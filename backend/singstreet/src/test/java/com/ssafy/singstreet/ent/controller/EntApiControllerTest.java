@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Disabled;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -66,7 +65,6 @@ class EntApiControllerTest {
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        System.out.println("testeste");
 		List<Ent> all = entRepository.findAll();
 		List<EntTag> tagAll = entTagRepository.findAll();
 		assertThat(all.get(0).getEntName()).isEqualTo(entName);
@@ -107,8 +105,8 @@ class EntApiControllerTest {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
         List<Ent> all = entRepository.findAll();
-        Ent entId = entRepository.findByEntId(1);
-        List<EntTag> tagAll = entTagRepository.findAllByEntId(entId);
+        Ent ent = entRepository.findByEntId(1);
+        List<EntTag> tagAll = entTagRepository.findAllByEntId(ent);
         assertThat(all.get(0).getEntName()).isEqualTo(entName);
         assertThat(all.get(0).getEntInfo()).isEqualTo(entInfo);
         assertThat(all.get(0).getEntImg()).isEqualTo(entImg);
