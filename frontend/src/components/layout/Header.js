@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
+// Header.js
+import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/layout/Header.css";
 import logo from "../../assets/logo.png";
-// import styled from "styled-components";
 
-// const [isLogin, setIsLogin] = useState(false); // 로그인 관리
-
-// useEffect(() => {
-//   if (sessionStorage.getItem("name") === null) {
-//     // sessionStorage 에 name 라는 key 값으로 저장된 값이 없다면
-//     console.log("isLogin ?? :: ", isLogin);
-//   } else {
-//     // sessionStorage 에 name 라는 key 값으로 저장된 값이 있다면
-//     // 로그인 상태 변경
-//     setIsLogin(true);
-//     console.log("isLogin ?? :: ", isLogin);
-//   }
-// });
-
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
   return (
     <header>
       <Link to="/">
@@ -34,9 +20,16 @@ const Header = () => {
         <Link to="/music">
           <span>Music</span>
         </Link>
-        <Link to="/login">
-          <span>Login</span>
-        </Link>
+        {/* 로그인 상태에 따라 Login 또는 Mypage로 링크 변경 */}
+        {isLoggedIn ? (
+          <Link to="/mypage">
+            <span>Mypage</span>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <span>Login</span>
+          </Link>
+        )}
       </div>
     </header>
   );
