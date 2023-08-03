@@ -2,8 +2,12 @@ package com.ssafy.singstreet.user.controller;
 
 import com.ssafy.singstreet.user.Exception.UserNotFoundException;
 import com.ssafy.singstreet.user.db.entity.User;
+import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
+import com.ssafy.singstreet.user.model.TokenInfo;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
+import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,7 @@ import javax.mail.*;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -21,6 +26,35 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+
+    @PostMapping("myuser")
+    @ApiOperation(value="내 이메일 가져오기", notes="로그인한 유저의 이메일을 가져오는 메서드입니다!")
+    public String getMyuser(){
+        return SecurityUtil.getCurrentMemberId();
+    }
+
+    @PostMapping("/auth/login")
+    @ApiOperation(value="로그인", notes="로그인 하는 메서드입니다!")
+    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+        String memberId = memberLoginRequestDto.getEmail();
+        String password = memberLoginRequestDto.getPassword();
+        TokenInfo tokenInfo = userService.login(memberId, password);
+
+        return tokenInfo;
+    }
+
+    @PostMapping("/auth/logout")
+    @ApiOperation(value="로그아웃", notes="로그아웃 하는 메서드")
+    public ResponseEntity<String> logout() {
+        String email = SecurityUtil.getCurrentMemberId();
+        if (email.equals("anonymousUser")){
+            return ResponseEntity.noContent().build();
+        }
+        userService.logout(email);
+        return ResponseEntity.ok().build();
+    }
+
 
     @GetMapping("/auth/email/{email}")
     @ResponseBody
@@ -43,6 +77,7 @@ public class UserController {
             System.out.println("어 메일 전송했어");
         } catch (MessagingException e) {
             System.err.println("그것도 못하냐 허접아" + e.getMessage());
+            return ResponseEntity.unprocessableEntity().body("뭔가 뭔가 벌어지고 있음");
         }
 
         return ResponseEntity.ok("이메일 확인코드가 발송되었습니다.");
@@ -62,7 +97,11 @@ public class UserController {
         VerifyCode.remove(email);
         return ResponseEntity.ok("인증번호가 확인되었습니다.");
     }
-
+    @GetMapping("/admin/user")
+    @ResponseBody
+    public List<User> getalluser(){
+        return userService.getAll();
+    }
     @GetMapping("/auth/nickname/{nickname}")
     @ResponseBody
     public ResponseEntity<String> nicknameCheck(
@@ -113,10 +152,11 @@ public class UserController {
    }
 
     @PutMapping("/user/leave")
-    public ResponseEntity<String> softDeleteUser(@RequestParam("user_id") Integer userId) {
+    public ResponseEntity<String> softDeleteUser() {
         try {
-            userService.softDeleteUser(userId);
-            return ResponseEntity.ok("유저 ID " + userId + "가 삭제되었습니다");
+            String userName=SecurityUtil.getCurrentMemberId();
+            userService.softDeleteUser(userName);
+            return ResponseEntity.ok("유저 ID " + userName + "가 삭제되었습니다");
         } catch (UserNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
