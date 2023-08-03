@@ -80,14 +80,20 @@ public class EntMemberService {
         return memberList.stream().map(this::convertMemberToDto).collect(Collectors.toList());
     }
     
-    // 멤버 추가
+    // 멤버 승인 / 거절
     @Transactional
-    public boolean saveMember(int applId){
+    public boolean accepteMember(int applId,boolean isAccepted){
         EntApplicant entApplicant = applicantRepository.findEntApplicantByApplId(applId);
         if(entApplicant.getIsConfirmed() == true)
             return false;
-        entApplicant.accept();
-        applicantRepository.save(entApplicant);
+        if (isAccepted){
+            entApplicant.accept();
+            applicantRepository.save(entApplicant);
+        }else{
+            entApplicant.reject();
+            applicantRepository.save(entApplicant);
+            return true;
+        }
 
         EntMember entMember = EntMember.builder()
                 .ent(entApplicant.getEntId())
