@@ -58,6 +58,7 @@ public class UserController {
 
     @GetMapping("/auth/email/{email}")
     @ResponseBody
+    @ApiOperation(value="이메일 중복 체크 밋 인증메일 보내기!", notes="이메일 중복 체크가 완료되면 메일을 보냅니다.")
     public ResponseEntity<String> EmailCheck(
             @PathVariable("email") String email
             ) {
@@ -85,6 +86,7 @@ public class UserController {
 
     @GetMapping("/auth/email/auth/{authCode}/{email}")
     @ResponseBody
+    @ApiOperation(value="이메일 인증번호 입력하기", notes="인증번호가 입력되면 맞는지 검증합니다.")
     public ResponseEntity<String> EmailVerify(
             @PathVariable String authCode,
             @PathVariable String email
@@ -99,11 +101,13 @@ public class UserController {
     }
     @GetMapping("/admin/user")
     @ResponseBody
+    @ApiOperation(value="모든 유저 가져오기", notes="모든 유저정보를 가져오지만, 관리자 권한이 필요합니다.")
     public List<User> getalluser(){
         return userService.getAll();
     }
     @GetMapping("/auth/nickname/{nickname}")
     @ResponseBody
+    @ApiOperation(value="닉네임 중복 체크", notes="닉네임이 중복되었는지를 체크합니다.")
     public ResponseEntity<String> nicknameCheck(
             @PathVariable String nickname
     ){
@@ -115,11 +119,13 @@ public class UserController {
 
 
    @PostMapping("/auth/password")
+   @ApiOperation(value="임시 비밀번호 전송", notes="임시 비밀번호를 전송하고, DB에 임시 비밀번호르 덮어씌웁니다")
    public ResponseEntity<String> sendTemporaryPassword(@RequestBody String email) throws UserNotFoundException {
         userService.temporaryPassword(email);
         return ResponseEntity.ok("메시지가 발송되었습니다.");
    }
     @PostMapping("/user")
+    @ApiOperation(value="유저 등록하기", notes="유저를 등록하는 메서드입니다.")
     public ResponseEntity<String> CreateUser(@RequestBody UserRegistDTO registrationDTO) {
         try {
             User registeredUser = userService.registerUser(registrationDTO);
@@ -130,6 +136,7 @@ public class UserController {
     }
 
    @PutMapping("/user")
+   @ApiOperation(value="유저 수정하기", notes="유저를 수정하는 메서드입니다.")
    public ResponseEntity<String> updateUser(@RequestParam Integer user_id,
                                             @RequestParam String newNickname,
                                             @RequestParam String newUserImg,
@@ -146,12 +153,14 @@ public class UserController {
    }
    @GetMapping("/user/{user_id}")
    @ResponseBody
+   @ApiOperation(value="유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
    public ResponseEntity<User> GetUser(@PathVariable("user_id") int userId) throws UserNotFoundException {
         User result=userService.getUser(userId);
         return ResponseEntity.ok(result);
    }
 
     @PutMapping("/user/leave")
+    @ApiOperation(value="유저 삭제하기", notes="현재 유저를 삭제합니다. 단 is_deleted만 수정함으로써 유저 정보는 db에 남아있습니다.")
     public ResponseEntity<String> softDeleteUser() {
         try {
             String userName=SecurityUtil.getCurrentMemberId();
