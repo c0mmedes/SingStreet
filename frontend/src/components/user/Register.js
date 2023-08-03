@@ -7,16 +7,21 @@ import { api } from "../../services/httpService";
 function Register() {
 	const [nickname, setNickname] = useState("");
 	const [email, setEmail] = useState("");
+	const [authCode, setAuthCode] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [gender, setGender] = useState("");
 	const [isEmailDuplicated, setIsEmailDuplicated] = useState(null);
+	const [isAuthorized, setIsAuthorized] = useState(false);
 	const [isNicknameDuplicated, setIsNicknameDuplicated] = useState(null);
 	const handleNickname = (e) => {
 		setNickname(e.target.value);
 	};
 	const handleEmail = (e) => {
 		setEmail(e.target.value);
+	};
+	const handleAuthCode = (e) => {
+		setAuthCode(e.target.value);
 	};
 	const handlePassword = (e) => {
 		setPassword(e.target.value);
@@ -32,32 +37,48 @@ function Register() {
 	const navigate = useNavigate();
 
 	async function checkDuplicateEmail() {
-		if(email){
+		if (email) {
 			try {
 				const res = await apiInstance.get(`/auth/email/${email}`);
 				console.log(res);
 				setIsEmailDuplicated(email);
-				alert("사용 가능한 이메일입니다.");
+				alert("해당 이메일로 인증번호를 보냈습니다!");
 			} catch (error) {
 				if (error.response && error.response.status === 422) {
-					console.log('422 에러:', error.response.data);
+					console.log("422 에러:", error.response.data);
 					// 422 에러가 발생했을 때 처리할 로직을 구현합니다.
 					setIsEmailDuplicated(null);
-					alert("올바른 이메일이 아닙니다.")
-				  } else {
-					console.error('요청 실패:', error);
+					alert("올바른 이메일이 아닙니다.");
+				} else {
+					console.error("요청 실패:", error);
 					// 다른 에러가 발생했을 때 처리할 로직을 구현합니다.
 					setIsEmailDuplicated(null);
 					alert("이미 사용중인 이메일 입니다.");
-				  }
+				}
 			}
 		} else {
 			alert("이메일을 입력해주세요.");
 		}
 	}
 
+	async function onClickAuthorize() {
+		if (!authCode) {
+			alert("인증번호를 입력해주세요");
+			return;
+		}
+		try {
+			const res = await apiInstance.get(`/auth/email/auth/${authCode}/${email}`);
+			console.log(res);
+			setIsAuthorized(true);
+			alert("이메일 인증이 완료되었습니다!");
+		} catch (error) {
+			console.error("인증 실패:", error);
+			alert("인증번호가 올바르지 않습니다.");
+		}
+	}
+
 	async function checkDuplicateNickname() {
-		if(nickname){
+		if (nickname) {
 			try {
 				const res = await apiInstance.get(`/auth/nickname/${nickname}`);
 				console.log(res);
@@ -79,6 +100,10 @@ function Register() {
 		}
 		if (!email) {
 			alert("이메일을 입력해주세요");
+			return;
+		}
+		if (!isAuthorized && isEmailDuplicated) {
+			alert("이메일 인증을 완료해주세요");
 			return;
 		}
 		if (!password) {
@@ -138,6 +163,16 @@ function Register() {
 						중복확인
 					</button>
 				</div>
+				{/* 인증번호 입력란과 확인 버튼 */}
+				{!isAuthorized && isEmailDuplicated && (
+					<div className="inputbox">
+						<label htmlFor="authCode">Verification Code</label>
+						<input type="text" name="authCode" value={authCode} onChange={handleAuthCode} />
+						<button onClick={onClickAuthorize} className="CheckBtn">
+							확인
+						</button>
+					</div>
+				)}
 				<div className="inputbox">
 					<label htmlFor="gender">Gender</label>
 					<select name="gender" value={gender} onChange={handleGender}>
