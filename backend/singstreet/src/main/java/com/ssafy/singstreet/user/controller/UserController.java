@@ -162,7 +162,7 @@ public class UserController {
 
     @GetMapping("/user")
     @ResponseBody
-    @ApiOperation(value="내 유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
+    @ApiOperation(value="내 유저 상세정보 받아오기", notes="내 유저의 상세정보를 받아옵니다.")
     public ResponseEntity<UserDetailDTO> GetUser() throws UserNotFoundException {
         int userId = userService.getCurrentUserId();
         UserDetailDTO result=userService.getUser(userId);
