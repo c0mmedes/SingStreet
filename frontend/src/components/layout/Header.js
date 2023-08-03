@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../css/layout/Header.css";
 import logo from "../../assets/logo.png";
 
-const Header = ({ isLoggedIn }) => {
+const Header = () => {
   return (
     <header>
       <Link to="/">
