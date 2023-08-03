@@ -26,7 +26,6 @@ const userReducer = (state = initialState, action) =>{
             };
         case SET_ISLOGIN:
             return{
-                ...state,
                 isLogin: !state.isLogin,
             }; 
         default:
