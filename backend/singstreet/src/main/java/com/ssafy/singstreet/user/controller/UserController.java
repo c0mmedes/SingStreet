@@ -152,8 +152,8 @@ public class UserController {
        }
    }
    @GetMapping("/user/{user_id}")
-   @ApiOperation(value="유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
    @ResponseBody
+   @ApiOperation(value="유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
    public ResponseEntity<User> GetUser(@PathVariable("user_id") int userId) throws UserNotFoundException {
         User result=userService.getUser(userId);
         return ResponseEntity.ok(result);
