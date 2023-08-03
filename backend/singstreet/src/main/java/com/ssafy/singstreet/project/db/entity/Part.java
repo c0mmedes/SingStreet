@@ -15,7 +15,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "part")
 public class Part {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "part_id")
@@ -26,17 +25,18 @@ public class Part {
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name = "user_id" , nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
-
-
-//    @Column(name = "project_id", nullable = false)
-//    private Integer projectId; // Assuming project_id references the project table's project_id
-
-//    @Column(name = "user_id", nullable = false)
-//    private Integer userId; // Assuming user_id references the user table's user_id
 
     @Column(name = "part_name", length = 30)
     private String partName;
+
+    // 파트 업데이트
+    public void update(Integer partId, User user, String partName){
+        this.partId = partId;
+        this.user = user;
+        this.partName = partName;
+    }
+
 }
 
