@@ -31,10 +31,10 @@ public class EntMember extends BaseTimeEntity {
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
 
-    @Column(name = "is_leader",nullable = false)
+    @Column(name = "is_leader", nullable = false)
     private Boolean isLeader;
 
-    @Column(name = "is_deleted",nullable = false)
+    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted;
 
     @PrePersist
@@ -46,7 +46,6 @@ public class EntMember extends BaseTimeEntity {
             isDeleted = false;
         }
     }
-
 
     @Builder
     public EntMember(Ent ent, User user, boolean isLeader){
