@@ -2,17 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import {createStore} from 'redux';
+import { persistStore } from "redux-persist";
 import {Provider} from 'react-redux';
-import { persistStore } from "redux-persist"; // load
-import { PersistGate } from "redux-persist/integration/react"; // load
 import App from "./App";
 import HeaderContainer from "./containers/user/HeaderContainer";
 import Footer from "./components/layout/Footer.js";
-import persistedReducer from "./modules/index";
+import rootReducer from "./modules/index";
 import { composeWithDevTools } from "@redux-devtools/extension"
+import { PersistGate } from "redux-persist/integration/react";
 
-const store = createStore(persistedReducer, composeWithDevTools())
-const persistor = persistStore(store); // 정의
+const store = createStore(rootReducer, composeWithDevTools())
+const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +23,7 @@ root.render(
         <App />
         {/* <Footer/> */}
       </PersistGate>
-      </Provider>
+    </Provider>
   </BrowserRouter>
 );
+
