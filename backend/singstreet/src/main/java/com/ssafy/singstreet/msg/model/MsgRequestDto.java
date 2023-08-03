@@ -15,4 +15,9 @@ public class MsgRequestDto {
     private String title;
     private String content;
     private Integer replyId;
+
+    public void updateReceiver(int receiver){
+        this.receiver = receiver;
+    }
+
 }
