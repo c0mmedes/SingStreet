@@ -7,8 +7,9 @@ import App from "./App";
 import HeaderContainer from "./containers/user/HeaderContainer";
 import Footer from "./components/layout/Footer.js";
 import rootReducer from "./modules/index";
+import composeWithDevTools from "redux-devtools-extension";
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools())
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
