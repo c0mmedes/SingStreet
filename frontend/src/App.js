@@ -3,7 +3,7 @@ import Ent from "./components/ent/Ent";
 import Home from "./components/Home";
 import Chart from "./components/chart/Chart";
 import Music from "./components/work/Music";
-import Login from "./components/user/Login";
+import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 import Mypage from "./components/user/Mypage";
 import React, { useState } from "react";
@@ -30,7 +30,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route
         path="/login"
-        element={<Login onLoginSuccess={handleLoginSuccess} />}
+        element={<LoginContainer onLoginSuccess={handleLoginSuccess} />}
       />
       <Route path="/mypage" element={<Mypage isLoggedIn={isLoggedIn} />} />
     </Routes>
