@@ -137,16 +137,19 @@ body {
 }
 .entSearchSubmit {
   padding: 10px;
-  border-radius: 5px;
   background-color: transparent;
-  margin-bottom: 0;
+  border-bottom: 3px solid pink;
+  border-radius: 0px;
+  margin-bottom: 0px;
 }
 
 .entSearchWrap select {
   width: 120px;
-  background-color: pink;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid pink;
+  border-radius: 0;
   height: 50px;
-  border-radius: 50px;
   position: relative;
   left: 100px;
 }
