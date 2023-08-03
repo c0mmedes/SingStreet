@@ -21,6 +21,7 @@ import java.util.List;
 public class EntApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    private final UserService userService;
     private final EntService entService;
     private final UserService userService;
 
@@ -43,6 +44,7 @@ public class EntApiController {
     @GetMapping("/ent/myEnt")
     public ResponseEntity<List<EntResponseDto>> readMyEnt(){
         int userId = userService.getCurrentUserId();
+
         log.debug("[readMyEntList] = ", userId);
 
         return new ResponseEntity(entService.readMyEnt(userId),HttpStatus.OK);
@@ -53,6 +55,7 @@ public class EntApiController {
     @PostMapping("/ent")
     public ResponseEntity<Boolean> create(@RequestBody EntSaveRequestDto requestDto){
         int userId = userService.getCurrentUserId();
+
         log.debug("[create]EntSaveRequestDto = ", requestDto);
         log.debug("[create]userId = ", userId);
 
