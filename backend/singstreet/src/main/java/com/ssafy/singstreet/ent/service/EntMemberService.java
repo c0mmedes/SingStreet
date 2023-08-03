@@ -30,7 +30,7 @@ public class EntMemberService {
     // 지원자 ---------------------------------------------------------------
     //지원자 목록
     public List<EntApplyResponseDto> readAppl(int requestEntId){
-        Ent entId = repository.findByEntId(requestEntId);
+        Ent entId = repository.findByEntIdAndIsDeleted(requestEntId,false);
         List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmed(entId, false);
 
         return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
@@ -45,12 +45,12 @@ public class EntMemberService {
 
     // 지원자 등록
     public boolean saveAppl(EntApplyRequestDto requestDto){
-        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntId(requestDto.getEntId()),userRepository.findByUserId(requestDto.getUserId()));
+        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false),userRepository.findByUserId(requestDto.getUserId()));
         if(done != null)
             return false;
 
         EntApplicant entApplicant = EntApplicant.builder()
-                .entId(repository.findByEntId(requestDto.getEntId()))
+                .entId(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false))
                 .userId(userRepository.findByUserId(requestDto.getUserId()))
                 .hope(requestDto.getHope())
                 .artist(requestDto.getArtist())
@@ -74,7 +74,7 @@ public class EntMemberService {
     // 멤버 목록 조회
     public
     List<EntMemberResponseDto> readMember(int entId){
-        Ent ent = repository.findByEntId(entId);
+        Ent ent = repository.findByEntIdAndIsDeleted(entId,false);
         List<EntMember> memberList = memberRepository.findAllByEnt(ent);
 
         return memberList.stream().map(this::convertMemberToDto).collect(Collectors.toList());

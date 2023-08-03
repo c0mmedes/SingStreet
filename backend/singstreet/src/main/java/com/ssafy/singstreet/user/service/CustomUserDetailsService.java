@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return createUserDetails(memberRepository.findByEmailAndIsDeletedFalse(email));
+        return createUserDetails(memberRepository.findByEmailAndIsDeleted(email,false));
     }
 
     // 해당하는 User 의 데이터가 존재한다면 UserDetails 객체로 만들어서 리턴
