@@ -10,7 +10,6 @@ const userPersistConfig = {
 
 const rootReducer = combineReducers({
     user: persistReducer(userPersistConfig, user)
-
 });
 
 export default rootReducer;

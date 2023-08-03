@@ -39,13 +39,21 @@ function Register() {
 				setIsEmailDuplicated(email);
 				alert("사용 가능한 이메일입니다.");
 			} catch (error) {
-				setIsEmailDuplicated(null);
-				alert("이미 사용중인 이메일 입니다.");
+				if (error.response && error.response.status === 422) {
+					console.log('422 에러:', error.response.data);
+					// 422 에러가 발생했을 때 처리할 로직을 구현합니다.
+					setIsEmailDuplicated(null);
+					alert("올바른 이메일이 아닙니다.")
+				  } else {
+					console.error('요청 실패:', error);
+					// 다른 에러가 발생했을 때 처리할 로직을 구현합니다.
+					setIsEmailDuplicated(null);
+					alert("이미 사용중인 이메일 입니다.");
+				  }
 			}
 		} else {
 			alert("이메일을 입력해주세요.");
 		}
-		
 	}
 
 	async function checkDuplicateNickname() {

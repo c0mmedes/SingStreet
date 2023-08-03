@@ -5,6 +5,7 @@ import "../../css/layout/Header.css";
 import logo from "../../assets/logo.png";
 
 const Header = ({isLogin, setIsLogin, user, setUser}) => {
+  console.log(isLogin);
   return (
     <header>
       <Link to="/">

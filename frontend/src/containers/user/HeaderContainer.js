@@ -7,9 +7,11 @@ import {setUser, setIsLogin} from "../../modules/user/user";
 import Header from "../../components/layout/Header";
 
 const HeaderContainer = ({isLogin}) => {
+    console.log(isLogin);
     return(
         <Header isLogin={isLogin}></Header>
     );
+    
 };
 
 const mapStateToProps = state => ({
