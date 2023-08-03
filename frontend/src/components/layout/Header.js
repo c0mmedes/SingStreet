@@ -23,12 +23,12 @@ const Header = ({isLogin, setIsLogin, user, setUser}) => {
         </Link>
         {/* 로그인 상태에 따라 Login 또는 Mypage로 링크 변경 */}
         {(isLogin === true) ? (
-            <span>
+            <div>
               <Link to="/mypage">
                 <span>Mypage</span>
               </Link>
-              <span>Logout</span>
-            </span>
+              <a>Logout</a>
+            </div>
         ) : (
           <Link to="/login">
             <span>Login</span>
