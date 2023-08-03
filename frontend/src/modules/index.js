@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import sessionStorage from "redux-persist/es/storage/session";
+// import storage from "redux-persist/lib/storage";
 import user from './user/user';
 
 const userPersistConfig = {
