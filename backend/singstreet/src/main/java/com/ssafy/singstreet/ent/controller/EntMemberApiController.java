@@ -7,6 +7,7 @@ import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntMemberResponseDto;
 import com.ssafy.singstreet.ent.service.EntMemberService;
+import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import java.util.List;
 public class EntMemberApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EntMemberService entMemberService;
+    private final UserService userService;
 
     //지원자 -------------------------------------------------------------------
     // 지원자(EntApplicant) 목록
@@ -43,6 +45,8 @@ public class EntMemberApiController {
     // 지원자(EntApplicant) 생성
     @PostMapping("/ent/apply")
     public ResponseEntity<Boolean> createAppl(@RequestBody EntApplyRequestDto requestDto){
+        int userId = userService.getCurrentUserId();
+        requestDto.updateUserId(userId);
         log.debug("[create]EntApplicant = ",requestDto);
 
         return new ResponseEntity(entMemberService.saveAppl(requestDto),HttpStatus.CREATED);

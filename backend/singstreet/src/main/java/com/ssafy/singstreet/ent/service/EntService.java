@@ -34,7 +34,7 @@ public class EntService {
         Slice<EntResponseDto> entSliceList = entSlice.map(this::convertEntToDto);
 
         for (EntResponseDto ent : entSliceList){
-            List<EntTag> tagList = tagRepository.findAllByEntId(repository.findByEntId(ent.getEntId()));
+            List<EntTag> tagList = tagRepository.findAllByEntId(repository.findByEntIdAndIsDeleted(ent.getEntId(),false));
             List<String> tagNameList = tagList.stream().map(this::convertTagToName).collect(Collectors.toList());
             ent.update(tagNameList);
         }
@@ -43,7 +43,7 @@ public class EntService {
     
     //엔터 상세 조회
     public EntResponseDto readDetail(int entId){
-        Ent ent = repository.findByEntId(entId);
+        Ent ent = repository.findByEntIdAndIsDeleted(entId,false);
         EntResponseDto entResponseDto = convertEntToDto(ent);
         List<EntTag> tagList = tagRepository.findAllByEntId(ent);
         List<String> tagNameList = tagList.stream().map(this::convertTagToName).collect(Collectors.toList());
@@ -58,7 +58,7 @@ public class EntService {
         List<EntResponseDto> entResponseDtos = entList.stream().map(this::convertEntToDto).collect(Collectors.toList());
 
         for (EntResponseDto ent : entResponseDtos){
-            List<EntTag> tagList = tagRepository.findAllByEntId(repository.findByEntId(ent.getEntId()));
+            List<EntTag> tagList = tagRepository.findAllByEntId(repository.findByEntIdAndIsDeleted(ent.getEntId(),false));
             List<String> tagNameList = tagList.stream().map(this::convertTagToName).collect(Collectors.toList());
             ent.update(tagNameList);
         }
@@ -89,7 +89,7 @@ public class EntService {
 
 
         if(requestDto.getEntTagList() != null) {
-            Ent entId = repository.findByEntId(ent.getEntId());
+            Ent entId = repository.findByEntIdAndIsDeleted(ent.getEntId(),false);
             String[] tagList = requestDto.getEntTagList().split("\\s*#\\s*");
 
             saveTagList(tagList, entId);

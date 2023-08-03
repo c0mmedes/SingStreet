@@ -2,6 +2,7 @@ package com.ssafy.singstreet.ent.controller;
 
 import com.ssafy.singstreet.ent.model.entDto.*;
 import com.ssafy.singstreet.ent.service.EntService;
+import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import java.util.List;
 public class EntApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    private final UserService userService;
     private final EntService entService;
 
     //Ent전체 목록 조회
@@ -38,8 +40,10 @@ public class EntApiController {
         return new ResponseEntity(entService.readDetail(entId),HttpStatus.OK);
     }
     //MyEnt 목록 조회
-    @GetMapping("/ent/myEnt/{userId}")
-    public ResponseEntity<List<EntResponseDto>> readMyEnt(@PathVariable int userId){
+    @GetMapping("/ent/myEnt")
+    public ResponseEntity<List<EntResponseDto>> readMyEnt(){
+        int userId = userService.getCurrentUserId();
+
         log.debug("[readMyEntList] = ", userId);
 
         return new ResponseEntity(entService.readMyEnt(userId),HttpStatus.OK);
@@ -47,8 +51,10 @@ public class EntApiController {
 
 
     //Ent추가
-    @PostMapping("/ent/{userId}")
-    public ResponseEntity<Boolean> create(@RequestBody EntSaveRequestDto requestDto, @PathVariable int userId){
+    @PostMapping("/ent")
+    public ResponseEntity<Boolean> create(@RequestBody EntSaveRequestDto requestDto){
+        int userId = userService.getCurrentUserId();
+
         log.debug("[create]EntSaveRequestDto = ", requestDto);
         log.debug("[create]userId = ", userId);
 

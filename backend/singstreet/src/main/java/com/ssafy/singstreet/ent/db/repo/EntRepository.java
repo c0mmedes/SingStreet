@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface EntRepository extends JpaRepository<Ent, Integer> {
 
-    Ent findByEntId(int entId);
+    Ent findByEntIdAndIsDeleted(int entId, boolean isDeleted);
 
     Slice<Ent> findByIsDeleted(Boolean isDeleted, Pageable pageable);
 

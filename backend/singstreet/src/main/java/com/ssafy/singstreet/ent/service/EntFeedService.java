@@ -63,7 +63,7 @@ public class EntFeedService {
     public boolean saveFeed(EntFeedCreateRequestDto requestDto){
         EntFeed feed = EntFeed.builder()
                 .user(userRepository.findByUserId(requestDto.getUser()))
-                .ent(repository.findByEntId(requestDto.getEnt()))
+                .ent(repository.findByEntIdAndIsDeleted(requestDto.getEnt(),false))
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
                 .fileName(requestDto.getFileName())

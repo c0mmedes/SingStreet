@@ -19,4 +19,8 @@ public class EntApplyRequestDto {
     private int age;
     private String content;
     private String audioName;
+
+    public void updateUserId(int userId){
+        this.userId = userId;
+    }
 }
