@@ -32,7 +32,7 @@ public class EntApiController {
     }
     //Ent상세조회
     @GetMapping("/ent/{entId}")
-    public ResponseEntity<EntDetailResponseDto> readDetail(@PathVariable int entId){
+    public ResponseEntity<EntResponseDto> readDetail(@PathVariable int entId){
         log.debug("[readDetail]entId = ", entId);
 
         return new ResponseEntity(entService.readDetail(entId),HttpStatus.OK);
