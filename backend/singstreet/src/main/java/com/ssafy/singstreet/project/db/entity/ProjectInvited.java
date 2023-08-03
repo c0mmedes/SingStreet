@@ -2,10 +2,7 @@ package com.ssafy.singstreet.project.db.entity;
 
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.user.db.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
+@Setter
 @Table(name = "project_invited")
 public class ProjectInvited {
     @Id
@@ -35,15 +33,6 @@ public class ProjectInvited {
     @JoinColumn(name = "ent_id" , nullable = false)
     private Ent ent;
 
-//    @Column(name = "user_id", nullable = false)
-//    private Integer userId; // Assuming user_id references the user table's user_id
-//
-//    @Column(name = "project_id", nullable = false)
-//    private Integer projectId; // Assuming project_id references the project table's project_id
-//
-//    @Column(name = "ent_id", nullable = false)
-//    private Integer entId; // Assuming ent_id references the ent table's ent_id
-
     @Column(name = "is_accepted")
     private Boolean isAccepted;
 
@@ -54,9 +43,11 @@ public class ProjectInvited {
     @Column(name = "confirm_date")
     private LocalDateTime confirmDate;
 
-    @Column(name = "accepted_at")
-    private LocalDateTime acceptedAt;
+    public void accept() {
+        this.isAccepted = true;
+    }
 
-    @Column(name = "rejected_at")
-    private LocalDateTime rejectedAt;
+    public void reject() {
+        this.isAccepted = false;
+    }
 }

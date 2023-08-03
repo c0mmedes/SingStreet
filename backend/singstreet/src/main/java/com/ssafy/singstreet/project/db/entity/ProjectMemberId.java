@@ -1,15 +1,16 @@
 package com.ssafy.singstreet.project.db.entity;
 
 import com.ssafy.singstreet.user.db.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Embeddable
 public class ProjectMemberId implements Serializable {
 
