@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../layout/Footer";
 import "../../css/chart/Chart.css";
+import sampleuni from "../../assets/sampleuni.png";
 const chart = () => {
   return (
     <div className="chartContainer">
@@ -17,10 +18,7 @@ const chart = () => {
         <div className="chartBox chartBox1">
           <div className="chartNumber chartNumber1">01</div>
           <div className="chartCover chartCover1">
-            <img
-              src="https://m.media-amazon.com/images/I/91-kmdlsEsL._SS500_.jpg"
-              alt="01"
-            />
+            <img src={sampleuni} alt="01" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName chartName1">

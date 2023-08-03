@@ -6,6 +6,18 @@ import Footer from "../layout/Footer.js";
 const Ent = () => {
   return (
     <div>
+      <form className="entSearchWrap">
+        <input
+          placeholder="마음에 드는 엔터를 검색해보세요. . ."
+          type="text"
+          className="entSearchInput"></input>
+        <input type="submit" value="검색" className="entSearchSubmit"></input>
+        <select>
+          <option value="allEnt">전체</option>
+          <option value="myEnt">가입된 엔터</option>
+        </select>
+      </form>
+
       <ul className="cards">
         <li>
           <a href="" class="card">
@@ -172,6 +184,9 @@ const Ent = () => {
           </a>
         </li>
       </ul>
+      <div className="entCreatebtnWrap">
+        <button className="entCreatebtn">엔터 생성하기</button>
+      </div>
       <Footer />
     </div>
   );
