@@ -5,8 +5,8 @@ const chart = () => {
   return (
     <div>
       <div className="chartCard">
-        <div className="chartTitle">
-          <h1>월간차트</h1>
+        <div className="chartTitle ">
+          <h1>月刊차트</h1>
           <p>
             The world liked a lot of music this month.
             <br />
@@ -14,17 +14,17 @@ const chart = () => {
           </p>
         </div>
 
-        <div className="chartBox">
-          <div className="chartNumber">01</div>
-          <div className="chartCover">
+        <div className="chartBox chartBox1">
+          <div className="chartNumber chartNumber1">01</div>
+          <div className="chartCover chartCover1">
             <img
               src="https://m.media-amazon.com/images/I/91-kmdlsEsL._SS500_.jpg"
               alt="01"
             />
           </div>
           {/* <!-- Name --> */}
-          <div className="chartName">
-            <span>준혁시치엔터</span> 아야츠노유니 - 내꺼 하는 법
+          <div className="chartName chartName1">
+            <span> 아야츠노유니 - 내꺼 하는 법</span> <p>준혁엔터</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">

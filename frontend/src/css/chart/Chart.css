@@ -1,6 +1,6 @@
 /* Card */
 .chartCard {
-  width: 80%;
+  width: 60%;
   background-color: #fbfbfb;
   padding: 50px;
   margin-top: 50px;
@@ -16,8 +16,8 @@
   text-align: center;
 }
 .chartTitle h1 {
-  color: #f5ce64;
-  font-size: 40px;
+  color: black;
+  font-size: 60px;
   margin-bottom: 0;
 }
 .chartTitle p {
@@ -28,7 +28,7 @@
 
 /* Rancking */
 .chartBox {
-  display: block;
+  /* display: block; */
   width: 80%;
   height: 150px;
   margin: 20px auto 20px auto;
@@ -61,9 +61,10 @@
 
 /* Name */
 .chartName {
+  display: flex;
+  flex-direction: column;
   float: left;
-  height: 150px;
-  line-height: 150px;
+  margin-top: 30px;
   font-size: 18px;
   color: #a3a8cd;
 }

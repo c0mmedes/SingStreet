@@ -66,9 +66,9 @@ function Login({ setUser }) {
           Login
         </button>
         <div className="register">
-          <span>회원이 아니십니까?</span>
+          <span className="registerQ">회원이 아니십니까?</span>
           <Link to="/register">
-            <span>회원가입</span>
+            <span className="registerLink">회원가입</span>
           </Link>
         </div>
       </div>
