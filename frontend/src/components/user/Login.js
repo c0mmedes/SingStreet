@@ -22,7 +22,7 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 		const accessToken = sessionStorage.getItem("accessToken");
 		console.log(accessToken);
 		try {
-			const res = await apiInstance.get("/user", {
+			const res = await apiInstance.get(`/user/${1}`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 				},
