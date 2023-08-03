@@ -3,6 +3,7 @@ import "../../css/ent/Ent.css";
 import myImage from "../../assets/entLogo2.png";
 import myImage2 from "../../assets/entLogo1.PNG";
 import Footer from "../layout/Footer.js";
+import { Link } from "react-router-dom";
 const Ent = () => {
   return (
     <div>
@@ -184,8 +185,11 @@ const Ent = () => {
           </a>
         </li>
       </ul>
+
       <div className="entCreatebtnWrap">
-        <button className="entCreatebtn">엔터 생성하기</button>
+        <Link to="/entcreate">
+          <button className="entCreatebtn">엔터 생성하기</button>
+        </Link>
       </div>
       <Footer />
     </div>

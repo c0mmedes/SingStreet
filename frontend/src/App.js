@@ -7,6 +7,7 @@ import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 import Mypage from "./components/user/Mypage";
 import React, { useState } from "react";
+import Entcreate from "./components/ent/EntCreate";
 import "./css/App.css";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         element={<LoginContainer onLoginSuccess={handleLoginSuccess} />}
       />
       <Route path="/mypage" element={<Mypage isLoggedIn={isLoggedIn} />} />
+      <Route path="/entcreate" element={<Entcreate />} />
     </Routes>
   );
 }
