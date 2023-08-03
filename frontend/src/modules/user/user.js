@@ -27,6 +27,7 @@ const user = (state = initialState, action) => {
 			};
 		case SET_ISLOGIN:
 			return {
+				...state,
 				isLogin: !state.isLogin,
 			};
 		default:
