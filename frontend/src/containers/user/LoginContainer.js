@@ -7,10 +7,14 @@ import {setUser} from "../../modules/user/user";
 import { setIsLogin } from "../../modules/user/user";
 import Login from "../../components/user/Login";
 
-const mapDispatchToProps = {
-    setUser,
-    setIsLogin,
-};
+const mapDispatchToProps = dispatch => ({
+    setUser: () =>{
+        dispatch(setUser());
+    },
+    setIsLogin: () =>{
+        dispatch(setIsLogin());
+    },
+});
 
 // Login 컴포넌트에선 dispatch만 사용하고 리덕스 '스토어의 상태'를 사용하지않음 
 // => null

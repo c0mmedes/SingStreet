@@ -31,7 +31,7 @@ function Login({ setUser, setIsLogin }) {
       sessionStorage.setItem("refreshToken", res.data.refreshToken);
       // 로그인 성공 시 메인 페이지로 이동
       navigate("/");
-	  setIsLogin();
+	    setIsLogin();
       alert("로그인 성공");
     } catch (error) {
       console.error("로그인 실패:", error);
