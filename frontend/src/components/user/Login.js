@@ -29,13 +29,9 @@ function Login({ setUser }) {
       // 서버 응답으로 받은 accessToken과 refreshToken을 sessionStorage에 저장
       sessionStorage.setItem("accessToken", res.data.accessToken);
       sessionStorage.setItem("refreshToken", res.data.refreshToken);
-      navigate("/");
-      console.log(res);
-      console.log("res.data.accessToken :: ", res.data.accessToken);
-      console.log("res.data.grantType :: ", res.data.grantType);
-      console.log("res.data.refreshToken :: ", res.data.refreshToken);
-      alert("로그인 성공");
       // 로그인 성공 시 메인 페이지로 이동
+      navigate("/");
+      alert("로그인 성공");
     } catch (error) {
       console.error("로그인 실패:", error);
       alert("로그인 실패");
