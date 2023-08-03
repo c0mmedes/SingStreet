@@ -21,7 +21,7 @@ const Header = ({ isLoggedIn }) => {
           <span>Music</span>
         </Link>
         {/* 로그인 상태에 따라 Login 또는 Mypage로 링크 변경 */}
-        {isLoggedIn ? (
+        {sessionStorage.getItem("accessToken") ? (
           <Link to="/mypage">
             <span>Mypage</span>
           </Link>

@@ -17,10 +17,10 @@ function App() {
     setIsLoggedIn(true);
   };
 
-  // 로그아웃 시 호출되는 함수
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+  //   // 로그아웃 시 호출되는 함수
+  //   const handleLogout = () => {
+  //     setIsLoggedIn(false);
+  //   };
   return (
     <Routes>
       <Route path="/" element={<Home />} />
