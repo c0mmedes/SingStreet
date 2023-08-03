@@ -50,6 +50,7 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 			sessionStorage.setItem("accessToken", res.data.accessToken);
 			sessionStorage.setItem("refreshToken", res.data.refreshToken);
 			setIsLogin();
+			console.log("getUserInfo 진입직전");
 			getUserInfo();
 			// 로그인 성공 시 메인 페이지로 이동
 			navigate("/");
