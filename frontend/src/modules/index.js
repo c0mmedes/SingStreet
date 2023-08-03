@@ -5,7 +5,7 @@ import user from './user/user';
 
 const userPersistConfig = {
     key: "user",
-    storage: storage
+    storage: sessionStorage
   };
 
 const rootReducer = combineReducers({
