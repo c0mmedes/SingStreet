@@ -6,7 +6,7 @@ import { api } from "../../services/httpService";
 
 const apiInstance = api();
 
-function Login({ setUser }) {
+function Login({ setUser, setIsLogin }) {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPw, setInputPw] = useState("");
   const handleInputEmail = (e) => {
@@ -31,6 +31,7 @@ function Login({ setUser }) {
       sessionStorage.setItem("refreshToken", res.data.refreshToken);
       // 로그인 성공 시 메인 페이지로 이동
       navigate("/");
+	  setIsLogin();
       alert("로그인 성공");
     } catch (error) {
       console.error("로그인 실패:", error);
