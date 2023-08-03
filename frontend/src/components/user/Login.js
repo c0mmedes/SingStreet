@@ -22,7 +22,7 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 		const accessToken = sessionStorage.getItem("accessToken");
 		console.log(accessToken);
 		try {
-			const res = await apiInstance.get(`/user`, {
+			const res = await apiInstance.get("/user", {
 				headers: {
 					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 				},
@@ -45,7 +45,6 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 				email: inputEmail,
 				password: inputPw,
 			});
-
 			// 서버 응답으로 받은 accessToken과 refreshToken을 sessionStorage에 저장
 			sessionStorage.setItem("accessToken", res.data.accessToken);
 			sessionStorage.setItem("refreshToken", res.data.refreshToken);
