@@ -23,7 +23,6 @@ public class EntApiController {
 
     private final UserService userService;
     private final EntService entService;
-    private final UserService userService;
 
     //Ent전체 목록 조회
     //page는 0부터 시작
