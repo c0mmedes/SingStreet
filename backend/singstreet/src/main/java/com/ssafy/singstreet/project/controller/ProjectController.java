@@ -5,6 +5,7 @@ import com.ssafy.singstreet.project.model.ProjectInvitedResponseDto;
 import com.ssafy.singstreet.project.model.ProjectSaveRequestDto;
 import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
 import com.ssafy.singstreet.project.service.ProjectService;
+import com.ssafy.singstreet.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,17 +22,18 @@ import java.util.List;
 public class ProjectController {
 
     private final ProjectService projectService;
+//    private final UserService userService;
 
     @Autowired
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
     }
 
-    // POST 요청을 처리하는 API
     // 프로젝트 생성
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody ProjectSaveRequestDto dto) {
-        System.out.println(dto.getProjectTagList());
+//        int userId = userService.getCurrentUserId();
+//        dto.updateUserId(userId);
         Project createdProject = projectService.createProject(dto);
         // 프로젝트가 성공적으로 생성되었을 때 201 Created 상태코드와 생성된 프로젝트를 응답합니다.
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);

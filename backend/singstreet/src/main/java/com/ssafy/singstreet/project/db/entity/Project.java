@@ -110,5 +110,7 @@ public class Project extends BaseTimeEntity {
     public void updateOriginFilename(String originFilename) {
         this.originFilename = originFilename;
     }
+    public void plusLikeCount() { this.likeCount++; };
+    public void minusLikeCount() { this.likeCount--; };
 }
 

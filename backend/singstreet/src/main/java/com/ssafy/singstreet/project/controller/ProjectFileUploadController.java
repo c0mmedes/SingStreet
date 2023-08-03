@@ -1,10 +1,7 @@
 package com.ssafy.singstreet.project.controller;
 
 import com.ssafy.singstreet.project.db.entity.Project;
-import com.ssafy.singstreet.project.db.entity.ProjectInvited;
-import com.ssafy.singstreet.project.model.ProjectInvitedRequestDto;
 import com.ssafy.singstreet.project.service.ProjectFileUploadService;
-import com.ssafy.singstreet.project.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

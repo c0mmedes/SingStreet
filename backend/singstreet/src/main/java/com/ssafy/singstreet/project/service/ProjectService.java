@@ -110,7 +110,6 @@ public class ProjectService {
                 dto.getProjectImg(),
                 dto.getIsRecruited(),
                 dto.getIsVisible()
-                // 나머지 필드들도 필요에 따라 추가
         );
 
         // 프로젝트 태그들 업데이트
@@ -124,30 +123,19 @@ public class ProjectService {
             saveTagList(newTagList, project);
         }
 
+        partRepository.deleteAll();
+
         // 파트 수정
-        // 파트 수정하는 부분은 따로 짜야되나 ?
-        // 여러 명의 userid를 어떻게넣어줄까 (user dto list를 만들어서 받아와야됨?)
-        /*{
-            "entId" : 1,
-                "userId" : 1,
-                "projectName": "수정된 프로젝트 이름",
-                "singerName": "수정된 가수 이름",
-                "singName": "수정된 노래 제목",
-                "projectInfo": "수정된 프로젝트 정보",
-                "projectImg": "https://example.com/updated_image.jpg",
-                "isRecruited": true,
-                "projectTagList": "#태그1 #태그2 #태그3",
-                "partList": ["파트1", "파트2", "파트3"]
-        }*/
-        for(String partName : dto.getPartList()){
-            User user = userRepository.findByUserId(dto.getUserId());
+          for(int i=0; i<dto.getPartList().size(); i++){
             Part part = Part.builder()
-                    .project(projectRepository.findByProjectId(projectId))
-                    .partName(partName)
-                    .user(user)
+                    .project(project)
+                    .partName(dto.getPartList().get(i))
+                    .user(userRepository.findByUserId(dto.getUserList().get(i)))
                     .build();
             partRepository.save(part);
         }
+
+
 
         // 변경 감지에 의해 자동으로 DB에 업데이트 됨
         return projectRepository.save(project);

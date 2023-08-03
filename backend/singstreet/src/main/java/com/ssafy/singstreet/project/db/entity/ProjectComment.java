@@ -32,12 +32,6 @@ public class ProjectComment {
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
 
-//    @Column(name = "user_id", nullable = false)
-//    private Integer userId; // Assuming user_id references the user table's user_id
-//
-//    @Column(name = "project_id", nullable = false)
-//    private Integer projectId; // Assuming project_id references the project table's project_id
-
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
 
