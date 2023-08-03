@@ -30,8 +30,8 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 			console.log(res);
 			addUserInfo({
 				nickname: res.data.nickname,
-				userImg: res.data.user_img,
-				userId: res.data.user_id,
+				userImg: res.data.userImg,
+				userId: res.data.userId,
 			});
 			console.log(userInfo.nickname);
 		} catch (error) {
