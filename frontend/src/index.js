@@ -7,7 +7,7 @@ import App from "./App";
 import HeaderContainer from "./containers/user/HeaderContainer";
 import Footer from "./components/layout/Footer.js";
 import rootReducer from "./modules/index";
-import composeWithDevTools from "redux-devtools-extension";
+import { composeWithDevTools } from "@redux-devtools/extension"
 
 const store = createStore(rootReducer, composeWithDevTools())
 
