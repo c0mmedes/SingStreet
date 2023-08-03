@@ -10,6 +10,8 @@ function Register() {
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [gender, setGender] = useState("");
+	const [isEmailDuplicated, setIsEmailDuplicated] = useState(null);
+	const [isNicknameDuplicated, setIsNicknameDuplicated] = useState(null);
 	const handleNickname = (e) => {
 		setNickname(e.target.value);
 	};
@@ -30,51 +32,83 @@ function Register() {
 	const navigate = useNavigate();
 
 	async function checkDuplicateEmail() {
-		try {
-			const res = await apiInstance.get(`/auth/email/${email}`);
-			console.log(res);
-			alert("사용 가능한 이메일입니다.");
-		} catch (error) {
-			alert("이미 사용중인 이메일 입니다.");
+		if(email){
+			try {
+				const res = await apiInstance.get(`/auth/email/${email}`);
+				console.log(res);
+				setIsEmailDuplicated(email);
+				alert("사용 가능한 이메일입니다.");
+			} catch (error) {
+				setIsEmailDuplicated(null);
+				alert("이미 사용중인 이메일 입니다.");
+			}
+		} else {
+			alert("이메일을 입력해주세요.");
 		}
+		
 	}
 
 	async function checkDuplicateNickname() {
-		try {
-			const res = await apiInstance.get(`/auth/nickname/${nickname}`);
-			console.log(res);
-			alert("사용 가능한 닉네임입니다.");
-		} catch (error) {
-			alert("이미 사용중인 닉네임 입니다."); // 사용중인건지 사용이 불가능한건지 구분해줘야함
+		if(nickname){
+			try {
+				const res = await apiInstance.get(`/auth/nickname/${nickname}`);
+				console.log(res);
+				setIsNicknameDuplicated(nickname);
+				alert("사용 가능한 닉네임입니다.");
+			} catch (error) {
+				setIsNicknameDuplicated(null);
+				alert("이미 사용중인 닉네임 입니다."); // 사용중인건지 사용이 불가능한건지 구분해줘야함
+			}
+		} else {
+			alert("닉네임을 입력해주세요.");
 		}
 	}
 
 	async function onClickRegister() {
-		//  비밀번호, 비밀번호확인 칸을 비우면 안됨
-		if (password && passwordConfirm) {
-			if (password !== passwordConfirm) {
-				alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-			} else {
-				const data = {
-					email: email,
-					gender: gender === "남" ? "M" : "F",
-					nickname: nickname,
-					password: password,
-					userImg: "사용자 프로필 이미지 파일 경로", // 사용자의 프로필 이미지 경로로 변경핧겅미
-				};
-				try {
-					const res = await apiInstance.post("/user", data);
-					console.log(res);
-					console.log("회원가입 성공");
-					navigate("/");
-					alert("회원가입 성공");
-				} catch (error) {
-					console.error("회원가입 실패:", error);
-					alert("회원가입 실패");
-				}
-			}
-		} else {
-			alert("비밀번호를 입력하세요");
+		if (!nickname) {
+			alert("닉네임을 입력해주세요");
+			return;
+		}
+		if (!email) {
+			alert("이메일을 입력해주세요");
+			return;
+		}
+		if (!password) {
+			alert("비밀번호를 입력해주세요");
+			return;
+		}
+		if (!gender) {
+			alert("성별을 선택해주세요");
+			return;
+		}
+		if (password !== passwordConfirm) {
+			alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			return;
+		}
+		if (nickname !== isNicknameDuplicated) {
+			alert("닉네임 중복확인 필요");
+			return;
+		}
+		if (email !== isEmailDuplicated) {
+			alert("이메일 중복확인 필요");
+			return;
+		}
+		const data = {
+			email: email,
+			gender: gender === "남" ? "M" : "F",
+			nickname: nickname,
+			password: password,
+			userImg: "사용자 프로필 이미지 파일 경로", // 사용자의 프로필 이미지 경로로 변경핧겅미
+		};
+		try {
+			const res = await apiInstance.post("/user", data);
+			console.log(res);
+			console.log("회원가입 성공");
+			navigate("/");
+			alert("회원가입 성공");
+		} catch (error) {
+			console.error("회원가입 실패:", error);
+			alert("회원가입 실패");
 		}
 	}
 
