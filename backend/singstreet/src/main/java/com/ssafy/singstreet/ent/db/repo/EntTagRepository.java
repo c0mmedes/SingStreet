@@ -18,4 +18,5 @@ public interface EntTagRepository extends JpaRepository<EntTag, Integer> {
                 "WHERE tag.entId " +
                 "IN :entIdList ")
     List<EntTag> findByEntIdList(@Param("entIdList") List<Ent> entIdList);
+
 }

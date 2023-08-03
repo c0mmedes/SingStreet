@@ -16,5 +16,7 @@ public interface EntRepository extends JpaRepository<Ent, Integer> {
 
     List<Ent> findByUserAndIsDeleted(User user,boolean isDeleted);
 
+    List<Ent> findAllByUser(User user);
+
 
 }

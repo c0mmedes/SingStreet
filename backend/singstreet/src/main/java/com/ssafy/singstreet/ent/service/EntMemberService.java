@@ -7,12 +7,17 @@ import com.ssafy.singstreet.ent.db.entity.EntMemberId;
 import com.ssafy.singstreet.ent.db.repo.EntApplicantRepository;
 import com.ssafy.singstreet.ent.db.repo.EntMemberRepository;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyDetailResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
+import com.ssafy.singstreet.ent.model.entMemberDto.EntMemberResponseDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -23,22 +28,36 @@ public class EntMemberService {
     private final EntMemberRepository memberRepository;
 
     // 지원자 ---------------------------------------------------------------
-    public List<EntApplicant> readAppl(int requestEntId){
+    //지원자 목록
+    public List<EntApplyResponseDto> readAppl(int requestEntId){
         Ent entId = repository.findByEntId(requestEntId);
+        List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmed(entId, false);
 
-        return applicantRepository.findEntApplicantsByEntId(entId);
+        return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
     }
+
+    // 지원자 상세
+    public EntApplyDetailResponseDto readApplDetail(int applId){
+        EntApplicant apply = applicantRepository.findEntApplicantByApplId(applId);
+
+        return convertApplyDetailToDto(apply);
+    }
+
+    // 지원자 등록
     public boolean saveAppl(EntApplyRequestDto requestDto){
+        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntId(requestDto.getEntId()),userRepository.findByUserId(requestDto.getUserId()));
+        if(done != null)
+            return false;
+
         EntApplicant entApplicant = EntApplicant.builder()
                 .entId(repository.findByEntId(requestDto.getEntId()))
                 .userId(userRepository.findByUserId(requestDto.getUserId()))
                 .hope(requestDto.getHope())
                 .artist(requestDto.getArtist())
-                .age(requestDto.getAge())
                 .content(requestDto.getContent())
                 .build();
         if (requestDto.getAudioName() != null){
-            entApplicant.builder().audioName(requestDto.getAudioName()).build();
+            entApplicant.updateAudioName(requestDto.getAudioName());
         }
 
         applicantRepository.save(entApplicant);
@@ -52,18 +71,23 @@ public class EntMemberService {
     }
 
     // 멤버 -----------------------------------------------------------------
-    public List<EntMember> readMember(int entId){
+    // 멤버 목록 조회
+    public
+    List<EntMemberResponseDto> readMember(int entId){
         Ent ent = repository.findByEntId(entId);
         List<EntMember> memberList = memberRepository.findAllByEnt(ent);
 
-        return memberList;
+        return memberList.stream().map(this::convertMemberToDto).collect(Collectors.toList());
     }
+    
+    // 멤버 추가
+    @Transactional
     public boolean saveMember(int applId){
         EntApplicant entApplicant = applicantRepository.findEntApplicantByApplId(applId);
+        if(entApplicant.getIsConfirmed() == true)
+            return false;
         entApplicant.accept();
         applicantRepository.save(entApplicant);
-        if (entApplicant.getIsAccepted() != true)
-            return false;
 
         EntMember entMember = EntMember.builder()
                 .ent(entApplicant.getEntId())
@@ -75,14 +99,55 @@ public class EntMemberService {
 
         return true;
     }
+    
+    // 멤버 삭제
+    @Transactional
     public boolean deleteMember(int memberId){
         EntMember member = memberRepository.findByMemberId(memberId);
-        if (member.isLeader() == true)
+        if (member.getIsLeader() == true)
             return false;
         member.delete();
         memberRepository.save(member);
-        if(member.isDeleted() != true)
+        if(member.getIsDeleted() != true)
             return false;
         return true;
     }
+
+
+
+    // Convert -----------------------------
+    public EntApplyResponseDto convertApplyToDto(EntApplicant apply){
+        return EntApplyResponseDto.builder()
+                .userId(apply.getUserId().getUserId())
+                .nickname(apply.getUserId().getNickname())
+                .createAt(apply.getCreatedAt())
+                .build();
+    }
+    public EntApplyDetailResponseDto convertApplyDetailToDto(EntApplicant apply){
+        EntApplyDetailResponseDto result = EntApplyDetailResponseDto.builder()
+                .applId(apply.getApplId())
+                .entId(apply.getEntId().getEntId())
+                .userId(apply.getUserId().getUserId())
+                .nickname(apply.getUserId().getNickname())
+                .hope(apply.getHope())
+                .artist(apply.getArtist())
+                .content(apply.getContent())
+                .audioName(apply.getAudioName())
+                .build();
+        if(apply.getAudioName() != null){
+            apply.updateAudioName(result.getAudioName());
+        }
+        return result;
+    }
+
+    public EntMemberResponseDto convertMemberToDto(EntMember member){
+        return EntMemberResponseDto.builder()
+                .userId(member.getUser().getUserId())
+                .email(member.getUser().getEmail())
+                .createdAt(member.getCreatedAt())
+                .gender(member.getUser().getGender())
+                .nickname(member.getUser().getNickname())
+                .build();
+    }
+
 }

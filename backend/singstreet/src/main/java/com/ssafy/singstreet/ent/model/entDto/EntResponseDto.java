@@ -17,4 +17,9 @@ public class EntResponseDto {
     private String entImg;
     private String entInfo;
     private boolean isAutoAccepted;
+    private List<String> tagNameList;
+
+    public void update(List<String> tagNameList){
+        this.tagNameList = tagNameList;
+    }
 }
