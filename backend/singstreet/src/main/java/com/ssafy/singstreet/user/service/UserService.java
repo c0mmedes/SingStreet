@@ -206,4 +206,9 @@ public class UserService {
             // handle user not found situation
         }
     }
+
+
+    public int getCurrentUserId(){
+        return userRepository.findByEmail(SecurityUtil.getCurrentMemberId()).getUserId();
+    }
 }
