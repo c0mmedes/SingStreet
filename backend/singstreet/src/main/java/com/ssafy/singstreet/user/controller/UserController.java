@@ -4,6 +4,7 @@ import com.ssafy.singstreet.user.Exception.UserNotFoundException;
 import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
 import com.ssafy.singstreet.user.model.TokenInfo;
+import com.ssafy.singstreet.user.model.UserDetailDTO;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
 import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
@@ -154,10 +155,19 @@ public class UserController {
    @GetMapping("/user/{user_id}")
    @ResponseBody
    @ApiOperation(value="유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
-   public ResponseEntity<User> GetUser(@PathVariable("user_id") int userId) throws UserNotFoundException {
-        User result=userService.getUser(userId);
+   public ResponseEntity<UserDetailDTO> GetUser(@PathVariable("user_id") int userId) throws UserNotFoundException {
+       UserDetailDTO result=userService.getUser(userId);
         return ResponseEntity.ok(result);
    }
+
+    @GetMapping("/user")
+    @ResponseBody
+    @ApiOperation(value="내 유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
+    public ResponseEntity<UserDetailDTO> GetUser() throws UserNotFoundException {
+        int userId = userService.getCurrentUserId();
+        UserDetailDTO result=userService.getUser(userId);
+        return ResponseEntity.ok(result);
+    }
 
     @PutMapping("/user/leave")
     @ApiOperation(value="유저 삭제하기", notes="현재 유저를 삭제합니다. 단 is_deleted만 수정함으로써 유저 정보는 db에 남아있습니다.")

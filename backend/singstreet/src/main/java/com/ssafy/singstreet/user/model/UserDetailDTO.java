@@ -10,4 +10,5 @@ public class UserDetailDTO {
     private String userImg;
     private String email;
     private Character gender;
+    private int userId;
 }
