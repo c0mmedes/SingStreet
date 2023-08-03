@@ -6,7 +6,7 @@ const chart = () => {
     <div>
       <div className="chartCard">
         <div className="chartTitle">
-          <h1>HOT 10</h1>
+          <h1>월간차트</h1>
           <p>
             The world liked a lot of music this month.
             <br />
@@ -24,7 +24,7 @@ const chart = () => {
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Mi gente</span> J Balin & Willy William
+            <span>준혁시치엔터</span> 아야츠노유니 - 내꺼 하는 법
           </div>
           {/* <!-- Button --> */}
           <div className="link">
@@ -78,9 +78,9 @@ const chart = () => {
         <div className="separator"></div>
 
         <div className="chartBox">
-          {/* <!-- #03 --> */}
+          {/* <!-- #04 --> */}
           {/* <!-- Number--> */}
-          <div className="chartNumber">03</div>
+          <div className="chartNumber">04</div>
           {/* <!-- Cover --> */}
           <div className="chartCover">
             <img src="http://bit.ly/2vlRum1" alt="03" />
@@ -99,9 +99,9 @@ const chart = () => {
         <div className="separator"></div>
 
         <div className="chartBox">
-          {/* <!-- #03 --> */}
+          {/* <!-- #05 --> */}
           {/* <!-- Number--> */}
-          <div className="chartNumber">03</div>
+          <div className="chartNumber">05</div>
           {/* <!-- Cover --> */}
           <div className="chartCover">
             <img src="http://bit.ly/2vlRum1" alt="03" />
@@ -120,9 +120,9 @@ const chart = () => {
         <div className="separator"></div>
 
         <div className="chartBox">
-          {/* <!-- #03 --> */}
+          {/* <!-- #06 --> */}
           {/* <!-- Number--> */}
-          <div className="chartNumber">03</div>
+          <div className="chartNumber">06</div>
           {/* <!-- Cover --> */}
           <div className="chartCover">
             <img src="http://bit.ly/2vlRum1" alt="03" />
@@ -141,9 +141,9 @@ const chart = () => {
         <div className="separator"></div>
 
         <div className="chartBox">
-          {/* <!-- #03 --> */}
+          {/* <!-- #07 --> */}
           {/* <!-- Number--> */}
-          <div className="chartNumber">03</div>
+          <div className="chartNumber">07</div>
           {/* <!-- Cover --> */}
           <div className="chartCover">
             <img src="http://bit.ly/2vlRum1" alt="03" />
@@ -162,9 +162,9 @@ const chart = () => {
         <div className="separator"></div>
 
         <div className="chartBox">
-          {/* <!-- #03 --> */}
+          {/* <!-- #08 --> */}
           {/* <!-- Number--> */}
-          <div className="chartNumber">03</div>
+          <div className="chartNumber">08</div>
           {/* <!-- Cover --> */}
           <div className="chartCover">
             <img src="http://bit.ly/2vlRum1" alt="03" />
@@ -179,12 +179,34 @@ const chart = () => {
           </div>
         </div>
 
+        {/* <!-- Separator --> */}
         <div className="separator"></div>
 
         <div className="chartBox">
-          {/* <!-- #03 --> */}
+          {/* <!-- #09 --> */}
           {/* <!-- Number--> */}
-          <div className="chartNumber">03</div>
+          <div className="chartNumber">09</div>
+          {/* <!-- Cover --> */}
+          <div className="chartCover">
+            <img src="http://bit.ly/2vlRum1" alt="03" />
+          </div>
+          {/* <!-- Name --> */}
+          <div className="chartName">
+            <span>Attention</span> Charlie Puth
+          </div>
+          {/* <!-- Button --> */}
+          <div className="link">
+            <a href="https://www.youtube.com/watch?v=nfs8NYg7yQM">Listen</a>
+          </div>
+        </div>
+
+        {/* <!-- Separator --> */}
+        <div className="separator"></div>
+
+        <div className="chartBox">
+          {/* <!-- #10 --> */}
+          {/* <!-- Number--> */}
+          <div className="chartNumber">10</div>
           {/* <!-- Cover --> */}
           <div className="chartCover">
             <img src="http://bit.ly/2vlRum1" alt="03" />
