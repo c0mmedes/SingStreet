@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // 기본 생성자
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
 @Table(name = "ent_applicant")
 public class EntApplicant extends BaseTimeEntity {
     @Id
@@ -41,28 +43,31 @@ public class EntApplicant extends BaseTimeEntity {
     @Column(name = "artist", nullable = false, length = 30)
     private String artist;
 
-    @Column(name = "age", nullable = false)
-    private Integer age;
-
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
 
     @Column(name = "audio_name", length = 30)
     private String audioName;
 
-    @Column(name = "is_confirmed", columnDefinition = "BOOLEAN DEFAULT false")
+    @Column(name = "is_confirmed", nullable = false)
     private Boolean isConfirmed;
 
     @Column(name = "is_accepted")
     private Boolean isAccepted;
 
+    @PrePersist
+    private void prePersist(){
+        if(isConfirmed == null){
+            isConfirmed = false;
+        }
+    }
+
     @Builder
-    public EntApplicant(Ent entId, User userId, String hope, String artist, Integer age,String content,String audioName,Boolean isConfirmed,Boolean isAccepted){
+    public EntApplicant(Ent entId, User userId, String hope, String artist, String content,String audioName,Boolean isConfirmed,Boolean isAccepted){
         this.entId = entId;
         this.userId = userId;
         this.hope=hope;
         this.artist = artist;
-        this.age = age;
         this.content = content;
         this.audioName = audioName;
         this.isConfirmed = isConfirmed;
@@ -72,5 +77,9 @@ public class EntApplicant extends BaseTimeEntity {
     public void accept(){
         this.isConfirmed = true;
         this.isAccepted = true;
+    }
+
+    public void updateAudioName(String audioName){
+        this.audioName = audioName;
     }
 }

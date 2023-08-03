@@ -2,8 +2,12 @@ package com.ssafy.singstreet.user.controller;
 
 import com.ssafy.singstreet.user.Exception.UserNotFoundException;
 import com.ssafy.singstreet.user.db.entity.User;
+import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
+import com.ssafy.singstreet.user.model.TokenInfo;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
+import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,7 @@ import javax.mail.*;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -22,8 +27,38 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @PostMapping("myuser")
+    @ApiOperation(value="내 이메일 가져오기", notes="로그인한 유저의 이메일을 가져오는 메서드입니다!")
+    public String getMyuser(){
+        return SecurityUtil.getCurrentMemberId();
+    }
+
+    @PostMapping("/auth/login")
+    @ApiOperation(value="로그인", notes="로그인 하는 메서드입니다!")
+    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+        String memberId = memberLoginRequestDto.getEmail();
+        String password = memberLoginRequestDto.getPassword();
+        TokenInfo tokenInfo = userService.login(memberId, password);
+
+        return tokenInfo;
+    }
+
+    @PostMapping("/auth/logout")
+    @ApiOperation(value="로그아웃", notes="로그아웃 하는 메서드")
+    public ResponseEntity<String> logout() {
+        String email = SecurityUtil.getCurrentMemberId();
+        if (email.equals("anonymousUser")){
+            return ResponseEntity.noContent().build();
+        }
+        userService.logout(email);
+        return ResponseEntity.ok().build();
+    }
+
+
     @GetMapping("/auth/email/{email}")
     @ResponseBody
+    @ApiOperation(value="이메일 중복 체크 밋 인증메일 보내기!", notes="이메일 중복 체크가 완료되면 메일을 보냅니다.")
     public ResponseEntity<String> EmailCheck(
             @PathVariable("email") String email
             ) {
@@ -43,6 +78,7 @@ public class UserController {
             System.out.println("어 메일 전송했어");
         } catch (MessagingException e) {
             System.err.println("그것도 못하냐 허접아" + e.getMessage());
+            return ResponseEntity.unprocessableEntity().body("뭔가 뭔가 벌어지고 있음");
         }
 
         return ResponseEntity.ok("이메일 확인코드가 발송되었습니다.");
@@ -50,6 +86,7 @@ public class UserController {
 
     @GetMapping("/auth/email/auth/{authCode}/{email}")
     @ResponseBody
+    @ApiOperation(value="이메일 인증번호 입력하기", notes="인증번호가 입력되면 맞는지 검증합니다.")
     public ResponseEntity<String> EmailVerify(
             @PathVariable String authCode,
             @PathVariable String email
@@ -62,9 +99,15 @@ public class UserController {
         VerifyCode.remove(email);
         return ResponseEntity.ok("인증번호가 확인되었습니다.");
     }
-
+    @GetMapping("/admin/user")
+    @ResponseBody
+    @ApiOperation(value="모든 유저 가져오기", notes="모든 유저정보를 가져오지만, 관리자 권한이 필요합니다.")
+    public List<User> getalluser(){
+        return userService.getAll();
+    }
     @GetMapping("/auth/nickname/{nickname}")
     @ResponseBody
+    @ApiOperation(value="닉네임 중복 체크", notes="닉네임이 중복되었는지를 체크합니다.")
     public ResponseEntity<String> nicknameCheck(
             @PathVariable String nickname
     ){
@@ -76,11 +119,13 @@ public class UserController {
 
 
    @PostMapping("/auth/password")
+   @ApiOperation(value="임시 비밀번호 전송", notes="임시 비밀번호를 전송하고, DB에 임시 비밀번호르 덮어씌웁니다")
    public ResponseEntity<String> sendTemporaryPassword(@RequestBody String email) throws UserNotFoundException {
         userService.temporaryPassword(email);
         return ResponseEntity.ok("메시지가 발송되었습니다.");
    }
     @PostMapping("/user")
+    @ApiOperation(value="유저 등록하기", notes="유저를 등록하는 메서드입니다.")
     public ResponseEntity<String> CreateUser(@RequestBody UserRegistDTO registrationDTO) {
         try {
             User registeredUser = userService.registerUser(registrationDTO);
@@ -91,6 +136,7 @@ public class UserController {
     }
 
    @PutMapping("/user")
+   @ApiOperation(value="유저 수정하기", notes="유저를 수정하는 메서드입니다.")
    public ResponseEntity<String> updateUser(@RequestParam Integer user_id,
                                             @RequestParam String newNickname,
                                             @RequestParam String newUserImg,
@@ -107,16 +153,19 @@ public class UserController {
    }
    @GetMapping("/user/{user_id}")
    @ResponseBody
+   @ApiOperation(value="유저 상세정보 받아오기", notes="한 유저의 상세정보를 받아옵니다.")
    public ResponseEntity<User> GetUser(@PathVariable("user_id") int userId) throws UserNotFoundException {
         User result=userService.getUser(userId);
         return ResponseEntity.ok(result);
    }
 
     @PutMapping("/user/leave")
-    public ResponseEntity<String> softDeleteUser(@RequestParam("user_id") Integer userId) {
+    @ApiOperation(value="유저 삭제하기", notes="현재 유저를 삭제합니다. 단 is_deleted만 수정함으로써 유저 정보는 db에 남아있습니다.")
+    public ResponseEntity<String> softDeleteUser() {
         try {
-            userService.softDeleteUser(userId);
-            return ResponseEntity.ok("유저 ID " + userId + "가 삭제되었습니다");
+            String userName=SecurityUtil.getCurrentMemberId();
+            userService.softDeleteUser(userName);
+            return ResponseEntity.ok("유저 ID " + userName + "가 삭제되었습니다");
         } catch (UserNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
