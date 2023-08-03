@@ -1,14 +1,18 @@
 /* Card */
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
 .chartCard {
   width: 60%;
   background-color: #fbfbfb;
   padding: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
   margin: 0 auto;
-  margin-top: 50px;
 }
 
 /* Title */
@@ -28,10 +32,9 @@
 
 /* Rancking */
 .chartBox {
-  /* display: block; */
   width: 80%;
   height: 150px;
-  margin: 20px auto 20px auto;
+  margin: 20px auto;
 }
 
 /* Number */
@@ -100,7 +103,7 @@
 .chartBox:hover {
   box-shadow: 1px 1px 40px 0px #dfe2e4;
 }
-.chartBox:hover .number {
+.chartBox:hover .chartNumber {
   color: #f5ce64;
 }
 .chartBox:hover span {
@@ -117,4 +120,55 @@
   background-color: #fff;
   color: #f5ce64;
   border: none;
+}
+
+/* Mobile devices */
+@media screen and (max-width: 767px) {
+  .chartCard {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .chartTitle h1 {
+    font-size: 30px;
+  }
+
+  .chartBox {
+    width: 90%;
+  }
+
+  .chartNumber {
+    font-size: 30px;
+    width: 30px;
+    height: 100px;
+    line-height: 100px;
+  }
+
+  .chartCover img {
+    height: 80px;
+  }
+
+  .chartName {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .link a {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
+
+/* Tablets and smaller laptops */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .chartCard {
+    width: 70%;
+  }
+}
+
+/* Larger laptops and desktops */
+@media screen and (min-width: 1024px) {
+  .chartCard {
+    width: 60%;
+  }
 }

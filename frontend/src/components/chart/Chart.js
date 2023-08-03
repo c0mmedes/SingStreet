@@ -3,7 +3,7 @@ import Footer from "../layout/Footer";
 import "../../css/chart/Chart.css";
 const chart = () => {
   return (
-    <div>
+    <div className="chartContainer">
       <div className="chartCard">
         <div className="chartTitle ">
           <h1>月刊차트</h1>
