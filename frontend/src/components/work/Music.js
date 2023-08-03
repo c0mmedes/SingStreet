@@ -21,7 +21,7 @@ const music = () => {
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
           </div>
           <div class="card_title title-white">
-            <p>Card Title</p>
+            <p>내꺼하자</p>
           </div>
         </div>
         <div class="musicCard 2">
@@ -47,39 +47,7 @@ const music = () => {
           <div class="card_title title-black">
             <p>Card Title</p>
           </div>
-        </div>{" "}
-        <div class="musicCard 1">
-          <div class="card_image">
-            <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
-          </div>
-          <div class="card_title title-white">
-            <p>Card Title</p>
-          </div>
         </div>
-        <div class="musicCard 2">
-          <div class="card_image">
-            <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
-          </div>
-          <div class="card_title title-white">
-            <p>Card Title</p>
-          </div>
-        </div>
-        <div class="musicCard 3">
-          <div class="card_image">
-            <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
-          </div>
-          <div class="card_title">
-            <p>Card Title</p>
-          </div>
-        </div>
-        <div class="musicCard 4">
-          <div class="card_image">
-            <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
-          </div>
-          <div class="card_title title-black">
-            <p>Card Title</p>
-          </div>
-        </div>{" "}
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -143,7 +111,39 @@ const music = () => {
           <div class="card_title title-black">
             <p>Card Title</p>
           </div>
-        </div>{" "}
+        </div>
+        <div class="musicCard 1">
+          <div class="card_image">
+            <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
+          </div>
+          <div class="card_title title-white">
+            <p>Card Title</p>
+          </div>
+        </div>
+        <div class="musicCard 2">
+          <div class="card_image">
+            <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
+          </div>
+          <div class="card_title title-white">
+            <p>Card Title</p>
+          </div>
+        </div>
+        <div class="musicCard 3">
+          <div class="card_image">
+            <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
+          </div>
+          <div class="card_title">
+            <p>Card Title</p>
+          </div>
+        </div>
+        <div class="musicCard 4">
+          <div class="card_image">
+            <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
+          </div>
+          <div class="card_title title-black">
+            <p>Card Title</p>
+          </div>
+        </div>
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
