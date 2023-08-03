@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import App from "./App";
-import Header from "./components/layout/Header.js";
+import HeaderContainer from "./containers/user/HeaderContainer";
 import Footer from "./components/layout/Footer.js";
 import rootReducer from "./modules/index";
 
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <Header />
+      <HeaderContainer />
       <App />
       {/* <Footer/> */}
     </Provider>

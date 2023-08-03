@@ -6,6 +6,12 @@ import {connect} from "react-redux";
 import {setUser, setIsLogin} from "../../modules/user/user";
 import Header from "../../components/layout/Header";
 
+const HeaderContainer = ({isLogin}) => {
+    return(
+        <Header isLogin={isLogin}></Header>
+    );
+};
+
 const mapStateToProps = state => ({
     user: state.user,
     isLogin: state.isLogin,
@@ -21,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
 
 // Login 컴포넌트에선 dispatch만 사용하고 리덕스 '스토어의 상태'를 사용하지않음 
 // => null
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
