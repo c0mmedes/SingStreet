@@ -33,7 +33,7 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 				userImg: res.data.user_img,
 				userId: res.data.user_id,
 			});
-			console.log(userInfo);
+			console.log(userInfo.nickname);
 		} catch (error) {
 			console.log("getUserInfo 실패");
 		}
