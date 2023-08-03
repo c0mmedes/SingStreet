@@ -3,9 +3,14 @@
 // mapDispatchToProps 객체를 통해 setUser 액션 생성자 함수를 props로 매핑해줌.
 
 import {connect} from "react-redux";
-import {setUser} from "../../modules/user/user";
-import { setIsLogin } from "../../modules/user/user";
+import {setUser, setIsLogin} from "../../modules/user/user";
 import Login from "../../components/user/Login";
+
+const LoginContainer = ({setUser, setIsLogin}) => {
+    return(
+        <Login setUser={setUser} setIsLogin={setIsLogin}></Login>
+    );
+};
 
 const mapDispatchToProps = dispatch => ({
     setUser: () =>{
@@ -18,4 +23,4 @@ const mapDispatchToProps = dispatch => ({
 
 // Login 컴포넌트에선 dispatch만 사용하고 리덕스 '스토어의 상태'를 사용하지않음 
 // => null
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(LoginContainer);
