@@ -3,9 +3,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/layout/Header.css";
 import logo from "../../assets/logo.png";
+import {api} from "../../services/httpService"
 
 const Header = ({isLogin, setIsLogin, user, setUser}) => {
-  console.log(isLogin);
+
+  const apiInstance = api(); 
+  const accessToken = sessionStorage.getItem("accessToken");
+  console.log(accessToken);
+
+  async function onClickLogout (){
+    try {
+      const res = await apiInstance.post('/auth/logout', {
+        // 요청 바디 데이터 (필요한 경우 추가)
+      }, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`, // Bearer 토큰 포함
+        },
+      });
+      alert("로그아웃 성공");
+    } catch (error) {
+      alert("로그아웃 실패"); // 사용중인건지 사용이 불가능한건지 구분해줘야함
+    }
+  };
+
   return (
     <header>
       <Link to="/">
@@ -27,7 +47,7 @@ const Header = ({isLogin, setIsLogin, user, setUser}) => {
               <Link to="/mypage">
                 <span>Mypage</span>
               </Link>
-              <a>Logout</a>
+              <a href='#' onClick={onClickLogout}>Logout</a>
             </div>
         ) : (
           <Link to="/login">
