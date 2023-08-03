@@ -19,10 +19,12 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 	const navigate = useNavigate();
 
 	const getUserInfo = async function () {
+		const accessToken = sessionStorage.getItem("accessToken");
+		console.log(accessToken);
 		try {
 			const res = await apiInstance.get(`/user`, {
 				headers: {
-					Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`, // Bearer 토큰 포함
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 				},
 			});
 			console.log(res);

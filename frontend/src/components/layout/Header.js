@@ -5,7 +5,7 @@ import "../../css/layout/Header.css";
 import logo from "../../assets/logo.png";
 import { api } from "../../services/httpService";
 
-const Header = ({ isLogin, setIsLogin, user, setUser }) => {
+const Header = ({ isLogin, setIsLogin, user, addUserInfo }) => {
 	const apiInstance = api();
 	const accessToken = sessionStorage.getItem("accessToken");
 	console.log(accessToken);
