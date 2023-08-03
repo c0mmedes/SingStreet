@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
 
+
     private final Key key;
 
     public JwtTokenProvider(@Value("${jwt.secret}") String secretKey) {
@@ -34,9 +35,11 @@ public class JwtTokenProvider {
     // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
     public TokenInfo generateToken(org.springframework.security.core.Authentication authentication) {
         // 권한 가져오기
+
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
+        com.ssafy.singstreet.user.db.entity.User user = (com.ssafy.singstreet.user.db.entity.User) authentication.getPrincipal();
 
         long now = (new Date()).getTime();
         // Access Token 생성
@@ -44,6 +47,7 @@ public class JwtTokenProvider {
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim("auth", authorities)
+                .claim("user_id", user.getUserId())
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
@@ -76,6 +80,8 @@ public class JwtTokenProvider {
                 Arrays.stream(claims.get("auth").toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
+
+        Integer userId = (Integer) claims.get("user_id"); // Retrieve user_id from JWT token
 
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);

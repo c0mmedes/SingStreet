@@ -37,8 +37,20 @@ public class UserController {
         String memberId = memberLoginRequestDto.getEmail();
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = userService.login(memberId, password);
+
         return tokenInfo;
     }
+
+    @PostMapping("/auth/logout")
+    public ResponseEntity<String> logout() {
+        String email = SecurityUtil.getCurrentMemberId();
+        if (email.equals("anonymousUser")){
+            return ResponseEntity.noContent().build();
+        }
+        userService.logout(email);
+        return ResponseEntity.ok().build();
+    }
+
 
     @GetMapping("/auth/email/{email}")
     @ResponseBody
@@ -61,6 +73,7 @@ public class UserController {
             System.out.println("어 메일 전송했어");
         } catch (MessagingException e) {
             System.err.println("그것도 못하냐 허접아" + e.getMessage());
+            return ResponseEntity.unprocessableEntity().body("뭔가 뭔가 벌어지고 있음");
         }
 
         return ResponseEntity.ok("이메일 확인코드가 발송되었습니다.");

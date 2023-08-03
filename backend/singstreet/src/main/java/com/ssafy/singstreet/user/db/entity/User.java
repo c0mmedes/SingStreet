@@ -47,6 +47,22 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(name = "jwt_token", length = 255)
     private String jwtToken;
 
+    public String getJwtToken() {
+        return jwtToken;
+    }
+
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
     @Column(name = "refresh_token", length = 255)
     private String refreshToken;
 

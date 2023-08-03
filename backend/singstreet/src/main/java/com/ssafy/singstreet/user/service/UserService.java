@@ -185,8 +185,25 @@ public class UserService {
 
         // 3. 인증 정보를 기반으로 JWT 토큰 생성
         TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
-
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(memberId));
+        if(optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            existingUser.setJwtToken(tokenInfo.getAccessToken());
+            existingUser.setRefreshToken(tokenInfo.getRefreshToken());
+            userRepository.save(existingUser);
+        }
         return tokenInfo;
     }
 
+    public void logout(String email) {
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
+        if(optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            existingUser.setJwtToken(null);
+            existingUser.setRefreshToken(null);
+            userRepository.save(existingUser);
+        } else {
+            // handle user not found situation
+        }
+    }
 }
