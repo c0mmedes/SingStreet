@@ -15,8 +15,8 @@ const HeaderContainer = ({isLogin}) => {
 };
 
 const mapStateToProps = state => ({
-    user: state.user,
-    isLogin: state.isLogin,
+    user: state.user.user,
+    isLogin: state.user.isLogin,
 });
 const mapDispatchToProps = dispatch => ({
     setUser: () =>{

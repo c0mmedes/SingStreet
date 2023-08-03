@@ -17,7 +17,7 @@ const initialState ={
 };
 
 // 리듀서 함수 정의
-const userReducer = (state = initialState, action) =>{
+const user = (state = initialState, action) =>{
     switch(action.type){
         case SET_USER:
             return {
@@ -33,4 +33,4 @@ const userReducer = (state = initialState, action) =>{
     }
 };
 
-export default userReducer;
+export default user;
