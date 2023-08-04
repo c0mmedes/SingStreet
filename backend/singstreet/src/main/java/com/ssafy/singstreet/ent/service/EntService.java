@@ -65,11 +65,21 @@ public class EntService {
         return entResponseDtos;
     }
 
-
+    public boolean entNameCheck(String entName){
+        Ent ent = repository.findByEntName(entName);
+        if (ent == null){
+            return true;
+        }
+        return false;
+    }
 
     // 엔터 생성
     @Transactional
     public boolean create(EntSaveRequestDto requestDto, int userId){
+        // 중복체크
+        String entName = requestDto.getEntName();
+        if(entNameCheck(entName)) return false;
+
         Ent ent = Ent.builder()
                 .user(userRepository.findByUserId(userId))
                 .entName(requestDto.getEntName())
