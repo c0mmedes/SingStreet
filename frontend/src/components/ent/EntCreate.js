@@ -12,13 +12,9 @@ const entcreate = () => {
           <div className="row clearfix">
             <div className="">
               <form className="entCreateForm">
-              <label>엔터명</label>
+                <label>엔터명</label>
                 <div className="input_field">
-                  <input
-                    type="text"
-                    name="entId"
-                    required
-                  />
+                  <input type="text" name="entId" required />
                 </div>
                 <div className="input_field">
                   {/* <input type="radio" id="ex_rd" name="ex_rds"> 
@@ -26,13 +22,9 @@ const entcreate = () => {
                 </div>
                 <label>엔터 소개</label>
                 <div className="input_field">
-                  <textarea id="entInfo"
-                    type="text"
-                    name="entInfo"
-                    required
-                  />
+                  <textarea id="entInfo" type="text" name="entInfo" required />
                 </div>
-                <label>#테그</label>
+                <label>해시태그</label>
                 <div className="input_field">
                   <input
                     type="text"
@@ -49,9 +41,9 @@ const entcreate = () => {
                   </select>
                   <div className="select_arrow"></div>
                 </div>
-                <label>업로드</label>
+                <label>엔터 프로필</label>
                 <div className="input_field">
-                <input
+                  <input
                     type="file"
                     name="file"
                     placeholder="#뉴진스 #하입보이"
