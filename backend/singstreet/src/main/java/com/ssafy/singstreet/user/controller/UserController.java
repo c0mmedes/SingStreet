@@ -6,6 +6,8 @@ import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
 import com.ssafy.singstreet.user.model.TokenInfo;
 import com.ssafy.singstreet.user.model.UserDetailDTO;
 import com.ssafy.singstreet.user.model.UserRegistDTO;
+import com.ssafy.singstreet.user.service.JwtExpiredException;
+import com.ssafy.singstreet.user.service.JwtTokenProvider;
 import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -28,6 +30,18 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @PostMapping("auth/revalidate")
+    @ApiOperation(value="토큰 재발급하기", notes="리프레시토큰을 받고 다시 액세스토큰을 돌려줍니다.")
+    public ResponseEntity<String> revalidate(String refreshtoken){
+        String newAccesstoken = null;
+        try{
+            newAccesstoken=userService.revalidate(refreshtoken);
+        }catch (JwtExpiredException e){
+            return new ResponseEntity<>("리프레시 토큰이 만료되었습니다.", HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(newAccesstoken, HttpStatus.OK);
+    }
 
     @PostMapping("myuser")
     @ApiOperation(value="내 이메일 가져오기", notes="로그인한 유저의 이메일을 가져오는 메서드입니다!")
