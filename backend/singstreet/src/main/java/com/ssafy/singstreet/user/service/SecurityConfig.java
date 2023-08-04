@@ -39,24 +39,24 @@ public class SecurityConfig {
         return source;
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .cors().and() // Enable CORS and integrate it with Spring Security
-//                .httpBasic().disable()
-//                .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("admin")
-//                .antMatchers("/myuser").hasRole("USER")
-//                .antMatchers("/auth/logout").hasRole("USER")
-//                .antMatchers(HttpMethod.PUT, "/user").hasRole("USER")
-//                .anyRequest().permitAll()
-//                .and()
-//                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
-//        return http.build();
-//    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .cors().and() // Enable CORS and integrate it with Spring Security
+                .httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("admin")
+                .antMatchers("/myuser").hasRole("USER")
+                .antMatchers("/auth/logout").hasRole("USER")
+                .antMatchers(HttpMethod.PUT, "/user").hasRole("USER")
+                .anyRequest().permitAll()
+                .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
 
 
     @Bean
