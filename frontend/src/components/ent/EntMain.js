@@ -7,18 +7,18 @@ import EntNav from "../layout/EntNav";
 const entMain = () => {
   return (
     <div>
-      <div class="video-app">
-        <div class="wrapper">
+      <div className="video-app">
+        <div className="wrapper">
           <EntNav />
-          <div class="main-container">
-            <div class="profile">
+          <div className="main-container">
+            <div className="profile">
               <img
                 src="https://images.unsplash.com/photo-1559543434-3e99643d333d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
                 alt=""
-                class="profile-cover"
+                className="profile-cover"
               />
-              <div class="profile-contact-info">
-                <div class="profile-contact">
+              <div className="profile-contact-info">
+                <div className="profile-contact">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -27,7 +27,7 @@ const entMain = () => {
                     <path d="M505.81 127.4a10.62 10.62 0 00-11.37 1.55C416.5 195 317.05 279.69 285.76 307.89c-17.56 15.85-41.94 15.85-59.54-.03-33.36-30.05-145.04-125-208.66-178.91A10.67 10.67 0 000 137.08v268.25A42.7 42.7 0 0042.67 448h426.66A42.7 42.7 0 00512 405.33V137.08c0-4.15-2.42-7.93-6.19-9.67z" />
                   </svg>
                 </div>
-                <div class="profile-contact">
+                <div className="profile-contact">
                   <svg
                     viewBox="0 0 512 512"
                     fill="currentColor"
@@ -39,7 +39,7 @@ const entMain = () => {
                     <path d="M135.7 245.8a21.3 21.3 0 01-10.6-40L323.1 93a21.3 21.3 0 1121 37.1L146.3 243c-3.3 1.9-7 2.8-10.5 2.8zm0 0M333.6 421.8c-3.6 0-7.2-1-10.5-2.8L125 306a21.4 21.4 0 0121.2-37l198 112.8a21.4 21.4 0 01-10.7 39.9zm0 0" />
                   </svg>
                 </div>
-                <div class="profile-contact">
+                <div className="profile-contact">
                   <svg
                     viewBox="0 0 515.6 515.6"
                     fill="currentColor"
@@ -48,8 +48,8 @@ const entMain = () => {
                   </svg>
                 </div>
               </div>
-              <div class="profile-info">
-                <div class="profile-item">
+              <div className="profile-info">
+                <div className="profile-item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 469.33 469.33"
@@ -58,7 +58,7 @@ const entMain = () => {
                   </svg>
                   1,702
                 </div>
-                <div class="profile-item">
+                <div className="profile-item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -68,7 +68,7 @@ const entMain = () => {
                   </svg>
                   1,503
                 </div>
-                <div class="profile-item">
+                <div className="profile-item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -77,7 +77,7 @@ const entMain = () => {
                   </svg>
                   Sep 21
                 </div>
-                <div class="profile-item">
+                <div className="profile-item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -87,28 +87,28 @@ const entMain = () => {
                   234
                 </div>
               </div>
-              <div class="profile-menu">
-                <div class="profile-avatar">
+              <div className="profile-menu">
+                <div className="profile-avatar">
                   <img
-                    class="profile-img"
+                    className="profile-img"
                     src="https://images.unsplash.com/photo-1503275951620-83f8a32f7884?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
                     alt=""
                   />
-                  <div class="profile-name">Phoebe Allison</div>
+                  <div className="profile-name">Phoebe Allison</div>
                 </div>
-                <div class="menu-items">
-                  <a class="profile-menu-link">Main</a>
-                  <a class="profile-menu-link active">Videos</a>
-                  <a class="profile-menu-link">Playlists</a>
-                  <a class="profile-menu-link">About</a>
+                <div className="menu-items">
+                  <a className="profile-menu-link">Main</a>
+                  <a className="profile-menu-link active">Videos</a>
+                  <a className="profile-menu-link">Playlists</a>
+                  <a className="profile-menu-link">About</a>
                 </div>
-                <div class="follow-buttons">
-                  <button class="follow">645,321</button>
-                  <button class="follow follow-option">Follow</button>
+                <div className="follow-buttons">
+                  <button className="follow">645,321</button>
+                  <button className="follow follow-option">Follow</button>
                 </div>
               </div>
             </div>
-            <div class="trends">
+            <div className="trends">
               <a href="#">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -117,23 +117,23 @@ const entMain = () => {
                   <path
                     d="M5.03 12h-5v38h56V12h-5zm31.999 20.262l-12.951 7.521a2.02 2.02 0 01-2.04.004 1.984 1.984 0 01-1.008-1.735V23.01c0-.724.377-1.372 1.008-1.735a2.047 2.047 0 012.04.003L37.029 28.8a1.983 1.983 0 011.001 1.731c0 .719-.374 1.366-1.001 1.731z"
                     data-original="#000000"
-                    class="active-path"
+                    className="active-path"
                   />
                   <path
                     d="M23.03 38.051v.004l12.994-7.524-12.951-7.525zM12.03 0h32v4h-32zM50.03 6h-44v4h44z"
                     data-original="#000000"
-                    class="active-path"
+                    className="active-path"
                   />
                 </svg>
                 See what's trending
               </a>
-              <div class="follow-buttons">
-                <button class="follow">Date Added</button>
-                <button class="follow follow-option active">
+              <div className="follow-buttons">
+                <button className="follow">Date Added</button>
+                <button className="follow follow-option active">
                   Most Popular
                 </button>
               </div>
-              <div class="play-all">
+              <div className="play-all">
                 <svg
                   viewBox="0 0 494.942 494.942"
                   fill="currentColor"
@@ -143,94 +143,94 @@ const entMain = () => {
                 Play All
               </div>
             </div>
-            <div class="videos">
-              <div class="video">
-                <div class="video-time">15.13</div>
+            <div className="videos">
+              <div className="video">
+                <div className="video-time">15.13</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/368244254.sd.mp4?s=2dc98d46cc5c55913b309928d1d14769f76bc6f9&profile_id=139&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">Planning Helps Make</div>
-                <div class="view">15.4k views</div>
+                <div className="video-content">Planning Helps Make</div>
+                <div className="view">15.4k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">13.10</div>
+              <div className="video">
+                <div className="video-time">13.10</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/356200184.sd.mp4?s=f528556cafba1d369984dc341104e7eef8bb71bb&profile_id=139&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">This Is Cloaud Break</div>
-                <div class="view">13.2k views</div>
+                <div className="video-content">This Is Cloaud Break</div>
+                <div className="view">13.2k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">15.30</div>
+              <div className="video">
+                <div className="video-time">15.30</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/364324653.sd.mp4?s=7ded2b451ac7f5dfaf1375277aa0308cdf5d011c&profile_id=139&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">Lost Your Mind</div>
-                <div class="view">11.7k views</div>
+                <div className="video-content">Lost Your Mind</div>
+                <div className="view">11.7k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">11.30</div>
+              <div className="video">
+                <div className="video-time">11.30</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/399004885.sd.mp4?s=1d39443bef9856dacc4d3ba2c6be0881e38b7e66&profile_id=139&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">Planning Helps Make</div>
-                <div class="view">9.2k views</div>
+                <div className="video-content">Planning Helps Make</div>
+                <div className="view">9.2k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">6.35</div>
+              <div className="video">
+                <div className="video-time">6.35</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/353556576.sd.mp4?s=8e942d8680fe908418143e63e04b8798982d5bea&profile_id=139&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">Research In Advertising</div>
-                <div class="view">18.4k views</div>
+                <div className="video-content">Research In Advertising</div>
+                <div className="view">18.4k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">2.21</div>
+              <div className="video">
+                <div className="video-time">2.21</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/368556609.sd.mp4?s=3fa896a1d6d8c04382a9b8f33053d2eaabe4342b&profile_id=139&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">See The Unmatched</div>
-                <div class="view">3.4k views</div>
+                <div className="video-content">See The Unmatched</div>
+                <div className="view">3.4k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">12.10</div>
+              <div className="video">
+                <div className="video-time">12.10</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/285489976.sd.mp4?s=4fa6461f93f18e0d6cfc30461fffb05311d60a28&profile_id=164&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">Dance In The Air</div>
-                <div class="view">17.4k views</div>
+                <div className="video-content">Dance In The Air</div>
+                <div className="view">17.4k views</div>
               </div>
-              <div class="video">
-                <div class="video-time">7.50</div>
+              <div className="video">
+                <div className="video-time">7.50</div>
                 <video muted>
                   <source
                     src="https://player.vimeo.com/external/325725646.sd.mp4?s=763c0f293299052689f8344b3a155ea2b4a1c92b&profile_id=164&oauth2_token_id=57447761"
                     type="video/mp4"
                   />
                 </video>
-                <div class="video-content">Sadness Will Last Forever</div>
-                <div class="view">12.6k views</div>
+                <div className="video-content">Sadness Will Last Forever</div>
+                <div className="view">12.6k views</div>
               </div>
             </div>
           </div>

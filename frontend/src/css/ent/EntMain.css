@@ -26,6 +26,7 @@ img {
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
+  margin-top: 50px;
 }
 
 .user-settings {
@@ -41,25 +42,6 @@ img {
 .user-settings svg {
   width: 22px;
   flex-shrink: 0;
-}
-
-.button {
-  display: flex;
-  background-color: transparent;
-  align-items: center;
-  border: 2px solid var(--border-color);
-  border-radius: 25px;
-  color: var(--body-color);
-  padding: 8px 16px;
-  font-family: var(--body-font);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  svg {
-    margin-right: 8px;
-    width: 20px;
-    fill: var(--body-color);
-  }
 }
 
 .user-profile {
@@ -519,8 +501,4 @@ img {
   .policy {
     display: none;
   }
-}
-
-.menuLink {
-  font-size: 40px !important;
 }
