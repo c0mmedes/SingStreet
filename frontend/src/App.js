@@ -17,16 +17,6 @@ const mapStateToProps = (state) => ({
 	isLogin: state.user.isLogin,
 });
 
-
-function PrivateRoute({ component: Component, isLogin, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      element={isLogin ? <Component /> : <Navigate to="/login" />}
-    />
-  );
-}
-
 function App({ isLogin }) {
   return (
     <Routes>
@@ -36,8 +26,21 @@ function App({ isLogin }) {
       <Route path="/music" element={<Music />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<LoginContainer />} />
-      <PrivateRoute path="/mypage" element={<Mypage />} isLogin={isLogin} />
-      <PrivateRoute path="/entcreate" element={<Entcreate />} isLogin={isLogin} />
+      {/* 동적으로 컴포넌트 선택 */}
+      <Route
+        path="/mypage"
+        element={
+          // isLogin 상태에 따라 컴포넌트를 선택
+          isLogin ? <Mypage /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/entcreate"
+        element={
+          // isLogin 상태에 따라 컴포넌트를 선택
+          isLogin ? <Entcreate /> : <Navigate to="/login" />
+        }
+      />
       <Route path="/entmain" element={<Entmain />} />
     </Routes>
   );
