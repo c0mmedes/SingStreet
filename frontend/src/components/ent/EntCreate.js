@@ -44,7 +44,12 @@ const EntCreate = ({ userInfo, isLogin }) => {
 					},
 				}
 			);
-			console.log(res);
+			if (res.data) {
+				//정상적으로 만들어지면 true
+				alert("엔터가 생성되었습니다!");
+			} else {
+				alert("엔터명이 중복되었습니다!");
+			}
 		} catch (error) {
 			alert("엔터 생성 오류");
 		}
@@ -63,7 +68,8 @@ const EntCreate = ({ userInfo, isLogin }) => {
 								<label>엔터명</label>
 								<div className="input_field">
 									<input
-										type="text"
+                    type="text"
+                    maxlength="20"
 										name="entId"
 										value={entName}
 										onChange={handleEntName}
