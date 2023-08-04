@@ -5,7 +5,7 @@ import Background from "../layout/Background.js";
 import { api } from "../../services/httpService";
 
 function Register() {
-	const [entName, setEntName] = useState("");
+	const [nickname, setNickname] = useState("");
 	const [email, setEmail] = useState("");
 	const [authCode, setAuthCode] = useState("");
 	const [password, setPassword] = useState("");
@@ -14,8 +14,8 @@ function Register() {
 	const [isEmailDuplicated, setIsEmailDuplicated] = useState(null);
 	const [isAuthorized, setIsAuthorized] = useState(false);
 	const [isNicknameDuplicated, setIsNicknameDuplicated] = useState(null);
-	const handleEntName = (e) => {
-		setEntName(e.target.value);
+	const handleNickname = (e) => {
+		setNickname(e.target.value);
 	};
 	const handleEmail = (e) => {
 		setEmail(e.target.value);
