@@ -103,6 +103,10 @@ public class Project extends BaseTimeEntity {
         this.isVisible = isVisible;
     }
 
+    // 이전달 좋아요 수 갱신
+    public void updateMonthlyLikeCount(int currentMonthlyLikes) {
+        this.monthlyLikeCount = currentMonthlyLikes;
+    }
 
     public void updateAudioFile(String audioFilename) {
         this.audioName = audioFilename;
@@ -110,5 +114,7 @@ public class Project extends BaseTimeEntity {
     public void updateOriginFilename(String originFilename) {
         this.originFilename = originFilename;
     }
+    public void plusLikeCount() { this.likeCount++; };
+    public void minusLikeCount() { this.likeCount--; };
 }
 

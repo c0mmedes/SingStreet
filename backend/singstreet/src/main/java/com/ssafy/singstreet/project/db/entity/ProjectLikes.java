@@ -1,4 +1,4 @@
-package com.ssafy.singstreet.like.db.entity;
+package com.ssafy.singstreet.project.db.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
 @Table(name = "likes")
-public class Likes {
+public class ProjectLikes {
     @EmbeddedId
-    private LikesId id;
+    private ProjectLikesId id;
 }

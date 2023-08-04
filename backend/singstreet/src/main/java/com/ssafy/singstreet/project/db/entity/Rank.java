@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Builder // 생성자 만들기
 @AllArgsConstructor // 모든 필드를 사용하는 생성자
 @Entity
-@Table(name = "rank")
+@Table(name = "ranking")
 public class Rank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,9 @@ public class Rank {
     @Column(name = "month", nullable = false)
     private LocalDate month;
 
-    @Column(name = "like_count", nullable = false)
+    @Column(name = "like_count")
     private Integer likeCount;
+
+    @Column(name = "ranking")
+    private Integer ranking;
 }

@@ -23,4 +23,9 @@ public class ProjectSaveRequestDto {
     private Boolean isRecruited;
     private Boolean isVisible;
     private List<String> partList;
+    private List<Integer> userList;
+
+//    public void updateUserId(int userId){
+//        this.userId = userId;
+//    }
 }

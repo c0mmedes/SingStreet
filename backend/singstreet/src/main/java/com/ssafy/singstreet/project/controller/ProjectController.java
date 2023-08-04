@@ -5,12 +5,15 @@ import com.ssafy.singstreet.project.model.ProjectInvitedResponseDto;
 import com.ssafy.singstreet.project.model.ProjectSaveRequestDto;
 import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
 import com.ssafy.singstreet.project.service.ProjectService;
+import com.ssafy.singstreet.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,17 +24,24 @@ import java.util.List;
 public class ProjectController {
 
     private final ProjectService projectService;
+//    private final UserService userService;
 
     @Autowired
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
     }
 
-    // POST 요청을 처리하는 API
     // 프로젝트 생성
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody ProjectSaveRequestDto dto) {
-        System.out.println(dto.getProjectTagList());
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+//        int userId = userService.getCurrentUserId();
+//        dto.updateUserId(userId);
         Project createdProject = projectService.createProject(dto);
         // 프로젝트가 성공적으로 생성되었을 때 201 Created 상태코드와 생성된 프로젝트를 응답합니다.
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);
@@ -40,6 +50,13 @@ public class ProjectController {
     // 프로젝트 수정
     @PutMapping("/{projectId}")
     public ResponseEntity<Project> updateProject(@PathVariable Integer projectId, @RequestBody ProjectSaveRequestDto dto) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         Project project = projectService.updateProject(projectId, dto);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
@@ -47,6 +64,13 @@ public class ProjectController {
     // 프로젝트 삭제여부 처리
     @PutMapping("/delete/{projectId}")
     public ResponseEntity<Project> deleteProject(@PathVariable Integer projectId) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         Project project = projectService.deleteProject(projectId);
         if (project != null) {
             return new ResponseEntity<>(project, HttpStatus.OK);
@@ -110,6 +134,13 @@ public class ProjectController {
     // 내 프로젝트 목록
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<ProjectSaveResponseDto>> getMyProject(@PathVariable Integer userId) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         List<ProjectSaveResponseDto> projectResponseDTOs = projectService.getMyProject(userId);
         if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -120,6 +151,13 @@ public class ProjectController {
     // 엔터 내 프로젝트 목록
     @GetMapping("/ent/{entId}")
     public ResponseEntity<List<ProjectSaveResponseDto>> getEntProject(@PathVariable Integer entId) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         List<ProjectSaveResponseDto> projectResponseDTOs = projectService.getEntProject(entId);
         if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -130,6 +168,13 @@ public class ProjectController {
     // 초대된 프로젝트 목록
     @GetMapping("/invitedList/{userId}")
     public ResponseEntity<List<ProjectInvitedResponseDto>> getInvitedList(@PathVariable Integer userId) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         List<ProjectInvitedResponseDto> projectResponseDTOs = projectService.getInvitedList(userId);
         if (projectResponseDTOs == null || projectResponseDTOs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
