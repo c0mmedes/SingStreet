@@ -7,7 +7,7 @@ import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 import Mypage from "./components/user/Mypage";
 import React from "react";
-import Entcreate from "./components/ent/EntCreate";
+import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import Entmain from "./components/ent/EntMain";
 import "./css/App.css";
 import { connect } from "react-redux";
@@ -38,7 +38,7 @@ function App({ isLogin }) {
         path="/entcreate"
         element={
           // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <Entcreate /> : <Navigate to="/login" />
+          isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
         }
       />
       <Route path="/entmain" element={<Entmain />} />
