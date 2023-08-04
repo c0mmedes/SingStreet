@@ -6,6 +6,8 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -83,21 +85,23 @@ public class JwtTokenProvider {
     }
 
     // 토큰 정보를 검증하는 메서드
-    public boolean validateToken(String token) throws JwtExpiredException {
+    public ResponseEntity<String> validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            return true;
+            return ResponseEntity.ok("Token is valid");
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.info("Invalid JWT Token", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid JWT Token");
         } catch (ExpiredJwtException e) {
             log.info("Expired JWT Token", e);
-            throw new JwtExpiredException("Jwt Token expired");
+            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("Jwt Token expired");
         } catch (UnsupportedJwtException e) {
             log.info("Unsupported JWT Token", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unsupported JWT Token");
         } catch (IllegalArgumentException e) {
             log.info("JWT claims string is empty.", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("JWT claims string is empty");
         }
-        return false;
     }
 
     private Claims parseClaims(String accessToken) {
@@ -108,9 +112,9 @@ public class JwtTokenProvider {
         }
     }
 
-    public String regenerateAccessToken(String refreshToken) throws JwtExpiredException {
+    public String regenerateAccessToken(String refreshToken) {
         // First validate the refresh token
-        if (!validateToken(refreshToken)) {
+        if (validateToken(refreshToken).getStatusCode()!=HttpStatus.OK) {
             throw new RuntimeException("Invalid refresh token");
         }
 

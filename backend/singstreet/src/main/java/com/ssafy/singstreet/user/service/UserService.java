@@ -75,7 +75,7 @@ public class UserService {
 
     //임시 비밀번호 생성하고 저장하기 및 메일 전송
     public User temporaryPassword(String email) throws UserNotFoundException{
-        User user=(User) userRepository.findByEmail(email);
+        User user=userRepository.findByEmail(email);
 
         if(user==null) {
             throw new UserNotFoundException("등록된 이메일이 아닙니다.");
@@ -209,7 +209,8 @@ public class UserService {
     }
 
     public String revalidate(String refreshtoken) throws JwtExpiredException {
-        return jwtTokenProvider.regenerateAccessToken(refreshtoken);
+        String newAccessToken=jwtTokenProvider.regenerateAccessToken(refreshtoken);
+        return newAccessToken;
     }
     public int getCurrentUserId(){
         return userRepository.findByEmail(SecurityUtil.getCurrentMemberId()).getUserId();
