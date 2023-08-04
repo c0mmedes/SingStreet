@@ -85,23 +85,21 @@ public class JwtTokenProvider {
     }
 
     // 토큰 정보를 검증하는 메서드
-    public ResponseEntity<String> validateToken(String token) {
+    public boolean validateToken(String token) throws JwtExpiredException {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            return ResponseEntity.ok("Token is valid");
+            return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.info("Invalid JWT Token", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid JWT Token");
         } catch (ExpiredJwtException e) {
             log.info("Expired JWT Token", e);
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("Jwt Token expired");
+            throw new JwtExpiredException("Jwt Token expired");
         } catch (UnsupportedJwtException e) {
             log.info("Unsupported JWT Token", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unsupported JWT Token");
         } catch (IllegalArgumentException e) {
             log.info("JWT claims string is empty.", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("JWT claims string is empty");
         }
+        return false;
     }
 
     private Claims parseClaims(String accessToken) {
@@ -112,11 +110,12 @@ public class JwtTokenProvider {
         }
     }
 
-    public String regenerateAccessToken(String refreshToken) {
+    public String regenerateAccessToken(String refreshToken) throws JwtExpiredException {
         // First validate the refresh token
-        if (validateToken(refreshToken).getStatusCode()!=HttpStatus.OK) {
+        if (!validateToken(refreshToken)) {
             throw new RuntimeException("Invalid refresh token");
         }
+
 
         // Extract user information from the refresh token
         Claims claims = parseClaims(refreshToken);
