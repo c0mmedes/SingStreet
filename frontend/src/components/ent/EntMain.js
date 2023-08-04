@@ -88,14 +88,6 @@ const entMain = () => {
                 </div>
               </div>
               <div className="profile-menu">
-                <div className="profile-avatar">
-                  <img
-                    className="profile-img"
-                    src="https://images.unsplash.com/photo-1503275951620-83f8a32f7884?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-                    alt=""
-                  />
-                  <div className="profile-name">Phoebe Allison</div>
-                </div>
                 <div className="menu-items">
                   <a className="profile-menu-link">Main</a>
                   <a className="profile-menu-link active">Videos</a>
@@ -104,7 +96,7 @@ const entMain = () => {
                 </div>
                 <div className="follow-buttons">
                   <button className="follow">645,321</button>
-                  <button className="follow follow-option">Follow</button>
+                  <button className="follow follow-option">엔터 인원수</button>
                 </div>
               </div>
             </div>
@@ -132,15 +124,6 @@ const entMain = () => {
                 <button className="follow follow-option active">
                   Most Popular
                 </button>
-              </div>
-              <div className="play-all">
-                <svg
-                  viewBox="0 0 494.942 494.942"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M35.353 0l424.236 247.471L35.353 494.942z" />
-                </svg>
-                Play All
               </div>
             </div>
             <div className="videos">

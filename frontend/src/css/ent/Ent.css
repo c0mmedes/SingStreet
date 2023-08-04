@@ -3,14 +3,6 @@
   --curve: 40;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Noto Sans JP", sans-serif;
-  background-color: #fef8f8;
-}
 
 .cards {
   display: grid;
