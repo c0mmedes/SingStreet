@@ -30,7 +30,7 @@ const EntCreate = ({userInfo, isLogin}) => {
     try{
       const res = await apiInstance.post('/ent',
       {
-        entImg: entImg,
+        entImg: "더미 스트링",
         entInfo: entInfo,
         entName: entName,
         entTagList: entTagList,
