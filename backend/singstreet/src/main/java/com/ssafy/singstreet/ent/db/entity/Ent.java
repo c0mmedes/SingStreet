@@ -67,6 +67,10 @@ public class Ent extends BaseTimeEntity {
         this.entImg = entImg;
     }
 
+    public void updateImg(String entImg){
+        this.entImg = entImg;
+    }
+
     public void delete(){
         this.isDeleted = true;
     }

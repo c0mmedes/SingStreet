@@ -85,9 +85,13 @@ public class EntService {
                 .entName(requestDto.getEntName())
                 .isAutoAccepted(requestDto.getIsAutoAccepted())
                 .entInfo(requestDto.getEntInfo())
-                .entImg(requestDto.getEntImg())
+//                .entImg(requestDto.getEntImg())
                 .build();
         repository.save(ent);
+
+        if(requestDto.getEntImg() != null){
+            ent.updateImg(requestDto.getEntImg());
+        }
 
 
         EntMember entMember = EntMember.builder()
