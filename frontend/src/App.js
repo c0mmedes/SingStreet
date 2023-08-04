@@ -8,6 +8,7 @@ import Register from "./components/user/Register";
 import Mypage from "./components/user/Mypage";
 import React, { useState } from "react";
 import Entcreate from "./components/ent/EntCreate";
+import Entmain from "./components/ent/EntMain";
 import "./css/App.css";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
       />
       <Route path="/mypage" element={<Mypage isLoggedIn={isLoggedIn} />} />
       <Route path="/entcreate" element={<Entcreate />} />
+      <Route path="/entmain" element={<Entmain />} />
     </Routes>
   );
 }
