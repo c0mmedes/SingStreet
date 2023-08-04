@@ -208,7 +208,9 @@ public class UserService {
         }
     }
 
-
+    public String revalidate(String refreshtoken) throws JwtExpiredException {
+        return jwtTokenProvider.regenerateAccessToken(refreshtoken);
+    }
     public int getCurrentUserId(){
         return userRepository.findByEmail(SecurityUtil.getCurrentMemberId()).getUserId();
     }
