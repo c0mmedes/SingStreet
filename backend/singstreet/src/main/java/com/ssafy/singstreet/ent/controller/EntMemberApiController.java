@@ -65,12 +65,13 @@ public class EntMemberApiController {
     }
 
 
-    // EntMember 생성
-    @PostMapping("/ent/member/{applId}")
-    public ResponseEntity<Boolean> createMember(@PathVariable int applId){
-        log.debug("[create]EntMember = ",applId);
+    // EntMember 결정
+    @PostMapping("/ent/member/{applId}/{isAccepted}")
+    public ResponseEntity<Boolean> accepte(@PathVariable int applId, @PathVariable boolean isAccepted){
+        log.debug("[create EntMember] applId = ",applId);
+        log.debug("[create EntMember] isAccepted = ",isAccepted);
 
-        return new ResponseEntity(entMemberService.saveMember(applId),HttpStatus.CREATED);
+        return new ResponseEntity(entMemberService.accepteMember(applId,isAccepted),HttpStatus.CREATED);
     }
 
     // Ent 탈퇴

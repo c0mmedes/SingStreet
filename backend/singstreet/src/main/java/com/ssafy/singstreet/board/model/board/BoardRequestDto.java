@@ -14,4 +14,8 @@ public class BoardRequestDto {
     private String title;
     private Character type;    //Q:QnA, C:Common
     private String content;
+
+    public void updateUserId(int userId){
+        this.userId = userId;
+    }
 }

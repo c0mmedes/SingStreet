@@ -13,4 +13,8 @@ public class BoardCommentRequestDto {
     private int userId;
     private int boardId;
     private String content;
+
+    public void updateUserId(int userId){
+        this.userId = userId;
+    }
 }

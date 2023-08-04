@@ -147,7 +147,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(int user_id) throws UserNotFoundException {
+    public UserDetailDTO getUser(int user_id) throws UserNotFoundException {
         Optional<User> member=userRepository.findById(user_id);
         if(!member.isPresent()){
             throw new UserNotFoundException("유저 아이디 번호가 존재하지 않습니다.");
@@ -158,7 +158,8 @@ public class UserService {
         udto.setUserImg(user.getUserImg());
         udto.setGender(user.getGender());
         udto.setNickname(user.getNickname());
-        return user;
+        udto.setUserId(user.getUserId());
+        return udto;
     }
 
     public void softDeleteUser(String userName) throws UserNotFoundException {
