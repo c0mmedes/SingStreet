@@ -78,7 +78,7 @@ public class EntService {
     public boolean create(EntSaveRequestDto requestDto, int userId){
         // 중복체크
         String entName = requestDto.getEntName();
-        if(entNameCheck(entName)) return false;
+        if(!entNameCheck(entName)) return false;
 
         Ent ent = Ent.builder()
                 .user(userRepository.findByUserId(userId))
