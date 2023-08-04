@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../css/ent/EntCreate.css";
+import {api} from "../../services/httpService"
 
 const EntCreate = ({userInfo, isLogin}) => {
   const [entName, setEntName] = useState("");
@@ -23,6 +24,28 @@ const EntCreate = ({userInfo, isLogin}) => {
 		setEntImg(e.target.value);
 	};
 
+  const apiInstance = api(); 
+  const onClickEntCreate = async function () {
+    const accessToken = sessionStorage.getItem("accessToken");
+    try{
+      const res = await apiInstance.post('/ent',
+      {
+        entImg: entImg,
+        entInfo: entInfo,
+        entName: entName,
+        entTagList: entTagList,
+        isAutoAccepted: isAutoAceepted
+      },
+      {
+        headers: {
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+				},
+      });
+      console.log(res);
+    } catch (error){
+      alert("엔터 생성 오류");
+    }
+  };
   return (
     <div>
       <div className="form_wrapper">
@@ -76,7 +99,7 @@ const EntCreate = ({userInfo, isLogin}) => {
                     required
                   />
                 </div>
-                <input className="button" type="submit" value="생성하기" />
+                <input className="button" type="submit" value="생성하기" onClick={onClickEntCreate} />
               </form>
             </div>
           </div>
