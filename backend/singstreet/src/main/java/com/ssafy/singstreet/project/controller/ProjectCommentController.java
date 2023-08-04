@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +25,13 @@ public class ProjectCommentController {
     // 댓글 등록
     @PostMapping
     public ResponseEntity<ProjectComment> createComment(@RequestBody ProjectCommentRequestDto dto) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         ProjectComment projectComment = projectCommentService.createComment(dto);
         return new ResponseEntity<>(projectComment, HttpStatus.CREATED);
     }
@@ -30,6 +39,13 @@ public class ProjectCommentController {
     // 댓글 삭제
     @DeleteMapping("{commentId}")
     public ResponseEntity<String> deleteComment(@PathVariable Integer commentId) {
+        // 토큰 검증 및 인증 실패 처리
+        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         boolean deletionSuccess = projectCommentService.deleteComment(commentId);
 
         if (deletionSuccess) {

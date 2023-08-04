@@ -42,4 +42,6 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findByEnt(Ent ent);
 
     List<Project> findByProjectIdIn(List<Integer> projectIds);
+
+    List<Project> findAllByOrderByMonthlyLikeCountDesc();
 }
