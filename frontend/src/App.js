@@ -1,4 +1,4 @@
-import { Link, Route, Routes, Navigate  } from "react-router-dom";
+import { Link, Route, Routes, Navigate } from "react-router-dom";
 import Ent from "./components/ent/Ent";
 import Home from "./components/Home";
 import Chart from "./components/chart/Chart";
@@ -18,33 +18,32 @@ const mapStateToProps = (state) => ({
 });
 
 function App({ isLogin }) {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/ent" element={<Ent />} />
-      <Route path="/chart" element={<Chart />} />
-      <Route path="/music" element={<Music />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<LoginContainer />} />
-      {/* 동적으로 컴포넌트 선택 */}
-      <Route
-        path="/mypage"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <Mypage /> : <Navigate to="/login" />
-        }
-      />
-      <Route
-        path="/entcreate"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
-        }
-      />
-      <Route path="/entmain" element={<Entmain />} />
-    </Routes>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/ent" element={<Ent />} />
+			<Route path="/chart" element={<Chart />} />
+			<Route path="/music" element={<Music />} />
+			<Route path="/register" element={<Register />} />
+			<Route path="/login" element={<LoginContainer />} />
+			{/* 동적으로 컴포넌트 선택 */}
+			<Route
+				path="/mypage"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <Mypage /> : <Navigate to="/login" />
+				}
+			/>
+			<Route
+				path="/entcreate"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
+				}
+			/>
+			<Route path="/entmain/:entId" element={<Entmain />} />
+		</Routes>
+	);
 }
 
 export default connect(mapStateToProps, null)(App);
-

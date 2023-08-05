@@ -41,7 +41,7 @@ const Ent = () => {
 				{entList.map((ent) => (
 					<li key={ent.entId}>
 						<a href="#" class="card">
-							<Link to="/entmain">
+							<Link to={`/entmain/${ent.entId}`}>
 								<img src={myImage} class="card__image" alt="" />
 								<div class="card__overlay">
 									<div class="card__header">
