@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../../css/ent/EntCreate.css";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
+import "../../css/ent/EntCreate.css";
 
 const EntCreate = ({ userInfo, isLogin }) => {
 	const [entName, setEntName] = useState("");
@@ -24,8 +25,11 @@ const EntCreate = ({ userInfo, isLogin }) => {
 	const handleEntImg = (e) => {
 		setEntImg(e.target.value);
 	};
-
+	// axios 인스턴스 생성
 	const apiInstance = api();
+	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+	const navigate = useNavigate();
+
 	const onClickEntCreate = async function () {
 		const accessToken = sessionStorage.getItem("accessToken");
 		try {
@@ -46,6 +50,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
 			);
 			if (res.data) {
 				//정상적으로 만들어지면 true
+				navigate("/ent");
 				alert("엔터가 생성되었습니다!");
 			} else {
 				alert("엔터명이 중복되었습니다!");
@@ -68,8 +73,8 @@ const EntCreate = ({ userInfo, isLogin }) => {
 								<label>엔터명</label>
 								<div className="input_field">
 									<input
-                    type="text"
-                    maxlength="20"
+										type="text"
+										maxlength="20"
 										name="entId"
 										value={entName}
 										onChange={handleEntName}
