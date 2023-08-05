@@ -9,18 +9,24 @@ import { api } from "../../services/httpService";
 const Ent = () => {
 	const [entList, setEntList] = useState([]);
 	const [page, setPage] = useState(0);
+	const [isLastPage, setIsLastPage] = useState(false);
 	// axios 객체
 	const apiInstance = api();
-
-	const getEntList = async () => {
-		const res = await apiInstance.get(`/ent?page=${page}&size=20`);
-		setEntList(res.data.content);
-		console.log(entList);
-	};
 
 	useEffect(() => {
 		getEntList();
 	}, []);
+
+	const getEntList = async () => {
+		const res = await apiInstance.get(`/ent?page=${page}&size=2`);
+		setEntList(entList.concat(res.data.content));
+		setIsLastPage(res.data.last);
+	};
+
+	const onClickMoreEntList = async () => {
+		setPage(page + 1);
+		await getEntList();
+	};
 
 	return (
 		<div>
@@ -65,9 +71,14 @@ const Ent = () => {
 					</li>
 				))}
 			</ul>
+			<div>
+				<button onClick={onClickMoreEntList}>더보기</button>
+			</div>
 			<div className="entCreatebtnWrap">
 				<Link to="/entcreate">
-					<button className="entCreatebtn">엔터 생성하기</button>
+					<button className="entCreatebtn" disabled={isLastPage}>
+						엔터 생성하기
+					</button>
 				</Link>
 			</div>
 			<Footer />
