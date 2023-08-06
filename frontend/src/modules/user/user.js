@@ -27,7 +27,7 @@ export const removeFromMyEntList = (item) => ({
 // 초기 상태 정의
 const initialState = {
 	userInfo: {
-		nickname: "test-nickname",
+		nickname: "",
 		userImg: "",
 		userId: "",
 	},

@@ -33,6 +33,7 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 				userId: res.data.userId,
 			});
 			console.log(userInfo.nickname);
+			getMyEntList();
 		} catch (error) {
 			console.log("getUserInfo 실패");
 		}
@@ -46,8 +47,8 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 				},
 			});
-			addToMyEntList(res);
-			console.log(myEntList);
+			console.log(res.data);
+			addToMyEntList(res.data);
 		} catch (error) {}
 	};
 	const onClickLogin = async function login() {
