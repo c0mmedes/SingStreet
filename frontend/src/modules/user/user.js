@@ -1,6 +1,7 @@
 // 액션 타입 정의
 const ADD_USERINFO = "user/ADD_USERINFO";
 const SET_ISLOGIN = "user/SET_ISLOGIN";
+const LOGOUT = "user/LOGOUT";
 const ADD_TO_MY_ENT_LIST = "user/ADD_TO_MY_ENT_LIST";
 const REMOVE_FROM_MY_ENT_LIST = "user/REMOVE_FROM_MY_ENT_LIST";
 // 액션 생성자 함수 정의
@@ -10,6 +11,9 @@ export const addUserInfo = (userInfo) => ({
 });
 export const setIsLogin = () => ({
 	type: SET_ISLOGIN,
+});
+export const logout = () => ({
+	type: LOGOUT,
 });
 export const addToMyEntList = (item) => ({
 	type: ADD_TO_MY_ENT_LIST,
@@ -41,6 +45,8 @@ const user = (state = initialState, action) => {
 				...state,
 				isLogin: !state.isLogin,
 			};
+		case LOGOUT:
+			return initialState; // 상태를 초기 상태로 리셋
 		case ADD_TO_MY_ENT_LIST:
 			return {
 				...state,
