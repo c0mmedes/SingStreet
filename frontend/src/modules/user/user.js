@@ -11,11 +11,11 @@ export const addUserInfo = (userInfo) => ({
 export const setIsLogin = () => ({
 	type: SET_ISLOGIN,
 });
-const addToMyEntList = (item) => ({
+export const addToMyEntList = (item) => ({
 	type: ADD_TO_MY_ENT_LIST,
 	payload: item,
 });
-const removeFromMyEntList = (item) => ({
+export const removeFromMyEntList = (item) => ({
 	type: REMOVE_FROM_MY_ENT_LIST,
 	payload: item,
 });
