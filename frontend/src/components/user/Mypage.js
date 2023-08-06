@@ -4,7 +4,7 @@ const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
 	return (
 		<div>
 			마이페이지
-			<div>{isLogin}</div>
+			<div>{isLogin ? <h1>true</h1> : <h1>false</h1>}</div>
 		</div>
 	);
 };
