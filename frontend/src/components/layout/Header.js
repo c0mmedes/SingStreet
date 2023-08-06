@@ -26,9 +26,6 @@ const Header = ({ isLogin, setIsLogin, user, addUserInfo }) => {
 			setIsLogin();
 			sessionStorage.removeItem("accessToken");
 			sessionStorage.removeItem("refreshToken");
-			const ccc = sessionStorage.getItem("persist:user");
-			console.log(ccc);
-			sessionStorage.removeItem("persist:user");
 			alert("로그아웃 성공");
 		} catch (error) {
 			alert("로그아웃 실패"); // 사용중인건지 사용이 불가능한건지 구분해줘야함
