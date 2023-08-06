@@ -26,8 +26,8 @@ const Header = ({ isLogin, setIsLogin, user, addUserInfo }) => {
 			setIsLogin();
 			sessionStorage.removeItem("accessToken");
 			sessionStorage.removeItem("refreshToken");
-			sessionStorage.getItem("persist:user");
-			console.log("persist:user");
+			const ccc = sessionStorage.getItem("persist:user");
+			console.log(ccc);
 			sessionStorage.removeItem("persist:user");
 			alert("로그아웃 성공");
 		} catch (error) {
