@@ -44,7 +44,7 @@ function App({ isLogin }) {
 			/>
 			<Route path="/entmain/:entId" element={<Entmain />} />
 			<Route
-				path="/entapply/:entId"
+				path="/entapply/:entId/:entName"
 				element={
 					// isLogin 상태에 따라 컴포넌트를 선택
 					isLogin ? <EntApplyContainer /> : <Navigate to="/login" />

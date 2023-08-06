@@ -8,7 +8,7 @@ const EntNav = ({ ent }) => {
 				<div class="side-wrapper">
 					<div class="side-menu">
 						<div className="side-title side-title1 ">
-							<Link to={`/entapply/${ent.entId}`}>
+							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
 								<a className="menuLink" href="#">
 									<span>지원하기</span>
 								</a>
