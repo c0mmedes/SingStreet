@@ -41,18 +41,18 @@ public class ProjectFileUploadService {
         projectRepository.save(project);
     }
 
-    // 음원 다운로드
-    public ResponseEntity<InputStreamResource> downloadFile(String filename, HttpServletRequest request) {
-        InputStream inputStream = amazonS3Service.downloadFileFromS3(filename); // S3에서 파일 다운로드
-
-        String contentType = request.getServletContext().getMimeType(filename);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(contentType));
-        headers.setContentDispositionFormData("attachment", filename);
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .body(new InputStreamResource(inputStream));
-    }
+//    // 음원 다운로드
+//    public ResponseEntity<InputStreamResource> downloadFile(String filename, HttpServletRequest request) {
+//        InputStream inputStream = amazonS3Service.downloadFileFromS3(filename); // S3에서 파일 다운로드
+//
+//        String contentType = request.getServletContext().getMimeType(filename);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType(contentType));
+//        headers.setContentDispositionFormData("attachment", filename);
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .body(new InputStreamResource(inputStream));
+//    }
 }
