@@ -22,8 +22,7 @@ const EntApply = ({ userInfo, isLogin }) => {
 		setAudioName(e.target.value);
 	};
 	const handleContent = (e) => {
-		const value = e.target.value === "true"; // 문자열 "true"를 불리언 true로 변환
-		setContent(value);
+		setContent(e.target.value);
 	};
 	const handleHope = (e) => {
 		setHope(e.target.value);
