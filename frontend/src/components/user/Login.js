@@ -60,6 +60,7 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 			setIsLogin();
 			console.log("getUserInfo 진입직전");
 			getUserInfo();
+			getMyEntList();
 			// 로그인 성공 시 메인 페이지로 이동
 			navigate("/");
 			alert("로그인 성공");
