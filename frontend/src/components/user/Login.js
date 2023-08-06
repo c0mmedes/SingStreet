@@ -39,6 +39,7 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 	};
 
 	const getMyEntList = async () => {
+		const accessToken = sessionStorage.getItem("accessToken");
 		try {
 			const res = await apiInstance.get("/ent/myEnt", {
 				headers: {
