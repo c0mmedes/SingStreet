@@ -5,7 +5,7 @@ import "../../css/layout/Header.css";
 import logo from "../../assets/logo.png";
 import { api } from "../../services/httpService";
 
-const Header = ({ isLogin, setIsLogin, user, addUserInfo }) => {
+const Header = ({ isLogin, setIsLogin, user, addUserInfo, logout }) => {
 	const apiInstance = api();
 	const accessToken = sessionStorage.getItem("accessToken");
 	console.log(accessToken);
@@ -24,6 +24,7 @@ const Header = ({ isLogin, setIsLogin, user, addUserInfo }) => {
 				}
 			);
 			setIsLogin();
+			logout();
 			sessionStorage.removeItem("accessToken");
 			sessionStorage.removeItem("refreshToken");
 			alert("로그아웃 성공");

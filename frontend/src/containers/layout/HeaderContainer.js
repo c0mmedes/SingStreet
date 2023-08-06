@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { addUserInfo, setIsLogin, logout } from "../../modules/user/user";
 import Header from "../../components/layout/Header";
 
-const HeaderContainer = ({ isLogin, setIsLogin }) => {
+const HeaderContainer = ({ isLogin, setIsLogin, logout }) => {
 	console.log(isLogin);
 	return <Header isLogin={isLogin} setIsLogin={setIsLogin} logout={logout}></Header>;
 };

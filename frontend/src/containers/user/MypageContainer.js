@@ -2,8 +2,15 @@ import { connect } from "react-redux";
 import { addUserInfo, setIsLogin } from "../../modules/user/user";
 import Mypage from "../../components/user/Mypage";
 
-const MypageContainer = ({ userInfo, addUserInfo, setIsLogin }) => {
-	return <Mypage userInfo={userInfo} addUserInfo={addUserInfo} setIsLogin={setIsLogin}></Mypage>;
+const MypageContainer = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
+	return (
+		<Mypage
+			isLogin={isLogin}
+			userInfo={userInfo}
+			addUserInfo={addUserInfo}
+			setIsLogin={setIsLogin}
+		></Mypage>
+	);
 };
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
