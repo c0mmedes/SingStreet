@@ -1,3 +1,4 @@
+import React from "react";
 import { connect } from "react-redux";
 import { addUserInfo, setIsLogin } from "../../modules/user/user";
 import Mypage from "../../components/user/Mypage";
