@@ -1,7 +1,12 @@
 import React from "react";
 
-const mypage = () => {
-  return <div>마이 페이지</div>;
+const Mypage = ({ userInfo, addUserInfo, setIsLogin }) => {
+	return (
+		<div>
+			마이페이지
+			<div>{userInfo.nickname}</div>
+		</div>
+	);
 };
 
-export default mypage;
+export default Mypage;
