@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntCreate.css";
 
@@ -8,9 +8,10 @@ const EntApply = ({ userInfo, isLogin }) => {
 	const [artist, setArtist] = useState("");
 	const [audioName, setAudioName] = useState("");
 	const [content, setContent] = useState("");
-	const [entId, setEntId] = useState("");
+	const [entId, setEntId] = useState(useParams().entId);
 	const [hope, setHope] = useState("");
-	const [userId, setUserId] = useState("");
+	const [userId, setUserId] = useState(userInfo.userId);
+	const [entName, setEntName] = useState(useParams().entName);
 	const handleAge = (e) => {
 		setAge(e.target.value);
 	};
@@ -24,15 +25,10 @@ const EntApply = ({ userInfo, isLogin }) => {
 		const value = e.target.value === "true"; // 문자열 "true"를 불리언 true로 변환
 		setContent(value);
 	};
-	const handleEntId = (e) => {
-		setEntId(e.target.value);
-	};
 	const handleHope = (e) => {
 		setHope(e.target.value);
 	};
-	const handleUserId = (e) => {
-		setUserId(e.target.value);
-	};
+
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -74,7 +70,7 @@ const EntApply = ({ userInfo, isLogin }) => {
 			<div className="form_wrapper">
 				<div className="form_container">
 					<div className="title_container">
-						<h2>엔터 지원 하기</h2>
+						<h2>{entName}엔터 지원 하기</h2>
 					</div>
 
 					<div className="row clearfix">
@@ -108,7 +104,7 @@ const EntApply = ({ userInfo, isLogin }) => {
 								</div>
 								<label>하고싶은 노래</label>
 								<div className="input_field">
-									<input type="hope" name="tagList" value={hope} onChange={handleHope} required />
+									<input type="hope" name="hope" value={hope} onChange={handleHope} required />
 								</div>
 								<label>포부</label>
 								<div className="input_field">
