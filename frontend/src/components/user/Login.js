@@ -13,13 +13,14 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 	const handleInputPw = (e) => {
 		setInputPw(e.target.value);
 	};
-	const accessToken = sessionStorage.getItem("accessToken");
+
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
 	const navigate = useNavigate();
 
 	const getUserInfo = async function () {
+		const accessToken = sessionStorage.getItem("accessToken");
 		try {
 			const res = await apiInstance.get("/user", {
 				headers: {
