@@ -6,6 +6,7 @@ import com.ssafy.singstreet.board.model.board.BoardRequestDto;
 import com.ssafy.singstreet.board.model.board.BoardUpdateRequestDto;
 import com.ssafy.singstreet.board.model.comment.BoardCommentRequestDto;
 import com.ssafy.singstreet.board.service.BoardService;
+import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class BoardApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final BoardService boardService;
+    private final UserService userService;
 
 
     // Read Board
@@ -40,6 +42,8 @@ public class BoardApiController {
     // Create Board
     @PostMapping("/board")
     public ResponseEntity<Boolean> createBoard(@RequestBody BoardRequestDto requestDto){
+        int userId = userService.getCurrentUserId();
+        requestDto.updateUserId(userId);
         log.debug("[Create Board(User)] requestDot", requestDto);
 
         return new ResponseEntity(boardService.saveBoard(requestDto), HttpStatus.CREATED );

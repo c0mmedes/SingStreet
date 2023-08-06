@@ -4,6 +4,7 @@ import com.ssafy.singstreet.msg.model.MsgDetailResponseDto;
 import com.ssafy.singstreet.msg.model.MsgRequestDto;
 import com.ssafy.singstreet.msg.model.MsgResponseDto;
 import com.ssafy.singstreet.msg.service.MsgService;
+import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,27 +19,31 @@ import java.util.List;
 public class MsgController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final MsgService msgService;
+    private final UserService userService;
 
     // Read Msg
     // - Receiver ------------
     //받은 읽은 쪽지 조회
-    @GetMapping("/msg/receive/confirmed/{userId}")
-    public ResponseEntity<List<MsgResponseDto>> readReceiveConfirmedMsgList(@PathVariable int userId){
+    @GetMapping("/msg/receive/confirmed")
+    public ResponseEntity<List<MsgResponseDto>> readReceiveConfirmedMsgList(){
+        int userId = userService.getCurrentUserId();
         log.debug("[Read ConfirmedReceiveMsgList] userId :" ,userId);
 
         return new ResponseEntity(msgService.readReceiveConfirmedMsgList(userId),HttpStatus.OK);
     }
     //받은 '안' 읽은 쪽지 조회
-    @GetMapping("/msg/receive/{userId}")
-    public ResponseEntity<List<MsgResponseDto>> readReceiveNotConfirmedMsgList(@PathVariable int userId){
+    @GetMapping("/msg/receive")
+    public ResponseEntity<List<MsgResponseDto>> readReceiveNotConfirmedMsgList(){
+        int userId = userService.getCurrentUserId();
         log.debug("[Read NotConfirmedReceiveMsgList] userId :" ,userId);
 
         return new ResponseEntity(msgService.readReceiveNotConfirmedMsgList(userId),HttpStatus.OK);
     }
 
     // - Sender -----------
-    @GetMapping("/msg/send/{userId}")
-    public ResponseEntity<List<MsgResponseDto>> readSendMsgList(@PathVariable int userId){
+    @GetMapping("/msg/send")
+    public ResponseEntity<List<MsgResponseDto>> readSendMsgList(){
+        int userId = userService.getCurrentUserId();
         log.debug("[Read SendMsgList] userId :" ,userId);
 
         return new ResponseEntity(msgService.readSendMsgList(userId),HttpStatus.OK);
@@ -55,14 +60,17 @@ public class MsgController {
 
 
     //Delete Msg -> 리펙토링 필요 어떻게 가져올지 고민....이렇게 넣어도 됨?
-    @PutMapping("/msg/delete/{userId}")
-    public ResponseEntity<Boolean> delete(@PathVariable int userId, @RequestParam int msgId){
+    @PutMapping("/msg/delete/{msgId}")
+    public ResponseEntity<Boolean> delete(@PathVariable int msgId){
+        int userId = userService.getCurrentUserId();
         return new ResponseEntity(msgService.DeleteMsg(userId, msgId), HttpStatus.OK);
     }
 
     // Create Msg
     @PostMapping("/msg")
     public ResponseEntity<Boolean> createMsg(@RequestBody MsgRequestDto requestDto){
+        int receiver = userService.getCurrentUserId();
+        requestDto.updateReceiver(receiver);
         log.debug("[Create Msg] requestDto : ",requestDto);
 
         return new ResponseEntity(msgService.createMsg(requestDto), HttpStatus.CREATED);

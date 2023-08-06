@@ -75,7 +75,7 @@ public class UserService {
 
     //임시 비밀번호 생성하고 저장하기 및 메일 전송
     public User temporaryPassword(String email) throws UserNotFoundException{
-        User user=(User) userRepository.findByEmail(email);
+        User user=userRepository.findByEmail(email);
 
         if(user==null) {
             throw new UserNotFoundException("등록된 이메일이 아닙니다.");
@@ -147,7 +147,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(int user_id) throws UserNotFoundException {
+    public UserDetailDTO getUser(int user_id) throws UserNotFoundException {
         Optional<User> member=userRepository.findById(user_id);
         if(!member.isPresent()){
             throw new UserNotFoundException("유저 아이디 번호가 존재하지 않습니다.");
@@ -158,7 +158,8 @@ public class UserService {
         udto.setUserImg(user.getUserImg());
         udto.setGender(user.getGender());
         udto.setNickname(user.getNickname());
-        return user;
+        udto.setUserId(user.getUserId());
+        return udto;
     }
 
     public void softDeleteUser(String userName) throws UserNotFoundException {
@@ -207,7 +208,10 @@ public class UserService {
         }
     }
 
-
+    public String revalidate(String refreshtoken) throws JwtExpiredException {
+        String newAccessToken=jwtTokenProvider.regenerateAccessToken(refreshtoken);
+        return newAccessToken;
+    }
     public int getCurrentUserId(){
         return userRepository.findByEmail(SecurityUtil.getCurrentMemberId()).getUserId();
     }
