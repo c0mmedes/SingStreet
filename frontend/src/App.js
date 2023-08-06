@@ -5,7 +5,7 @@ import Chart from "./components/chart/Chart";
 import Music from "./components/work/Music";
 import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
-import Mypage from "./components/user/Mypage";
+import MypageContainer from "./containers/user/MypageContainer";
 import React from "react";
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import Entmain from "./components/ent/EntMain";
@@ -32,7 +32,7 @@ function App({ isLogin }) {
 				path="/mypage"
 				element={
 					// isLogin 상태에 따라 컴포넌트를 선택
-					isLogin ? <Mypage /> : <Navigate to="/login" />
+					isLogin ? <MypageContainer /> : <Navigate to="/login" />
 				}
 			/>
 			<Route
