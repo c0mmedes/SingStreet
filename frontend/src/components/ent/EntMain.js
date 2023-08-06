@@ -19,7 +19,8 @@ const EntMain = () => {
 
 	const getEnt = async () => {
 		const res = await apiInstance.get(`/ent/${entId}`);
-		setEnt(res.data);
+		const newEnt = { ...res.data }; // 새로운 객체를 생성하고 res.data의 내용을 복사
+		setEnt(newEnt);
 		// "entId": 1,
 		// "entName": "qwe",
 		// "entImg": "qwe",
