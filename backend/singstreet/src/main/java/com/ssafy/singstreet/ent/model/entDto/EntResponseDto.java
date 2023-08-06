@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class EntResponseDto {
     private int entId;
+    private int userId;
     private String entName;
     private String entImg;
     private String entInfo;

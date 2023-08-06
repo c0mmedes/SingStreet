@@ -125,6 +125,7 @@ public class EntMemberService {
     public EntApplyResponseDto convertApplyToDto(EntApplicant apply){
         return EntApplyResponseDto.builder()
                 .userId(apply.getUserId().getUserId())
+                .applId(apply.getApplId())
                 .nickname(apply.getUserId().getNickname())
                 .createAt(apply.getCreatedAt())
                 .build();
