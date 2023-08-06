@@ -55,10 +55,10 @@ const EntApply = ({ userInfo, isLogin }) => {
 			);
 			if (res.data) {
 				//정상적으로 만들어지면 true
-				navigate("/ent");
+				navigate(`/entmain/${entId}`);
 				alert("엔터 지원 성공!");
 			} else {
-				alert("엔터 지원 실패!");
+				alert("이미 지원한 엔터입니다!");
 			}
 		} catch (error) {
 			alert("엔터 지원 오류");
