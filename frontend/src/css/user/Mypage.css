@@ -1,0 +1,75 @@
+.user-my-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	/* height: calc(100vh - 100px); */
+	height: 100%;
+}
+.mypage-title {
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+.user-my-info-table-wrap {
+	width: 50%;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	table-layout: fixed;
+}
+table th {
+	border-right: 1px solid #e5e5e5;
+}
+th,
+td {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.tdcell {
+	padding: 7%;
+}
+.edit-button {
+	padding: 10px;
+	margin: 10px;
+	background-color: #ffff;
+	color: #f8f8f8;
+	border: 1px solid #d8d8d5;
+	font-size: 0.9rem;
+	font-weight: 700;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.edit-button.active {
+	background-color: #ffffff;
+	color: rgba(0, 0, 0, 0.8);
+}
+.edit-button:hover {
+	background-color: #55b554;
+	color: #fff;
+}
+#user-profile,
+#user-nickname {
+	margin: 0;
+}
+#user-nickname-td,
+#user-profile-td {
+	padding-bottom: 13px;
+}
+.nickname-is-duplicated,
+.email-is-duplicated {
+	color: rgba(255, 30, 0, 0.719);
+	font-size: 15px;
+	height: 0;
+}
+.nickname-not-duplicated,
+.email-not-duplicated {
+	color: #0a44c08c;
+	font-size: 15px;
+	height: 0;
+}

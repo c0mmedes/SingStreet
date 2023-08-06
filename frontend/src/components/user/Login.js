@@ -28,9 +28,11 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 				},
 			});
 			addUserInfo({
+				email: res.data.email,
+				gender: res.data.gender,
 				nickname: res.data.nickname,
-				userImg: res.data.userImg,
 				userId: res.data.userId,
+				userImg: res.data.userImg,
 			});
 			console.log(userInfo.nickname);
 			getMyEntList();
