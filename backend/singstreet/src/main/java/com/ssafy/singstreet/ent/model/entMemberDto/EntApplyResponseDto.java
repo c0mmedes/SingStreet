@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class EntApplyResponseDto {
     private int userId;
+    private int applId;
     private String nickname;
     private LocalDateTime createAt;
 }
