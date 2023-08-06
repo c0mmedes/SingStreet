@@ -177,6 +177,7 @@ public class EntService {
     public EntResponseDto convertEntToDto(Ent ent){
         return EntResponseDto.builder()
                 .entId(ent.getEntId())
+                .userId(ent.getUser().getUserId())
                 .entName(ent.getEntName())
                 .entImg(ent.getEntImg())
                 .entInfo(ent.getEntInfo())
