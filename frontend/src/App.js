@@ -9,6 +9,7 @@ import Mypage from "./components/user/Mypage";
 import React from "react";
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import Entmain from "./components/ent/EntMain";
+import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import "./css/App.css";
 import { connect } from "react-redux";
 
@@ -42,6 +43,13 @@ function App({ isLogin }) {
 				}
 			/>
 			<Route path="/entmain/:entId" element={<Entmain />} />
+			<Route
+				path="/entapply/:entId"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <EntApplyContainer /> : <Navigate to="/login" />
+				}
+			/>
 		</Routes>
 	);
 }

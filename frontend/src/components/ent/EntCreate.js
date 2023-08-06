@@ -120,7 +120,6 @@ const EntCreate = ({ userInfo, isLogin }) => {
 									<input
 										type="file"
 										name="file"
-										placeholder="#뉴진스 #하입보이"
 										value={entImg}
 										onChange={handleEntImg}
 										required
