@@ -3,15 +3,24 @@
 // mapDispatchToProps 객체를 통해 addUserInfo 액션 생성자 함수를 props로 매핑해줌.
 
 import { connect } from "react-redux";
-import { addUserInfo, setIsLogin } from "../../modules/user/user";
+import { addUserInfo, setIsLogin, addToMyEntList } from "../../modules/user/user";
 import Login from "../../components/user/Login";
 
-const LoginContainer = ({ userInfo, addUserInfo, setIsLogin }) => {
-	return <Login userInfo={userInfo} addUserInfo={addUserInfo} setIsLogin={setIsLogin}></Login>;
+const LoginContainer = ({ userInfo, addUserInfo, myEntList, setIsLogin, addToMyEntList }) => {
+	return (
+		<Login
+			userInfo={userInfo}
+			addUserInfo={addUserInfo}
+			myEntList={myEntList}
+			setIsLogin={setIsLogin}
+			addToMyEntList={addToMyEntList}
+		></Login>
+	);
 };
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
 	isLogin: state.user.isLogin,
+	myEntList: state.user.myEntList,
 });
 const mapDispatchToProps = (dispatch) => ({
 	addUserInfo: (userInfo) => {
@@ -19,6 +28,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	setIsLogin: () => {
 		dispatch(setIsLogin());
+	},
+	addToMyEntList: (item) => {
+		dispatch(addToMyEntList(item));
 	},
 });
 

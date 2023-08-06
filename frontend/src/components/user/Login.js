@@ -4,7 +4,7 @@ import "../../css/user/Login.css";
 import Background from "../layout/Background.js";
 import { api } from "../../services/httpService";
 
-function Login({ userInfo, addUserInfo, setIsLogin }) {
+function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList }) {
 	const [inputEmail, setInputEmail] = useState("");
 	const [inputPw, setInputPw] = useState("");
 	const handleInputEmail = (e) => {
@@ -13,21 +13,19 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 	const handleInputPw = (e) => {
 		setInputPw(e.target.value);
 	};
+	const accessToken = sessionStorage.getItem("accessToken");
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
 	const navigate = useNavigate();
 
 	const getUserInfo = async function () {
-		const accessToken = sessionStorage.getItem("accessToken");
-		console.log(accessToken);
 		try {
 			const res = await apiInstance.get("/user", {
 				headers: {
 					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 				},
 			});
-			console.log(res);
 			addUserInfo({
 				nickname: res.data.nickname,
 				userImg: res.data.userImg,
@@ -39,6 +37,17 @@ function Login({ userInfo, addUserInfo, setIsLogin }) {
 		}
 	};
 
+	const getMyEntList = async () => {
+		try {
+			const res = await apiInstance.get("/ent/myEnt", {
+				headers: {
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+				},
+			});
+			addToMyEntList(res);
+			console.log(myEntList);
+		} catch (error) {}
+	};
 	const onClickLogin = async function login() {
 		try {
 			const res = await apiInstance.post("/auth/login", {

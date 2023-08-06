@@ -1,8 +1,8 @@
 // 액션 타입 정의
 const ADD_USERINFO = "user/ADD_USERINFO";
 const SET_ISLOGIN = "user/SET_ISLOGIN";
-const ADD_TO_MY_ENT_LIST = "ADD_TO_MY_ENT_LIST";
-const REMOVE_FROM_MY_ENT_LIST = "REMOVE_FROM_MY_ENT_LIST";
+const ADD_TO_MY_ENT_LIST = "user/ADD_TO_MY_ENT_LIST";
+const REMOVE_FROM_MY_ENT_LIST = "user/REMOVE_FROM_MY_ENT_LIST";
 // 액션 생성자 함수 정의
 export const addUserInfo = (userInfo) => ({
 	type: ADD_USERINFO,
@@ -40,6 +40,18 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				isLogin: !state.isLogin,
+			};
+		case ADD_TO_MY_ENT_LIST:
+			return {
+				...state,
+				myEntList: Array.isArray(action.payload)
+					? [...state.myEntList, ...action.payload]
+					: [...state.myEntList, action.payload],
+			};
+		case REMOVE_FROM_MY_ENT_LIST:
+			return {
+				...state,
+				myEntList: state.myEntList.filter((item) => item !== action.payload),
 			};
 		default:
 			return state;
