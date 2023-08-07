@@ -18,12 +18,14 @@ const Ent = () => {
 
   const getEntList = async () => {
     const res = await apiInstance.get(`/ent?page=${page}&size=100`);
-    setEntList(entList.concat(res.data.content));
+    const newEntList = entList.concat(res.data.content);
+    setEntList(newEntList);
     setIsLastPage(res.data.last);
   };
 
   const onClickMoreEntList = async () => {
-    setPage(page + 1);
+    const newPage = page + 1;
+    setPage(newPage);
     await getEntList();
   };
 
@@ -73,9 +75,15 @@ const Ent = () => {
           </li>
         ))}
       </ul>
+<<<<<<< HEAD
       {/* <div>
         <button onClick={onClickMoreEntList}>더보기</button>
       </div> */}
+=======
+      <div>
+        <button onClick={onClickMoreEntList} disabled={isLastPage}>더보기</button>
+      </div>
+>>>>>>> a3784c4d2eda4852541ef2a0b090c3d949bf5f1b
       <div className="entCreatebtnWrap">
         <Link to="/entcreate">
           <button className="entCreatebtn" disabled={isLastPage}>

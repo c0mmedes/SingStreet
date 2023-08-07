@@ -1,18 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/layout/EntNav.css";
-const EntNav = ({ ent }) => {
+const EntNav = ({ ent, userInfo }) => {
+	/* "entId": 1,
+	"userId": "엔터장 아이디",
+	"entName": "qwe",
+	"entImg": "qwe",
+	"entInfo": "qwe",
+	"tagNameList": [],
+	"autoAccepted": true */
 	return (
 		<div>
 			<div class="left-side">
 				<div class="side-wrapper">
 					<div class="side-menu">
 						<div className="side-title side-title1 ">
-							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
+							{userInfo.userId === ent.userId? (
+							<Link to={`/entapplicants/${ent.entId}/${ent.entName}`}>
 								<a className="menuLink" href="#">
-									<span>지원하기</span>
+									<span>지원자 목록</span>
 								</a>
 							</Link>
+							):(
+							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
+								<a className="menuLink" href="#">
+									<span>지원 하기</span>
+								</a>
+							</Link>) }
 						</div>
 
 						<div className="side-title side-title2 ">
