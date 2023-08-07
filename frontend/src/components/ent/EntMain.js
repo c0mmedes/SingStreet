@@ -4,6 +4,7 @@ import Footer from "../layout/Footer.js";
 import { Link, useParams } from "react-router-dom";
 import EntNav from "../layout/EntNav";
 import { api } from "../../services/httpService";
+import EntNavContainer from "../../containers/layout/EntNavContainer";
 
 const EntMain = () => {
 	// entMain 라우터 경로에 있는 param인 entId를 저장하는 변수
@@ -35,7 +36,7 @@ const EntMain = () => {
 		<div>
 			<div className="video-app">
 				<div className="wrapper">
-					<EntNav ent={ent} />
+					<EntNavContainer ent={ent} />
 					<div className="main-container">
 						<div className="profile">
 							<img

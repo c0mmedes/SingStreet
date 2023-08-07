@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../css/ent/Ent.css";
 import myImage from "../../assets/entLogo2.png";
-import myImage2 from "../../assets/entLogo1.PNG";
 import Footer from "../layout/Footer.js";
 import { Link } from "react-router-dom";
 import { api } from "../../services/httpService";
