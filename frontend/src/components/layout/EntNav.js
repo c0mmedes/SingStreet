@@ -15,6 +15,7 @@ const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
 				<div class="side-wrapper">
 					<div class="side-menu">
 						<div className="side-title side-title1 ">
+							userId: {userInfo.userId} entMasterId: {entMasterId}
 							{userInfo.userId === entMasterId? (
 							<Link to={`/entapplicants/${entId}/${entName}`}>
 								<a className="menuLink" href="#">
