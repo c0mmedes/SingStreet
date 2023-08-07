@@ -118,6 +118,11 @@ body {
   transition: all 0.3s ease-in-out;
   border-bottom: 1px solid black;
 }
+
+.form_wrapper input[type="text"] {
+  padding-left: 15px;
+}
+
 .form_wrapper textarea:hover,
 .form_wrapper input[type="text"]:hover,
 .form_wrapper input[type="email"]:hover,
