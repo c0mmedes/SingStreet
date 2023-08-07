@@ -17,7 +17,6 @@ const EntNav = ({entId, entMasterId, entName, userInfo}) => {
 				<div class="side-wrapper">
 					<div class="side-menu">
 						<div className="side-title side-title1 ">
-							userId: {userInfo.userId} entMasterId: {entMasterId}
 							{parseInt(userInfo.userId) === parseInt(entMasterId)? (
 							<Link to={`/entapplicants/${entId}/${entName}`}>
 								<a className="menuLink" href="#">
