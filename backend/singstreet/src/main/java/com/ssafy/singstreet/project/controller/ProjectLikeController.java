@@ -4,7 +4,7 @@ import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.project.db.entity.ProjectLikes;
 import com.ssafy.singstreet.project.model.ProjectLikeRequestDto;
 import com.ssafy.singstreet.project.model.ProjectLikeResponseDto;
-import com.ssafy.singstreet.project.service.ProjectFileUploadService;
+//import com.ssafy.singstreet.project.service.ProjectFileUploadService;
 import com.ssafy.singstreet.project.service.ProjectLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

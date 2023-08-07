@@ -1,35 +1,58 @@
 package com.ssafy.singstreet.project.service;
 
+import com.ssafy.singstreet.config.AmazonS3Service;
 import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.project.db.repo.ProjectRepository;
+import com.ssafy.singstreet.project.model.ProjectFileDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 
 @Service
 @RequiredArgsConstructor
 public class ProjectFileUploadService {
 
     private final ProjectRepository projectRepository;
+    private final AmazonS3Service amazonS3Service;
 
-    public Project updateAudioFile(Integer projectId, String audioFilename) {
-        Project project = projectRepository.findById(projectId).orElse(null);
+    // 음원 업로드
+    public void updateAudioFile(ProjectFileDto dto) throws Exception {
+        Project project = projectRepository.findById(dto.getProjectId()).orElseThrow(Exception::new);
 
-        if (project != null) {
-            project.updateAudioFile(audioFilename);
-            return projectRepository.save(project);
-        }
+        String s3Url = amazonS3Service.uploadFile(dto.getMultipartFile());
 
-        return null; // 프로젝트가 존재하지 않는 경우
+        project.updateAudioFile(s3Url);
+        projectRepository.save(project);
     }
 
-    public Project updateOriginFilename(Integer projectId, String originFilename) {
-        Project project = projectRepository.findById(projectId).orElse(null);
+    // 영상 업로드
+    public void uploadVideo(ProjectFileDto dto) throws Exception {
+        Project project = projectRepository.findById(dto.getProjectId()).orElseThrow(Exception::new);
 
-        if (project != null) {
-            project.updateOriginFilename(originFilename);
-            return projectRepository.save(project);
-        }
+        String s3Url = amazonS3Service.uploadFile(dto.getMultipartFile());
 
-        return null; // 프로젝트가 존재하지 않는 경우
+        project.updateOriginFilename(s3Url);
+        projectRepository.save(project);
     }
+
+//    // 음원 다운로드
+//    public ResponseEntity<InputStreamResource> downloadFile(String filename, HttpServletRequest request) {
+//        InputStream inputStream = amazonS3Service.downloadFileFromS3(filename); // S3에서 파일 다운로드
+//
+//        String contentType = request.getServletContext().getMimeType(filename);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType(contentType));
+//        headers.setContentDispositionFormData("attachment", filename);
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .body(new InputStreamResource(inputStream));
+//    }
 }
