@@ -18,12 +18,14 @@ const Ent = () => {
 
   const getEntList = async () => {
     const res = await apiInstance.get(`/ent?page=${page}&size=100`);
-    setEntList(entList.concat(res.data.content));
+    const newEntList = entList.concat(res.data.content);
+    setEntList(newEntList);
     setIsLastPage(res.data.last);
   };
 
   const onClickMoreEntList = async () => {
-    setPage(page + 1);
+    const newPage = page + 1;
+    setPage(newPage);
     await getEntList();
   };
 
