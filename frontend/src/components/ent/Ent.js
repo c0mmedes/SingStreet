@@ -83,7 +83,7 @@ const Ent = () => {
       </div>
       <div className="entCreatebtnWrap">
         <Link to="/entcreate">
-          <button className="entCreatebtn" disabled={isLastPage}>
+          <button className="entCreatebtn">
             엔터 생성하기
           </button>
         </Link>
