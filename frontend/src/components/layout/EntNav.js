@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+//src/components/layout/EntNav.js
+
+import React,{useState} from "react";
+import { Link, useParams } from "react-router-dom";
 import "../../css/layout/EntNav.css";
-const EntNav = ({ ent, userInfo }) => {
+const EntNav = ({entId, entMasterId, entName, userInfo}) => {
 	/* "entId": 1,
 	"userId": "엔터장 아이디",
 	"entName": "qwe",
@@ -15,14 +17,15 @@ const EntNav = ({ ent, userInfo }) => {
 				<div class="side-wrapper">
 					<div class="side-menu">
 						<div className="side-title side-title1 ">
-							{userInfo.userId === ent.userId? (
-							<Link to={`/entapplicants/${ent.entId}/${ent.entName}`}>
+							userId: {userInfo.userId} entMasterId: {entMasterId}
+							{userInfo.userId === entMasterId? (
+							<Link to={`/entapplicants/${entId}/${entName}`}>
 								<a className="menuLink" href="#">
 									<span>지원자 목록</span>
 								</a>
 							</Link>
 							):(
-							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
+							<Link to={`/entapply/${entId}/${entName}`}>
 								<a className="menuLink" href="#">
 									<span>지원 하기</span>
 								</a>
