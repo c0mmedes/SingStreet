@@ -123,8 +123,13 @@ const EntCreate = ({ userInfo, isLogin }) => {
                     value={entImg}
                     onChange={handleEntImg}
                     required
+                    className="upload-name"
                   />
                 </div>
+                <label for="file">파일찾기</label>
+                <input type="file" id="file">
+                  파일찾기
+                </input>
                 <input
                   className="button"
                   type="submit"
