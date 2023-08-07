@@ -133,7 +133,7 @@ body {
   background: #fafafa;
 }
 .form_wrapper input[type="submit"] {
-  background: #ea8cdc;
+  background-color: white;
   height: 45px;
   line-height: 30px;
   width: 100%;
@@ -414,4 +414,8 @@ body {
   .remember_me {
     padding-bottom: 20px;
   }
+}
+
+.input_field input {
+  margin-top: 10px;
 }
