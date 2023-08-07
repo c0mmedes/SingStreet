@@ -24,7 +24,7 @@ const EntNav = ({ ent, userInfo }) => {
 							):(
 							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
 								<a className="menuLink" href="#">
-									<span>지원하기</span>
+									<span>지원자 목록</span>
 								</a>
 							</Link>) }
 						</div>
