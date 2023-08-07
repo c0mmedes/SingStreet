@@ -113,8 +113,8 @@ function Login({
               <span className="registerLink">회원가입</span>
             </Link>
           </div>
-        </div>
-      </div>
+        </div>{" "}
+      </div>{" "}
       <Footer />
     </div>
   );

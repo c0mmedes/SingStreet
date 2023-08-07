@@ -2,9 +2,6 @@
   margin: 0;
   padding: 0;
 }
-.LoginContainer {
-  height: 100vh;
-}
 input:focus {
   outline: none;
 }
@@ -24,18 +21,17 @@ h1 {
   flex-direction: column;
   width: 400px;
   height: 500px;
-  margin-top: 50px;
+  margin-top: 50px !important;
   z-index: 30;
   color: black;
   background-color: #fbfbfb;
-  padding: 50px;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
   margin: 0 auto;
+  padding: 0;
 }
 .PwdInput,
 .IdInput {
-  width: 100%;
   height: 30px;
   border: 0px;
   background-color: inherit;
@@ -50,8 +46,8 @@ h1 {
 .loginBtn {
   width: 100%;
   height: 40px;
-  border-radius: 30px;
-  border: none;
+  border-radius: 5px;
+  border: 2px solid black;
   background-color: #fff;
   font-size: 20px;
   margin-top: 20px;
@@ -74,4 +70,11 @@ ion-icon {
 
 .registerLink {
   font-size: 15px;
+}
+
+.register {
+  margin-left: 11px;
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
 }
