@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../../css/ent/EntMain.css";
 import Footer from "../layout/Footer.js";
 import { Link, useParams } from "react-router-dom";
-import EntNav from "../layout/EntNav";
 import { api } from "../../services/httpService";
 import EntNavContainer from "../../containers/layout/EntNavContainer";
 
@@ -25,6 +24,7 @@ const EntMain = () => {
 		const newEnt = { ...res.data }; // 새로운 객체를 생성하고 res.data의 내용을 복사
 		setEnt(newEnt);
 		// "entId": 1,
+		// "userId": "엔터장 아이디",
 		// "entName": "qwe",
 		// "entImg": "qwe",
 		// "entInfo": "qwe",
