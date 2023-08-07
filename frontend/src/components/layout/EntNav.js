@@ -1,7 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
+import { Link, useParams } from "react-router-dom";
 import "../../css/layout/EntNav.css";
-const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
+const EntNav = ({userInfo}) => {
+	const [entId, setEntId] = useState(useParams().entId);
+	const [entMasterId, setEntMasterId] = useState(useParams().entMasterId);
+	const [entName, setEntName] = useState(useParams().entName);
 	/* "entId": 1,
 	"userId": "엔터장 아이디",
 	"entName": "qwe",
