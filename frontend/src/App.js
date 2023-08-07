@@ -43,7 +43,7 @@ function App({ isLogin }) {
 					isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
 				}
 			/>
-			<Route path="/entmain/:entId" element={<Entmain />} />
+			<Route path="/entmain/:entId/:entMasterId/:entName" element={<Entmain />} />
 			<Route
 				path="/entapply/:entId/:entName"
 				element={

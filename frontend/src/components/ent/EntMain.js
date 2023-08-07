@@ -6,10 +6,10 @@ import { api } from "../../services/httpService";
 import EntNavContainer from "../../containers/layout/EntNavContainer";
 
 const EntMain = () => {
-	// entMain 라우터 경로에 있는 param인 entId를 저장하는 변수
+	// entMain 라우터 경로에 있는 param인 entId, entMasterId, entName를 저장하는 변수
 	const [entId, setEntId] = useState(useParams().entId);
-	// 콘솔 테스트
-	console.log(entId);
+	const [entMasterId, setEntMasterId] = useState(useParams().entMasterId);
+	const [entName, setEntName] = useState(useParams().entName);
 	// 엔터 정보를 담고 있는 객체
 	const [ent, setEnt] = useState({});
 	// axios 객체
@@ -36,7 +36,7 @@ const EntMain = () => {
 		<div>
 			<div className="video-app">
 				<div className="wrapper">
-					<EntNavContainer ent={ent} />
+					<EntNavContainer entId={entId} entMasterId={entMasterId} entName={entName} />
 					<div className="main-container">
 						<div className="profile">
 							<img
