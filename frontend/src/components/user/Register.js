@@ -11,6 +11,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [gender, setGender] = useState("");
+  const [userImg, setUserImg] = useState("");
   const [isEmailDuplicated, setIsEmailDuplicated] = useState(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isNicknameDuplicated, setIsNicknameDuplicated] = useState(null);
@@ -32,10 +33,13 @@ function Register() {
   const handleGender = (e) => {
     setGender(e.target.value);
   };
+  const handleUserImg = (e) => {
+    setUserImg(e.target.value);
+  };
   const apiInstance = api();
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
   const navigate = useNavigate();
-
+  // 이메일 중복확인
   async function checkDuplicateEmail() {
     if (email) {
       try {
@@ -60,7 +64,7 @@ function Register() {
       alert("이메일을 입력해주세요.");
     }
   }
-
+  // 이메일 인증번호 확인하기 버튼
   async function onClickAuthorize() {
     if (!authCode) {
       alert("인증번호를 입력해주세요");
@@ -79,6 +83,7 @@ function Register() {
     }
   }
 
+  // 닉네임 중복확인 
   async function checkDuplicateNickname() {
     if (nickname) {
       try {
@@ -94,7 +99,7 @@ function Register() {
       alert("닉네임을 입력해주세요.");
     }
   }
-
+  
   async function onClickRegister() {
     if (!nickname) {
       alert("닉네임을 입력해주세요");
@@ -133,7 +138,7 @@ function Register() {
       gender: gender === "남" ? "M" : "F",
       nickname: nickname,
       password: password,
-      userImg: "사용자 프로필 이미지 파일 경로", // 사용자의 프로필 이미지 경로로 변경핧겅미
+      userImg: userImg, // 사용자의 프로필 이미지 경로로 변경핧겅미
     };
     try {
       const res = await apiInstance.post("/user", data);
@@ -221,6 +226,10 @@ function Register() {
               onChange={handlePasswordConfirm}
               className="RegisterInput"
             />
+          </div>
+          <div className="inputbox">
+            <label htmlFor="프로필 사진">ProfileImg</label>
+            <input type="file" onChange={handleUserImg} />
           </div>
           <button type="button" onClick={onClickRegister} className="signBtn">
             Sign up
