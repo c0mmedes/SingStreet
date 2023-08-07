@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+.LoginContainer {
+  height: 100vh;
+}
 input:focus {
   outline: none;
 }
@@ -14,13 +17,6 @@ h1 {
   margin-bottom: 30px;
 }
 
-.background-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
 .LoginWrap {
   display: flex;
   justify-content: center;
@@ -31,9 +27,9 @@ h1 {
   height: 400px;
   margin: 0 auto;
   margin-top: 50px;
-  border-radius: 200px;
+  border-radius: 5px;
+  z-index: 30;
 }
-
 .PwdInput,
 .IdInput {
   width: 100%;
