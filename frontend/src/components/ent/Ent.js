@@ -19,6 +19,7 @@ const Ent = () => {
   const getEntList = async () => {
     const res = await apiInstance.get(`/ent?page=${page}&size=100`);
     const newEntList = entList.concat(res.data.content);
+    console.log(res.data);
     setEntList(newEntList);
     setIsLastPage(res.data.last);
   };
