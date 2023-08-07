@@ -11,7 +11,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [gender, setGender] = useState("");
-  const [userImg, setUserImg] = useState("");
+  const [file, setFile] = useState(null);
   const [isEmailDuplicated, setIsEmailDuplicated] = useState(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isNicknameDuplicated, setIsNicknameDuplicated] = useState(null);
@@ -33,8 +33,8 @@ function Register() {
   const handleGender = (e) => {
     setGender(e.target.value);
   };
-  const handleUserImg = (e) => {
-    setUserImg(e.target.value);
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
   };
   const apiInstance = api();
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -133,15 +133,23 @@ function Register() {
       alert("이메일 중복확인 필요");
       return;
     }
+    const formData = new FormData();
+      formData.append('file', file);
     const data = {
       email: email,
       gender: gender === "남" ? "M" : "F",
       nickname: nickname,
       password: password,
-      userImg: userImg, // 사용자의 프로필 이미지 경로로 변경핧겅미
+      userImg: formData, // 사용자의 프로필 이미지 경로로 변경핧겅미
     };
     try {
-      const res = await apiInstance.post("/user", data);
+      
+
+      const res = await apiInstance.post("/user", data,{
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
       console.log(res);
       console.log("회원가입 성공");
       navigate("/");
@@ -229,7 +237,7 @@ function Register() {
           </div>
           <div className="inputbox">
             <label htmlFor="프로필 사진">ProfileImg</label>
-            <input type="file" onChange={handleUserImg} />
+            <input type="file" onChange={handleFileChange} />
           </div>
           <button type="button" onClick={onClickRegister} className="signBtn">
             Sign up
