@@ -16,17 +16,17 @@ const EntNav = ({ ent, userInfo }) => {
 					<div class="side-menu">
 						<div className="side-title side-title1 ">
 							{userInfo.userId === ent.userId? (
-							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
-								<a className="menuLink" href="#">
-									<span>지원하기</span>
-								</a>
-							</Link>):(
 							<Link to={`/entapplicants/${ent.entId}/${ent.entName}`}>
 								<a className="menuLink" href="#">
 									<span>지원하기</span>
 								</a>
 							</Link>
-							) }
+							):(
+							<Link to={`/entapply/${ent.entId}/${ent.entName}`}>
+								<a className="menuLink" href="#">
+									<span>지원하기</span>
+								</a>
+							</Link>) }
 						</div>
 
 						<div className="side-title side-title2 ">
