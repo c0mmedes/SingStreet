@@ -76,7 +76,7 @@ const Ent = () => {
         ))}
       </ul>
       <div>
-        <button onClick={onClickMoreEntList}>더보기</button>
+        <button onClick={onClickMoreEntList} disabled={isLastPage}>더보기</button>
       </div>
       <div className="entCreatebtnWrap">
         <Link to="/entcreate">
