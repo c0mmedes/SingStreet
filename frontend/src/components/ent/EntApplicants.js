@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import {api} from "../../services/httpService"
 
@@ -10,6 +10,9 @@ const EntApplicants = ({myEntList}) => {
     // 상태관리
     const [applicantList, setApplicantList] = useState([]);
     
+    useEffect(() => {
+        getEntApplicantList();
+      }, []);
 
     const getEntApplicantList = async () => {
         try{
@@ -31,12 +34,34 @@ const EntApplicants = ({myEntList}) => {
             ] 
             */
             setApplicantList(res.data);
-        } catch{}
+        } catch{
+            alert("지원자 목록 불러오기 실패!");
+        }
     } ;
 
     return (
         <div>
-            
+             {applicantList.map((applicant) => (
+          <li key={applicant.appId}>
+            <a href="#" class="card">
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src="https://i.imgur.com/7D7I6dI.png"
+                      alt=""
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">{applicant.nickname}</h3>
+                    </div>
+                  </div>
+                </div>
+            </a>
+          </li>
+        ))}
         </div>
     );
 };
