@@ -30,7 +30,7 @@ body {
   margin: 4% auto 0;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
   transform-origin: 50% 0%;
   transform: scale3d(1, 1, 1);
   transition: none;
@@ -90,6 +90,7 @@ body {
   padding-top: 10px;
 }
 .form_wrapper textarea {
+  margin-top: 10px;
   background-color: transparent;
   width: 100%;
   padding: 8px 10px 9px 35px;
@@ -97,7 +98,6 @@ body {
   background-color: inherit;
   box-sizing: border-box;
   border-radius: 5px;
-  outline: none;
   transition: all 0.3s ease-in-out;
   resize: none;
   border: 1px solid black;
@@ -137,13 +137,13 @@ body {
   height: 45px;
   line-height: 30px;
   width: 100%;
-  border: none;
-  outline: none;
+  border: 1px solid black;
   cursor: pointer;
-  color: #fff;
+  color: black;
   font-size: 1.1em;
   margin-bottom: 10px;
   transition: all 0.3s ease-in-out;
+  border-radius: 5px;
 }
 .form_wrapper input[type="submit"]:hover {
   background: #ff5ce6;
@@ -248,6 +248,7 @@ body {
   background: #fff;
   appearance: none;
   transition: all 0.2s ease;
+  margin-top: 10px;
 }
 .select_option select::-ms-expand {
   display: none;
