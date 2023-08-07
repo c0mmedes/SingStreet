@@ -3,7 +3,6 @@
   --curve: 40;
 }
 
-
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -119,6 +118,7 @@
   margin-top: 50px;
 }
 .entSearchInput {
+  border: 0;
   border-bottom: 3px solid pink;
   border-radius: 0%;
   width: 350px;
@@ -126,10 +126,12 @@
   padding-bottom: 0px;
   padding-top: 0px;
   margin-bottom: 0;
+  background-color: transparent;
 }
 .entSearchSubmit {
   padding: 10px;
   background-color: transparent;
+  border: 0;
   border-bottom: 3px solid pink;
   border-radius: 0px;
   margin-bottom: 0px;
