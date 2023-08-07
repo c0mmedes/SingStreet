@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { addUserInfo, setIsLogin, addToMyEntList } from "../../modules/user/user";
 import EntNav from "../../components/layout/EntNav";
 
-const EntNavContainer = ({ ent ,userInfo, addUserInfo, myEntList, setIsLogin, addToMyEntList }) => {
+const EntNavContainer = ({ entId, entMasterId, entName ,userInfo, addUserInfo, myEntList, setIsLogin, addToMyEntList }) => {
 	return (
 		<EntNav
-            ent={ent}
+			entId={entId} 
+			entMasterId={entMasterId} 
+			entName={entName}
 			userInfo={userInfo}
 			addUserInfo={addUserInfo}
 			myEntList={myEntList}

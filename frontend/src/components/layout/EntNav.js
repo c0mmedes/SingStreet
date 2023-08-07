@@ -1,10 +1,9 @@
+//src/components/layout/EntNav.js
+
 import React,{useState} from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../css/layout/EntNav.css";
-const EntNav = ({userInfo}) => {
-	const [entId, setEntId] = useState(useParams().entId);
-	const [entMasterId, setEntMasterId] = useState(useParams().entMasterId);
-	const [entName, setEntName] = useState(useParams().entName);
+const EntNav = ({entId, entMasterId, entName, userInfo}) => {
 	/* "entId": 1,
 	"userId": "엔터장 아이디",
 	"entName": "qwe",
