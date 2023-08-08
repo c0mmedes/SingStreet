@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
-// import EntNavContainer from "../../containers/layout/EntNavContainer";
+import EntNavContainer from "../../containers/layout/EntNavContainer";
 import "../../css/ent/EntApplicants.css";
 const EntApplicants = ({ myEntList }) => {
   // axios 인스턴스
@@ -41,9 +41,10 @@ const EntApplicants = ({ myEntList }) => {
   };
 
   return (
-    <div>
-      <h1>야호나오냐? </h1>
-      <div className="applicant-list-container">
+    <div className="entApplicantsContainer">
+      <EntNavContainer />
+      <div className="applicantListContainer">
+        <h1>지원자 목록 </h1>
         <ul>
           {applicantList.map((applicant) => (
             <li key={applicant.appId} className="applicantItem">

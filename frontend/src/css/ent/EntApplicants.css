@@ -1,3 +1,10 @@
 .applicantItem {
   list-style-type: style none;
 }
+
+.applicantListContainer {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+  padding: 40px;
+}
