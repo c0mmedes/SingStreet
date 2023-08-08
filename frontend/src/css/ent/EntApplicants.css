@@ -32,12 +32,19 @@
   margin-right: 10px;
 }
 .applicantHeader {
+  display: flex;
   border: 2px solid black;
   font-size: 20px;
   border-radius: 8px;
   width: 1010px;
   height: 200px;
   padding: 30px;
+}
+.applicantHeader h1 {
+  font-size: 50px;
+}
+.applicantHeader img {
+  margin-left: 530px;
 }
 
 .applicantOl {
