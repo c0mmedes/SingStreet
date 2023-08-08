@@ -1,6 +1,7 @@
 import React from "react";
 import "../../css/user/Mypage.css";
 import { api } from "../../services/httpService";
+import Footer from "../layout/Footer";
 
 const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
     // axios 인스턴스 생성
@@ -63,6 +64,7 @@ const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
             <div className="edit-button-wrap">
                 <button className="edit-button">적용</button>
             </div>
+            <Footer/>
         </div>
     );
 };
