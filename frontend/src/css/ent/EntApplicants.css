@@ -19,4 +19,7 @@
 
 .applicantHeader {
   background-color: coral;
+  border-radius: 8px;
+  width: 1010px;
+  height: 200px;
 }

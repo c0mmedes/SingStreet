@@ -48,6 +48,7 @@ const EntApplicants = ({ myEntList }) => {
         <div className="entApplicantsRight">
           <div className="applicantHeader">
             <h1>지원자 목록 </h1>
+            <img src="../../" />
           </div>
 
           <ul>
