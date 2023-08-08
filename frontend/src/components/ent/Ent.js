@@ -17,7 +17,7 @@ const Ent = () => {
   useEffect(() => {
     getEntList();
     scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [entList]);
+  }, [page]);
 
   const getEntList = async () => {
     const res = await apiInstance.get(`/ent?page=${page}&size=2`);
