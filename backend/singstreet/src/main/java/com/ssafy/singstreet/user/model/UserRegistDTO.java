@@ -10,11 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class UserRegistDTO {
     private String nickname;
-    private String userImg;
+    private String userImg; // MultipartFile로 수정
     private String email;
     private Character gender;
     private String password;
-    private MultipartFile multipartFile;
-
-
 }

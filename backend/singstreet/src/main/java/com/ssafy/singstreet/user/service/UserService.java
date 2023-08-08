@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -47,13 +48,13 @@ public class UserService {
     }
 
     //유저 등록
-    public User registerUser(UserRegistDTO registrationDTO) {
+    public User registerUser(UserRegistDTO registrationDTO, MultipartFile file) {
         // Prepare user roles
         ArrayList<String> roles = new ArrayList<>();
         roles.add("USER");
 
 
-        String s3Url = amazonS3Service.uploadFile(registrationDTO.getMultipartFile());
+        String s3Url = amazonS3Service.uploadFile(file);
 
         // Create new user object
         User user = User.builder()
