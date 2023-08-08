@@ -108,3 +108,7 @@
 .applicantItemBtn :last-child {
   background-color: #f8a0a0;
 }
+
+button {
+  cursor: pointer;
+}
