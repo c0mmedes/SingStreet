@@ -73,3 +73,19 @@
 .applicantItem::before {
   padding-left: 10px; /* 순서 번호를 약간 띄워서 순서와 이름의 시작 지점을 일치시킵니다 */
 }
+
+.applicantHeaderTable div {
+  width: 33%;
+}
+
+.applicantItemBtn {
+  width: 30%;
+}
+.applicantItem1 {
+  width: 30%;
+  padding-left: 309px;
+}
+.applicantItem2 {
+  width: 30%;
+  padding-left: 150px;
+}
