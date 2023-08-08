@@ -43,18 +43,17 @@ const EntApplicants = ({ myEntList }) => {
   return (
     <div className="entApplicantsContainer">
       <EntNavContainer />
-      <div className="applicantListContainer">
-        <h1>지원자 목록 </h1>
-        <ul>
-          {applicantList.map((applicant) => (
-            <li key={applicant.appId} className="applicantItem">
-              <a href="#" className="applicantLink">
-                <h3 className="applicantTitle">{applicant.nickname}</h3>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+
+      <h1>지원자 목록 </h1>
+      <ul>
+        {applicantList.map((applicant) => (
+          <li key={applicant.appId} className="applicantItem">
+            <a href="#" className="applicantLink">
+              <h3 className="applicantTitle">{applicant.nickname}</h3>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

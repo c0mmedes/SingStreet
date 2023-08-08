@@ -1,15 +1,12 @@
-#root {
-  height: 100vh;
-}
 .entApplicantsContainer {
   display: flex;
   margin-top: 50px;
-}
-.applicantListContainer {
   margin: 0 auto;
   width: 500px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   padding: 40px;
+}
+.applicantListContainer {
 }
