@@ -25,6 +25,7 @@ const Ent = () => {
     console.log(res.data);
     setEntList(newEntList);
     setIsLastPage(res.data.last);
+    console.log(entList);
   };
 
   const onClickMoreEntList = async () => {
