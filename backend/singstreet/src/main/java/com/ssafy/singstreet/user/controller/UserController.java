@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.user.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.singstreet.user.Exception.UserNotFoundException;
 import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.model.MemberLoginRequestDto;
@@ -11,10 +12,15 @@ import com.ssafy.singstreet.user.service.JwtTokenProvider;
 import com.ssafy.singstreet.user.service.SecurityUtil;
 import com.ssafy.singstreet.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.mail.*;
 
 
@@ -29,7 +35,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @PostMapping("auth/revalidate")
     @ApiOperation(value="토큰 재발급하기", notes="리프레시토큰을 받고 다시 액세스토큰을 돌려줍니다.")
@@ -133,24 +139,42 @@ public class UserController {
     }
 
 
-   @PostMapping("/auth/password")
-   @ApiOperation(value="임시 비밀번호 전송", notes="임시 비밀번호를 전송하고, DB에 임시 비밀번호르 덮어씌웁니다")
-   public ResponseEntity<String> sendTemporaryPassword(@RequestBody String email) throws UserNotFoundException {
+    @PostMapping("/auth/password")
+    @ApiOperation(value="임시 비밀번호 전송", notes="임시 비밀번호를 전송하고, DB에 임시 비밀번호르 덮어씌웁니다")
+    public ResponseEntity<String> sendTemporaryPassword(@RequestBody String email) throws UserNotFoundException {
         userService.temporaryPassword(email);
         return ResponseEntity.ok("메시지가 발송되었습니다.");
-   }
-    @PostMapping("/user")
-    @ApiOperation(value="유저 등록하기", notes="유저를 등록하는 메서드입니다.")
-    public ResponseEntity<String> CreateUser(@RequestBody UserRegistDTO registrationDTO) {
-        try {
-            User registeredUser = userService.registerUser(registrationDTO);
-            return ResponseEntity.ok(registeredUser.getNickname()+"님 환영합니다");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("유저 등록 에러남 ㅅㄱ");
-        }
     }
+//    @PostMapping(value = "/user", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    @ApiOperation(value="유저 등록하기", notes="유저를 등록하는 메서드입니다.")
+//    public ResponseEntity<String> CreateUser(@RequestBody UserRegistDTO registrationDTO, @ModelAttribute MultipartFile multipartFile) {
+//        System.out.println(multipartFile);
+//        try {
+//            User registeredUser = userService.registerUser(registrationDTO, multipartFile);
+//            return ResponseEntity.ok(registeredUser.getNickname()+"님 환영합니다");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("유저 등록 에러남 ㅅㄱ");
+//        }
+//    }
+@PostMapping(value = "/user", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+@ApiOperation(value = "유저 등록하기", notes = "유저를 등록하는 메서드입니다.")
+public ResponseEntity<String> CreateUser(
+        @RequestPart(value = "registrationDTO", required = false) UserRegistDTO registrationDTO,
+        @RequestPart(value = "file", required = false) MultipartFile file) {
+    try {
+        if (registrationDTO != null) {
+            User registeredUser = userService.registerUser(registrationDTO, file);
+            return ResponseEntity.ok(registeredUser.getNickname() + "님 환영합니다");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("JSON 데이터나 파일을 제대로 보내주세요.");
+        }
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("유저 등록 에러남 ㅅㄱ");
+    }
+}
 
-   @PutMapping("/user")
+
+    @PutMapping("/user")
    @ApiOperation(value="유저 수정하기", notes="유저를 수정하는 메서드입니다.")
    public ResponseEntity<String> updateUser(@RequestParam Integer user_id,
                                             @RequestParam String newNickname,
