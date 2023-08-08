@@ -136,7 +136,7 @@ function Register() {
     }
     // 회원가입 제출(( file업로드를 위한 formdata 생성 후 제출 )
     const formData = new FormData();
-    await formData.append("file", file);
+    formData.append("file", file);
     
     const userData = {
       email: email,
@@ -144,8 +144,8 @@ function Register() {
       nickname: nickname,
       password: password,
     };
-    
-    await formData.append("user", JSON.stringify(userData));
+    const uploaderString = JSON.stringify(userData);
+    formData.append("user", new Blob([uploaderString], {type: 'application/json'}));
     
     try {
       const res = await axios.post("https://i9b110.p.ssafy.io/backend/user", formData, {
