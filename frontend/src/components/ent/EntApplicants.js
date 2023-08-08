@@ -44,13 +44,15 @@ const EntApplicants = ({ myEntList }) => {
     <div>
       <h1>야호나오냐? </h1>
       <div className="applicant-list-container">
-        {applicantList.map((applicant) => (
-          <li key={applicant.appId} className="applicantItem">
-            <a href="#" className="applicantLink">
-              <h3 className="applicantTitle">{applicant.nickname}</h3>
-            </a>
-          </li>
-        ))}
+        <ul>
+          {applicantList.map((applicant) => (
+            <li key={applicant.appId} className="applicantItem">
+              <a href="#" className="applicantLink">
+                <h3 className="applicantTitle">{applicant.nickname}</h3>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
