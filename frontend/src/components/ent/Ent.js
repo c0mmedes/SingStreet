@@ -19,7 +19,7 @@ const Ent = () => {
   }, []);
 
   const getInitialEntList = async () => {
-    const res = await apiInstance.get(`/ent?page=${page}&size=2`);
+    const res = await apiInstance.get(`/ent?page=${page}&size=100`);
     const initialEntList = res.data.content;
     console.log(res.data);
     setEntList(initialEntList);
@@ -35,36 +35,7 @@ const Ent = () => {
     setEntList(newEntList);
     setIsLastPage(res.data.last);
     setPage(nextPage);
-
-     // 스크롤을 새로 추가된 데이터의 끝으로 이동하도록 설정
-     const scrollHeight = document.documentElement.scrollHeight;
-     const windowHeight = window.innerHeight;
-     window.scrollTo({ top: scrollHeight - windowHeight, behavior: 'smooth' });
-   
   };
-
-/*   useEffect(() => {
-    getEntList();
-    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [entList]);
-
-  const getEntList = async () => {
-    if(isLastPage) return;
-    const res = await apiInstance.get(`/ent?page=${page}&size=2`);
-    const newEntList = entList.concat(res.data.content);
-    console.log(res.data);
-    setEntList(newEntList);
-    setIsLastPage(res.data.last);
-    //페이지를 다음 페이지로 
-    const newPage = page + 1;
-    setPage(newPage);
-    console.log(entList);
-  };
-
-  const onClickMoreEntList = async () => {
-    if(isLastPage) return;
-    await getEntList();
-  }; */
 
   return (
     <div>
