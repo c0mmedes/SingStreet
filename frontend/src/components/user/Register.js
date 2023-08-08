@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../css/user/Register.css";
 import { api } from "../../services/httpService";
 import Footer from "../layout/Footer.js";
+import axios from "axios";
 
 function Register() {
   const [nickname, setNickname] = useState("");
@@ -133,6 +134,7 @@ function Register() {
       alert("이메일 중복확인 필요");
       return;
     }
+    // 회원가입 제출(( file업로드를 위한 formdata 생성 후 제출 )
     const formData = new FormData();
     await formData.append("file", file);
     
@@ -146,7 +148,7 @@ function Register() {
     await formData.append("user", JSON.stringify(userData));
     
     try {
-      const res = await apiInstance.post("/user", formData, {
+      const res = await axios.post("https://i9b110.p.ssafy.io/backend/user", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
