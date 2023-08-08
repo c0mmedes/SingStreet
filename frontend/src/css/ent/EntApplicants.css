@@ -32,6 +32,7 @@
   margin-right: 10px;
 }
 .applicantHeader {
+  justify-content: space-between;
   display: flex;
   border: 2px solid black;
   font-size: 20px;
@@ -42,9 +43,6 @@
 }
 .applicantHeader h1 {
   font-size: 50px;
-}
-.applicantHeaderImg {
-  margin-left: 530px;
 }
 
 .applicantOl {
