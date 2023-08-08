@@ -13,6 +13,7 @@ import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer"
 import "./css/App.css";
 import { connect } from "react-redux";
+import MyEntListContainer from "./containers/user/MyEntListContainer";
 
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
@@ -34,6 +35,13 @@ function App({ isLogin }) {
 				element={
 					// isLogin 상태에 따라 컴포넌트를 선택
 					isLogin ? <MypageContainer /> : <Navigate to="/login" />
+				}
+			/>
+				<Route
+				path="/myentlist"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
 				}
 			/>
 			<Route
