@@ -2,11 +2,17 @@
   display: flex;
   margin-top: 50px;
   margin: 0 auto;
-  width: 500px;
+  max-width: 1400px;
+  height: 100vh;
+  overflow: hidden;
   background-color: white;
   border-radius: 5px;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   padding: 40px;
 }
 .entApplicantsRight {
+}
+
+.applicantItem {
+  list-style-type: none;
 }
