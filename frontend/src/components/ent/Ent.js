@@ -13,11 +13,38 @@ const Ent = () => {
   const apiInstance = api();
   // ref
   const scrollRef = useRef();
-
+  
   useEffect(() => {
-    getEntList();
+    getInitialEntList();
     scrollRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
+
+  const getInitialEntList = async () => {
+    const res = await apiInstance.get(`/ent?page=${page}&size=2`);
+    const initialEntList = res.data.content;
+    console.log(res.data);
+    setEntList(initialEntList);
+    setIsLastPage(res.data.last);
+  };
+
+  const onClickMoreEntList = async () => {
+    if (isLastPage) return;
+    const nextPage = page + 1;
+    const res = await apiInstance.get(`/ent?page=${nextPage}&size=2`);
+    const newEntList = entList.concat(res.data.content);
+    console.log(res.data);
+    setEntList(newEntList);
+    setIsLastPage(res.data.last);
+    setPage(nextPage);
+
+    // 스크롤을 내려가도록 설정
+    scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  };
+
+/*   useEffect(() => {
+    getEntList();
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [entList]);
 
   const getEntList = async () => {
     if(isLastPage) return;
@@ -35,7 +62,7 @@ const Ent = () => {
   const onClickMoreEntList = async () => {
     if(isLastPage) return;
     await getEntList();
-  };
+  }; */
 
   return (
     <div>
