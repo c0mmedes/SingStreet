@@ -1,0 +1,30 @@
+.applicant-list-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  list-style-type: none;
+}
+
+.applicant-item {
+  margin-bottom: 15px;
+}
+
+.card {
+  display: block;
+  padding: 15px;
+  background-color: #f4f4f4;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card__title {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}

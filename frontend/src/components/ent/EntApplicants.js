@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import EntNavContainer from "../../containers/layout/EntNavContainer";
+import "../../css/ent/EntApplicants.css";
 const EntApplicants = ({ myEntList }) => {
   // axios 인스턴스
   const apiInstance = api();
@@ -43,8 +44,8 @@ const EntApplicants = ({ myEntList }) => {
     <div>
       {applicantList.map((applicant) => (
         <li key={applicant.appId}>
-          <a href="#" class="card">
-            <h3 class="card__title">{applicant.nickname}</h3>
+          <a href="#" className="card">
+            <h3 className="card__title">{applicant.nickname}</h3>
           </a>
         </li>
       ))}
