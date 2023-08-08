@@ -32,13 +32,13 @@ const Ent = () => {
     const nextPage = page + 1;
     const res = await apiInstance.get(`/ent?page=${nextPage}&size=2`);
     const newEntList = entList.concat(res.data.content);
-    console.log(res.data);
+    console.log(newEntList);
     setEntList(newEntList);
     setIsLastPage(res.data.last);
     setPage(nextPage);
 
     // 스크롤을 내려가도록 설정
-    scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    scrollRef.current.scrollIntoView({ behavior: 'smooth'});
   };
 
 /*   useEffect(() => {
