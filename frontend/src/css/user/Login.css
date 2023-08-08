@@ -78,3 +78,7 @@ ion-icon {
   display: flex;
   justify-content: space-between;
 }
+
+.LoginContainer{
+  height: 100vh;
+}
