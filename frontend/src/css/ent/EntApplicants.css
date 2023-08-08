@@ -10,6 +10,7 @@
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   padding: 40px;
   height: auto;
+  margin-top: 50px;
 }
 .entApplicantsRight {
 }
@@ -31,7 +32,8 @@
   margin-right: 10px;
 }
 .applicantHeader {
-  background-color: coral;
+  border: 2px solid black;
+  font-size: 20px;
   border-radius: 8px;
   width: 1010px;
   height: 200px;
@@ -109,6 +111,6 @@
   background-color: #f8a0a0;
 }
 
-button {
+.applicantItemBtn input {
   cursor: pointer;
 }

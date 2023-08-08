@@ -52,7 +52,7 @@ const EntApplicants = ({ myEntList }) => {
 
           <ol className="applicantOl">
             <div className="applicantHeaderTable">
-              <div>No./이름</div>
+              <div>No. 이름</div>
               <div className="aht2">신청날짜</div>
               <div className="aht3">승인</div>
             </div>
