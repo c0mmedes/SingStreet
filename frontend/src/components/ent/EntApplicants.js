@@ -52,11 +52,15 @@ const EntApplicants = ({ myEntList }) => {
           </div>
 
           <ol className="applicantOl">
+            <div className="applicantHeaderTable">
+              <div>순서</div>
+              <div>이름</div>
+              <div>신청날짜</div>
+            </div>
             {applicantList.map((applicant) => (
               <li key={applicant.appId} className="applicantItem">
-                <a href="#" className="applicantLink">
-                  <h3 className="applicantTitle">{applicant.nickname}</h3>
-                </a>
+                <div>{applicant.nickname}</div>
+                <div>{new Date(applicant.createAt).toLocaleDateString()}</div>
               </li>
             ))}
           </ol>
