@@ -49,7 +49,11 @@ const EntApplicants = ({ myEntList }) => {
         <div className="entApplicantsRight">
           <div className="applicantHeader">
             <h1>지원자 목록 </h1>
-            <img src={applicantlogo} alt="지원자로고" />
+            <img
+              src={applicantlogo}
+              className="applicantHeaderImg"
+              alt="지원자로고"
+            />
           </div>
 
           <ol className="applicantOl">
