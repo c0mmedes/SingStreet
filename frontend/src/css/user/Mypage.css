@@ -28,7 +28,6 @@ table {
 	table-layout: fixed;
 }
 table th {
-	border-right: 1px solid #e5e5e5;
 }
 th,
 td {
@@ -39,16 +38,22 @@ td {
 .tdcell {
 	padding: 7%;
 }
+.tdcell div{
+	font-size: 30px;
+}
+
 .edit-button {
 	padding: 10px;
 	margin: 10px;
 	background-color: #ffff;
-	color: #f8f8f8;
-	border: 1px solid #d8d8d5;
 	font-size: 0.9rem;
 	font-weight: 700;
 	border-radius: 6px;
 	cursor: pointer;
+	width: 200px;
+	height: 50px;
+	border: 2px solid black;
+	color: black;
 }
 .edit-button.active {
 	background-color: #ffffff;
