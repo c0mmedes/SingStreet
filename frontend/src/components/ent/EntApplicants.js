@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
-import EntNavContainer from "../../containers/layout/EntNavContainer";
+// import EntNavContainer from "../../containers/layout/EntNavContainer";
 import "../../css/ent/EntApplicants.css";
 const EntApplicants = ({ myEntList }) => {
   // axios 인스턴스
