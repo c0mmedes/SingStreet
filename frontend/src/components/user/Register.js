@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../../css/user/Register.css";
 import { api } from "../../services/httpService";
 import Footer from "../layout/Footer.js";
-import axios from "axios";
 
 function Register() {
   const [nickname, setNickname] = useState("");
@@ -84,7 +83,7 @@ function Register() {
     }
   }
 
-  // 닉네임 중복확인
+  // 닉네임 중복확인 
   async function checkDuplicateNickname() {
     if (nickname) {
       try {
@@ -100,7 +99,7 @@ function Register() {
       alert("닉네임을 입력해주세요.");
     }
   }
-
+  
   async function onClickRegister() {
     if (!nickname) {
       alert("닉네임을 입력해주세요");
@@ -134,38 +133,38 @@ function Register() {
       alert("이메일 중복확인 필요");
       return;
     }
-    // 회원가입 제출(( file업로드를 위한 formdata 생성 후 제출 )
-    const formData = new FormData();
-    formData.append("file", file);
     
-    const userData = {
-      email: email,
-      gender: gender === "남" ? "M" : "F",
-      nickname: nickname,
-      password: password,
-    };
-    
-    formData.append("registrationDTO", new Blob([JSON.stringify(userData)], {
-      type: 'application/json'
-    }));
-    
-    try {
-      const res = await apiInstance.post(`/user`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Accept": "application/json", // 추가
-        },
-      });
-      console.log(res);
-      console.log("회원가입 성공");
-      navigate("/");
-      alert("회원가입 성공");
-    } catch (error) {
-      console.error("회원가입 실패:", error);
-      alert("회원가입 실패");
-    }
+  const formData = new FormData();
+  formData.append("file", file);
+  
+  const userData = {
+    email: email,
+    gender: gender === "남" ? "M" : "F",
+    nickname: nickname,
+    password: password,
+  };
+  
+  formData.append("registrationDTO", new Blob([JSON.stringify(userData)], {
+    type: 'application/json'
+  }));
+  
+  try {
+    const res = await apiInstance.post(`/user`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Accept": "application/json", // 추가
+      },
+    });
+    console.log(res);
+    console.log("회원가입 성공");
+    navigate("/");
+    alert("회원가입 성공");
+  } catch (error) {
+    console.error("회원가입 실패:", error);
+    alert("회원가입 실패");
   }
-
+  
+  }
   return (
     <div>
       <div className="RegisterWrap">
