@@ -92,3 +92,19 @@
 .aht2 {
   padding-left: 60px !important;
 }
+
+.applicantItemBtn input {
+  width: 60px;
+  height: 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.applicantItemBtn :first-child {
+  background-color: #b1acf9;
+  margin-right: 6px;
+}
+.applicantItemBtn :last-child {
+  background-color: #f8a0a0;
+}
