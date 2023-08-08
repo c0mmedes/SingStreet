@@ -16,7 +16,6 @@ const Ent = () => {
   
   useEffect(() => {
     getInitialEntList();
-    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   const getInitialEntList = async () => {
@@ -38,13 +37,10 @@ const Ent = () => {
     setPage(nextPage);
 
      // 스크롤을 새로 추가된 데이터의 끝으로 이동하도록 설정
-    if (scrollRef.current) {
-      const newEntIndex = newEntList.length - res.data.content.length;
-      const newEntElement = document.querySelector(`#ent-${newEntIndex}`);
-      if (newEntElement) {
-        newEntElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }
-    }
+     const scrollHeight = document.documentElement.scrollHeight;
+     const windowHeight = window.innerHeight;
+     window.scrollTo({ top: scrollHeight - windowHeight, behavior: 'smooth' });
+   
   };
 
 /*   useEffect(() => {
