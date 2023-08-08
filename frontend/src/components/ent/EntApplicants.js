@@ -61,6 +61,8 @@ const EntApplicants = ({ myEntList }) => {
               <li key={applicant.appId} className="applicantItem">
                 <div>{applicant.nickname}</div>
                 <div>{new Date(applicant.createAt).toLocaleDateString()}</div>
+                <input type="submit">수락</input>
+                <input type="submit">거절</input>
               </li>
             ))}
           </ol>
