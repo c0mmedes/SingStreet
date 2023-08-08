@@ -144,13 +144,16 @@ function Register() {
       nickname: nickname,
       password: password,
     };
-    const uploaderString = JSON.stringify(userData);
-    formData.append("user", new Blob([uploaderString], {type: 'application/json'}));
+    
+    formData.append("registrationDTO", new Blob([JSON.stringify(userData)], {
+      type: 'application/json'
+    }));
     
     try {
-      const res = await axios.post("https://i9b110.p.ssafy.io/backend/user", formData, {
+      const res = await apiInstance.post(`/user`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Accept": "application/json", // 추가
         },
       });
       console.log(res);
