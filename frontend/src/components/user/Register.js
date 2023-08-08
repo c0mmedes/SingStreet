@@ -134,16 +134,19 @@ function Register() {
       return;
     }
     const formData = new FormData();
-    formData.append("file", file);
-    const data = {
+    await formData.append("file", file);
+    
+    const userData = {
       email: email,
       gender: gender === "남" ? "M" : "F",
       nickname: nickname,
       password: password,
-      userImg: formData, // 사용자의 프로필 이미지 경로로 변경핧겅미
     };
+    
+    await formData.append("user", JSON.stringify(userData));
+    
     try {
-      const res = await apiInstance.post("/user", data, {
+      const res = await apiInstance.post("/user", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
