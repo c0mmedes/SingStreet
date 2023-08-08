@@ -6,6 +6,7 @@
 	width: 100%;
 	/* height: calc(100vh - 100px); */
 	height: 100%;
+	margin-top: 50px;
 }
 .mypage-title {
 	font-size: 1.8rem;
@@ -13,7 +14,11 @@
 	margin-bottom: 20px;
 }
 .user-my-info-table-wrap {
-	width: 50%;
+	width: 900px;
+	border: 2px solid black;
+	height: 600px;
+	background-color: #fbfbfb;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
 }
 table {
 	width: 100%;
@@ -72,4 +77,9 @@ td {
 	color: #0a44c08c;
 	font-size: 15px;
 	height: 0;
+}
+
+.tdcell input{
+	background-color: transparent;
+	border: none;
 }
