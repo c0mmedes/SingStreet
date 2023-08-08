@@ -52,9 +52,9 @@ const EntApplicants = ({ myEntList }) => {
 
           <ol className="applicantOl">
             <div className="applicantHeaderTable">
-              <div>순서</div>
-              <div>이름</div>
+              <div>순서/이름</div>
               <div>신청날짜</div>
+              <div>승인</div>
             </div>
             {applicantList.map((applicant) => (
               <li key={applicant.appId} className="applicantItem">
