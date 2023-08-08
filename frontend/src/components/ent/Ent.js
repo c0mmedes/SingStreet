@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../css/ent/Ent.css";
 import myImage from "../../assets/entLogo2.png";
 import Footer from "../layout/Footer.js";
@@ -11,13 +11,16 @@ const Ent = () => {
   const [isLastPage, setIsLastPage] = useState(false);
   // axios 객체
   const apiInstance = api();
+  // ref
+  const scrollRef = useRef();
 
   useEffect(() => {
     getEntList();
-  }, []);
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [entList]);
 
   const getEntList = async () => {
-    const res = await apiInstance.get(`/ent?page=${page}&size=100`);
+    const res = await apiInstance.get(`/ent?page=${page}&size=2`);
     const newEntList = entList.concat(res.data.content);
     console.log(res.data);
     setEntList(newEntList);
@@ -75,6 +78,7 @@ const Ent = () => {
             </a>
           </li>
         ))}
+        <div ref={scrollRef}></div>
       </ul>
       <div>
         <button onClick={onClickMoreEntList} disabled={isLastPage}>
