@@ -42,6 +42,7 @@ const EntApplicants = ({ myEntList }) => {
 
   return (
     <div>
+      <h1>야호나오냐? </h1>
       <div className="applicant-list-container">
         {applicantList.map((applicant) => (
           <li key={applicant.appId} className="applicant-item">
