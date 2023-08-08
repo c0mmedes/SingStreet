@@ -48,7 +48,6 @@ const EntApplicants = ({ myEntList }) => {
         <div className="entApplicantsRight">
           <div className="applicantHeader">
             <h1>지원자 목록 </h1>
-            <img src="../../assets/xxxxx.png" />
           </div>
 
           <ol className="applicantOl">
@@ -61,8 +60,8 @@ const EntApplicants = ({ myEntList }) => {
               <li key={applicant.appId} className="applicantItem">
                 <div>{applicant.nickname}</div>
                 <div>{new Date(applicant.createAt).toLocaleDateString()}</div>
-                <input type="submit">수락</input>
-                <input type="submit">거절</input>
+                <input type="submit" value={"수락"}></input>
+                <input type="submit" value={"거절"}></input>
               </li>
             ))}
           </ol>
