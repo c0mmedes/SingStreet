@@ -17,7 +17,7 @@ const Ent = () => {
   useEffect(() => {
     getEntList();
     scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [page]);
+  }, []);
 
   const getEntList = async () => {
     if(isLastPage) return;
