@@ -51,7 +51,7 @@ const EntApplicants = ({ myEntList }) => {
             <img src="../../assets/xxxxx.png" />
           </div>
 
-          <ul>
+          <ol className="applicantOl">
             {applicantList.map((applicant) => (
               <li key={applicant.appId} className="applicantItem">
                 <a href="#" className="applicantLink">
@@ -59,7 +59,7 @@ const EntApplicants = ({ myEntList }) => {
                 </a>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </div>
       <Footer />

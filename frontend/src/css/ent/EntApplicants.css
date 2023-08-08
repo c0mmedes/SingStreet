@@ -15,6 +15,7 @@
 
 .applicantItem {
   list-style-type: none;
+  font-size: 20px;
 }
 
 .applicantHeader {
@@ -22,4 +23,13 @@
   border-radius: 8px;
   width: 1010px;
   height: 200px;
+  padding: 30px;
+}
+
+.applicantOl {
+  background-color: aqua;
+  height: 400px;
+  border-radius: 6px;
+  margin-top: 50px;
+  padding: 30px;
 }
