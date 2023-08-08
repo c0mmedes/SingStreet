@@ -46,7 +46,10 @@ const EntApplicants = ({ myEntList }) => {
       <div className="entApplicantsContainer">
         <EntNavContainer entId={entId} />
         <div className="entApplicantsRight">
-          <h1>지원자 목록 </h1>
+          <div className="applicantHeader">
+            <h1>지원자 목록 </h1>
+          </div>
+
           <ul>
             {applicantList.map((applicant) => (
               <li key={applicant.appId} className="applicantItem">

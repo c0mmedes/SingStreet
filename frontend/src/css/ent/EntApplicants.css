@@ -2,7 +2,7 @@
   display: flex;
   margin-top: 50px;
   margin: 0 auto;
-  max-width: 1400px;
+  max-width: 1310px;
   height: 100vh;
   overflow: hidden;
   background-color: white;
@@ -15,4 +15,8 @@
 
 .applicantItem {
   list-style-type: none;
+}
+
+.applicantHeader {
+  background-image: url("../../assets/applicant.jpg");
 }

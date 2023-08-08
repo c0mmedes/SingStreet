@@ -37,7 +37,6 @@ img {
   flex-shrink: 0;
 }
 
-
 .menu-item.active {
   color: var(--logo-color);
 }
@@ -94,10 +93,6 @@ img {
   z-index: 2;
 }
 
-
-
-
-
 .menu-items {
   display: flex;
   cursor: pointer;
@@ -120,8 +115,6 @@ img {
   width: 100%;
   z-index: 2;
 }
-
-
 
 .profile-item {
   display: flex;
@@ -201,8 +194,6 @@ img {
   background-color: var(--header-bg-color);
   margin-left: -3px;
 }
-
-
 
 .videos {
   display: grid;
@@ -305,11 +296,9 @@ img {
 }
 
 @media (max-width: 900px) {
-
   .profile-item {
     padding: 20px 10px;
   }
-
 }
 
 @media (max-width: 840px) {
@@ -317,14 +306,12 @@ img {
     padding: 6px;
   }
   .profile-item,
-
   .profile-item svg {
     margin-right: 0;
   }
   .profile-item {
     text-align: center;
   }
-
 
   .profile-menu {
     flex-direction: column;
@@ -351,7 +338,6 @@ img {
 }
 
 @media (max-width: 440px) {
-
   .videos {
     grid-template-columns: 1fr;
   }
