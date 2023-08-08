@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/user/Mypage.css";
+import "../../css/user/MypageList.css";
 import { api } from "../../services/httpService";
 import { useNavigate } from "react-router-dom";
 const MyEntList = ({ isLogin, userInfo, addUserInfo, setIsLogin, myEntList, addToMyEntList }) => {
