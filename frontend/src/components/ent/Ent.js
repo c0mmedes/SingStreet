@@ -21,20 +21,18 @@ const Ent = () => {
 
   const getEntList = async () => {
     const res = await apiInstance.get(`/ent?page=${page}&size=2`);
-    const newEntList = res.data.content.filter(newEnt => {
-      // 기존 entList에 이미 있는지를 확인
-      return !entList.some(existingEnt => existingEnt.entId === newEnt.entId);
-    });
+    const newEntList = entList.concat(res.data.content);
     console.log(res.data);
     setEntList(newEntList);
     setIsLastPage(res.data.last);
+    //페이지를 다음 페이지로 
+    const newPage = page + 1;
+    setPage(newPage);
     console.log(entList);
   };
 
   const onClickMoreEntList = async () => {
     if(isLastPage) return;
-    const newPage = page + 1;
-    setPage(newPage);
     await getEntList();
   };
 
