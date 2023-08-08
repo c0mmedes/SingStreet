@@ -83,7 +83,7 @@ function Register() {
     }
   }
 
-  // 닉네임 중복확인 
+  // 닉네임 중복확인
   async function checkDuplicateNickname() {
     if (nickname) {
       try {
@@ -99,7 +99,7 @@ function Register() {
       alert("닉네임을 입력해주세요.");
     }
   }
-  
+
   async function onClickRegister() {
     if (!nickname) {
       alert("닉네임을 입력해주세요");
@@ -134,7 +134,7 @@ function Register() {
       return;
     }
     const formData = new FormData();
-      formData.append('file', file);
+    formData.append("file", file);
     const data = {
       email: email,
       gender: gender === "남" ? "M" : "F",
@@ -143,12 +143,10 @@ function Register() {
       userImg: formData, // 사용자의 프로필 이미지 경로로 변경핧겅미
     };
     try {
-      
-
-      const res = await apiInstance.post("/user", data,{
+      const res = await apiInstance.post("/user", data, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       console.log(res);
       console.log("회원가입 성공");
