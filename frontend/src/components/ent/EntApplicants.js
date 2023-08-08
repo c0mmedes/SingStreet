@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import EntNavContainer from "../../containers/layout/EntNavContainer";
+import Footer from "../layout/Footer";
 import "../../css/ent/EntApplicants.css";
 const EntApplicants = ({ myEntList }) => {
   // axios 인스턴스
@@ -41,20 +42,23 @@ const EntApplicants = ({ myEntList }) => {
   };
 
   return (
-    <div className="entApplicantsContainer">
-      <EntNavContainer />
-      <div className="applicantListContainer">
-        <h1>지원자 목록 </h1>
-        <ul>
-          {applicantList.map((applicant) => (
-            <li key={applicant.appId} className="applicantItem">
-              <a href="#" className="applicantLink">
-                <h3 className="applicantTitle">{applicant.nickname}</h3>
-              </a>
-            </li>
-          ))}
-        </ul>
+    <div>
+      <div className="entApplicantsContainer">
+        <EntNavContainer entId={entId} />
+        <div className="entApplicantsRight">
+          <h1>지원자 목록 </h1>
+          <ul>
+            {applicantList.map((applicant) => (
+              <li key={applicant.appId} className="applicantItem">
+                <a href="#" className="applicantLink">
+                  <h3 className="applicantTitle">{applicant.nickname}</h3>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };
