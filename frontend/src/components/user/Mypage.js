@@ -4,77 +4,42 @@ import { api } from "../../services/httpService";
 import Footer from "../layout/Footer";
 
 const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
-  // axios 인스턴스 생성
   const apiInstance = api();
 
   console.log(userInfo);
   return (
     <div className="user-my-info">
       <div className="mypage-title">내 정보</div>
-      <div className="user-my-info-table-wrap">
-        <table>
-          <colgroup>
-            <col />
-            <col />
-          </colgroup>
-          <tbody>
-            <tr>
-              <th scope="row">
-                <div className="thcell">이메일</div>
-              </th>
-              <td>
-                <div className="tdcell">
-                  <div calss="user-id">{userInfo.email}</div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <div className="thcell">성별</div>
-              </th>
-              <td>
-                <div className="tdcell">
-                  <input
-                    calss="user-gender"
-                    type="text"
-                    value={userInfo.gender}
-                  />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <div className="thcell">닉네임</div>
-              </th>
-              <td id="user-nickname-td">
-                <div className="tdcell">
-                  <input
-                    id="user-nickname"
-                    type="text"
-                    value={userInfo.nickname}
-                  />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <div className="thcell">프로필</div>
-              </th>
-              <td id="user-profile-td">
-                <div className="tdcell">
-                  <img
-                    id="user-profile"
-                    src={userInfo.userImg}
-                    alt="프로필 이미지"
-                  />
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>{" "}
-        <div className="edit-button-wrap">
-          <button className="edit-button">적용</button>
+
+      <div className="user-my-info-wrap">
+        <div className="info-item">
+          <label className="info-label">이메일</label>
+          <div className="info-value">{userInfo.email}</div>
         </div>
+
+        <div className="info-item">
+          <label className="info-label">성별</label>
+          <input className="info-input" type="text" value={userInfo.gender} />
+        </div>
+
+        <div className="info-item">
+          <label className="info-label">닉네임</label>
+          <input
+            id="user-nickname"
+            className="info-input"
+            type="text"
+            value={userInfo.nickname}
+          />
+        </div>
+
+        <div className="info-item">
+          <label className="info-label">프로필</label>
+          <img id="user-profile" src={userInfo.userImg} alt="프로필 이미지" />
+        </div>
+      </div>
+
+      <div className="edit-button-wrap">
+        <button className="edit-button">적용</button>
       </div>
 
       <Footer />
