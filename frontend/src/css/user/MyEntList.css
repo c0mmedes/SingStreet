@@ -15,7 +15,7 @@
 .myEntListItem {
   width: 90%;
   list-style-type: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid darkgray;
   padding-bottom: 10px;
 }
 
