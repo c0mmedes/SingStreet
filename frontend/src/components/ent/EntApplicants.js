@@ -59,6 +59,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
         },
       })
+      console.log(res);
       if(res.status === "200") {
         alert("수락 성공!") 
         // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
@@ -79,6 +80,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
         },
       })
+      console.log(res);
       if(res.status === "200"){
         alert("거부 성공!") 
         // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
