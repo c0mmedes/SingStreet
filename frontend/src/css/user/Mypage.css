@@ -16,14 +16,15 @@
 
 .user-my-info-wrap {
   display: flex;
-  width: 900px;
+  width: 700px;
   padding: 20px;
   background-color: #fbfbfb;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
   justify-content: space-between;
   height: 400px;
-  justify-content: space-between;
+  flex-direction: column;
+  padding-top: 60px;
 }
 
 .info-item {
@@ -92,4 +93,13 @@
   color: #0a44c08c;
   font-size: 15px;
   height: 0;
+}
+
+.edit-button-wrap {
+  text-align: center;
+}
+
+.myinfoContainer {
+  display: flex;
+  justify-content: space-around;
 }
