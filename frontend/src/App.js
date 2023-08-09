@@ -11,18 +11,26 @@ import Music from "./components/work/Music";
 import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 // 마이페이지
-import Mypage from "./components/user/Mypage";
 import MypageContainer from "./containers/user/MypageContainer";
+<<<<<<< HEAD
 import MyEntList from "./components/user/MyEntList";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
+=======
+import React from "react";
+>>>>>>> cdd7d3dfe496fb3a8f4db4ae49f3a0c8358b94f9
 // 엔터
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import EntMain from "./components/ent/EntMain";
 import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
 import EntFeed from "./components/ent/EntFeed";
+<<<<<<< HEAD
 // 엔터_프로젝트
 import EntProjectCreate from "./components/ent/EntProjectCreate";
+=======
+import MyInfoContainer from "./containers/user/MyInfoContainer";
+
+>>>>>>> cdd7d3dfe496fb3a8f4db4ae49f3a0c8358b94f9
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
   isLogin: state.user.isLogin,
@@ -40,12 +48,19 @@ function App({ isLogin }) {
 
       <Route
         path="/mypage/*"
-        element={isLogin ? <Mypage /> : <Navigate to="/login" />}>
+        element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
+        <Route
+          path=""
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <MyInfoContainer /> : <Navigate to="/login" />
+          }
+        />
         <Route
           path="myentlist"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyEntList /> : <Navigate to="/login" />
+            isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
           }
         />
         {/* <Route
