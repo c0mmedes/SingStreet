@@ -10,15 +10,15 @@ import React from "react";
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import EntMain from "./components/ent/EntMain";
 import EntApplyContainer from "./containers/ent/EntApplyContainer";
-import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer"
+import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
 import "./css/App.css";
 import { connect } from "react-redux";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 import EntNavContainer from "./containers/layout/EntNavContainer";
 
 const mapStateToProps = (state) => ({
-	userInfo: state.user.userInfo,
-	isLogin: state.user.isLogin,
+  userInfo: state.user.userInfo,
+  isLogin: state.user.isLogin,
 });
 
 function App({ isLogin }) {
@@ -72,5 +72,4 @@ function App({ isLogin }) {
 		</Routes>
 	);
 }
-
 export default connect(mapStateToProps, null)(App);
