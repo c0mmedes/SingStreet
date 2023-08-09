@@ -219,7 +219,6 @@ const chart = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
