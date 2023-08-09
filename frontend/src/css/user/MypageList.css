@@ -10,7 +10,7 @@
 } */
 
 /* Each list item */
-li {
+/* li {
   list-style-type: none;
   margin: 10px 0;
   padding: 20px;
@@ -24,10 +24,10 @@ li {
 li:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Titles inside each list item */
-.card__title {
+/* .card__title {
   margin: 5px 0;
   font-size: 18px;
   color: #333;
@@ -35,7 +35,7 @@ li:hover {
 
 .card__title img {
   width: 100%; /* If it's an image */
-  max-width: 300px; /* Set a max width */
+/* max-width: 300px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
+}  */
