@@ -16,13 +16,13 @@ const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<BrowserRouter>
-		<Provider store={store}>
-			<PersistGate persistor={persistor}>
-				<HeaderContainer />
-				<App />
-				{/* <Footer/> */}
-			</PersistGate>
-		</Provider>
-	</BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <HeaderContainer />
+        <App />
+        <Footer />
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>
 );
