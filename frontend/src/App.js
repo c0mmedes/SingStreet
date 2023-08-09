@@ -102,7 +102,7 @@ function App({ isLogin }) {
           path="entprojectcreate"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
+            isLogin ? <EntProjectCreate /> : <Navigate to="/login" />
           }
         />
       </Route>
