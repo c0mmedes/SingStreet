@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/user/Login.css";
 import { api } from "../../services/httpService";
-import Footer from "../layout/Footer.js";
 function Login({
   userInfo,
   myEntList,
@@ -113,9 +112,8 @@ function Login({
               <span className="registerLink">회원가입</span>
             </Link>
           </div>
-        </div>{" "}
-      </div>{" "}
-      <Footer />
+        </div>
+      </div>
     </div>
   );
 }
