@@ -2,7 +2,6 @@ import React from "react";
 import "../css/Home.css";
 import myImage from "../assets/sample1.png";
 import myImage2 from "../assets/sample2.png";
-import Footer from "./layout/Footer.js";
 
 const Home = () => {
   return (
@@ -173,7 +172,6 @@ const Home = () => {
           </a>
         </li>
       </ul>
-      <Footer />
     </div>
   );
 };
