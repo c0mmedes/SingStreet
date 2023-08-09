@@ -37,7 +37,14 @@ function App({ isLogin }) {
 
       <Route
         path="/mypage/*"
-        element={isLogin ? <Mypage /> : <Navigate to="/login" />}>
+        element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
+        <Route
+          path=""
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
+          }
+        />
         <Route
           path="myentlist"
           element={
