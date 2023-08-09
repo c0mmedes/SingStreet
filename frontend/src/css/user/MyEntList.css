@@ -39,3 +39,11 @@
 .myEntListItemTitleWrap {
   display: flex;
 }
+
+.myEntListItemTitleWrap :first-child {
+  margin-right: 15px;
+}
+
+.myEntListContainer {
+  height: 100vh;
+}

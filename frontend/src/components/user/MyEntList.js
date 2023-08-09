@@ -17,17 +17,19 @@ const MyEntList = ({
 
   console.log(userInfo);
   return (
-    <div className="myEntListWrap">
-      <h1>가입된 엔터목록</h1>{" "}
-      <div className="myEntListItemContainer">
-        {myEntList.map((myEnt) => (
-          <li className="myEntListItem" key={myEnt.entId}>
-            <div className="myEntListItemTitleWrap">
-              <h3 class="myEntListItemTitle">{myEnt.entImg}</h3>
-              <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
-            </div>
-          </li>
-        ))}{" "}
+    <div>
+      <div className="myEntListWrap">
+        <h1>가입된 엔터목록</h1>
+        <div className="myEntListItemContainer">
+          {myEntList.map((myEnt) => (
+            <li className="myEntListItem" key={myEnt.entId}>
+              <div className="myEntListItemTitleWrap">
+                <h3 class="myEntListItemTitle">{myEnt.entImg}</h3>
+                <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
+              </div>
+            </li>
+          ))}
+        </div>
       </div>
     </div>
   );
