@@ -22,9 +22,8 @@ const MyEntList = ({
       {myEntList.map((myEnt) => (
         <li className="myEntListItem" key={myEnt.entId}>
           <div>
-            <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
-            <h3 class="myEntListItemTitle">{myEnt.entInfo}</h3>
             <h3 class="myEntListItemTitle">{myEnt.entImg}</h3>
+            <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
           </div>
         </li>
       ))}
