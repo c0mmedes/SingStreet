@@ -49,11 +49,11 @@ const EntApplicants = ({ myEntList, userInfo }) => {
   };
 
   // 지원자 수락
-  const onClickAcceptApplicant = async (appId) => {
+  const onClickAcceptApplicant = async (applId) => {
     try{
       const accessToken = sessionStorage.getItem("accessToken");
       const isAccepted = true;
-      const res = await apiInstance.post(`/ent/member/${appId}/${isAccepted}`,{
+      const res = await apiInstance.post(`/ent/member/${applId}/${isAccepted}`,{
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
         },
@@ -114,8 +114,8 @@ const EntApplicants = ({ myEntList, userInfo }) => {
                   {new Date(applicant.createAt).toLocaleDateString()}
                 </div>
                 <div className="applicantItemBtn">
-                  <input type="submit" value={"수락"} onClick={(e) => onClickAcceptApplicant(applicant.applId, e)}></input>
-                  <input type="submit" value={"거절"} onClick={(e) => onClickRefuseApplicant(applicant.applId, e)}></input>
+                  <input type="submit" value={"수락"} onClick={() => onClickAcceptApplicant(applicant.applId)}></input>
+                  <input type="submit" value={"거절"} onClick={() => onClickRefuseApplicant(applicant.applId)}></input>
                 </div>
               </li>
             ))}
