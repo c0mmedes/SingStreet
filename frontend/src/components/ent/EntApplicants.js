@@ -41,7 +41,8 @@ const EntApplicants = ({ myEntList, userInfo }) => {
                   "userId": 0
                 }
             ] 
-            */
+      */
+      console.log(res.data);
       setApplicantList(res.data);
     } catch {
       alert("지원자 목록 불러오기 실패!");
