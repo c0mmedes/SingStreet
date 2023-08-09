@@ -41,8 +41,6 @@ const EntMain = () => {
 					</div>
 				</div>
 			</div>
-
-			<Footer />
 		</div>
 	);
 };
