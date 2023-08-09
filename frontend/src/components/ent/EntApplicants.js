@@ -76,7 +76,6 @@ const EntApplicants = ({ myEntList }) => {
           </ol>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

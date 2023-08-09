@@ -14,7 +14,6 @@ import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
 import "./css/App.css";
 import { connect } from "react-redux";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
-import EntNavContainer from "./containers/layout/EntNavContainer";
 import EntFeed from "./components/ent/EntFeed";
 
 const mapStateToProps = (state) => ({
