@@ -19,7 +19,6 @@ const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
               <label className="info-label">프로필</label>
               <img
                 id="user-profile"
-                src={userInfo.userImg}
                 alt="프로필 이미지"
               />
             </div>
