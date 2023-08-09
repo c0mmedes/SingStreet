@@ -34,6 +34,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList("http://i9b110.p.ssafy.io:3000"));
         // configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
         configuration.setAllowedOrigins(Arrays.asList("https://i9b110.p.ssafy.io"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/"));   //테스트용
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
