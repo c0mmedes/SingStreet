@@ -1,13 +1,13 @@
 /* Mypage.css */
 
 /* Container for the entire list */
-div {
+/* div {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   background-color: #f7f7f7;
-}
+} */
 
 /* Each list item */
 li {
