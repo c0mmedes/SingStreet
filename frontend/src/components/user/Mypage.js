@@ -37,10 +37,9 @@ const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
             />
           </div>
         </div>
-      </div>
-
-      <div className="edit-button-wrap">
-        <button className="edit-button">적용</button>
+        <div className="edit-button-wrap">
+          <button className="edit-button">적용</button>
+        </div>
       </div>
 
       <Footer />
