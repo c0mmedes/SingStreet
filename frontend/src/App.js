@@ -22,62 +22,63 @@ const mapStateToProps = (state) => ({
 });
 
 function App({ isLogin }) {
-	return (
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/ent" element={<Ent />} />
-			<Route path="/chart" element={<Chart />} />
-			<Route path="/music" element={<Music />} />
-			<Route path="/register" element={<Register />} />
-			<Route path="/login" element={<LoginContainer />} />
-			{/* 동적으로 컴포넌트 선택 */}
-			<Route
-				path="/mypage"
-				element={
-					// isLogin 상태에 따라 컴포넌트를 선택
-					isLogin ? <MypageContainer /> : <Navigate to="/login" />
-				}
-			/>
-				<Route
-				path="/myentlist"
-				element={
-					// isLogin 상태에 따라 컴포넌트를 선택
-					isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
-				}
-			/>
-			<Route
-				path="/entcreate"
-				element={
-					// isLogin 상태에 따라 컴포넌트를 선택
-					isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
-				}
-			/>
-			<Route path="/entmain/:entId/:entMasterId/:entName/*" element={<EntMain />} >
-				{/* 중첩된 라우트 설정 */}
-				<Route
-					path=""
-					element={
-						// isLogin 상태에 따라 컴포넌트를 선택
-						isLogin ? <EntFeed /> : <Navigate to="/login" />
-					}
-				/>
-				<Route
-				path="entapply"
-				element={
-					// isLogin 상태에 따라 컴포넌트를 선택
-					isLogin ? <EntApplyContainer /> : <Navigate to="/login" />
-				}
-				/>
-				<Route
-					path="entapplicants"
-					element={
-						// isLogin 상태에 따라 컴포넌트를 선택
-						isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
-					}
-				/>
-				
-      		</Route>
-		</Routes>
-	); 
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/ent" element={<Ent />} />
+      <Route path="/chart" element={<Chart />} />
+      <Route path="/music" element={<Music />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<LoginContainer />} />
+      {/* 동적으로 컴포넌트 선택 */}
+      <Route
+        path="/mypage"
+        element={
+          // isLogin 상태에 따라 컴포넌트를 선택
+          isLogin ? <MypageContainer /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/myentlist"
+        element={
+          // isLogin 상태에 따라 컴포넌트를 선택
+          isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/entcreate"
+        element={
+          // isLogin 상태에 따라 컴포넌트를 선택
+          isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/entmain/:entId/:entMasterId/:entName/*"
+        element={<EntMain />}>
+        {/* 중첩된 라우트 설정 */}
+        <Route
+          path=""
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <EntFeed /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="entapply"
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <EntApplyContainer /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="entapplicants"
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
+          }
+        />
+      </Route>
+    </Routes>
+  );
 }
 export default connect(mapStateToProps, null)(App);
