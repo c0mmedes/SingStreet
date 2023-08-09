@@ -17,7 +17,7 @@ const MyEntList = ({
 
   console.log(userInfo);
   return (
-    <div>
+    <div className="myEntListContainer">
       <div className="myEntListWrap">
         <h1>가입된 엔터목록</h1>
         <div className="myEntListItemContainer">
