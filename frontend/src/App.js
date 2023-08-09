@@ -45,23 +45,15 @@ function App({ isLogin }) {
             isLogin ? <MyEntList /> : <Navigate to="/login" />
           }
         />
+        {/* <Route
+          path="mymusic"
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <MyMusic /> : <Navigate to="/mymusic" />
+          }
+        /> */}
       </Route>
 
-      {/* 동적으로 컴포넌트 선택 */}
-      <Route
-        path="/mypage"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <MypageContainer /> : <Navigate to="/login" />
-        }
-      />
-      <Route
-        path="/myentlist"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
-        }
-      />
       <Route
         path="/entcreate"
         element={
