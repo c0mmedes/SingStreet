@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntCreate.css";
-import Footer from "../layout/Footer";
 const EntCreate = ({ userInfo, isLogin }) => {
   const [entName, setEntName] = useState("");
   const [entInfo, setEntInfo] = useState("");
@@ -136,7 +135,6 @@ const EntCreate = ({ userInfo, isLogin }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

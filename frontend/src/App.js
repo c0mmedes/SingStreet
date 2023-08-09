@@ -1,25 +1,28 @@
+import React from "react";
 import { Link, Route, Routes, Navigate } from "react-router-dom";
+import "./css/App.css";
+import { connect } from "react-redux";
+// 헤더
 import Ent from "./components/ent/Ent";
 import Home from "./components/Home";
 import Chart from "./components/chart/Chart";
 import Music from "./components/work/Music";
+// 로그인 / 회원가입
 import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 // 마이페이지
 import Mypage from "./components/user/Mypage";
 import MypageContainer from "./containers/user/MypageContainer";
 import MyEntList from "./components/user/MyEntList";
-import React from "react";
+import MyEntListContainer from "./containers/user/MyEntListContainer";
 // 엔터
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import EntMain from "./components/ent/EntMain";
 import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
-import "./css/App.css";
-import { connect } from "react-redux";
-import MyEntListContainer from "./containers/user/MyEntListContainer";
 import EntFeed from "./components/ent/EntFeed";
-
+// 엔터_프로젝트
+import EntProjectCreate from "./components/ent/EntProjectCreate";
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
   isLogin: state.user.isLogin,
@@ -82,6 +85,13 @@ function App({ isLogin }) {
         />
         <Route
           path="entapplicants"
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="entprojectcreate"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
             isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
