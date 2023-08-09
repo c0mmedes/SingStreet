@@ -3,7 +3,7 @@ import "../../css/user/Mypage.css";
 import { Outlet, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import Footer from "../layout/Footer";
-import MypageContainer from "../../containers/layout/MypageContainer";
+import MypageContainer from "../../containers/user/MypageContainer";
 const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
   const apiInstance = api();
 
