@@ -32,7 +32,6 @@ const initialState = {
     nickname: "",
     userImg: "",
     userId: "",
-    userImg: "",
   },
   isLogin: false,
   myEntList: [],
