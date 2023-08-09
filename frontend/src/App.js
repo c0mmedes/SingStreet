@@ -8,12 +8,13 @@ import Register from "./components/user/Register";
 import MypageContainer from "./containers/user/MypageContainer";
 import React from "react";
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
-import Entmain from "./components/ent/EntMain";
+import EntMain from "./components/ent/EntMain";
 import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer"
 import "./css/App.css";
 import { connect } from "react-redux";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
+import EntNavContainer from "./containers/layout/EntNavContainer";
 
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
@@ -51,21 +52,25 @@ function App({ isLogin }) {
 					isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
 				}
 			/>
-			<Route path="/entmain/:entId/:entMasterId/:entName" element={<Entmain />} />
-			<Route
+			<Route path="/entmain/:entId/:entMasterId/:entName/*" element={<EntMain />} >
+      		  {/* 중첩된 라우트 설정 */}
+      		  <Route path="/" element={<EntNavContainer />} />
+				<Route
 				path="/entapply/:entId/:entName"
 				element={
 					// isLogin 상태에 따라 컴포넌트를 선택
 					isLogin ? <EntApplyContainer /> : <Navigate to="/login" />
 				}
-			/>
-			<Route
-				path="/entapplicants/:entId/:entName"
-				element={
-					// isLogin 상태에 따라 컴포넌트를 선택
-					isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
-				}
-			/>
+				/>
+				<Route
+					path="/entapplicants/:entId/:entName"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
+					}
+				/>
+      		</Route>
+		
 		</Routes>
 	);
 }
