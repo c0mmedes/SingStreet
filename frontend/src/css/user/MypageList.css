@@ -1,16 +1,14 @@
-/* Mypage.css */
-
-/* Container for the entire list */
-/* div {
+.myEntListWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   background-color: #f7f7f7;
-} */
+}
+*/
 
 /* Each list item */
-/* li {
+ .myEntListItem {
   list-style-type: none;
   margin: 10px 0;
   padding: 20px;
@@ -21,21 +19,20 @@
   transition: transform 0.3s;
 }
 
-li:hover {
+.myEntListItem:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-} */
+}
 
-/* Titles inside each list item */
-/* .card__title {
+.myEntListItemTitle {
   margin: 5px 0;
   font-size: 18px;
   color: #333;
 }
 
-.card__title img {
+.myEntListItemTitle img {
   width: 100%; /* If it's an image */
-/* max-width: 300px;
+  max-width: 300px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}  */
+}
