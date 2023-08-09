@@ -12,7 +12,6 @@ const EntApplicants = ({ myEntList, userInfo }) => {
   const navigate = useNavigate();
   // 상태관리
   const [applicantList, setApplicantList] = useState([]);
-  const [isAccepted, setIsAccepted] = useState();
 
   useEffect(() => {
     // 원하는 조건을 확인하고 이전 화면으로 돌아가기
@@ -53,7 +52,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
   const onClickAcceptApplicant = async (appId) => {
     try{
       const accessToken = sessionStorage.getItem("accessToken");
-      setIsAccepted(true);
+      const isAccepted = true;
       const res = await apiInstance.post(`/ent/member/${appId}/${isAccepted}`,{
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
@@ -73,7 +72,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
   const onClickRefuseApplicant = async (appId) => {
     try{
       const accessToken = sessionStorage.getItem("accessToken");
-      setIsAccepted(false);
+      const isAccepted = false;
       const res = await apiInstance.post(`/ent/member/${appId}/${isAccepted}`,{
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
@@ -115,7 +114,6 @@ const EntApplicants = ({ myEntList, userInfo }) => {
                   {new Date(applicant.createAt).toLocaleDateString()}
                 </div>
                 <div className="applicantItemBtn">
-                  {applicant.appId}
                   <input type="submit" value={"수락"} onClick={() => onClickAcceptApplicant(applicant.appId)}></input>
                   <input type="submit" value={"거절"} onClick={() => onClickRefuseApplicant(applicant.appId)}></input>
                 </div>
