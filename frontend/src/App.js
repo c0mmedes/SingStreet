@@ -15,6 +15,7 @@ import "./css/App.css";
 import { connect } from "react-redux";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 import EntNavContainer from "./containers/layout/EntNavContainer";
+import EntFeed from "./components/ent/EntFeed";
 
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
@@ -55,6 +56,13 @@ function App({ isLogin }) {
 			<Route path="/entmain/:entId/:entMasterId/:entName/*" element={<EntMain />} >
 				{/* 중첩된 라우트 설정 */}
 				<Route
+					path=""
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntFeed /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
 				path="entapply/:entId/:entName"
 				element={
 					// isLogin 상태에 따라 컴포넌트를 선택
@@ -68,8 +76,9 @@ function App({ isLogin }) {
 						isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
 					}
 				/>
+				
       		</Route>
 		</Routes>
-	);
+	); 
 }
 export default connect(mapStateToProps, null)(App);
