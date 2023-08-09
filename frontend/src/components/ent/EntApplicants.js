@@ -45,7 +45,6 @@ const EntApplicants = ({ myEntList }) => {
   return (
     <div>
       <div className="entApplicantsContainer">
-        <EntNavContainer entId={entId} />
         <div className="entApplicantsRight">
           <div className="applicantHeader">
             <h1>지원자 목록 </h1>
