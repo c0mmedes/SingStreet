@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
-import EntNavContainer from "../../containers/layout/EntNavContainer";
-import Footer from "../layout/Footer";
 import "../../css/ent/EntApplicants.css";
 import applicantlogo from "../../assets/asdf.png";
-const EntApplicants = ({ myEntList }) => {
+const EntApplicants = ({ myEntList, userInfo }) => {
   // axios 인스턴스
   const apiInstance = api();
   // 라우터 파라미터에서 가져올 entId 변수
-  const { entId } = useParams();
+  const { entId, entMasterId } = useParams();
+  // 화면을 다른 화면으로 넘겨줄때 필요한
+  const navigate = useNavigate();
   // 상태관리
   const [applicantList, setApplicantList] = useState([]);
-
+  
   useEffect(() => {
+    // 원하는 조건을 확인하고 이전 화면으로 돌아가기
+    if(parseInt(userInfo.userId) !== parseInt(entMasterId)){
+      // 이전 화면으로 이동
+      navigate(-1);
+    }
     getEntApplicantList();
   }, []);
   // 유저 목록을 불러오는

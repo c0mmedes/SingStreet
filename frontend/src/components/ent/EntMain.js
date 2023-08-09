@@ -1,8 +1,7 @@
 //src/components/ent/EntMain.js
 import React, { useEffect, useState } from "react";
 import "../../css/ent/EntMain.css";
-import Footer from "../layout/Footer.js";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import EntNavContainer from "../../containers/layout/EntNavContainer";
 
