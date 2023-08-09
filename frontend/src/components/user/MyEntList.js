@@ -20,12 +20,14 @@ const MyEntList = ({
     <div className="myEntListWrap">
       <h1>가입된 엔터목록</h1>
       {myEntList.map((myEnt) => (
-        <li className="myEntListItem" key={myEnt.entId}>
-          <div>
-            <h3 class="myEntListItemTitle">{myEnt.entImg}</h3>
-            <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
-          </div>
-        </li>
+        <div className="myEntListItemContainer">
+          <li className="myEntListItem" key={myEnt.entId}>
+            <div>
+              <h3 class="myEntListItemTitle">{myEnt.entImg}</h3>
+              <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
+            </div>
+          </li>
+        </div>
       ))}
     </div>
   );
