@@ -12,25 +12,18 @@ import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 // 마이페이지
 import MypageContainer from "./containers/user/MypageContainer";
-<<<<<<< HEAD
-import MyEntList from "./components/user/MyEntList";
-import MyEntListContainer from "./containers/user/MyEntListContainer";
-=======
-import React from "react";
->>>>>>> cdd7d3dfe496fb3a8f4db4ae49f3a0c8358b94f9
 // 엔터
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import EntMain from "./components/ent/EntMain";
 import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
 import EntFeed from "./components/ent/EntFeed";
-<<<<<<< HEAD
+import MyEntListContainer from "./containers/user/MyEntListContainer";
 // 엔터_프로젝트
 import EntProjectCreate from "./components/ent/EntProjectCreate";
-=======
+
 import MyInfoContainer from "./containers/user/MyInfoContainer";
 
->>>>>>> cdd7d3dfe496fb3a8f4db4ae49f3a0c8358b94f9
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
   isLogin: state.user.isLogin,
