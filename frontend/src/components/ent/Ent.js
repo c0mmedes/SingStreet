@@ -94,7 +94,6 @@ const Ent = () => {
           <button className="entCreatebtn">엔터 생성하기</button>
         </Link>
       </div>
-      <Footer />
     </div>
   );
 };
