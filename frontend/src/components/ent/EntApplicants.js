@@ -12,7 +12,8 @@ const EntApplicants = ({ myEntList, userInfo }) => {
   const navigate = useNavigate();
   // 상태관리
   const [applicantList, setApplicantList] = useState([]);
-  
+  const [isAccepted, setIsAccepted] = useState();
+
   useEffect(() => {
     // 원하는 조건을 확인하고 이전 화면으로 돌아가기
     if(parseInt(userInfo.userId) !== parseInt(entMasterId)){
@@ -21,10 +22,11 @@ const EntApplicants = ({ myEntList, userInfo }) => {
     }
     getEntApplicantList();
   }, []);
+
   // 유저 목록을 불러오는
   const getEntApplicantList = async () => {
     try {
-      const accessToken = await sessionStorage.getItem("accessToken");
+      const accessToken = sessionStorage.getItem("accessToken");
       const res = await apiInstance.get(`ent/apply/${entId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
@@ -44,6 +46,46 @@ const EntApplicants = ({ myEntList, userInfo }) => {
       setApplicantList(res.data);
     } catch {
       alert("지원자 목록 불러오기 실패!");
+    }
+  };
+
+  // 지원자 수락
+  const onClickAcceptApplicant = async (appId) => {
+    try{
+      const accessToken = sessionStorage.getItem("accessToken");
+      setIsAccepted(true);
+      const res = await apiInstance.post(`/ent/member/${appId}/${isAccepted}`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+        },
+      })
+      if(res.status === "200") {
+        alert("수락 성공!") 
+        // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
+        getEntApplicantList();
+      } 
+    } catch {
+      alert("수락 오류!");
+    }
+  };
+
+  // 지원자 거부
+  const onClickRefuseApplicant = async (appId) => {
+    try{
+      const accessToken = sessionStorage.getItem("accessToken");
+      setIsAccepted(false);
+      const res = await apiInstance.post(`/ent/member/${appId}/${isAccepted}`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+        },
+      })
+      if(res.status === "200"){
+        alert("거부 성공!") 
+        // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
+        getEntApplicantList();
+      } 
+    } catch {
+      alert("거부 오류!");
     }
   };
 
@@ -73,8 +115,8 @@ const EntApplicants = ({ myEntList, userInfo }) => {
                   {new Date(applicant.createAt).toLocaleDateString()}
                 </div>
                 <div className="applicantItemBtn">
-                  <input type="submit" value={"수락"}></input>
-                  <input type="submit" value={"거절"}></input>
+                  <input type="submit" value={"수락"} onClick={onClickAcceptApplicant(applicant.appId)}></input>
+                  <input type="submit" value={"거절"} onClick={onClickRefuseApplicant(applicant.appId)}></input>
                 </div>
               </li>
             ))}
