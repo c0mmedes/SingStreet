@@ -68,7 +68,7 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                   <input
                     type="text"
                     maxlength="20"
-                    name="entId"
+                    name="projectName"
                     value={projectName}
                     onChange={handleProjectName}
                     required
