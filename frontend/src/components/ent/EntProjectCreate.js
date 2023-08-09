@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
-import "../../css/ent/EntProCreate.css";
+import "../../css/ent/EntProjectCreate.css";
 const EntProjectCreate = ({ userInfo, isLogin }) => {
   const [projectName, setProjectName] = useState("");
   const [projectInfo, setProjectInfo] = useState("");
