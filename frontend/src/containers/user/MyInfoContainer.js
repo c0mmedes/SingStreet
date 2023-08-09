@@ -9,7 +9,8 @@ const  MyInfoContainer = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
       isLogin={isLogin}
       userInfo={userInfo}
       addUserInfo={addUserInfo}
-      setIsLogin={setIsLogin}></MyInfo>
+      setIsLogin={setIsLogin}>
+    </MyInfo>
   );
 };
 const mapStateToProps = (state) => ({

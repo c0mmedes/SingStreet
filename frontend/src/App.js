@@ -6,9 +6,7 @@ import Music from "./components/work/Music";
 import LoginContainer from "./containers/user/LoginContainer";
 import Register from "./components/user/Register";
 // 마이페이지
-import Mypage from "./components/user/Mypage";
 import MypageContainer from "./containers/user/MypageContainer";
-import MyEntList from "./components/user/MyEntList";
 import React from "react";
 // 엔터
 import EntCreateContainer from "./containers/ent/EntCreateContainer";
@@ -19,6 +17,7 @@ import "./css/App.css";
 import { connect } from "react-redux";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 import EntFeed from "./components/ent/EntFeed";
+import MyInfoContainer from "./containers/user/MyInfoContainer";
 
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
@@ -42,14 +41,14 @@ function App({ isLogin }) {
           path=""
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
+            isLogin ? <MyInfoContainer /> : <Navigate to="/login" />
           }
         />
         <Route
           path="myentlist"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyEntList /> : <Navigate to="/login" />
+            isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
           }
         />
         {/* <Route
