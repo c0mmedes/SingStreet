@@ -11,6 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.EntityListeners;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Getter
 @Builder
@@ -25,5 +27,9 @@ public class ChatMessage {
     private String nickname;
     private String content;
     @CreatedDate
-    private LocalDateTime createdAt;
+    private Date createdAt;
+
+    public void updateDate(){
+        this.createdAt = new Date();
+    }
 }

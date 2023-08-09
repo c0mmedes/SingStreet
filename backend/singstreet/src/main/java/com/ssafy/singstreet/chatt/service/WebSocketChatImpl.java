@@ -61,7 +61,7 @@ public class WebSocketChatImpl implements WebSocketChat {
     @OnMessage
     public void onMessage(ChatMessage message, Session session , @PathParam("entId") int entId) throws Exception {
         System.out.println("[Chat] 입력된 메세지 입니다. >" + message);
-
+        message.updateDate();
         String jsonMessage = objectMapper.writeValueAsString(message); // objectMapper를 선언해야 합니다.
 
 //        messageService.getAll();

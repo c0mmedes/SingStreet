@@ -17,6 +17,7 @@ public class ChatMessageService {
     private final ChatMessageRepository messageRepository;
 
     public void save(ChatMessage message){
+        message.updateDate();
         messageRepository.save(message);
     }
 
@@ -25,6 +26,6 @@ public class ChatMessageService {
     }
 
     public Slice<ChatMessage> getMessagesWithPagination(int entId,int page, int size){
-        return messageRepository.findAllByEntId(entId,PageRequest.of(page,size,Sort.by(Sort.Direction.DESC, "createAt")));
+        return messageRepository.findAllByEntId(entId,PageRequest.of(page,size,Sort.by("createdAt")));
     }
 }
