@@ -54,7 +54,6 @@ function App({ isLogin }) {
 			/>
 			<Route path="/entmain/:entId/:entMasterId/:entName/*" element={<EntMain />} >
 				{/* 중첩된 라우트 설정 */}
-      		  	<Route path="" element={<EntNavContainer />} />
 				<Route
 				path="entapply/:entId/:entName"
 				element={
