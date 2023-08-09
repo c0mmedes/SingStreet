@@ -115,6 +115,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
                   {new Date(applicant.createAt).toLocaleDateString()}
                 </div>
                 <div className="applicantItemBtn">
+                  {applicant.appId}
                   <input type="submit" value={"수락"} onClick={() => onClickAcceptApplicant(applicant.appId)}></input>
                   <input type="submit" value={"거절"} onClick={() => onClickRefuseApplicant(applicant.appId)}></input>
                 </div>
