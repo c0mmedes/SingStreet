@@ -13,6 +13,7 @@
 
 .myEntListItem {
   width: 90%;
+  list-style-type: none;
 }
 
 .myEntListItemTitle {
