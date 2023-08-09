@@ -22,7 +22,7 @@ const MyEntList = ({
       <div className="myEntListItemContainer">
         {myEntList.map((myEnt) => (
           <li className="myEntListItem" key={myEnt.entId}>
-            <div>
+            <div className="myEntListItemTitleWrap">
               <h3 class="myEntListItemTitle">{myEnt.entImg}</h3>
               <h3 class="myEntListItemTitle">{myEnt.entName}</h3>
             </div>
