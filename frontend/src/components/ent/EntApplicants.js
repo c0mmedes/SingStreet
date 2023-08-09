@@ -60,7 +60,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
         },
       })
       console.log(res);
-      if(res.status === "200") {
+      if(res.data) {
         alert("수락 성공!") 
         // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
         getEntApplicantList();
@@ -81,7 +81,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
         },
       })
       console.log(res);
-      if(res.status === "200"){
+      if(res.data){
         alert("거부 성공!") 
         // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
         getEntApplicantList();
