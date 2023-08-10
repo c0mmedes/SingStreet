@@ -12,6 +12,7 @@ const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
             <div className="info-item">
               <label className="info-label">프로필</label>
               <img
+                src={userInfo.userImg}
                 id="user-profile"
                 alt="프로필 이미지"
               />
