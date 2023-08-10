@@ -14,5 +14,5 @@ public interface EntApplicantRepository extends JpaRepository<EntApplicant, Inte
 
     EntApplicant findEntApplicantByEntIdAndUserIdAndIsConfirmedAndIsAccepted(Ent entId, User userId, Boolean IsConfirmed, Boolean isAccepted);
 
-    List<EntApplicant> findEntApplicantsByEntIdAndIsConfirmedAAndIsAcceptedIsNull(Ent entId, boolean isConfirmed);
+    List<EntApplicant> findEntApplicantsByEntIdAndIsConfirmedAndIsAcceptedIsNull(Ent entId, boolean isConfirmed);
 }
