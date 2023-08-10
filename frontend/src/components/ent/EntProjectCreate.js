@@ -54,6 +54,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		async function getMyEntListAndCheck(){
       await getMyEntList();
       if (myEntList && myEntList.length > 0) {
+        console.log("1차검증 통과");
         if(!myEntList.some((ent) => ent.entId === entId)){
           // 이전 화면으로 이동
           alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!");
