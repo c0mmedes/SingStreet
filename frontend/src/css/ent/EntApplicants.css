@@ -1,5 +1,6 @@
 .entApplicantsContainer {
   display: flex;
+  flex-direction: column;
   margin-top: 50px;
   margin: 0 auto;
   max-width: 1310px;
@@ -12,7 +13,9 @@
   height: auto;
   margin-top: 50px;
 }
-.entApplicantsRight {
+.entApplicantsRight .applicantHeader {
+  padding-top: 70px;
+  font-size: 26px;
 }
 
 .applicantItem {
