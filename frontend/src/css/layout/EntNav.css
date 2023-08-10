@@ -72,7 +72,8 @@
   margin-bottom: 4px;
 }
 .side-menu a:hover {
-  color: var(--highlight-color); /* Change to your desired hover color */
+  color: white; /* Change to your desired hover color */
+  background-color: rgb(66, 66, 232);
   transform: translateY(-2px);
   transition: all 0.3s ease;
 }
