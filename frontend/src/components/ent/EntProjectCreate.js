@@ -53,11 +53,16 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
     // 내 엔터리스트를 불러오고, 엔터소속이 아니면 튕겨내기
 		async function getMyEntListAndCheck(){
       await getMyEntList();
-      if(myEntList.some((ent) => ent.entId === entId)){
-        // 이전 화면으로 이동
-        alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!")
+      if (myEntList && myEntList.length > 0) {
+        if(!myEntList.some((ent) => ent.entId === entId)){
+          // 이전 화면으로 이동
+          alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!");
+          navigate(-1);
+        }
+      } else{
+        alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!");
         navigate(-1);
-      };
+      }
     };
     getMyEntListAndCheck();
 	}, []);
