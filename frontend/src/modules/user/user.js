@@ -57,8 +57,8 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         myEntList: Array.isArray(action.payload)
-          ? [...state.myEntList, ...action.payload]
-          : [...state.myEntList, action.payload],
+          ? action.payload // 배열 전체를 대체
+          : [action.payload], // 단일 항목을 배열에 추가
       };
     case REMOVE_FROM_MY_ENT_LIST:
       return {
