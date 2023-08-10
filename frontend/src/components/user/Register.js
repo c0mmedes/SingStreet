@@ -220,7 +220,7 @@ function Register() {
               <option value="남">남</option>
               <option value="녀">녀</option>
             </select>
-          </div>{" "}
+          </div>
           <div className="inputbox">
             <label htmlFor="password">Password</label>
             <input

@@ -40,7 +40,7 @@ const initialState = {
 // 리듀서 함수 정의
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USERINFO:
+    case ADD_USERINFO: 
       return {
         ...state,
         // userInfo: { ...action.data }

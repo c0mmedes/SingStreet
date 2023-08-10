@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useParams } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectCreate.css";
 const EntProjectCreate = ({ userInfo, isLogin }) => {
+  // 라우터 파라미터에서 가져올 entId 변수
+  const { entId } = useParams();
+  //  useState로 관리할 상태
   const [projectName, setProjectName] = useState("");
   const [projectInfo, setProjectInfo] = useState("");
   const [projectTagList, setProjectTagList] = useState("");
   const [projectImg, setProjectImg] = useState("");
-  const [entId, setEntId] = useState(0);
   const [isRecruited, setIsRecruited] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
   const [partList, setPartList] = useState([""]);
   const [singName, setSingName] = useState("");
   const [singerName, setSingerName] = useState("");
-  const [userId, setUserId] = useState(0);
   const [userList, setUserList] = useState([0]);
 
   const handleProjectName = (e) => {
@@ -48,24 +49,52 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
   const navigate = useNavigate();
 
+  const handleAddPart = () => {
+    if (partList.length < 10) {
+      // 최대 10개의 파트까지 추가 가능
+      setPartList([...partList, ""]); // 새로운 파트 추가
+    }
+  };
+
+  const handlePartChange = (index, value) => {
+    const updatedPartList = [...partList];
+    updatedPartList[index] = value;
+    setPartList(updatedPartList);
+  };
+
+  const renderPartInputs = () => {
+    return partList.map((part, index) => (
+      <div key={index} className="input_field">
+        <input
+          type="text"
+          name={`part-${index}`}
+          value={part}
+          onChange={(e) => handlePartChange(index, e.target.value)}
+          required
+        />
+      </div>
+    ));
+  };
+
   const onClickProjectCreate = async function () {
     const accessToken = sessionStorage.getItem("accessToken");
     try {
       const res = await apiInstance.post(
         "/project",
         {
-          entId,
-          isRecruited,
-          isVisible,
-          partList,
-          projectImg,
-          projectInfo,
-          projectName,
-          projectTagList,
-          singName,
-          singerName,
-          userId,
-          userList,
+          entId: entId,
+          isRecruited: isRecruited,
+          isVisible: isVisible,
+          partList: partList,
+          projectImg: projectImg,
+          projectInfo: projectInfo,
+          projectName: projectName,
+          projectTagList: projectTagList,
+          singName: singName,
+          singerName: singerName,
+          userId: userInfo.userId,
+          userList:userList,
+
         },
         {
           headers: {
@@ -162,24 +191,21 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                     required
                   />
                 </div>
-                <label>모집중</label>
                 <div className="input_field">
-                  <input
-                    type="checkbox"
-                    name="isRecruited"
-                    checked={isRecruited}
-                    onChange={handleIsRecruited}
-                  />
+                  <label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
+                  <select name="isRecruited" value={isRecruited} onChange={handleIsRecruited}>
+                    <option value="">프로젝트 멤버 모집 여부r</option>
+                    <option value="true">모집 중</option>
+                    <option value="false">모집 마감</option>
+                  </select>
                 </div>
-
-                <label>프로젝트 공개</label>
                 <div className="input_field">
-                  <input
-                    type="checkbox"
-                    name="isVisible"
-                    checked={isVisible}
-                    onChange={handleIsVisible}
-                  />
+                  <label htmlFor="isVisible">엔터페이지에 프로젝트 공개 여부</label>
+                  <select name="isVisible" value={isVisible} onChange={handleIsVisible}>
+                    <option value="">엔터페이지에 프로젝트 공개 여부</option>
+                    <option value="true">공개</option>
+                    <option value="false">공개하지 않음</option>
+                  </select>
                 </div>
 
                 <input
