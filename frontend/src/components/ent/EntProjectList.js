@@ -8,13 +8,13 @@ const EntProjectList = () => {
     <div>
       <form className="entSearchWrap">
         <input
-          placeholder="노래합작 검색. . ."
+          placeholder="진행중인 프로젝트 검색. . ."
           type="text"
           className="entSearchInput"></input>
         <input type="submit" value="검색" className="entSearchSubmit"></input>
         <select>
           <option value="allEnt">최신순</option>
-          <option value="myEnt">인기순</option>
+          <option value="myEnt">내 프로젝트</option>
         </select>
       </form>
       <div class="cards-list">
