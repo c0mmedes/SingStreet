@@ -8,7 +8,7 @@ const EntFeed = () => {
   return (
     <>
       <div className="profile">
-        <h1>엔터명</h1>
+        <h1>헤더(엔터명)</h1>
         <div className="videos">
           <div className="video">
             <div className="video-time">15.13</div>
@@ -58,7 +58,7 @@ const EntFeed = () => {
       </div>
 
       <div className="trends">
-        <h1>트렌드영역 </h1>
+        <h1>피드영역 </h1>
       </div>
     </>
   );

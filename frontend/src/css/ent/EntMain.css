@@ -1,13 +1,3 @@
-:root {
-  --body-font: "Manrope", sans-serif;
-  --body-color: #b3b3b3;
-  --body-bg-color: #f2f2f2;
-  --theme-bg-color: #fafafa;
-  --border-color: #efefef;
-  --logo-color: #f13a2f;
-  --main-color: #808080;
-}
-
 img {
   max-width: 100%;
 }
@@ -15,7 +5,7 @@ img {
 .video-app {
   display: flex;
   flex-direction: column;
-  max-width: 1400px;
+  max-width: 1200px;
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
@@ -72,16 +62,12 @@ img {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  border: 10px solid black;
+  border: 5px solid black;
 }
 
 .menu-items {
   display: flex;
   cursor: pointer;
-}
-
-.follow-buttons {
-  display: flex;
 }
 
 .follow {
@@ -96,11 +82,6 @@ img {
   &:hover {
     background-color: var(--header-bg-color);
   }
-}
-
-.follow-option {
-  border-radius: 0 25px 25px 0;
-  margin-left: -2px;
 }
 
 .trends {
@@ -119,22 +100,12 @@ img {
   }
 }
 
-.trends svg {
-  width: 20px;
-  margin-right: 16px;
-}
-
-.follow-option.active {
-  background-color: var(--header-bg-color);
-  margin-left: -3px;
-}
-
 .videos {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  border: 10px solid black;
+  border: 5px solid black;
 }
 
 .video video {
@@ -238,12 +209,6 @@ img {
   .profile {
     min-height: 380px;
     max-height: 380px;
-  }
-}
-
-@media (max-width: 800px) {
-  .trends .follow-buttons {
-    display: none;
   }
 }
 
