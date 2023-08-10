@@ -7,6 +7,15 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
   const [projectInfo, setProjectInfo] = useState("");
   const [projectTagList, setProjectTagList] = useState("");
   const [projectImg, setProjectImg] = useState("");
+  const [entId, setEntId] = useState(0);
+  const [isRecruited, setIsRecruited] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const [partList, setPartList] = useState([""]);
+  const [singName, setSingName] = useState("");
+  const [singerName, setSingerName] = useState("");
+  const [userId, setUserId] = useState(0);
+  const [userList, setUserList] = useState([0]);
+
   const handleProjectName = (e) => {
     setProjectName(e.target.value);
   };
@@ -16,9 +25,24 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
   const handleProjectTagList = (e) => {
     setProjectTagList(e.target.value);
   };
-  const handleProjectImg = (e) => {
-    setProjectImg(e.target.value);
+
+  const handleSingName = (e) => {
+    setProjectName(e.target.value);
   };
+  const handleSingerName = (e) => {
+    setProjectInfo(e.target.value);
+  };
+  const handleProjectImg = (e) => {
+    setProjectImg(e.target.files[0]);
+  };
+  const handleIsRecruited = (e) => {
+    setIsRecruited(e.target.checked);
+  };
+
+  const handleIsVisible = (e) => {
+    setIsVisible(e.target.checked);
+  };
+
   // axios 인스턴스 생성
   const apiInstance = api();
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -30,10 +54,18 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
       const res = await apiInstance.post(
         "/project",
         {
-          projectImg: projectImg,
-          projectInfo: projectInfo,
-          projectName: projectName,
-          projectTagList: projectTagList,
+          entId,
+          isRecruited,
+          isVisible,
+          partList,
+          projectImg,
+          projectInfo,
+          projectName,
+          projectTagList,
+          singName,
+          singerName,
+          userId,
+          userList,
         },
         {
           headers: {
@@ -74,7 +106,8 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                     required
                   />
                 </div>
-                <label>엔터 소개</label>
+
+                <label>프로젝트 소개</label>
                 <div className="input_field">
                   <textarea
                     id="projectInfo"
@@ -85,6 +118,29 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                     required
                   />
                 </div>
+
+                <label>곡</label>
+                <div className="input_field">
+                  <input
+                    type="text"
+                    name="singName"
+                    value={singName}
+                    onChange={handleSingName}
+                    required
+                  />
+                </div>
+
+                <label>가수</label>
+                <div className="input_field">
+                  <input
+                    type="text"
+                    name="singerName"
+                    value={singerName}
+                    onChange={handleSingerName}
+                    required
+                  />
+                </div>
+
                 <label>해시태그</label>
                 <div className="input_field">
                   <input
@@ -96,7 +152,8 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                     required
                   />
                 </div>
-                <label>엔터 프로필</label>
+
+                <label>프로젝트 프로필</label>
                 <div className="input_field">
                   <input
                     type="file"
@@ -106,6 +163,26 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                     required
                   />
                 </div>
+                <label>모집중</label>
+                <div className="input_field">
+                  <input
+                    type="checkbox"
+                    name="isRecruited"
+                    checked={isRecruited}
+                    onChange={handleIsRecruited}
+                  />
+                </div>
+
+                <label>프로젝트 공개</label>
+                <div className="input_field">
+                  <input
+                    type="checkbox"
+                    name="isVisible"
+                    checked={isVisible}
+                    onChange={handleIsVisible}
+                  />
+                </div>
+
                 <input
                   className="button"
                   type="submit"
