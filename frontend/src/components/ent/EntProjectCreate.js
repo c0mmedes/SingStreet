@@ -158,7 +158,6 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                   <input
                     type="file"
                     name="file"
-                    value={projectImg}
                     onChange={handleProjectImg}
                     required
                   />
