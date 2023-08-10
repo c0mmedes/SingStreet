@@ -45,7 +45,7 @@ public class EntMemberService {
 
     // 지원자 등록
     public boolean saveAppl(EntApplyRequestDto requestDto){
-        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false),userRepository.findByUserId(requestDto.getUserId()));
+        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserIdAndIsAccepted(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false),userRepository.findByUserId(requestDto.getUserId()),true);
         if(done != null)
             return false;
 

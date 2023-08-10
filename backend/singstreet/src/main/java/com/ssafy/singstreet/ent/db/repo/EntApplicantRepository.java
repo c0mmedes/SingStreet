@@ -10,7 +10,7 @@ import java.util.List;
 public interface EntApplicantRepository extends JpaRepository<EntApplicant, Integer> {
     EntApplicant findEntApplicantByApplId(int applId);
 
-    EntApplicant findEntApplicantByEntIdAndUserId(Ent entId, User userId);
+    EntApplicant findEntApplicantByEntIdAndUserIdAndIsAccepted(Ent entId, User userId, Boolean isAccepted);
 
     List<EntApplicant> findEntApplicantsByEntIdAndIsConfirmed(Ent entId, boolean isConfirmed);
 }
