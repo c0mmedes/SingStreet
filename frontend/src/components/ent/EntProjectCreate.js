@@ -37,11 +37,11 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
     setProjectImg(e.target.files[0]);
   };
   const handleIsRecruited = (e) => {
-    setIsRecruited(e.target.checked);
+    setIsRecruited(e.target.value);
   };
 
   const handleIsVisible = (e) => {
-    setIsVisible(e.target.checked);
+    setIsVisible(e.target.value);
   };
 
   // axios 인스턴스 생성
@@ -53,7 +53,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
     // 내 엔터리스트를 불러오고, 엔터소속이 아니면 튕겨내기
 		async function getMyEntListAndCheck(){
       await getMyEntList();
-      console.log(myEntList);
       if (myEntList && myEntList.length > 0) {
         console.log("1차검증 통과");
         if(!myEntList.some((ent) => parseInt(ent.entId) === parseInt(entId))){
@@ -78,7 +77,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
         },
       });
-      console.log(res.data);
       await addToMyEntList(res.data);
     } catch (error) {}
   };
