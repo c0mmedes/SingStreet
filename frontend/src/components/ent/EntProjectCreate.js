@@ -51,6 +51,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
   useEffect(() => {
     // 내 엔터리스트를 불러오고, 엔터소속이 아니면 튕겨내기
+    console.log(myEntList);
 		async function getMyEntListAndCheck(){
       await getMyEntList();
       if (myEntList && myEntList.length > 0) {
