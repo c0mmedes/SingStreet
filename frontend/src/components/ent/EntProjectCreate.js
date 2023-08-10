@@ -78,7 +78,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
         },
       });
       console.log(res.data);
-      addToMyEntList(res.data);
+      await addToMyEntList(res.data);
     } catch (error) {}
   };
 
