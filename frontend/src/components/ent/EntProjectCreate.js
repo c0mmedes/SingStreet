@@ -1,5 +1,5 @@
-import React, { useState, useParams } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectCreate.css";
 const EntProjectCreate = ({ userInfo, isLogin }) => {
@@ -49,6 +49,7 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
   const navigate = useNavigate();
 
+  // 파트추가
   const handleAddPart = () => {
     if (partList.length < 10) {
       // 최대 10개의 파트까지 추가 가능
@@ -207,6 +208,14 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
                     <option value="false">공개하지 않음</option>
                   </select>
                 </div>
+
+                <label>파트</label>
+                {renderPartInputs()}
+                {partList.length < 10 && (
+                  <button type="button" onClick={handleAddPart}>
+                    파트 추가
+                  </button>
+                )}
 
                 <input
                   className="button"
