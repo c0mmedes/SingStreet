@@ -4,9 +4,7 @@ import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.project.db.entity.*;
 import com.ssafy.singstreet.project.db.repo.*;
-import com.ssafy.singstreet.project.model.ProjectInvitedResponseDto;
-import com.ssafy.singstreet.project.model.ProjectSaveRequestDto;
-import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
+import com.ssafy.singstreet.project.model.*;
 import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -82,12 +80,20 @@ public class ProjectService {
         String[] tagList = dto.getProjectTagList().split("\\s*#\\s*");
         saveTagList(tagList, projectId);
 
-        for(String partName : dto.getPartList()){
-            Part part = Part.builder()
-                    .project(projectRepository.findByProjectId(projectId.getProjectId()))
-                    .partName(partName)
-                    .build();
-            partRepository.save(part);
+//        for(String partName : dto.getPartList()){
+//            Part part = Part.builder()
+//                    .project(projectRepository.findByProjectId(projectId.getProjectId()))
+//                    .partName(partName)
+//                    .build();
+//            partRepository.save(part);
+//        }
+
+        for(int i = 1; i < dto.getPartList().size(); i++){
+           Part part = Part.builder()
+                   .project(projectRepository.findByProjectId(projectId.getProjectId()))
+                   .partName(dto.getPartList().get(i))
+                   .build();
+           partRepository.save(part);
         }
 
         if (ent == null || user == null) {
@@ -316,4 +322,35 @@ public class ProjectService {
         return invitedProjectDtos;
     }
 
+    public ProjectInfoDto getProjectInfoById(Integer projectId) {
+        Project project = projectRepository.findByProjectId(projectId);
+
+        List<Part> parts = partRepository.findAllByProjectId(projectId);
+
+        List<ProjectPartDto> partList = new ArrayList<>();
+
+        for (Part part : parts) {
+            ProjectPartDto dtos = ProjectPartDto.builder()
+                    .nickname(part.getUser() != null ? part.getUser().getNickname() : "") // If part.getUser() is null, use an empty string
+                    .partName(part.getPartName())
+                    .userId(part.getUser() != null ? part.getUser().getUserId() : -1) // 미등록시 -1
+                    .build();
+            partList.add(dtos);
+        }
+
+
+        ProjectInfoDto projectInfoDtos = ProjectInfoDto.builder()
+                .projectId(project.getProjectId())
+                .userId(project.getUser().getUserId())
+                .projectName(project.getProjectName())
+                .singerName(project.getSingerName())
+                .singName(project.getSingName())
+                .projectInfo(project.getProjectInfo())
+                .projectImg(project.getProjectImg())
+                .isRecruited(project.isRecruited())
+                .partList(partList)
+                .build();
+
+        return projectInfoDtos;
+    }
 }
