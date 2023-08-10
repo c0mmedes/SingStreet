@@ -43,7 +43,12 @@ const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
                 </a>
               </Link>
 
-              <a href="#">프로젝트 목록</a>
+              <Link
+                to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectlist`}>
+                <a className="menuLink" href="#">
+                  프로젝트 목록
+                </a>
+              </Link>
             </div>
             <div className="side-title side-title3 ">
               <a href="#">
