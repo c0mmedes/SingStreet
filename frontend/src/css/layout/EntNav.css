@@ -24,7 +24,9 @@
 .side-title {
   padding-bottom: 20px;
 }
-
+.side-title2 span {
+  font-size: 25px;
+}
 .side-title3 {
   padding-top: 20px;
 }
@@ -39,7 +41,9 @@
   white-space: nowrap;
   margin-bottom: 20px;
 }
-
+.pjtMenuLink1 {
+  margin-bottom: 5px;
+}
 .side-menu a:last-child {
   margin-bottom: 0;
 }
