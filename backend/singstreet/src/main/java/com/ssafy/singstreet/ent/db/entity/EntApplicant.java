@@ -84,6 +84,10 @@ public class EntApplicant extends BaseTimeEntity {
         this.isAccepted = false;
     }
 
+    public void reapplicant(){
+        this.isConfirmed = false;
+    }
+
     public void updateAudioName(String audioName){
         this.audioName = audioName;
     }

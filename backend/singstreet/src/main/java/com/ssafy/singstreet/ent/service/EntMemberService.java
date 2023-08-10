@@ -31,7 +31,7 @@ public class EntMemberService {
     //지원자 목록
     public List<EntApplyResponseDto> readAppl(int requestEntId){
         Ent entId = repository.findByEntIdAndIsDeleted(requestEntId,false);
-        List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmed(entId, false);
+        List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmedAndIsAcceptedIsNull(entId, false);
 
         return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
     }
@@ -45,9 +45,14 @@ public class EntMemberService {
 
     // 지원자 등록
     public boolean saveAppl(EntApplyRequestDto requestDto){
-        EntApplicant done = applicantRepository.findEntApplicantByEntIdAndUserId(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false),userRepository.findByUserId(requestDto.getUserId()));
-        if(done != null)
+        // 지원자가 confirm이 되었는지 확인
+        EntApplicant confirmDone = applicantRepository.findEntApplicantByEntIdAndUserIdAndIsConfirmedAndIsAcceptedNull(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false),userRepository.findByUserId(requestDto.getUserId()),false);
+        // 지원자가 이미 엔터 회원인지 확인
+        EntApplicant AcceptDone = applicantRepository.findEntApplicantByEntIdAndUserIdAndIsConfirmedAndIsAccepted(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false),userRepository.findByUserId(requestDto.getUserId()),true,true);
+
+        if(confirmDone != null || AcceptDone != null) {
             return false;
+        }
 
         EntApplicant entApplicant = EntApplicant.builder()
                 .entId(repository.findByEntIdAndIsDeleted(requestDto.getEntId(),false))
@@ -116,6 +121,12 @@ public class EntMemberService {
         memberRepository.save(member);
         if(member.getIsDeleted() != true)
             return false;
+
+        // 재지원 가능하도록 수정 -> Confirm을 false로 수정 [Confirm이 false이고, accept가 true이면 탈퇴한 사람임 -> 리펙토링 필요]
+        EntApplicant applicant = applicantRepository.findEntApplicantByEntIdAndUserIdAndIsConfirmedAndIsAccepted(member.getEnt(),member.getUser(),true,true);
+        applicant.reapplicant();
+        applicantRepository.save(applicant);
+
         return true;
     }
 
