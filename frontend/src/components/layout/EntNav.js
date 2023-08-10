@@ -39,20 +39,22 @@ const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
               </a>
             </Link>
             <div className="side-title side-title2 ">
-              <h1>프로젝트</h1>
-              <Link
-                to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectcreate`}>
-                <a className="menuLink" href="#">
-                  프로젝트 생성
-                </a>
-              </Link>
+              <span>프로젝트</span>
+              <div className="projectLinkWrap">
+                <Link
+                  to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectcreate`}>
+                  <a className="menuLink" href="#">
+                    프로젝트 생성
+                  </a>
+                </Link>
 
-              <Link
-                to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectlist`}>
-                <a className="menuLink" href="#">
-                  프로젝트 목록
-                </a>
-              </Link>
+                <Link
+                  to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectlist`}>
+                  <a className="menuLink" href="#">
+                    프로젝트 목록
+                  </a>
+                </Link>
+              </div>
             </div>
             <div className="side-title side-title3 ">
               <a href="#">
