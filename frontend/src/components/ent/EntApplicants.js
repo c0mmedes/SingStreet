@@ -15,7 +15,7 @@ const EntApplicants = ({ myEntList, userInfo }) => {
 
   useEffect(() => {
     // 원하는 조건을 확인하고 이전 화면으로 돌아가기
-    if(parseInt(userInfo.userId) !== parseInt(entMasterId)){
+    if (parseInt(userInfo.userId) !== parseInt(entMasterId)) {
       // 이전 화면으로 이동
       navigate(-1);
     }
@@ -51,20 +51,23 @@ const EntApplicants = ({ myEntList, userInfo }) => {
 
   // 지원자 수락
   const onClickAcceptApplicant = async (applId) => {
-    try{
+    try {
       const accessToken = sessionStorage.getItem("accessToken");
       const isAccepted = true;
-      const res = await apiInstance.post(`/ent/member/${applId}/${isAccepted}`,{
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-        },
-      })
+      const res = await apiInstance.post(
+        `/ent/member/${applId}/${isAccepted}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+          },
+        }
+      );
       console.log(res);
-      if(res.data) {
-        alert("수락 성공!") 
+      if (res.data) {
+        alert("수락 성공!");
         // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
         getEntApplicantList();
-      } 
+      }
     } catch {
       alert("수락 오류!");
     }
@@ -72,20 +75,23 @@ const EntApplicants = ({ myEntList, userInfo }) => {
 
   // 지원자 거부
   const onClickRefuseApplicant = async (applId) => {
-    try{
+    try {
       const accessToken = sessionStorage.getItem("accessToken");
       const isAccepted = false;
-      const res = await apiInstance.post(`/ent/member/${applId}/${isAccepted}`,{
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-        },
-      })
+      const res = await apiInstance.post(
+        `/ent/member/${applId}/${isAccepted}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+          },
+        }
+      );
       console.log(res);
-      if(res.data){
-        alert("거부 성공!") 
+      if (res.data) {
+        alert("거부 성공!");
         // 지원자 거부가 성공하면 지원자 목록을 다시 불러옴
         getEntApplicantList();
-      } 
+      }
     } catch {
       alert("거부 오류!");
     }
@@ -94,9 +100,13 @@ const EntApplicants = ({ myEntList, userInfo }) => {
   return (
     <div>
       <div className="entApplicantsContainer">
+        <h1>지원자 목록 </h1>
         <div className="entApplicantsRight">
           <div className="applicantHeader">
-            <h1>지원자 목록 </h1>
+            <span>
+              여러분의 엔터에 알맞은 인재를 채용하세요 ! 이 페이지에서 엔터
+              지원자들을 관리할 수 있습니다.
+            </span>
             <img
               src={applicantlogo}
               className="applicantHeaderImg"
@@ -117,8 +127,18 @@ const EntApplicants = ({ myEntList, userInfo }) => {
                   {new Date(applicant.createAt).toLocaleDateString()}
                 </div>
                 <div className="applicantItemBtn">
-                  <input type="submit" value={"수락"} onClick={() => onClickAcceptApplicant(applicant.applId)}></input>
-                  <input type="submit" value={"거절"} onClick={() => onClickRefuseApplicant(applicant.applId)}></input>
+                  <input
+                    type="submit"
+                    value={"수락"}
+                    onClick={() =>
+                      onClickAcceptApplicant(applicant.applId)
+                    }></input>
+                  <input
+                    type="submit"
+                    value={"거절"}
+                    onClick={() =>
+                      onClickRefuseApplicant(applicant.applId)
+                    }></input>
                 </div>
               </li>
             ))}
