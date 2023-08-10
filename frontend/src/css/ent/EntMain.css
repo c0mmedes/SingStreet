@@ -46,7 +46,7 @@ img {
   display: flex;
   flex-grow: 1;
   overflow: auto;
-  background-color: var(--theme-bg-color);
+  /* background-color: var(--theme-bg-color); */
 }
 
 .show-more {
@@ -58,6 +58,10 @@ img {
   padding: 25px;
   flex-grow: 1;
   overflow: auto;
+  border: 2px solid black;
+  margin-left: 7px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .profile {
