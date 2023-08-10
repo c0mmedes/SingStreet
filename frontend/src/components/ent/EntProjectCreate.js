@@ -27,10 +27,10 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
   };
 
   const handleSingName = (e) => {
-    setProjectName(e.target.value);
+    setSingName(e.target.value);
   };
   const handleSingerName = (e) => {
-    setProjectInfo(e.target.value);
+    setSingerName(e.target.value);
   };
   const handleProjectImg = (e) => {
     setProjectImg(e.target.files[0]);
