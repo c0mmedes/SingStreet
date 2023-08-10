@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.project.controller;
 
 import com.ssafy.singstreet.project.db.entity.Project;
+import com.ssafy.singstreet.project.model.ProjectInfoDto;
 import com.ssafy.singstreet.project.model.ProjectInvitedResponseDto;
 import com.ssafy.singstreet.project.model.ProjectSaveRequestDto;
 import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
@@ -29,6 +30,17 @@ public class ProjectController {
     @Autowired
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
+    }
+
+    @GetMapping("/info/{projectId}")
+    public ResponseEntity<ProjectInfoDto> getProjectInfoById(@PathVariable Integer projectId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        ProjectInfoDto projectInfoDto = projectService.getProjectInfoById(projectId);
+        // 프로젝트가 성공적으로 조회되었을 때 200 OK 상태코드와 생성된 결과물을 응답
+        return new ResponseEntity<>(projectInfoDto, HttpStatus.OK);
     }
 
     // 프로젝트 생성
