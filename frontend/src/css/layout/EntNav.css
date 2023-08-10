@@ -71,3 +71,16 @@
 .pjtLink {
   margin-bottom: 4px;
 }
+.side-menu a:hover {
+  color: var(--highlight-color); /* Change to your desired hover color */
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.side-menu a:active {
+  transform: translateY(0);
+}
+.side-menu .active {
+  border-bottom: 2px solid var(--highlight-color);
+  padding-bottom: 5px;
+}

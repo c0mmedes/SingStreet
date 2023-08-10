@@ -11,6 +11,7 @@ const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
 	"entInfo": "qwe",
 	"tagNameList": [],
 	"autoAccepted": true */
+
   return (
     <div>
       <div class="left-side">
