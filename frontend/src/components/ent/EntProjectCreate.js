@@ -137,7 +137,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
       if (res.data) {
         //정상적으로 만들어지면 true
         navigate("/projectlist");
-        alert("가 생성되었습니다!");
+        alert(`${projectName}가 생성되었습니다!`);
       } else {
         alert("프로젝트명이 중복되었습니다!");
       }
