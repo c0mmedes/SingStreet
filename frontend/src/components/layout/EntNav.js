@@ -43,7 +43,7 @@ const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
               <div className="projectLinkWrap">
                 <Link
                   to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectcreate`}>
-                  <a className="menuLink" href="#">
+                  <a className="menuLink pjtMenuLink1" href="#">
                     프로젝트 생성
                   </a>
                 </Link>

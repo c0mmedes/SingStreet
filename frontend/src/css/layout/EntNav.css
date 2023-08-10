@@ -41,9 +41,7 @@
   white-space: nowrap;
   margin-bottom: 20px;
 }
-.pjtMenuLink1 {
-  margin-bottom: 5px;
-}
+
 .side-menu a:last-child {
   margin-bottom: 0;
 }
@@ -62,4 +60,10 @@
 }
 
 .projectLinkWrap {
+  margin-left: 5px;
+}
+
+.pjtMenuLink1 {
+  margin-bottom: 3px;
+  margin-top: 5px;
 }
