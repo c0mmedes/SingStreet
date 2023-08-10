@@ -28,7 +28,7 @@
   font-size: 25px;
 }
 .side-title3 {
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 .side-menu a {
@@ -66,4 +66,8 @@
 .pjtMenuLink1 {
   margin-bottom: 3px;
   margin-top: 5px;
+}
+
+.pjtLink {
+  margin-bottom: 4px;
 }
