@@ -18,8 +18,6 @@ public interface EntRepository extends JpaRepository<Ent, Integer> {
 
     List<Ent> findByUserAndIsDeleted(User user,boolean isDeleted);
 
-    List<Ent> findAllByUser(User user);
-
     @Query(value = "SELECT ent FROM Ent ent WHERE ent.isDeleted is false And ent.entName = :entName" )
     Ent findByEntName(@Param("entName") String entName);
 

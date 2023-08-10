@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +55,12 @@ public class EntService {
     
     // 내 엔터 목록 조회
     public List<EntResponseDto> readMyEnt(int userId){
-        List<Ent> entList = repository.findAllByUser(userRepository.findByUserId(userId));
+        // userId로 찾은 EntMember들
+        List<EntMember> memberList = memberRepository.findAllByUserAndIsDeleted(userRepository.findByUserId(userId),false);
+        List<Ent> entList = new ArrayList<>();
+        for(EntMember member : memberList){
+            entList.add(member.getEnt());
+        }
         List<EntResponseDto> entResponseDtos = entList.stream().map(this::convertEntToDto).collect(Collectors.toList());
 
         for (EntResponseDto ent : entResponseDtos){
