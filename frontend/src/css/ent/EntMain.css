@@ -72,6 +72,7 @@ img {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  border: 10px solid black;
 }
 
 .menu-items {
@@ -107,6 +108,7 @@ img {
   align-items: center;
   justify-content: space-between;
   padding: 40px 45px;
+  border: 10px solid black;
   a {
     text-decoration: none;
     color: var(--body-color);
@@ -132,6 +134,7 @@ img {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  border: 10px solid black;
 }
 
 .video video {
