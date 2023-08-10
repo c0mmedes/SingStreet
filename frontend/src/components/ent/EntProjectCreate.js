@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectCreate.css";
-const EntProjectCreate = ({ userInfo, isLogin }) => {
+const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   // 라우터 파라미터에서 가져올 entId 변수
   const { entId } = useParams();
   //  useState로 관리할 상태
@@ -49,6 +49,33 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // 내 엔터리스트를 불러오고, 엔터소속이 아니면 튕겨내기
+		async function getMyEntListAndCheck(){
+      await getMyEntList();
+      if(myEntList.some((ent) => ent.entId === entId)){
+        // 이전 화면으로 이동
+        alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!")
+        navigate(-1);
+      };
+    };
+    getMyEntListAndCheck();
+	}, []);
+
+  // 내 엔터 리스트 불러오기
+  const getMyEntList = async () => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    try {
+      const res = await apiInstance.get("/ent/myEnt", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+        },
+      });
+      console.log(res.data);
+      addToMyEntList(res.data);
+    } catch (error) {}
+  };
+
   // 파트추가
   const handleAddPart = () => {
     if (partList.length < 10) {
@@ -56,13 +83,11 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
       setPartList([...partList, ""]); // 새로운 파트 추가
     }
   };
-
   const handlePartChange = (index, value) => {
     const updatedPartList = [...partList];
     updatedPartList[index] = value;
     setPartList(updatedPartList);
   };
-
   const renderPartInputs = () => {
     return partList.map((part, index) => (
       <div key={index} className="input_field">
@@ -77,6 +102,7 @@ const EntProjectCreate = ({ userInfo, isLogin }) => {
     ));
   };
 
+  // 생성하기 버튼 클릭
   const onClickProjectCreate = async function () {
     const accessToken = sessionStorage.getItem("accessToken");
     try {

@@ -2,34 +2,35 @@
 // Login 컴포넌트를 리덕스와 연결하여 리덕스 액션을 props로 전달하는 역할.
 // mapDispatchToProps 객체를 통해 addUserInfo 액션 생성자 함수를 props로 매핑해줌.
 import { connect } from "react-redux";
-import { addUserInfo, setIsLogin } from "../../modules/user/user";
+import { addUserInfo, setIsLogin, addToMyEntList } from "../../modules/user/user";
 import EntProjectCreate from "../../components/ent/EntProjectCreate";
 
-const EntProjectCreateContainer = ({
-  userInfo,
-  isLogin,
-  addUserInfo,
-  setIsLogin,
-}) => {
-  return (
-    <EntProjectCreate
-      userInfo={userInfo}
-      isLogin={isLogin}
-      addUserInfo={addUserInfo}
-      setIsLogin={setIsLogin}></EntProjectCreate>
-  );
+const EntProjectCreateContainer = ({ userInfo, addUserInfo, myEntList, setIsLogin, addToMyEntList }) => {
+	return (
+		<EntProjectCreate
+			userInfo={userInfo}
+			addUserInfo={addUserInfo}
+			myEntList={myEntList}
+			setIsLogin={setIsLogin}
+			addToMyEntList={addToMyEntList}
+		></EntProjectCreate>
+	);
 };
 const mapStateToProps = (state) => ({
-  userInfo: state.user.userInfo,
-  isLogin: state.user.isLogin,
+	userInfo: state.user.userInfo,
+	isLogin: state.user.isLogin,
+	myEntList: state.user.myEntList,
 });
 const mapDispatchToProps = (dispatch) => ({
-  addUserInfo: (userInfo) => {
-    dispatch(addUserInfo(userInfo));
-  },
-  setIsLogin: () => {
-    dispatch(setIsLogin());
-  },
+	addUserInfo: (userInfo) => {
+		dispatch(addUserInfo(userInfo));
+	},
+	setIsLogin: () => {
+		dispatch(setIsLogin());
+	},
+	addToMyEntList: (item) => {
+		dispatch(addToMyEntList(item));
+	},
 });
 
 export default connect(
