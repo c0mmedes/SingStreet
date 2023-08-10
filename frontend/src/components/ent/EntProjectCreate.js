@@ -71,7 +71,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
   // 내 엔터 리스트 불러오기
   const getMyEntList = async () => {
-    console.log(`${myEntList} getMyEntList에서 불러보기`);
     const accessToken = sessionStorage.getItem("accessToken");
     try {
       const res = await apiInstance.get("/ent/myEnt", {

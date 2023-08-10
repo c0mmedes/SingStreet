@@ -20,7 +20,7 @@ import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
 import EntFeed from "./components/ent/EntFeed";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 // 엔터_프로젝트
-import EntProjectCreateContainer from "./components/ent/EntProjectCreate"
+import EntProjectCreateContainer from "./containers/ent/EntProjectCreateContainer"
 import EntProjectList from "./components/ent/EntProjectList";
 import MyInfoContainer from "./containers/user/MyInfoContainer";
 
