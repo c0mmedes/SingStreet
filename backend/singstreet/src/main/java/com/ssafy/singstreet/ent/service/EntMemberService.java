@@ -31,7 +31,7 @@ public class EntMemberService {
     //지원자 목록
     public List<EntApplyResponseDto> readAppl(int requestEntId){
         Ent entId = repository.findByEntIdAndIsDeleted(requestEntId,false);
-        List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmed(entId, false);
+        List<EntApplicant> applyList = applicantRepository.findEntApplicantsByEntIdAndIsConfirmedAAndIsAcceptedIsNull(entId, false);
 
         return applyList.stream().map(this::convertApplyToDto).collect(Collectors.toList());
     }
