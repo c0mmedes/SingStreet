@@ -20,7 +20,7 @@ import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
 import EntFeed from "./components/ent/EntFeed";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 // 엔터_프로젝트
-import EntProjectCreate from "./components/ent/EntProjectCreate";
+import EntProjectCreateContainer from "./components/ent/EntProjectCreate"
 import EntProjectList from "./components/ent/EntProjectList";
 import MyInfoContainer from "./containers/user/MyInfoContainer";
 
@@ -103,7 +103,7 @@ function App({ isLogin }) {
           path="entprojectcreate"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectCreate /> : <Navigate to="/login" />
+            isLogin ? <EntProjectCreateContainer /> : <Navigate to="/login" />
           }
         />
         <Route
