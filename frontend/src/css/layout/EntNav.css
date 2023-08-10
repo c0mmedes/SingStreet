@@ -12,22 +12,19 @@
     display: none;
   }
 }
-
+/* 
 .side-wrapper:not(:last-child) {
   border-bottom: 1px solid var(--border-color);
-}
+} */
 
 .side-menu {
   padding: 20px;
 }
 
 .side-title {
-  font-size: 15px;
   padding-bottom: 20px;
-  border-bottom: 1px solid black;
 }
 
-.side-title2,
 .side-title3 {
   padding-top: 20px;
 }
@@ -49,9 +46,8 @@
 
 .menuLink span,
 .side-title3 a span {
-  font-size: 30px;
+  font-size: 25px;
   color: black;
-  font-weight: bold;
 }
 
 .entNavBtn {
