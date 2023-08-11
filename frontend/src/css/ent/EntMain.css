@@ -263,3 +263,60 @@ img {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
+
+/* 댓글영역 CSS 임시 */
+
+.feed-posts {
+  background-color: white;
+  padding: 20px;
+  border-radius: 9px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  margin-bottom: 20px;
+}
+
+.feed-post-user {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* 각 항목 사이의 간격을 조절합니다. */
+  margin-bottom: 15px;
+}
+
+.feed-post-user div {
+  font-size: 14px;
+  color: #333;
+}
+
+.feed-post-content {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+.feed-post-comment-menu {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.feed-post-comment-menu div {
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.feed-post-comment-menu div:hover {
+  color: var(--main-color);
+}
+
+.feed-post-comments {
+  display: none; /* 기본적으로 댓글 부분은 숨겨집니다. */
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* JS를 사용하여 댓글 메뉴를 클릭했을 때 .active 클래스를 feed-post-comments에 추가하여 display를 변경합니다. */
+.feed-post-comments.active {
+  display: block;
+}

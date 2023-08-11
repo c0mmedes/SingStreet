@@ -115,7 +115,7 @@ const EntFeed = () => {
           <div>좋아요n개</div>
           <div>댓글n개</div>
         </div>
-        <div className="feed-post-comments"></div>
+        <div className="feed-post-comments">코멘트들 보이는 영역</div>
       </div>
     </>
   );
