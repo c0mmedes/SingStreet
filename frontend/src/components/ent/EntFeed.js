@@ -74,7 +74,6 @@ const EntFeed = () => {
       </div>
 
       <div className="feedWall">
-        <h1>피드영역 </h1>
         <div className="post-form">
           <textarea
             value={content}
