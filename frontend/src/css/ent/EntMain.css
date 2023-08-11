@@ -102,6 +102,10 @@ img {
   display: flex;
 }
 
+.post-form-bottom button {
+  color: black;
+}
+
 .videos {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
