@@ -26,7 +26,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   const handleProjectTagList = (e) => {
     setProjectTagList(e.target.value);
   };
-
   const handleSingName = (e) => {
     setSingName(e.target.value);
   };
@@ -39,7 +38,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   const handleIsRecruited = (e) => {
     setIsRecruited(e.target.value);
   };
-
   const handleIsVisible = (e) => {
     setIsVisible(e.target.value);
   };
@@ -110,27 +108,38 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   // 생성하기 버튼 클릭
   const onClickProjectCreate = async function () {
     const accessToken = sessionStorage.getItem("accessToken");
+    // 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
+    const formData = new FormData();
+    formData.append("file", projectImg);
+    const projectData ={
+      entId: entId,
+      isRecruited: isRecruited,
+      isVisible: isVisible,
+      partList: partList,
+      projectInfo: projectInfo,
+      projectName: projectName,
+      projectTagList: projectTagList,
+      singName: singName,
+      singerName: singerName,
+      userId: userInfo.userId,
+      userList:userList,
+    };
+    formData.append(
+      "dto",
+      new Blob([JSON.stringify(projectData)], {
+        type: "application/json",
+      })
+    );
+    // 비동기 통신
     try {
       const res = await apiInstance.post(
         "/project",
-        {
-          entId: entId,
-          isRecruited: isRecruited,
-          isVisible: isVisible,
-          partList: partList,
-          projectImg: projectImg,
-          projectInfo: projectInfo,
-          projectName: projectName,
-          projectTagList: projectTagList,
-          singName: singName,
-          singerName: singerName,
-          userId: userInfo.userId,
-          userList:userList,
-
-        },
+        formData,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json", // 추가
           },
         }
       );

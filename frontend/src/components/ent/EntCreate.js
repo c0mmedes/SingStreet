@@ -31,7 +31,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
 
   const onClickEntCreate = async function () {
     const accessToken = sessionStorage.getItem("accessToken");
-
+    // 엔터 프로필 이미지와, entData를 함께 보내기 위한 작업
     const formData = new FormData();
     formData.append("file", entImg);
     const entData ={
@@ -53,6 +53,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
         formData,
         {
           headers: {
+            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
             "Content-Type": "multipart/form-data",
             Accept: "application/json", // 추가
           },
