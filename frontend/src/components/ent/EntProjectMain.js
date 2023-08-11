@@ -42,7 +42,21 @@ const EntProjectMain = () => {
             <Link to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
                 <div>스튜디오 입장</div>
             </Link>
-        </div>
+            <img src={project.projectImg} class="card__image" alt="" />
+            <h3 class="card__title">프로젝트 명: {project.projectName}</h3>
+            { project.recruited?
+            <h3>모집 중</h3> : <h3>모집 마감</h3>
+            }
+            <h3>singName: {project.singName}</h3>
+            <h3>singerName: {project.singerName}</h3>
+            <h3>projectInfo: {project.projectInfo}</h3>
+            <h3></h3>
+            <span class="card__status">
+            {project.partList.map((part) => (
+                <b>파트 : {part.partName} - {part.nickname}</b>
+            ))}
+            </span>
+        </div>      
     );
 };
 
