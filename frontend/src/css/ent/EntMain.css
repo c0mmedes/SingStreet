@@ -212,10 +212,10 @@ img {
   }
 }
 .post-form {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 25px;
   background-color: white;
   border-radius: 9px;
   padding: 15px;
