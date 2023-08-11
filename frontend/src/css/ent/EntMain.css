@@ -210,20 +210,20 @@ img {
 }
 .post-form {
   margin-bottom: 50px;
-  padding: 15px;
   display: flex;
-  border: 2px solid red;
-  height: 100px;
-  width: 700px;
   flex-direction: column;
+  margin-top: 30px;
+  background-color: white;
+  padding: 15px;
 }
 
 .post-form textarea {
   height: 100px;
   padding: 10px;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: none;
+  border-radius: 9px;
   resize: none;
+  background-color: #b0c5ed54;
 }
 
 .post-form button {
@@ -265,8 +265,6 @@ img {
 .post-form select {
   width: 100%;
   padding: 10px;
-  margin-left: 10px;
-  margin-top: 10px;
   border: 1px solid var(--border-color);
   border-radius: 5px;
 }
