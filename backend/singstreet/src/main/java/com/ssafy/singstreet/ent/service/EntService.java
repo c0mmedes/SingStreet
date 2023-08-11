@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.ent.service;
 
+import com.ssafy.singstreet.config.AmazonS3Service;
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.ent.db.entity.EntMember;
 import com.ssafy.singstreet.ent.db.entity.EntTag;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class EntService {
     private final EntTagRepository tagRepository;
     private final UserRepository userRepository;
     private final EntMemberRepository memberRepository;
+    private final AmazonS3Service amazonS3Service;
 
     // 엔터 전체 목록 조회
     public Slice<EntResponseDto> read(int page, int size){
@@ -81,17 +84,19 @@ public class EntService {
 
     // 엔터 생성
     @Transactional
-    public boolean create(EntSaveRequestDto requestDto, int userId){
+    public boolean create(EntSaveRequestDto requestDto, int userId, MultipartFile file){
         // 중복체크
         String entName = requestDto.getEntName();
         if(!entNameCheck(entName)) return false;
+
+        String s3Url = amazonS3Service.uploadFile(file);
 
         Ent ent = Ent.builder()
                 .user(userRepository.findByUserId(userId))
                 .entName(requestDto.getEntName())
                 .isAutoAccepted(requestDto.getIsAutoAccepted())
                 .entInfo(requestDto.getEntInfo())
-//                .entImg(requestDto.getEntImg())
+                .entImg(s3Url)
                 .build();
         repository.save(ent);
 
