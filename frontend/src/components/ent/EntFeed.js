@@ -81,12 +81,14 @@ const EntFeed = () => {
             onChange={(e) => setContent(e.target.value)}
             placeholder="당신의 생각을 공유하세요."
           />
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="">타입 선택</option>
-            <option value="type1">공지사항</option>
-            <option value="type2">자유</option>
-          </select>
-          <button onClick={handleSubmit}>게시하기</button>
+          <div className="post-form-bottom">
+            <select value={type} onChange={(e) => setType(e.target.value)}>
+              <option value="">타입 선택</option>
+              <option value="type1">공지사항</option>
+              <option value="type2">자유</option>
+            </select>
+            <button onClick={handleSubmit}>게시하기</button>
+          </div>
         </div>
         {/* <div className="feed-posts">
           {posts.map((post) => (

@@ -84,7 +84,7 @@ img {
   }
 }
 
-.trends {
+.feedWall {
   display: flex;
   justify-content: column;
   border: 10px solid black;
@@ -96,6 +96,10 @@ img {
     font-size: 15px;
     white-space: nowrap;
   }
+}
+
+.post-form-bottom {
+  display: flex;
 }
 
 .videos {
@@ -189,7 +193,7 @@ img {
 }
 
 @media (max-width: 1030px) {
-  .trends {
+  .feedWall {
     padding: 40px 10px;
   }
 }
