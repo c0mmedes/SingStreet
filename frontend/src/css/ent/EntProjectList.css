@@ -78,3 +78,7 @@
       transition: 0.4s;
     }
     */
+
+.entPjtListWrap {
+  display: flex;
+}
