@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectList.css";
 
@@ -10,6 +10,8 @@ const EntProjectList = () => {
   const [entProjectList, setEntProjectList] = useState([]);
   // axios 객체
   const apiInstance = api();
+  // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+  const navigate = useNavigate();
   //useEffect (화면 첫 렌더링시 실행)
   useEffect(() => {
     getEntProjectList();
@@ -42,19 +44,23 @@ const EntProjectList = () => {
       <div className="entPjtListWrap">
         {/* 프로젝트 리스트 */}
         {entProjectList.length !== 0? entProjectList.map((entProject) => (
-          <div key={entProject.projectId} class="cards-list">
-            <div class="musicCard 1">
-              <div class="card_image">
-                <img 
-                  src={entProject.projectImg}
-                  alt="프로필 이미지" 
-                />
-              </div>
-              <div class="card_title title-white">
-                <p>{entProject.projectName}</p>
+          <Link
+          to={`/entmain/${entId}/${entMasterId}/${entName}/entproject/${entProject.projectId}`}
+          >
+            <div key={entProject.projectId} class="cards-list">
+              <div class="musicCard 1">
+                <div class="card_image">
+                  <img 
+                    src={entProject.projectImg}
+                    alt="프로필 이미지" 
+                  />
+                </div>
+                <div class="card_title title-white">
+                  <p>{entProject.projectName}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         )) : 
         <div> 프로젝트가 없습니다! </div>
         }

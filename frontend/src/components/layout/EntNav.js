@@ -20,7 +20,7 @@ const EntNav = ({ entId, entMasterId, entName, userInfo }) => {
             <div className="side-title side-title1 ">
               {parseInt(userInfo.userId) === parseInt(entMasterId) ? (
                 <Link
-                  to={`/entmain/${entId}/${entMasterId}/${entName}/EntApplicants`}>
+                  to={`/entmain/${entId}/${entMasterId}/${entName}/entapplicants`}>
                   <a className="menuLink" href="#">
                     <span>지원자 목록</span>
                   </a>
