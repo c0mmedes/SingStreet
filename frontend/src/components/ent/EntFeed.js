@@ -5,17 +5,23 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 
 const EntFeed = () => {
-  const [posts, setPosts] = useState([]);
+  // 피드 쓰기
   const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
+
   const handleSubmit = () => {
     // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
-    api.post("/addPost", { content });
+    api.post("/board", { content });
     setContent("");
+    setTitle("");
+    setType("");
   };
-  useEffect(() => {
-    // API 호출을 통해 게시물 데이터를 가져옵니다.
-    api.get("/getPosts").then((response) => setPosts(response.data));
-  }, []);
+  // useEffect(() => {
+  //   // API 호출을 통해 게시물 데이터를 가져옵니다.
+  //   api.get("/board/{type}").then((response) => setContent(response.data));
+  // },
+  //  []);
 
   return (
     <>
@@ -70,23 +76,34 @@ const EntFeed = () => {
       </div>
 
       <div className="trends">
-        <h1>피드영역 </h1>{" "}
+        <h1>피드영역 </h1>
         <div className="post-form">
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="제목을 입력하세요."
+          />
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="당신의 생각을 공유하세요."
           />
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="">타입 선택</option>
+            <option value="type1">공지사항</option>
+            <option value="type2">자유</option>
+          </select>
           <button onClick={handleSubmit}>게시하기</button>
         </div>
-        <div className="feed-posts">
+        {/* <div className="feed-posts">
           {posts.map((post) => (
             <div key={post.id} className="post">
               <div className="post-content">{post.content}</div>
               <div className="post-date">{post.date}</div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );
