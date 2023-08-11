@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../css/Home.css";
 import myImage from "../assets/sample1.png";
 import myImage2 from "../assets/sample2.png";
@@ -6,6 +7,11 @@ import myImage2 from "../assets/sample2.png";
 const Home = () => {
   return (
     <div>
+      <Link to="/chat">
+        <div>
+          상우기의 채팅상담@@@@@@@@@@@@@@@@@@@@@@
+        </div>
+      </Link>
       <ul className="cards">
         <li>
           <a href="" class="card">
