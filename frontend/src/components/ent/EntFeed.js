@@ -5,6 +5,18 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 
 const EntFeed = () => {
+  const [posts, setPosts] = useState([]);
+  const [content, setContent] = useState("");
+  const handleSubmit = () => {
+    // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
+    api.post("/addPost", { content });
+    setContent("");
+  };
+  useEffect(() => {
+    // API 호출을 통해 게시물 데이터를 가져옵니다.
+    api.get("/getPosts").then((response) => setPosts(response.data));
+  }, []);
+
   return (
     <>
       <div className="profile">
@@ -58,7 +70,23 @@ const EntFeed = () => {
       </div>
 
       <div className="trends">
-        <h1>피드영역 </h1>
+        <h1>피드영역 </h1>{" "}
+        <div className="post-form">
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="당신의 생각을 공유하세요."
+          />
+          <button onClick={handleSubmit}>게시하기</button>
+        </div>
+        <div className="feed-posts">
+          {posts.map((post) => (
+            <div key={post.id} className="post">
+              <div className="post-content">{post.content}</div>
+              <div className="post-date">{post.date}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
