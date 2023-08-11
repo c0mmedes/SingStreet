@@ -85,7 +85,7 @@ const EntFeed = () => {
             <option value="type1">공지사항</option>
             <option value="type2">자유</option>
           </select>
-          <button onClick={handleSubmit}>게시하기</button>
+          <button onClick={handleSubmit}>등록</button>
         </div>
       </div>
 

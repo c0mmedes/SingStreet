@@ -85,6 +85,8 @@ img {
 
 .post-form-bottom {
   display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .post-form-bottom button {
@@ -227,8 +229,8 @@ img {
 }
 
 .post-form button {
-  margin-top: 10px;
-  padding: 8px 15px;
+  margin-left: 10px;
+  padding-left: 10px;
   background-color: var(--main-color);
   color: black;
   border: none;
@@ -263,8 +265,7 @@ img {
 }
 
 .post-form select {
-  width: 100%;
-  padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 5px;
+  padding-top: 10px;
 }
