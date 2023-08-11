@@ -25,6 +25,10 @@ const EntFeed = () => {
     <>
       <div className="profile">
         <h1>헤더(엔터명)</h1>
+        <span>
+          엔터설명엔터설명뜨거운 심장으로 노래하는 준혁쿤과
+          상욱쿤엔터설명엔터설명뜨거운 심장으로 노래하는 준혁쿤과 상욱쿤
+        </span>
         <div className="videos">
           <div className="video">
             <div className="video-time">15.13</div>
@@ -96,6 +100,22 @@ const EntFeed = () => {
             <div className="post-date">{post.date}</div>
           </div>
         ))} */}
+        <div className="feed-post-user">
+          <div>프로필사진</div>
+          <div>유저닉네임</div>
+          <div>글작성 시간</div>
+        </div>
+        <div className="feed-post-content">
+          글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
+          내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
+          내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
+          내용
+        </div>
+        <div className="feed-post-comment-menu">
+          <div>좋아요n개</div>
+          <div>댓글n개</div>
+        </div>
+        <div className="feed-post-comments"></div>
       </div>
     </>
   );
