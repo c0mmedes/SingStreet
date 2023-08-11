@@ -7,14 +7,12 @@ import { api } from "../../services/httpService";
 const EntFeed = () => {
   // 피드 쓰기
   const [content, setContent] = useState("");
-  const [title, setTitle] = useState("");
   const [type, setType] = useState("");
 
   const handleSubmit = () => {
     // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
     api.post("/board", { content });
     setContent("");
-    setTitle("");
     setType("");
   };
   // useEffect(() => {
@@ -78,12 +76,6 @@ const EntFeed = () => {
       <div className="trends">
         <h1>피드영역 </h1>
         <div className="post-form">
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="제목을 입력하세요."
-          />
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
