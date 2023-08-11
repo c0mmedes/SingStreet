@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.config;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -103,10 +104,21 @@ public class AmazonS3Service {
 public String uploadFile(MultipartFile file) {
     String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
     try {
+        String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+        String contentType;
+
+        if ("jpg".equalsIgnoreCase(fileExtension) || "jpeg".equalsIgnoreCase(fileExtension)) {
+            contentType = "image/jpeg"; // .jpg 이미지일 경우
+        } else if ("png".equalsIgnoreCase(fileExtension)) {
+            contentType = "image/png"; // .png 이미지일 경우
+        } else {
+            throw new IllegalArgumentException("Unsupported image format");
+        }
+
         s3Client.putObject(PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(fileName)
-                .contentType("image/png")
+                .contentType(contentType)
                 .build(), RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
         String S3url = "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + fileName;
         return S3url;
