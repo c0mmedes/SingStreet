@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/file")
+@CrossOrigin("*")
 public class ProjectFileController {
 
     private final ProjectFileUploadService projectFileUploadService;

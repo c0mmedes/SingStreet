@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor //final생성자 자동생성
 @RestController
+@CrossOrigin("*")
 public class EntFeedApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EntFeedService feedService;

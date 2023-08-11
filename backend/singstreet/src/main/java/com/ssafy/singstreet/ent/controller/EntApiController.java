@@ -19,6 +19,7 @@ import java.util.List;
 
 @RequiredArgsConstructor//final생성자 자동생성
 @RestController
+@CrossOrigin("*")
 public class EntApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 

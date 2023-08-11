@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/project/like")
+@CrossOrigin("*")
 public class ProjectLikeController {
     private final ProjectLikeService projectLikeService;
 
