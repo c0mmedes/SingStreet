@@ -119,7 +119,6 @@ const EntCreate = ({ userInfo, isLogin }) => {
                   <input
                     type="file"
                     name="file"
-                    value={entImg}
                     onChange={handleEntImg}
                     required
                   />

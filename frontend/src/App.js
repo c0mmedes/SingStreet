@@ -113,6 +113,13 @@ function App({ isLogin }) {
             isLogin ? <EntProjectListContainer /> : <Navigate to="/login" />
           }
         />
+        <Route
+          path="entproject/:projectId"
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <EntProjectListContainer /> : <Navigate to="/login" />
+          }
+        />
       </Route>
     </Routes>
   );
