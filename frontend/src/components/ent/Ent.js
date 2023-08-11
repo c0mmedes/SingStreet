@@ -51,11 +51,12 @@ const Ent = () => {
       </form>
 
       <ul className="cards">
+        {/* 엔터리스트 */}
         {entList.map((ent) => (
           <li key={ent.entId}>
             <a href="#" class="card">
               <Link to={`/entmain/${ent.entId}/${ent.userId}/${ent.entName}`}>
-                <img src={myImage} class="card__image" alt="" />
+                <img src={ent.entImg} class="card__image" alt="" />
                 <div class="card__overlay">
                   <div class="card__header">
                     <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
