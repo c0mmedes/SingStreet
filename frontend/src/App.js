@@ -21,7 +21,7 @@ import EntFeed from "./components/ent/EntFeed";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 // 엔터_프로젝트
 import EntProjectCreateContainer from "./containers/ent/EntProjectCreateContainer"
-import EntProjectList from "./components/ent/EntProjectList";
+import EntProjectListContainer from "./containers/ent/EntProjectListContainer";
 import MyInfoContainer from "./containers/user/MyInfoContainer";
 
 const mapStateToProps = (state) => ({
@@ -110,7 +110,7 @@ function App({ isLogin }) {
           path="entprojectlist"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectList /> : <Navigate to="/login" />
+            isLogin ? <EntProjectListContainer /> : <Navigate to="/login" />
           }
         />
       </Route>
