@@ -11,7 +11,7 @@ const EntFeed = () => {
 
   const handleSubmit = () => {
     // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
-    api.post("/board", { content });
+    api.post("/ent/feed", { content });
     setContent("");
     setType("");
   };
