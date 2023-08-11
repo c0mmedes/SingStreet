@@ -217,9 +217,8 @@ img {
   flex-direction: column;
   margin-top: 30px;
   background-color: white;
-  padding: 30px;
   border-radius: 9px;
-  padding-bottom: 15px;
+  padding: 15px;
 }
 
 .post-form textarea {
@@ -242,22 +241,7 @@ img {
 }
 
 /* FeedPosts 스타일 */
-.feed-posts .post {
-  margin-top: 20px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 10px;
-}
 
-.feed-posts .post-content {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.feed-posts .post-date {
-  font-size: 12px;
-  color: var(--body-color);
-}
 .post-form input {
   padding: 10px;
   margin-top: 10px;
@@ -275,4 +259,7 @@ img {
 .feed-posts {
   background-color: white;
   height: 300px;
+  border-radius: 9px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
