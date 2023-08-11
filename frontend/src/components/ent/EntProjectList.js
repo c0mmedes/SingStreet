@@ -41,7 +41,7 @@ const EntProjectList = () => {
           <div key={entProject.projectId} class="cards-list">
             <div class="musicCard 1">
               <div class="card_image">
-                <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
+                <img src="entProject.projectImg" />
               </div>
               <div class="card_title title-white">
                 <p>{entProject.projectName}</p>
