@@ -41,7 +41,7 @@ const EntProjectList = () => {
       </form>
       <div className="entPjtListWrap">
         {/* 프로젝트 리스트 */}
-        {entProjectList? entProjectList.map((entProject) => (
+        {entProjectList.length !== 0? entProjectList.map((entProject) => (
           <div key={entProject.projectId} class="cards-list">
             <div class="musicCard 1">
               <div class="card_image">
