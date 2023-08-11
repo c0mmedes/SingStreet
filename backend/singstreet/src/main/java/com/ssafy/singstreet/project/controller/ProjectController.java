@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,10 @@ public class ProjectController {
 
     // 프로젝트 생성
     @PostMapping
-    public ResponseEntity<Project> createProject(@RequestBody ProjectSaveRequestDto dto) {
+    public ResponseEntity<Project> createProject(
+            @RequestPart(value = "dto", required = false) ProjectSaveRequestDto dto,
+            @RequestPart(value = "file", required = false) MultipartFile file
+    ) {
         // 토큰 검증 및 인증 실패 처리
         // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -54,7 +58,7 @@ public class ProjectController {
         }
 //        int userId = userService.getCurrentUserId();
 //        dto.updateUserId(userId);
-        Project createdProject = projectService.createProject(dto);
+        Project createdProject = projectService.createProject(dto, file);
         // 프로젝트가 성공적으로 생성되었을 때 201 Created 상태코드와 생성된 프로젝트를 응답합니다.
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);
     }

@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.project.service;
 
+import com.ssafy.singstreet.config.AmazonS3Service;
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.project.db.entity.*;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class ProjectService {
     private final UserRepository userRepository;
     private final ProjectTagRepository tagRepository;
     private final PartRepository partRepository;
+    private final AmazonS3Service amazonS3Service;
 
 
     // 가져온 태그리스트를 태그테이블에 넣어주기
@@ -44,10 +47,12 @@ public class ProjectService {
     }
 
     // 프로젝트 생성
-    public Project createProject(ProjectSaveRequestDto dto) {
+    public Project createProject(ProjectSaveRequestDto dto, MultipartFile file) {
         // Ent와 User 엔티티를 가져옴
         Ent ent = entRepository.findById(dto.getEntId()).orElse(null);
         User user = userRepository.findById(dto.getUserId()).orElse(null);
+
+        String s3Url = amazonS3Service.uploadFile(file);
 
         // ProjectSaveRequestDto를 Project 엔티티로 변환하고, Ent와 User를 설정
         Project project = Project.builder()
@@ -57,7 +62,7 @@ public class ProjectService {
                 .singerName(dto.getSingerName())
                 .singName(dto.getSingName())
                 .projectInfo(dto.getProjectInfo())
-                .projectImg(dto.getProjectImg())
+                .projectImg(s3Url)
                 .isVisible(dto.getIsVisible())
                 .build();
 

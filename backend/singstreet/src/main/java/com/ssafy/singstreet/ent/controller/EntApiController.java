@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -52,13 +53,15 @@ public class EntApiController {
 
     //Ent추가
     @PostMapping("/ent")
-    public ResponseEntity<Boolean> create(@RequestBody EntSaveRequestDto requestDto){
+    public ResponseEntity<Boolean> create(
+            @RequestPart(value = "requestDto", required = false) EntSaveRequestDto requestDto,
+            @RequestPart(value = "file", required = false) MultipartFile file){
         int userId = userService.getCurrentUserId();
 
         log.debug("[create]EntSaveRequestDto = ", requestDto);
         log.debug("[create]userId = ", userId);
 
-        return new ResponseEntity(entService.create(requestDto, userId), HttpStatus.CREATED);
+        return new ResponseEntity(entService.create(requestDto, userId, file), HttpStatus.CREATED);
     }
 
     //Ent 수정
