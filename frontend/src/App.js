@@ -24,6 +24,7 @@ import EntProjectCreateContainer from "./containers/ent/EntProjectCreateContaine
 import EntProjectListContainer from "./containers/ent/EntProjectListContainer";
 import MyInfoContainer from "./containers/user/MyInfoContainer";
 import EntProjectMainContainer from "./containers/ent/EntProjectMainContainer";
+import EntProjectStudioContainer from "./containers/ent/EntProjectStudioContainer";
 
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
@@ -123,6 +124,13 @@ function App({ isLogin }) {
           }
         />
       </Route>
+      <Route
+          path="/entproject/studio/:entId/:entMasterId/:entName/:projectId"
+          element={
+            // isLogin 상태에 따라 컴포넌트를 선택
+            isLogin ? <EntProjectStudioContainer /> : <Navigate to="/login" />
+          }
+        />
     </Routes>
   );
 }

@@ -6,7 +6,7 @@ const EntProjectMain = () => {
 
     return (
         <div>
-            <Link to={`/entmain/${entId}/${entMasterId}/${entName}/entproject/${projectId}/studio`}>
+            <Link to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
                 <div>스튜디오 입장</div>
             </Link>
         </div>
