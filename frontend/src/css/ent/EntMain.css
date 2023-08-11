@@ -83,23 +83,6 @@ img {
   }
 }
 
-.feedWall {
-  display: flex;
-  flex-direction: column;
-  border-radius: 9px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-
-  a {
-    text-decoration: none;
-    color: var(--body-color);
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    white-space: nowrap;
-  }
-}
-
 .post-form-bottom {
   display: flex;
 }
