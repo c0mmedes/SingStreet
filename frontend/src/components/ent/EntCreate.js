@@ -22,7 +22,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
     setIsAutoAceepted(value);
   };
   const handleEntImg = (e) => {
-    setEntImg(e.target.value);
+    setEntImg(e.target.files[0]);
   };
   // axios 인스턴스 생성
   const apiInstance = api();
@@ -31,19 +31,30 @@ const EntCreate = ({ userInfo, isLogin }) => {
 
   const onClickEntCreate = async function () {
     const accessToken = sessionStorage.getItem("accessToken");
+
+    const formData = new FormData();
+    formData.append("file", entImg);
+    const entData ={
+      entInfo: entInfo,
+      entName: entName,
+      entTagList: entTagList,
+      isAutoAccepted: isAutoAceepted,
+    };
+    formData.append(
+      "requestDto",
+      new Blob([JSON.stringify(entData)], {
+        type: "application/json",
+      })
+    );
+
     try {
       const res = await apiInstance.post(
         "/ent",
-        {
-          entImg: entImg,
-          entInfo: entInfo,
-          entName: entName,
-          entTagList: entTagList,
-          isAutoAccepted: isAutoAceepted,
-        },
+        formData,
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json", // 추가
           },
         }
       );
