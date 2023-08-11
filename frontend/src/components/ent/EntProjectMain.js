@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, Link } from "react-router-dom";
+import {  useParams, Link } from "react-router-dom";
 import {api} from "../../services/httpService";
 
 const EntProjectMain = () => {
@@ -50,11 +50,10 @@ const EntProjectMain = () => {
             <h3>singName: {project.singName}</h3>
             <h3>singerName: {project.singerName}</h3>
             <h3>projectInfo: {project.projectInfo}</h3>
-            <h3></h3>
             <span class="card__status">
-            {project.partList.map((part) => (
+            {project.partList? project.partList.map((part) => (
                 <b>파트 : {part.partName} - {part.nickname}</b>
-            ))}
+            )) : <div>파트가 없습니다.</div>}
             </span>
         </div>      
     );
