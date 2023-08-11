@@ -23,6 +23,7 @@ import MyEntListContainer from "./containers/user/MyEntListContainer";
 import EntProjectCreateContainer from "./containers/ent/EntProjectCreateContainer"
 import EntProjectListContainer from "./containers/ent/EntProjectListContainer";
 import MyInfoContainer from "./containers/user/MyInfoContainer";
+import EntProjectMainContainer from "./containers/ent/EntProjectMainContainer";
 
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
@@ -75,8 +76,9 @@ function App({ isLogin }) {
 
       {/* 엔터내 Nav */}
       <Route
-        path="/entmain/:entId/:entMasterId/:entName/*"
-        element={<EntMain />}>
+       path="/entmain/:entId/:entMasterId/:entName/*"
+       element={<EntMain />}
+      >
         {/* 중첩된 라우트 설정 */}
         <Route
           path=""
@@ -117,7 +119,7 @@ function App({ isLogin }) {
           path="entproject/:projectId"
           element={
             // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectListContainer /> : <Navigate to="/login" />
+            isLogin ? <EntProjectMainContainer /> : <Navigate to="/login" />
           }
         />
       </Route>

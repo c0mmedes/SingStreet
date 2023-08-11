@@ -15,7 +15,7 @@ export const setIsLogin = () => ({
 export const logout = () => ({
   type: LOGOUT,
 });
-export const addToMyEntList = (item) => ({
+export const addToMyEntList = (item) => ({// 엔터목록을 받아와서 그걸로 대체
   type: ADD_TO_MY_ENT_LIST,
   payload: item,
 });
@@ -53,7 +53,7 @@ const user = (state = initialState, action) => {
       };
     case LOGOUT:
       return initialState; // 상태를 초기 상태로 리셋
-    case ADD_TO_MY_ENT_LIST:
+    case ADD_TO_MY_ENT_LIST:// 엔터목록을 받아와서 그걸로 대체
       return {
         ...state,
         myEntList: Array.isArray(action.payload)
