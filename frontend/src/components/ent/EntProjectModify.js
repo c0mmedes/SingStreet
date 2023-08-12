@@ -133,7 +133,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		console.log(isRecruited);
 		// 비동기 통신
 		try {
-			const res = await apiInstance.put(`/project/${projectId}`, formData, {
+			const res = await apiInstance.post(`/project/${projectId}`, formData, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 					"Content-Type": "multipart/form-data",
