@@ -165,7 +165,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 								<div className="input_field">
 									<input
 										type="text"
-										maxlength="20"
 										name="projectName"
 										value={projectName}
 										onChange={handleProjectName}
