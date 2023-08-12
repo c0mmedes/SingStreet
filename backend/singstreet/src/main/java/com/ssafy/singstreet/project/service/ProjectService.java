@@ -276,7 +276,7 @@ public class ProjectService {
             throw new IllegalArgumentException("Invalid entId.");
         }
 
-        List<Project> projects = projectRepository.findByEnt(ent);
+        List<Project> projects = projectRepository.findByEntAndIsDestroyed(ent, false);
         List<ProjectSaveResponseDto> projectResponseDTOs = new ArrayList<>();
 
         for (Project project : projects) {
@@ -288,6 +288,7 @@ public class ProjectService {
                     .singName(project.getSingName())
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
+                    .isDestroyed(project.isDestroyed())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
