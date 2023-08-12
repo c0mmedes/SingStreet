@@ -69,6 +69,9 @@ const EntProjectMain = () => {
 				)}
 			</span>
 			<div onClick={onClickDeleteProject}>프로젝트 삭제</div>
+			<Link to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectmodify/${projectId}`}>
+				<div>프로젝트 수정</div>
+			</Link>
 		</div>
 	);
 };
