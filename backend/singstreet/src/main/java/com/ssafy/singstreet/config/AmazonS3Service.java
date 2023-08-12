@@ -101,30 +101,34 @@ public class AmazonS3Service {
 //            throw new RuntimeException("Failed to upload file to S3");
 //        }
 //    }
-public String uploadFile(MultipartFile file) {
-    String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
-    try {
-        String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
-        String contentType;
+    public String uploadFile(MultipartFile file) {
+        String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
+        try {
+            String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+            String contentType;
 
-        if ("jpg".equalsIgnoreCase(fileExtension) || "jpeg".equalsIgnoreCase(fileExtension)) {
-            contentType = "image/jpeg"; // .jpg 이미지일 경우
-        } else if ("png".equalsIgnoreCase(fileExtension)) {
-            contentType = "image/png"; // .png 이미지일 경우
-        } else {
-            throw new IllegalArgumentException("Unsupported image format");
-        }
+            if ("jpg".equalsIgnoreCase(fileExtension) || "jpeg".equalsIgnoreCase(fileExtension)) {
+                contentType = "image/jpeg"; // .jpg 이미지일 경우
+            } else if ("png".equalsIgnoreCase(fileExtension)) {
+                contentType = "image/png"; // .png 이미지일 경우
+            } else if ("mp3".equalsIgnoreCase(fileExtension)) {
+                contentType = "audio/mpeg"; // .mp3 음원 파일일 경우
+            } else if ("wav".equalsIgnoreCase(fileExtension)) {
+                contentType = "audio/wav"; // .wav 음원 파일일 경우
+            }else {
+                throw new IllegalArgumentException("Unsupported image format");
+            }
 
-        s3Client.putObject(PutObjectRequest.builder()
-                .bucket(bucketName)
-                .key(fileName)
-                .contentType(contentType)
-                .build(), RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
-        String S3url = "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + fileName;
-        return S3url;
-    } catch (IOException e) {
-        e.printStackTrace();
-        throw new RuntimeException("Failed to upload file to S3");
+            s3Client.putObject(PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(fileName)
+                    .contentType(contentType)
+                    .build(), RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
+            String S3url = "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + fileName;
+            return S3url;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to upload file to S3");
     }
 }
 }

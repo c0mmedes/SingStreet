@@ -1,6 +1,5 @@
 package com.ssafy.singstreet.project.model;
 
-import com.ssafy.singstreet.project.db.entity.Part;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -16,7 +15,6 @@ public class ProjectInfoDto {
     private String singName;
     private String projectInfo;
     private String projectImg;
-    private boolean isRecruited; // 마감여부
+    private Boolean isRecruited; // 마감여부
     private List<ProjectPartDto> partList;
-
 }
