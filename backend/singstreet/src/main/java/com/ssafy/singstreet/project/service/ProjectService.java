@@ -110,8 +110,10 @@ public class ProjectService {
     }
 
     // 프로젝트 수정
-    public Project updateProject(Integer projectId, ProjectSaveRequestDto dto) {
+    public Project updateProject(Integer projectId, ProjectSaveRequestDto dto, MultipartFile file) {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
+
+        String s3Url = amazonS3Service.uploadFile(file);
 
         // Project 엔티티의 update 메서드 호출하여 필드 업데이트
         project.update(
@@ -119,7 +121,7 @@ public class ProjectService {
                 dto.getSingerName(),
                 dto.getSingName(),
                 dto.getProjectInfo(),
-                dto.getProjectImg(),
+                s3Url,
                 dto.getIsRecruited(),
                 dto.getIsVisible()
         );

@@ -66,7 +66,11 @@ public class ProjectController {
 
     // 프로젝트 수정
     @PutMapping("/{projectId}")
-    public ResponseEntity<Project> updateProject(@PathVariable Integer projectId, @RequestBody ProjectSaveRequestDto dto) {
+    public ResponseEntity<Project> updateProject(
+            @PathVariable Integer projectId,
+            @RequestPart(value = "dto") ProjectSaveRequestDto dto,
+            @RequestPart(value = "file") MultipartFile file
+    ) {
         // 토큰 검증 및 인증 실패 처리
         // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -74,7 +78,7 @@ public class ProjectController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        Project project = projectService.updateProject(projectId, dto);
+        Project project = projectService.updateProject(projectId, dto, file);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
