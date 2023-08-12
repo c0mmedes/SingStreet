@@ -36,6 +36,15 @@ const EntProjectMain = () => {
             isRecruited // 모집여부
         */
 	};
+	// 프로젝트 삭제
+	const onClickDeleteProject = async () => {
+		try {
+			await apiInstance.put(`/project/delete/${projectId}`);
+			alert("삭제 성공");
+		} catch {
+			alert("삭제 실패");
+		}
+	};
 
 	return (
 		<div>
@@ -59,6 +68,7 @@ const EntProjectMain = () => {
 					<div>파트가 없습니다.</div>
 				)}
 			</span>
+			<div onClick={onClickDeleteProject}>프로젝트 삭제</div>
 		</div>
 	);
 };
