@@ -39,9 +39,11 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     List<Project> findByUser(User user);
 
-    List<Project> findByEnt(Ent ent);
+//    List<Project> findByEnt(Ent ent);
 
     List<Project> findByProjectIdIn(List<Integer> projectIds);
 
     List<Project> findAllByOrderByMonthlyLikeCountDesc();
+
+    List<Project> findByEntAndIsDestroyed(Ent ent, boolean b);
 }
