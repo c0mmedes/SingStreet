@@ -130,6 +130,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 				type: "application/json",
 			})
 		);
+		console.log(isRecruited);
 		// 비동기 통신
 		try {
 			const res = await apiInstance.post("/project", formData, {
