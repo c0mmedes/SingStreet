@@ -38,8 +38,13 @@ const EntProjectMain = () => {
 	};
 	// 프로젝트 삭제
 	const onClickDeleteProject = async () => {
+		const accessToken = sessionStorage.getItem("accessToken");
 		try {
-			await apiInstance.put(`/project/delete/${projectId}`);
+			await apiInstance.put(`/project/delete/${projectId}`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+				},
+			});
 			alert("삭제 성공");
 		} catch {
 			alert("삭제 실패");
