@@ -64,6 +64,7 @@ public class ProjectService {
                 .projectInfo(dto.getProjectInfo())
                 .projectImg(s3Url)
                 .isVisible(dto.getIsVisible())
+                .isRecruited(dto.getIsRecruited())
                 .build();
 
         // Project 엔티티를 DB에 저장
