@@ -78,7 +78,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		// 추출한 partName을 partNameList로 옮기기
 		const extractedPartNames = newProject.partList.map((part) => part.partName);
 		setPartNameList(extractedPartNames);
-
+		console.log(partNameList);
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
 		setProjectTagList(newProject.projectTagList);
