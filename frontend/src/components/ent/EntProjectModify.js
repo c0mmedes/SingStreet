@@ -82,7 +82,6 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			return null;
 		});
 		setPartNameList(newPartNameList);
-		console.log(partNameList);
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
 		setProjectTagList(newProject.projectTagList);
@@ -100,10 +99,11 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			// 최대 10개의 파트까지 추가 가능
 			setPartNameList([...partNameList, ""]); // 새로운 파트 추가
 		}
+		console.log(partNameList);
 	};
 	const handlePartChange = (index, value) => {
 		const updatedPartNameList = [...partNameList];
-		updatedPartNameList[index] = { value };
+		updatedPartNameList[index] = value;
 		setPartNameList(updatedPartNameList);
 	};
 	const renderPartInputs = () => {
