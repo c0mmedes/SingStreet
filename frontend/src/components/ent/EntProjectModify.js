@@ -14,6 +14,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const [isRecruited, setIsRecruited] = useState(true);
 	const [isVisible, setIsVisible] = useState(true);
 	const [partList, setPartList] = useState([{}]);
+	const [partNameList, setPartNameList] = useState([""]);
 	const [singName, setSingName] = useState("");
 	const [singerName, setSingerName] = useState("");
 	const [userList, setUserList] = useState([0]);
@@ -74,6 +75,10 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
             }
             isRecruited // 모집여부
         */
+		// 추출한 partName을 partNameList로 옮기기
+		const extractedPartNames = newProject.partList.map((part) => part.partName);
+		setPartNameList(extractedPartNames);
+
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
 		setProjectTagList(newProject.projectTagList);
@@ -87,23 +92,23 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 	// 파트추가
 	const handleAddPart = () => {
-		if (partList.length < 10) {
+		if (partNameList.length < 10) {
 			// 최대 10개의 파트까지 추가 가능
-			setPartList([...partList, {}]); // 새로운 파트 추가
+			setPartNameList([...partNameList, ""]); // 새로운 파트 추가
 		}
 	};
 	const handlePartChange = (index, value) => {
-		const updatedPartList = [...partList];
-		updatedPartList[index] = { ...updatedPartList[index], partName: value };
-		setPartList(updatedPartList);
+		const updatedPartNameList = [...partNameList];
+		updatedPartNameList[index] = { value };
+		setPartNameList(updatedPartNameList);
 	};
 	const renderPartInputs = () => {
-		return partList.map((part, index) => (
+		return partNameList.map((part, index) => (
 			<div key={index} className="input_field">
 				<input
 					type="text"
 					name={`part-${index}`}
-					value={part.partName}
+					value={part}
 					onChange={(e) => handlePartChange(index, e.target.value)}
 					required
 				/>
@@ -111,7 +116,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		));
 	};
 
-	// 생성하기 버튼 클릭
+	// 수정하기 버튼 클릭
 	const onClickProjectCreate = async function () {
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
@@ -121,7 +126,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			entId: entId,
 			isRecruited: isRecruited,
 			isVisible: isVisible,
-			partList: partList,
+			partList: partNameList,
 			projectInfo: projectInfo,
 			projectName: projectName,
 			projectTagList: projectTagList,
@@ -257,7 +262,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 								<input
 									className="button"
 									type="submit"
-									value="생성하기"
+									value="수정하기"
 									onClick={onClickProjectCreate}
 								/>
 							</form>
