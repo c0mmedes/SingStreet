@@ -74,7 +74,7 @@ const EntProjectMain = () => {
         <div className="studioBtn">스튜디오 입장</div>
       </Link>
 
-      <h3>projectInfo: {project.projectInfo}</h3>
+      <h3>프로젝트 설명 : {project.projectInfo}</h3>
       <span class="card__status">
         {project.partList ? (
           project.partList.map((part) => (
