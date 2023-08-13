@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.project.db.entity;
 
+import com.ssafy.singstreet.user.db.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,11 @@ public class ProjectMember {
     // 회원 탈퇴
     public void leave() {
         this.isDeleted = true;
+    }
+
+
+    public User getUser() {
+        return projectMemberId.getUser();
     }
 }
 
