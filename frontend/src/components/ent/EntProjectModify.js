@@ -13,7 +13,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const [projectImg, setProjectImg] = useState("");
 	const [isRecruited, setIsRecruited] = useState(true);
 	const [isVisible, setIsVisible] = useState(true);
-	const [partList, setPartList] = useState([""]);
+	const [partList, setPartList] = useState([{}]);
 	const [singName, setSingName] = useState("");
 	const [singerName, setSingerName] = useState("");
 	const [userList, setUserList] = useState([0]);
@@ -89,12 +89,12 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const handleAddPart = () => {
 		if (partList.length < 10) {
 			// 최대 10개의 파트까지 추가 가능
-			setPartList([...partList, ""]); // 새로운 파트 추가
+			setPartList([...partList, {}]); // 새로운 파트 추가
 		}
 	};
 	const handlePartChange = (index, value) => {
 		const updatedPartList = [...partList];
-		updatedPartList[index] = value;
+		updatedPartList[index] = { ...updatedPartList[index], partName: value };
 		setPartList(updatedPartList);
 	};
 	const renderPartInputs = () => {
@@ -103,7 +103,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 				<input
 					type="text"
 					name={`part-${index}`}
-					value={part}
+					value={part.partName}
 					onChange={(e) => handlePartChange(index, e.target.value)}
 					required
 				/>
