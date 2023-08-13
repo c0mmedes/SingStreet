@@ -15,7 +15,10 @@
   padding-left: 30px;
 }
 .isRecruitedTitle {
-  font-size: 30px;
+  font-size: 25px;
+}
+.singName {
+  font-size: 80px;
 }
 .pjtMainHeaderRight_btm {
 }
