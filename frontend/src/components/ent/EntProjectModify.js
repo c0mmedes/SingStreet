@@ -4,7 +4,7 @@ import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectCreate.css";
 const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	// 라우터 파라미터에서 가져올 entId 변수
-	const { entId, projectId } = useParams();
+	const { entId, entMasterId, entName, projectId } = useParams();
 	//  useState로 관리할 상태
 	const [project, setProject] = useState({});
 	const [projectName, setProjectName] = useState("");
@@ -155,13 +155,8 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					Accept: "application/json", // 추가
 				},
 			});
-			if (res) {
-				//정상적으로 만들어지면 true
-				navigate("/projectlist");
-				alert(`${projectName}가 수정되었습니다!`);
-			} else {
-				alert("프로젝트명이 중복되었습니다!");
-			}
+			alert(`${projectName}가 수정되었습니다!`);
+			navigate(`/entmain/${entId}/${entMasterId}/${entName}/entprojectlist`);
 		} catch (error) {
 			alert("프로젝트 생성 오류");
 		}
