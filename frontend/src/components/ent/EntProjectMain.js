@@ -64,14 +64,14 @@ const EntProjectMain = () => {
             <h3 className="singName">{project.singName}</h3>
           </div>
           <div className="pjtMainHeaderRight_btm">
-            <h3>{project.singerName}</h3>
+            <h3 className="singerName">{project.singerName}</h3>
             <h3>{project.projectName}</h3>
           </div>
         </div>
       </div>
       <Link
         to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
-        <div>스튜디오 입장</div>
+        <div className="studioBtn">스튜디오 입장</div>
       </Link>
 
       <h3>projectInfo: {project.projectInfo}</h3>

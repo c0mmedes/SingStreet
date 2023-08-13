@@ -5,6 +5,9 @@
 }
 .pjtMainHeader {
   display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #00000024;
+  padding-bottom: 15px;
 }
 
 .pjtMainHeader img {
@@ -22,9 +25,16 @@
 }
 .singName {
   font-size: 80px;
+  margin-top: 20px;
 }
 .pjtMainHeaderRight_btm {
+  display: flex;
 }
-.pjtMainHeaderRight_btm:first-child {
-  font-size: 80px;
+.singerName {
+  margin-right: 10px;
+}
+
+.studioBtn {
+  font-size: 35px;
+  color: black;
 }
