@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { api } from "../../services/httpService";
+import "../../css/ent/EntProjectMain.css";
 
 const EntProjectMain = () => {
   // useState
@@ -58,7 +59,7 @@ const EntProjectMain = () => {
         <div className="pjtMainHeaderRight">
           {project.isRecruited ? <h3>[모집 중]</h3> : <h3>[모집 마감]</h3>}
           <h3 class="card__title">프로젝트 명: {project.projectName}</h3>
-          <div className="pjtMainHeaderRight_btn">
+          <div className="pjtMainHeaderRight_btm">
             <h3>singerName: {project.singerName}</h3>
             <h3>singName: {project.singName}</h3>
           </div>
