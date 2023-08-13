@@ -144,13 +144,13 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			userId: 1,
 			isRecruited: true,
 			isVisible: true,
-			partList: ["지금", "지금"],
+			partList: ["지금"],
 			projectInfo: "지금",
 			projectName: "지금",
 			projectTagList: "#지금#지금",
 			singName: "지금",
 			singerName: "지금",
-			userList: [],
+			userList: [1],
 		};
 		formData.append(
 			"dto",
