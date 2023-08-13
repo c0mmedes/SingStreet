@@ -139,7 +139,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			projectTagList: projectTagList,
 			singName: singName,
 			singerName: singerName,
-			userList: userList,
+			// userList: userList,
 			// 테스트용
 			// entId: 1,
 			// userId: 1,
@@ -151,7 +151,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			// projectTagList: "#지금#지금",
 			// singName: "지금",
 			// singerName: "지금",
-			// userList: [],
+			userList: [],
 		};
 		formData.append(
 			"dto",
