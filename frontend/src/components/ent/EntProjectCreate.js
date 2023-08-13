@@ -108,7 +108,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	// 생성하기 버튼 클릭
 	const onClickProjectCreate = async function (e) {
 		e.preventDefault(); // 기본 제출 동작 막기
-
+		console.log(partList);
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
 		const formData = new FormData();
