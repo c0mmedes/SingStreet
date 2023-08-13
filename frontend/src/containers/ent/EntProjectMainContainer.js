@@ -5,7 +5,13 @@ import { connect } from "react-redux";
 import { addUserInfo, setIsLogin, addToMyEntList } from "../../modules/user/user";
 import EntProjectMain from "../../components/ent/EntProjectMain";
 
-const EntProjectMainContainer = ({ userInfo, addUserInfo, myEntList, setIsLogin, addToMyEntList }) => {
+const EntProjectMainContainer = ({
+	userInfo,
+	addUserInfo,
+	myEntList,
+	setIsLogin,
+	addToMyEntList,
+}) => {
 	return (
 		<EntProjectMain
 			userInfo={userInfo}
@@ -33,7 +39,4 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EntProjectMainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EntProjectMainContainer);

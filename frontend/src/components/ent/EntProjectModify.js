@@ -49,7 +49,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		
+		getProject();
 	}, []);
 
 	// [비동기] 내 프로젝트 정보 가져오기
@@ -74,6 +74,15 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
             }
             isRecruited // 모집여부
         */
+		setProjectName(newProject.projectName);
+		setProjectInfo(newProject.projectInfo);
+		setProjectTagList(newProject.projectTagList);
+		setSingName(newProject.singName);
+		setSingerName(newProject.singerName);
+		setIsRecruited(newProject.isRecruited);
+		setIsVisible(newProject.isVisible);
+		setPartList(newProject.partList);
+		setUserList(newProject.userList);
 	};
 
 	// 파트추가
@@ -153,7 +162,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			<div className="form_wrapper">
 				<div className="form_container">
 					<div className="title_container">
-						<h2>프로젝트 신규 등록</h2>
+						<h2>프로젝트 수정</h2>
 					</div>
 
 					<div className="row clearfix">
