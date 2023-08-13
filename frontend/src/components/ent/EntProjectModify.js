@@ -151,7 +151,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			projectTagList: "#지금#지금",
 			singName: "지금",
 			singerName: "지금",
-			userList: [1],
+			userList: [],
 		};
 		formData.append(
 			"dto",
