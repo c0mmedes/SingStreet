@@ -76,8 +76,12 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
             isRecruited // 모집여부
         */
 		// 추출한 partName을 partNameList로 옮기기
-		const extractedPartNames = newProject.partList.map((part) => part.partName);
-		setPartNameList(extractedPartNames);
+		const newPartNameList = [];
+		newProject.partList.map((part) => {
+			newPartNameList.push(part.partName);
+			return null;
+		});
+		setPartNameList(newPartNameList);
 		console.log(partNameList);
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
