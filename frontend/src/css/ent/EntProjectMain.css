@@ -9,6 +9,7 @@
 .pjtMainHeader img {
   width: 250px;
   height: 250px;
+  display: flex;
 }
 .pjtMainHeaderRight {
   padding-left: 30px;
