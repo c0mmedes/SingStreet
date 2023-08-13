@@ -140,7 +140,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			// singName: singName,
 			// singerName: singerName,
 			// userList: userList,
-			entId: 11,
+			entId: 1,
 			userId: 1,
 			isRecruited: true,
 			isVisible: true,
