@@ -52,7 +52,7 @@ const EntProjectList = () => {
                   <div class="card_image">
                     <img src={entProject.projectImg} alt="프로필 이미지" />
                   </div>
-                  <div class="card_title title-white">
+                  <div class="card_title title-white pjtCard">
                     <p>{entProject.projectName}</p>
                   </div>
                 </div>
