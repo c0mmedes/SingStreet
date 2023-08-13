@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
 
-const EntProjectMain = () => {
+const EntProjectMain = ({ userInfo }) => {
 	// useState
 	const [project, setProject] = useState({});
 	// 라우터 경로로 받아오는 정보들
 	const { entId, entMasterId, entName, projectId } = useParams();
 	// 비동기 통신을 위한 apiInstance 생성
 	const apiInstance = api();
+	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+	const navigate = useNavigate();
 	// useEffect
 	useEffect(() => {
 		getProject();
 	}, []);
 
+	// [비동기] 내 프로젝트 정보 가져오기
 	const getProject = async () => {
 		const res = await apiInstance.get(`/project/info/${projectId}`);
 		console.log(res.data);
@@ -50,6 +53,16 @@ const EntProjectMain = () => {
 			alert("삭제 실패");
 		}
 	};
+	// 프로젝트 수정으로 가기
+	const onClickGoToProjectModify = () => {
+		// userInfo의 userId가 프로젝트 장의 userId와 일치하면
+		if (parseInt(project.userId) === parseInt(userInfo.userId)) {
+			// 프로젝트 수정 페이지로 이동
+			navigate(`/entmain/${entId}/${entMasterId}/${entName}/entprojectmodify/${projectId}`);
+		} else {
+			alert("권한이 없습니다!");
+		}
+	};
 
 	return (
 		<div>
@@ -74,9 +87,7 @@ const EntProjectMain = () => {
 				)}
 			</span>
 			<div onClick={onClickDeleteProject}>프로젝트 삭제</div>
-			<Link to={`/entmain/${entId}/${entMasterId}/${entName}/entprojectmodify/${projectId}`}>
-				<div>프로젝트 수정</div>
-			</Link>
+			<div onClick={onClickGoToProjectModify}>프로젝트 수정</div>
 		</div>
 	);
 };

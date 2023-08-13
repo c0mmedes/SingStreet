@@ -6,6 +6,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	// 라우터 파라미터에서 가져올 entId 변수
 	const { entId, projectId } = useParams();
 	//  useState로 관리할 상태
+	const [project, setProject] = useState({});
 	const [projectName, setProjectName] = useState("");
 	const [projectInfo, setProjectInfo] = useState("");
 	const [projectTagList, setProjectTagList] = useState("");
@@ -48,35 +49,31 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		// 내 엔터리스트를 불러오고, 엔터소속이 아니면 튕겨내기
-		async function getMyEntListAndCheck() {
-			await getMyEntList();
-			if (myEntList && myEntList.length > 0) {
-				console.log("1차검증 통과");
-				if (!myEntList.some((ent) => parseInt(ent.entId) === parseInt(entId))) {
-					// 이전 화면으로 이동
-					alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!");
-					navigate(-1);
-				}
-			} else {
-				alert("엔터 회원이 아닙니다. 먼저 엔터에 가입하세요!");
-				navigate(-1);
-			}
-		}
-		getMyEntListAndCheck();
+		
 	}, []);
 
-	// 내 엔터 리스트 불러오기
-	const getMyEntList = async () => {
-		const accessToken = sessionStorage.getItem("accessToken");
-		try {
-			const res = await apiInstance.get("/ent/myEnt", {
-				headers: {
-					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-				},
-			});
-			await addToMyEntList(res.data);
-		} catch (error) {}
+	// [비동기] 내 프로젝트 정보 가져오기
+	const getProject = async () => {
+		const res = await apiInstance.get(`/project/info/${projectId}`);
+		console.log(res.data);
+		const newProject = { ...res.data }; // 새로운 객체를 생성하고 res.data의 내용을 복사
+		setProject(newProject);
+		/*
+            projectId
+            userId // 프로젝트장
+            projectName
+            singerName
+            singName
+            projectInfo
+            projectImg
+            partList:
+            {
+            nickname // 등록 전에는 “”
+            partName
+            userId // 등록 전에는 -1임
+            }
+            isRecruited // 모집여부
+        */
 	};
 
 	// 파트추가
