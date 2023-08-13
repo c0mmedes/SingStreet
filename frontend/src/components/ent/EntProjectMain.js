@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
+import "../../css/ent/EntProjectMain.css";
 
 const EntProjectMain = ({ userInfo }) => {
 	// useState
@@ -65,16 +66,27 @@ const EntProjectMain = ({ userInfo }) => {
 	};
 
 	return (
-		<div>
+		<div className="pjtMainWrap">
+			<div className="pjtMainHeader">
+				<img src={project.projectImg} class="card__image" alt="" />
+				<div className="pjtMainHeaderRight">
+					<div>
+						<span className="isRecruitedTitle">
+							{project.isRecruited ? <h3>[모집 중]</h3> : <h3>[모집 마감]</h3>}
+						</span>
+						<h3 className="singName">{project.singName}</h3>
+					</div>
+					<div className="pjtMainHeaderRight_btm">
+						<h3 className="singerName">{project.singerName}</h3>
+						<h3>{project.projectName}</h3>
+					</div>
+				</div>
+			</div>
 			<Link to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
-				<div>스튜디오 입장</div>
+				<div className="studioBtn">스튜디오 입장</div>
 			</Link>
-			<img src={project.projectImg} class="card__image" alt="" />
-			<h3 class="card__title">프로젝트 명: {project.projectName}</h3>
-			{project.isRecruited ? <h3>모집 중</h3> : <h3>모집 마감</h3>}
-			<h3>singName: {project.singName}</h3>
-			<h3>singerName: {project.singerName}</h3>
-			<h3>projectInfo: {project.projectInfo}</h3>
+
+			<h3>프로젝트 설명 : {project.projectInfo}</h3>
 			<span class="card__status">
 				{project.partList ? (
 					project.partList.map((part) => (

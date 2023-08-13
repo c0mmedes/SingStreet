@@ -1,0 +1,40 @@
+.pjtMainWrap {
+  background-color: white;
+  padding: 30px;
+  min-width: 823px;
+}
+.pjtMainHeader {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #00000024;
+  padding-bottom: 15px;
+}
+
+.pjtMainHeader img {
+  width: 250px;
+  height: 250px;
+}
+.pjtMainHeaderRight {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.isRecruitedTitle {
+  font-size: 25px;
+}
+.singName {
+  font-size: 80px;
+  margin-top: 20px;
+}
+.pjtMainHeaderRight_btm {
+  display: flex;
+}
+.singerName {
+  margin-right: 10px;
+}
+
+.studioBtn {
+  font-size: 35px;
+  color: black;
+}
