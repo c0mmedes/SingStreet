@@ -402,6 +402,7 @@ public class ProjectService {
                 .partList(partList)
                 .tagList(tags)
                 .userlist(userList)
+                .isVisible(project.isVisible())
                 .build();
 
         return projectInfoDtos;
