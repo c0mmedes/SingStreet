@@ -41,6 +41,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsRecruited(e.target.value);
 	};
 	const handleIsVisible = (e) => {
+		console.log(isVisible);
 		setIsVisible(e.target.value);
 	};
 
@@ -91,6 +92,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsVisible(newProject.isVisible);
 		setPartList(newProject.partList);
 		setUserList(newProject.userList);
+		console.log(isVisible);
 	};
 
 	// 파트추가
