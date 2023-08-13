@@ -20,4 +20,5 @@ public class ProjectInfoDto {
     private List<ProjectPartDto> partList;
     private List<String> tagList;
     private List<User> userlist;
+    private Boolean isVisible;
 }
