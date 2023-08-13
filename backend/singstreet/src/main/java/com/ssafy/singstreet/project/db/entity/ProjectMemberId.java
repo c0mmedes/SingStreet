@@ -21,13 +21,6 @@ public class ProjectMemberId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id" , nullable = false)
     private User user;
-
-//    @Column(name = "user_id")
-//    private Integer userId;
-//
-//    @Column(name = "project_id")
-//    private Integer projectId;
-
 }
 
 

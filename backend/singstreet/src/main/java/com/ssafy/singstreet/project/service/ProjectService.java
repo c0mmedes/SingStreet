@@ -333,6 +333,17 @@ public class ProjectService {
 
     public ProjectInfoDto getProjectInfoById(Integer projectId) {
         Project project = projectRepository.findByProjectId(projectId);
+        List<ProjectTag> projectTags = tagRepository.findAllByProjectId(project);
+        List<String> tags = new ArrayList<>();
+        for (ProjectTag tag : projectTags) {
+            tags.add(tag.getTagName());
+        }
+
+        List<ProjectMember> projectMembers = projectMemberRepository.findByProjectMemberId_Project(project);
+        List<User> userList = new ArrayList<>();
+        for (ProjectMember projectMember : projectMembers) {
+            userList.add(projectMember.getUser());
+        }
 
         List<Part> parts = partRepository.findAllByProjectId(projectId);
 
@@ -358,6 +369,8 @@ public class ProjectService {
                 .projectImg(project.getProjectImg())
                 .isRecruited(project.isRecruited())
                 .partList(partList)
+                .tagList(tags)
+                .userlist(userList)
                 .build();
 
         return projectInfoDtos;
