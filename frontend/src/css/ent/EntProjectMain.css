@@ -4,12 +4,12 @@
   min-width: 823px;
 }
 .pjtMainHeader {
+  display: flex;
 }
 
 .pjtMainHeader img {
   width: 250px;
   height: 250px;
-  display: flex;
 }
 .pjtMainHeaderRight {
   padding-left: 30px;
