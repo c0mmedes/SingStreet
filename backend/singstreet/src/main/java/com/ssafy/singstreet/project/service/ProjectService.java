@@ -139,16 +139,35 @@ public class ProjectService {
 
         partRepository.deleteAll();
 
-        // 파트 수정
-          for(int i=0; i<dto.getPartList().size(); i++){
-            Part part = Part.builder()
-                    .project(project)
-                    .partName(dto.getPartList().get(i))
-                    .user(userRepository.findByUserId(dto.getUserList().get(i)))
-                    .build();
-            partRepository.save(part);
-        }
+//        // 파트 수정
+//          for(int i=0; i<dto.getPartList().size(); i++){
+//
+//            Part part = Part.builder()
+//                    .project(project)
+//                    .partName(dto.getPartList().get(i))
+//                    .user(dto.getUserList().get(i) != null ? userRepository.findByUserId(dto.getUserList().get(i)) : null)
+//                    .build();
+//            partRepository.save(part);
+//        }
 
+        for (int i = 0; i < dto.getPartList().size(); i++) {
+            String partName = dto.getPartList().get(i);
+            User user = null; // 기본적으로는 null 값을 할당
+
+            if (partName != null && !partName.isEmpty()) {
+                if (dto.getUserList() != null && i < dto.getUserList().size() && dto.getUserList().get(i) != null) {
+                    user = userRepository.findByUserId(dto.getUserList().get(i));
+                }
+
+                Part part = Part.builder()
+                        .project(project)
+                        .partName(partName)
+                        .user(user)  // 사용자 정보를 할당하거나 null 값을 유지
+                        .build();
+
+                partRepository.save(part);
+            }
+        }
 
 
         // 변경 감지에 의해 자동으로 DB에 업데이트 됨
@@ -282,6 +301,7 @@ public class ProjectService {
         for (Project project : projects) {
             ProjectSaveResponseDto responseDTO = ProjectSaveResponseDto.builder()
                     .projectId(project.getProjectId())
+                    .userId(project.getUser().getUserId())
                     .entId(project.getEnt().getEntId())
                     .projectName(project.getProjectName())
                     .singerName(project.getSingerName())
