@@ -121,7 +121,9 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	};
 
 	// 수정하기 버튼 클릭
-	const onClickProjectModify = async function () {
+	const onClickProjectModify = async function (e) {
+		e.preventDefault(); // 기본 제출 동작 막기
+
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
 		const formData = new FormData();
@@ -171,7 +173,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 					<div className="row clearfix">
 						<div className="">
-							<form className="entCreateForm">
+							<form className="entCreateForm" onSubmit={onClickProjectModify}>
 								<label>프로젝트명</label>
 								<div className="input_field">
 									<input
@@ -258,12 +260,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 									</button>
 								)}
 
-								<input
-									className="button"
-									type="button"
-									value="수정하기"
-									onClick={onClickProjectModify}
-								/>
+								<input className="button" type="submit" value="수정하기" />
 							</form>
 						</div>
 					</div>

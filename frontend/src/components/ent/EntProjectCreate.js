@@ -106,7 +106,9 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	};
 
 	// 생성하기 버튼 클릭
-	const onClickProjectCreate = async function () {
+	const onClickProjectCreate = async function (e) {
+		e.preventDefault(); // 기본 제출 동작 막기
+
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
 		const formData = new FormData();
@@ -161,7 +163,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 					<div className="row clearfix">
 						<div className="">
-							<form className="entCreateForm">
+							<form className="entCreateForm" onSubmit={onClickProjectCreate}>
 								<label>프로젝트명</label>
 								<div className="input_field">
 									<input
@@ -248,12 +250,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 									</button>
 								)}
 
-								<input
-									className="button"
-									type="button"
-									value="생성하기"
-									onClick={onClickProjectCreate}
-								/>
+								<input className="button" type="submit" value="생성하기" />
 							</form>
 						</div>
 					</div>
