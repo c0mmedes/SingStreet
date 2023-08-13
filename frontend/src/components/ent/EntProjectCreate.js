@@ -250,7 +250,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 								<input
 									className="button"
-									type="submit"
+									type="button"
 									value="생성하기"
 									onClick={onClickProjectCreate}
 								/>

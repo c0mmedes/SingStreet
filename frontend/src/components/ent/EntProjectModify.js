@@ -260,7 +260,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 								<input
 									className="button"
-									type="submit"
+									type="button"
 									value="수정하기"
 									onClick={onClickProjectModify}
 								/>
