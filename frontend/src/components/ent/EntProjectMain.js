@@ -57,11 +57,12 @@ const EntProjectMain = () => {
       <div className="pjtMainHeader">
         <img src={project.projectImg} class="card__image" alt="" />
         <div className="pjtMainHeaderRight">
-          <span className="isRecruitedTitle">
-            {project.isRecruited ? <h3>[모집 중]</h3> : <h3>[모집 마감]</h3>}
-          </span>
-          <h3 className="singName">{project.singName}</h3>
-
+          <div>
+            <span className="isRecruitedTitle">
+              {project.isRecruited ? <h3>[모집 중]</h3> : <h3>[모집 마감]</h3>}
+            </span>
+            <h3 className="singName">{project.singName}</h3>
+          </div>
           <div className="pjtMainHeaderRight_btm">
             <h3>{project.singerName}</h3>
             <h3>{project.projectName}</h3>
