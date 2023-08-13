@@ -1,16 +1,14 @@
-package com.ssafy.singstreet.studio.model;
+package com.ssafy.singstreet.studio.db.entity;
+
+
 
 import lombok.Builder;
-import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.*;
 
-import javax.persistence.Id;
-
-@Getter
 @Builder
 @Document(collection = "boxData")
-public class BlockDto {
-
+public class BoxData {
     @Id
     private Integer id;
 
@@ -19,5 +17,4 @@ public class BlockDto {
     private Integer y;
     private String file;
     private String uploader;
-
 }
