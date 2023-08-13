@@ -4,7 +4,7 @@ import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectCreate.css";
 const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	// 라우터 파라미터에서 가져올 entId 변수
-	const { entId } = useParams();
+	const { entId, entMasterId, entName } = useParams();
 	//  useState로 관리할 상태
 	const [projectName, setProjectName] = useState("");
 	const [projectInfo, setProjectInfo] = useState("");
@@ -142,8 +142,8 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			});
 			if (res.data) {
 				//정상적으로 만들어지면 true
-				navigate("/projectlist");
 				alert(`${projectName}가 생성되었습니다!`);
+				navigate(`/entmain/${entId}/${entMasterId}/${entName}/entprojectlist`);
 			} else {
 				alert("프로젝트명이 중복되었습니다!");
 			}

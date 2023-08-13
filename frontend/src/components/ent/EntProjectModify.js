@@ -121,7 +121,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	};
 
 	// 수정하기 버튼 클릭
-	const onClickProjectCreate = async function () {
+	const onClickProjectModify = async function () {
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
 		const formData = new FormData();
@@ -155,10 +155,10 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					Accept: "application/json", // 추가
 				},
 			});
-			if (res.data) {
+			if (res) {
 				//정상적으로 만들어지면 true
 				navigate("/projectlist");
-				alert(`${projectName}가 생성되었습니다!`);
+				alert(`${projectName}가 수정되었습니다!`);
 			} else {
 				alert("프로젝트명이 중복되었습니다!");
 			}
@@ -267,7 +267,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 									className="button"
 									type="submit"
 									value="수정하기"
-									onClick={onClickProjectCreate}
+									onClick={onClickProjectModify}
 								/>
 							</form>
 						</div>
