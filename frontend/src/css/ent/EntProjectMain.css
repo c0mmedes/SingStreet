@@ -1,11 +1,23 @@
+.pjtMainWrap {
+  background-color: white;
+  padding: 30px;
+  min-width: 823px;
+}
 .pjtMainHeader {
 }
+
 .pjtMainHeader img {
   width: 250px;
   height: 250px;
 }
 .pjtMainHeaderRight {
+  padding-left: 30px;
 }
-
+.isRecruitedTitle {
+  font-size: 30px;
+}
 .pjtMainHeaderRight_btm {
+}
+.pjtMainHeaderRight_btm:first-child {
+  font-size: 80px;
 }

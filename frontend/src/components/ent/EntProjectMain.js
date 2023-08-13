@@ -53,15 +53,17 @@ const EntProjectMain = () => {
   };
 
   return (
-    <div>
+    <div className="pjtMainWrap">
       <div className="pjtMainHeader">
         <img src={project.projectImg} class="card__image" alt="" />
         <div className="pjtMainHeaderRight">
-          {project.isRecruited ? <h3>[모집 중]</h3> : <h3>[모집 마감]</h3>}
+          <span className="isRecruitedTitle">
+            {project.isRecruited ? <h3>[모집 중]</h3> : <h3>[모집 마감]</h3>}
+          </span>
           <h3 class="card__title">프로젝트 명: {project.projectName}</h3>
           <div className="pjtMainHeaderRight_btm">
-            <h3>singerName: {project.singerName}</h3>
-            <h3>singName: {project.singName}</h3>
+            <h3>{project.singerName}</h3>
+            <h3>{project.singName}</h3>
           </div>
         </div>
       </div>
