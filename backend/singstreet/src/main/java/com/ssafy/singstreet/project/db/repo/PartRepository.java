@@ -13,4 +13,6 @@ import java.util.List;
 public interface PartRepository extends JpaRepository<Part, Integer> {
     @Query("SELECT p FROM Part p WHERE p.project.projectId = :projectId")
     List<Part> findAllByProjectId(@Param("projectId") Integer projectId);
+
+    void deleteByProject(Project project);
 }

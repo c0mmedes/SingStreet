@@ -54,8 +54,11 @@ public class UserService {
         ArrayList<String> roles = new ArrayList<>();
         roles.add("USER");
 
+        String s3Url = "";
 
-        String s3Url = amazonS3Service.uploadFile(file);
+        if (file.getOriginalFilename() != "" || !file.getOriginalFilename().equals(null)) {
+            s3Url = amazonS3Service.uploadFile(file);
+        }
 
         // Create new user object
         User user = User.builder()
@@ -144,14 +147,23 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(Integer userId, String newNickname, String newUserImg, Character newGender, String newPassword) throws UserNotFoundException {
+    public User updateUser(Integer userId, String newNickname, Character newGender, String newPassword, MultipartFile file) throws UserNotFoundException {
         Optional<User> userOptional = userRepository.findById(userId);
+
         if (!userOptional.isPresent()) {
             throw new UserNotFoundException("User with ID " + userId + " not found.");
         }
 
+        String s3Url = "";
+
         User user = userOptional.get();
-        user.updateUserInfo(newNickname, newUserImg, newGender, newPassword);
+        if (file.getOriginalFilename() == "" || file.getOriginalFilename().equals(null)) {
+            s3Url = user.getUserImg();
+        } else {
+            s3Url = amazonS3Service.uploadFile(file);
+        }
+
+        user.updateUserInfo(newNickname, s3Url, newGender, newPassword);
 
         return userRepository.save(user);
     }

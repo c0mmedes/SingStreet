@@ -89,7 +89,11 @@ public class EntService {
         String entName = requestDto.getEntName();
         if(!entNameCheck(entName)) return false;
 
-        String s3Url = amazonS3Service.uploadFile(file);
+        String s3Url = "";
+
+        if (file.getOriginalFilename() != "" || !file.getOriginalFilename().equals(null)) {
+            s3Url = amazonS3Service.uploadFile(file);
+        }
 
         Ent ent = Ent.builder()
                 .user(userRepository.findByUserId(userId))
@@ -124,9 +128,18 @@ public class EntService {
 
     // 엔터 수정
     @Transactional
-    public boolean update(EntSaveRequestDto requestDto, int requestEntId){
+    public boolean update(EntSaveRequestDto requestDto, int requestEntId, MultipartFile file){
         Ent ent = repository.findById(requestEntId).orElseThrow(()->
                 new IllegalArgumentException("해당 엔터 없습니다. id=" + requestEntId));
+
+        String s3Url = "";
+
+        if (file.getOriginalFilename() == "" || file.getOriginalFilename().equals(null)) {
+            s3Url = ent.getEntImg();
+        } else {
+            s3Url = amazonS3Service.uploadFile(file);
+        }
+
 
         ent.update(requestDto.getEntName(),requestDto.getIsAutoAccepted(),requestDto.getEntInfo(),requestDto.getEntImg());
 
