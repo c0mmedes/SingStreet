@@ -62,6 +62,7 @@
   justify-content: space-between;
   padding: 10px 0;
   margin-bottom: 10px;
+  border-bottom: 1px solid #0000002b;
 }
 .applicantHeaderTable div {
   flex: 1;
