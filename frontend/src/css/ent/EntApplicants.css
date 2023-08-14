@@ -12,7 +12,7 @@
   padding: 40px;
   height: auto;
 }
-.entApplicantsRight .applicantHeader {
+.entApplicantsRight {
   padding-top: 70px;
   font-size: 26px;
 }
@@ -40,8 +40,8 @@
   font-size: 20px;
   border-radius: 8px;
   /* width: 970px; */
-  height: 200px;
-  padding: 30px;
+  height: fit-content;
+  padding: 20px;
   padding-bottom: 0px;
 }
 .applicantHeader h1 {

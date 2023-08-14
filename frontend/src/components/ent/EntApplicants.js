@@ -107,11 +107,6 @@ const EntApplicants = ({ myEntList, userInfo }) => {
               여러분의 엔터에 알맞은 인재를 채용하세요 ! 이 페이지에서 엔터
               지원자들을 관리할 수 있습니다.
             </span>
-            <img
-              src={applicantlogo}
-              className="applicantHeaderImg"
-              alt="지원자로고"
-            />
           </div>
 
           <ol className="applicantOl">
