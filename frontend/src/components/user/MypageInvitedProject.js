@@ -18,8 +18,14 @@ const MypageInvitedProject = ({
   },[]);
   // 내가 받은 프로젝트 초대 목록 가져오기
   const getInvitedProject = async () => {
+    const accessToken = sessionStorage.getItem("accessToken");
     try{
-      const res = await apiInstance.get(`/project/invitedList/${userInfo.userId}`)
+      const res = await apiInstance.get(`/project/invitedList/${userInfo.userId}`,
+      {
+        headers: {
+						Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+					},
+      })
       console.log(res.data);
       setInvitedProjectList(res.data);
     } catch{
