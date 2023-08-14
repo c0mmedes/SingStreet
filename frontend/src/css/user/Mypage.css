@@ -17,20 +17,19 @@
 .mypage-title {
   font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 .user-my-info-wrap {
   display: flex;
   width: 700px;
-  padding: 20px;
   background-color: #fbfbfb;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
   justify-content: space-between;
   height: 400px;
   flex-direction: column;
-  padding-top: 60px;
 }
 
 .info-item {
