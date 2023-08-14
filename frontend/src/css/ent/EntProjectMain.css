@@ -47,6 +47,7 @@
 
 .entStudioEnter {
   display: flex;
+  border-bottom: 1px solid #00000021;
 }
 
 .fi-br-play-alt {
@@ -54,4 +55,13 @@
   margin-top: 4px;
   margin-right: 10px;
   color: red;
+}
+.card__status {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.17em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
