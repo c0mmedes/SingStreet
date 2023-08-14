@@ -115,6 +115,7 @@
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  width: 100vh;
 }
 .entSearchInput {
   border: 0;
