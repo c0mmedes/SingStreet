@@ -40,4 +40,9 @@ public class AudioBlockController {
             audioBlockService.updateBlock(id, updatedBlock.get(i));
         }
     }
+
+    @DeleteMapping("block/delete")
+    public void deleteBlock(@RequestBody int id){
+        audioBlockService.deleteBlock(id);
+    }
 }

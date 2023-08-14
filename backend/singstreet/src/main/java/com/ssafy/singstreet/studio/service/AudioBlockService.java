@@ -53,4 +53,10 @@ public class AudioBlockService {
 
         return audioBlockRepository.save(existingBlock);
     }
+
+    public void deleteBlock(int id){
+        AudioBlock ab=audioBlockRepository.findById(id).get();
+        ab.setIsDeleted(true);
+        audioBlockRepository.save(ab);
+    }
 }
