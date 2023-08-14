@@ -6,12 +6,14 @@ import com.ssafy.singstreet.project.db.repo.ProjectRepository;
 import com.ssafy.singstreet.studio.db.entity.AudioBlock;
 import com.ssafy.singstreet.studio.db.repo.AudioBlockRepository;
 import com.ssafy.singstreet.studio.model.AudioBlockRequestDTO;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AudioBlockService {
     private AudioBlockRepository audioBlockRepository;
     private ProjectRepository projectRepository;
@@ -20,6 +22,8 @@ public class AudioBlockService {
         return audioBlockRepository.findByProject_ProjectIdAndIsDeletedFalse(projectId);
     }
     public void addBlock(AudioBlockRequestDTO requestDTO, MultipartFile file){
+        System.out.println(requestDTO);
+        System.out.println(file);
         String s3url=amazonS3Service.uploadFile(file);
         AudioBlock audioBlock = null;
         audioBlock.setTestId(requestDTO.getTestId());
