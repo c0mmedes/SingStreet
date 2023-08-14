@@ -67,11 +67,14 @@ public class EntApiController {
 
     //Ent 수정
     @PutMapping("/ent/{entId}")
-    public ResponseEntity<Boolean> update(@RequestBody EntSaveRequestDto requestDto, @PathVariable int entId){
+    public ResponseEntity<Boolean> update(
+            @RequestPart(value = "requestDto", required = false) EntSaveRequestDto requestDto,
+            @PathVariable(value = "entId", required = false) int entId,
+            @RequestPart(value = "file", required = false) MultipartFile file ){
         log.debug("[update]EntSaveRequestDto = ", requestDto);
         log.debug("[update]requestEntId = ", entId);
 
-        return new ResponseEntity(entService.update(requestDto,entId),HttpStatus.OK);
+        return new ResponseEntity(entService.update(requestDto,entId,file),HttpStatus.OK);
     }
 
     //Ent삭제

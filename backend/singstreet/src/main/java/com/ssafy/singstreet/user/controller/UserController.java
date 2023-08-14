@@ -172,13 +172,13 @@ public class UserController {
 
    @PutMapping("/user")
    @ApiOperation(value="유저 수정하기", notes="유저를 수정하는 메서드입니다.")
-   public ResponseEntity<String> updateUser(@RequestParam Integer user_id,
-                                            @RequestParam String newNickname,
-                                            @RequestParam String newUserImg,
-                                            @RequestParam Character newGender,
-                                            @RequestParam String newPassword) {
+   public ResponseEntity<String> updateUser(@RequestPart(value = "user_id", required = false) Integer user_id,
+                                            @RequestPart(value = "newNickname", required = false) String newNickname,
+                                            @RequestPart(value = "newGender", required = false) Character newGender,
+                                            @RequestPart(value = "newPassword", required = false) String newPassword,
+                                            @RequestPart(value = "file", required = false) MultipartFile file) {
        try {
-           User updatedUser = userService.updateUser(user_id, newNickname, newUserImg, newGender, newPassword);
+           User updatedUser = userService.updateUser(user_id, newNickname, newGender, newPassword, file);
            return ResponseEntity.ok("User with ID " + user_id + " updated successfully.");
        } catch (UserNotFoundException e) {
            return ResponseEntity.notFound().build();

@@ -61,7 +61,7 @@ public class ProjectService {
 
         String s3Url = "";
 
-        if (file.getSize() != 0) {
+        if (file.getOriginalFilename() != "" || !file.getOriginalFilename().equals(null)) {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
@@ -125,7 +125,7 @@ public class ProjectService {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
         String s3Url = "";
 
-        if (file.getSize() == 0) {
+        if (file.getOriginalFilename() == "" || file.getOriginalFilename().equals(null)) {
             s3Url = project.getProjectImg();
         } else {
             s3Url = amazonS3Service.uploadFile(file);
@@ -153,7 +153,7 @@ public class ProjectService {
             saveTagList(newTagList, project);
         }
 
-        partRepository.deleteAll();
+        partRepository.deleteByProject(project);
 
 //        // 파트 수정
 //          for(int i=0; i<dto.getPartList().size(); i++){
