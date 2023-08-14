@@ -56,7 +56,7 @@ public class UserService {
 
         String s3Url = "";
 
-        if (file.getOriginalFilename() != "" || !file.getOriginalFilename().equals(null)) {
+        if (file.getOriginalFilename() != null || !file.getOriginalFilename().isEmpty()) {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
@@ -157,7 +157,7 @@ public class UserService {
         String s3Url = "";
 
         User user = userOptional.get();
-        if (file.getOriginalFilename() == "" || file.getOriginalFilename().equals(null)) {
+        if (file.getOriginalFilename() == null || file.getOriginalFilename().isEmpty()) {
             s3Url = user.getUserImg();
         } else {
             s3Url = amazonS3Service.uploadFile(file);

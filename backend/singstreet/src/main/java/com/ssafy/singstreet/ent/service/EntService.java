@@ -91,7 +91,7 @@ public class EntService {
 
         String s3Url = "";
 
-        if (file.getOriginalFilename() != "" || !file.getOriginalFilename().equals(null)) {
+        if (file.getOriginalFilename() != null || !file.getOriginalFilename().isEmpty()) {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
@@ -134,7 +134,7 @@ public class EntService {
 
         String s3Url = "";
 
-        if (file.getOriginalFilename() == "" || file.getOriginalFilename().equals(null)) {
+        if (file.getOriginalFilename() == null || file.getOriginalFilename().isEmpty()) {
             s3Url = ent.getEntImg();
         } else {
             s3Url = amazonS3Service.uploadFile(file);
