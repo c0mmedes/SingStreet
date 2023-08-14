@@ -31,6 +31,7 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 	// 수락 버튼 누르기
 	const onClickAccept = async (isAccept, projectId) => {
 		const accessToken = sessionStorage.getItem("accessToken");
+		console.log(`isAccept: ${isAccept}, projectId: ${projectId}`);
 		const res = await apiInstance.put(
 			"project/member/joinProject",
 			{
