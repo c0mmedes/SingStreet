@@ -3,7 +3,7 @@
   --curve: 40;
 }
 
-.cards {
+.HomeCards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
@@ -12,7 +12,7 @@
   list-style-type: none;
 }
 
-.card {
+.HomeCard {
   position: relative;
   display: block;
   height: 350px;
@@ -39,7 +39,7 @@
   transition: 0.2s ease-in-out;
 }
 
-.card:hover .card__overlay {
+.HomeCard:hover .card__overlay {
   transform: translateY(0);
 }
 
@@ -56,7 +56,7 @@
   height: 65px;
 }
 
-.card__arc {
+/* .card__arc {
   width: 80px;
   height: 80px;
   position: absolute;
@@ -67,19 +67,11 @@
 
 .card__arc path {
   fill: var(--surface-color);
-  /* d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z"); */
-}
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+} */
 
-.card:hover .card__header {
+.HomeCard:hover .card__header {
   transform: translateY(0);
-}
-
-.card__thumb {
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-left: 20px;
 }
 
 .card__title {

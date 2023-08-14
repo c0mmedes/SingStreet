@@ -49,23 +49,18 @@ const Ent = () => {
         </select>
       </form>
 
-      <ul className="cards">
+      <ul className="HomeCards">
         {/* 엔터리스트 */}
         {entList.map((ent) => (
           <li key={ent.entId}>
-            <a href="#" class="card">
+            <a href="#" class="HomeCard">
               <Link to={`/entmain/${ent.entId}/${ent.userId}/${ent.entName}`}>
                 <img src={ent.entImg} class="card__image" alt="" />
                 <div class="card__overlay">
                   <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                    {/* <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                       <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
+                    </svg> */}
                     <div class="card__header-text">
                       <h3 class="card__title">{ent.entName}</h3>
                       <span class="entMainCardTitle">
