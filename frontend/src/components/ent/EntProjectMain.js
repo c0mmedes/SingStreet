@@ -91,7 +91,6 @@ const EntProjectMain = ({ userInfo }) => {
           <div className="studioBtn">스튜디오 입장</div>
         </Link>
       </div>
-
       <h3>프로젝트 설명 : {project.projectInfo}</h3>
       <span class="card__status">
         {project.partList ? (
@@ -104,6 +103,12 @@ const EntProjectMain = ({ userInfo }) => {
           <div>파트가 없습니다.</div>
         )}
       </span>
+      <div>
+        <div className="pjtPartMember">
+          <span>파트</span>
+          <span>멤버</span>
+        </div>
+      </div>
       <div className="pjtClick">
         <div onClick={onClickDeleteProject}>프로젝트 삭제</div>
         <div onClick={onClickGoToProjectModify}>프로젝트 수정</div>
