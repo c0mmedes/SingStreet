@@ -97,7 +97,7 @@ const EntProjectMain = ({ userInfo }) => {
         {project.partList ? (
           project.partList.map((part) => (
             <b>
-              파트 : {part.partName} - {part.nickname}
+              {part.partName} - {part.nickname}
             </b>
           ))
         ) : (
