@@ -22,11 +22,11 @@ public class AudioBlockService {
     public void addBlock(AudioBlockRequestDTO requestDTO, MultipartFile file){
         String s3url=amazonS3Service.uploadFile(file);
         AudioBlock audioBlock = null;
-        audioBlock.setBlockId(requestDTO.getBlock_id());
-        audioBlock.setTestId(requestDTO.getTest_id());
+        audioBlock.setBlockId(requestDTO.getBlockId());
+        audioBlock.setTestId(requestDTO.getTestId());
         audioBlock.setLeft(requestDTO.getLeft().setScale(3, RoundingMode.HALF_UP));
         audioBlock.setTop(requestDTO.getTop().setScale(3, RoundingMode.HALF_UP));
-        Project project=projectRepository.findByProjectId(requestDTO.getProject_id());
+        Project project=projectRepository.findByProjectId(requestDTO.getProjectId());
         audioBlock.setProject(project);
         audioBlock.setNickname(requestDTO.getNickname());
         audioBlock.setFileLocation(s3url);
