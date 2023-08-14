@@ -9,6 +9,13 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@flaticon/flaticon-uicons@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/@flaticon/flaticon-uicons/-/flaticon-uicons-2.4.0.tgz"
+  integrity sha512-YCRztvWnLqnSBqah78H07CNp9oz7rxC2US/uGlaO/qPgSfkAgicFJH6x3UE2FYC9xL993cnyvByUueJaKTPviA==
+  optionalDependencies:
+    esbuild-linux-64 "^0.14.5"
+
 "@redux-devtools/extension@^3.2.5":
   version "3.2.5"
   resolved "https://registry.npmjs.org/@redux-devtools/extension/-/extension-3.2.5.tgz"

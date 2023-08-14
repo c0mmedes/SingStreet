@@ -84,6 +84,7 @@ const EntProjectMain = ({ userInfo }) => {
           </div>
         </div>
       </div>
+      <i class="fi fi-br-play-alt"></i>
       <Link
         to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
         <div className="studioBtn">스튜디오 입장</div>
