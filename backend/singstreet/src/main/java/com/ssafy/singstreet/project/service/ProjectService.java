@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +122,7 @@ public class ProjectService {
     }
 
     // 프로젝트 수정
+    @Transactional
     public Project updateProject(Integer projectId, ProjectSaveRequestDto dto, MultipartFile file) {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
         String s3Url = "";
