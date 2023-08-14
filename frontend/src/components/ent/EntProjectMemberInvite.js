@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
-import "../../css/ent/EntApplicants.css";
-import applicantlogo from "../../assets/asdf.png";
+
 const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   // axios 인스턴스
   const apiInstance = api();
@@ -36,10 +35,11 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
             res.data
             [
                 {
-                  "applId": 0,
-                  "createAt": "2023-08-07T07:34:01.357Z",
-                  "nickname": "string",
-                  "userId": 0
+                    "userId": 0
+                    "nickname": "string",
+                    "email": 0,
+                    "gender":남
+                    "createAt": "2023-08-07T07:34:01.357Z",   
                 }
             ] 
       */
@@ -54,24 +54,12 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   const onClickInviteButton = async () => {
     try {
         const accessToken = sessionStorage.getItem("accessToken");
-        const res = await apiInstance.get(`ent/member/${entId}}`, {
+        const res = await apiInstance.get(`ent/member/}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
           },
         });
-        /*
-              res.data
-              [
-                  {
-                    "applId": 0,
-                    "createAt": "2023-08-07T07:34:01.357Z",
-                    "nickname": "string",
-                    "userId": 0
-                  }
-              ] 
-        */
         console.log(res.data);
-        setEntMemberList(res.data);
       } catch {
         alert("엔터 멤버 목록 불러오기 실패!");
       }
