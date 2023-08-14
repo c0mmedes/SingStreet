@@ -17,4 +17,8 @@ public class ProjectInvitedResponseDto {
     private Integer entId;
     private LocalDateTime createdAt;
     private Boolean isAccept;
+    private String entName;
+    private String projectName;
+    private Integer projectLeaderId;
+    private String projectLeaderNickname;
 }

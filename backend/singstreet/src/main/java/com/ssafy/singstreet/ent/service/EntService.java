@@ -91,7 +91,7 @@ public class EntService {
 
         String s3Url = "";
 
-        if (file.getOriginalFilename() != null || !file.getOriginalFilename().isEmpty()) {
+        if (file != null) {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
@@ -134,14 +134,14 @@ public class EntService {
 
         String s3Url = "";
 
-        if (file.getOriginalFilename() == null || file.getOriginalFilename().isEmpty()) {
+        if (file == null) {
             s3Url = ent.getEntImg();
         } else {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
 
-        ent.update(requestDto.getEntName(),requestDto.getIsAutoAccepted(),requestDto.getEntInfo(),requestDto.getEntImg());
+        ent.update(requestDto.getEntName(),requestDto.getIsAutoAccepted(),requestDto.getEntInfo(),s3Url);
 
         if(requestDto.getEntTagList() != null){
             List<EntTag> currentTagList = tagRepository.findAllByEntId(ent);
