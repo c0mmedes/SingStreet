@@ -84,10 +84,13 @@ const EntProjectMain = ({ userInfo }) => {
           </div>
         </div>
       </div>
-      <Link
-        to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
-        <div className="studioBtn">스튜디오 입장</div>
-      </Link>
+      <div className="entStudioEnter">
+        <i class="fi fi-br-play-alt"></i>
+        <Link
+          to={`/entproject/studio/${entId}/${entMasterId}/${entName}/${projectId}`}>
+          <div className="studioBtn">스튜디오 입장</div>
+        </Link>
+      </div>
 
       <h3>프로젝트 설명 : {project.projectInfo}</h3>
       <span class="card__status">

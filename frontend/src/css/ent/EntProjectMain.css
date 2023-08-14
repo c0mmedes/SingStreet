@@ -1,3 +1,5 @@
+@import url("https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css");
+
 .pjtMainWrap {
   background-color: white;
   padding: 30px;
@@ -41,4 +43,15 @@
 
 .pjtClick {
   display: flex;
+}
+
+.entStudioEnter {
+  display: flex;
+}
+
+.fi-br-play-alt {
+  font-size: 35px;
+  margin-top: 4px;
+  margin-right: 10px;
+  color: red;
 }
