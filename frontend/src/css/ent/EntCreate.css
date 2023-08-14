@@ -22,7 +22,7 @@
   max-width: 100%;
   box-sizing: border-box;
   padding: 25px;
-  margin: 4% auto 0;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
@@ -146,10 +146,12 @@
   border-radius: 5px;
 }
 .form_wrapper input[type="submit"]:hover {
-  background: #ff5ce6;
+  background: black;
+  color: white;
 }
 .form_wrapper input[type="submit"]:focus {
-  background: #ff5ce6;
+  background: black;
+  color: white;
 }
 .form_wrapper input[type="checkbox"],
 .form_wrapper input[type="radio"] {
