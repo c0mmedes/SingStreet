@@ -61,7 +61,7 @@ public class ProjectService {
         User user = userRepository.findById(dto.getUserId()).orElse(null);
         String s3Url = "";
 
-        if (file.getOriginalFilename() != null || !file.getOriginalFilename().isEmpty()) {
+        if (!file.getOriginalFilename().isEmpty()) {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
@@ -126,7 +126,8 @@ public class ProjectService {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
         String s3Url = "";
 
-        if (file.getOriginalFilename() == null || file.getOriginalFilename().isEmpty()) {
+
+        if (file.getOriginalFilename().isEmpty()) {
             s3Url = project.getProjectImg();
         } else {
             s3Url = amazonS3Service.uploadFile(file);
