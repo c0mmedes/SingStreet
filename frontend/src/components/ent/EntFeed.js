@@ -4,7 +4,7 @@ import "../../css/ent/EntMain.css";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 
-const EntFeed = () => {
+const EntFeed = ({userInfo}) => {
   // 피드 쓰기
   const [content, setContent] = useState("");
   const [type, setType] = useState("");
