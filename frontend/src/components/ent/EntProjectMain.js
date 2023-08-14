@@ -66,6 +66,18 @@ const EntProjectMain = ({ userInfo }) => {
       alert("권한이 없습니다!");
     }
   };
+  // 프로젝트 멤버 초대로 가기
+  const onClickGoToProjectMemberInvite = () => {
+     // userInfo의 userId가 프로젝트 장의 userId와 일치하면
+     if (parseInt(project.userId) === parseInt(userInfo.userId)) {
+      // 프로젝트 멤버 초대로 이동
+      navigate(
+        `/entmain/${entId}/${entMasterId}/${entName}/entprojectmemberinvite/${projectId}`
+      );
+     } else {
+      alert("권한이 없습니다!");
+    }
+  };
 
   return (
     <div className="pjtMainWrap">
@@ -119,6 +131,11 @@ const EntProjectMain = ({ userInfo }) => {
           className="pjtClickbtn pjtClickbtnModify"
           onClick={onClickGoToProjectModify}>
           수정
+        </div>
+        <div
+          className="pjtClickbtn pjtClickbtnInvite"
+          onClick={onClickGoToProjectMemberInvite}>
+          멤버 초대
         </div>
       </div>
     </div>

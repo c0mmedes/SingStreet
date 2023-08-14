@@ -51,9 +51,6 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   };
 
   // 초대하기
-
-
-
   return (
     <div>
       
