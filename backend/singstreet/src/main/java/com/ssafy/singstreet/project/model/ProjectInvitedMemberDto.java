@@ -15,4 +15,5 @@ public class ProjectInvitedMemberDto {
     private Integer userId;
     private String nickname;
     private LocalDateTime createdAt;
+    private String entName;
 }

@@ -61,7 +61,7 @@ public class ProjectService {
         User user = userRepository.findById(dto.getUserId()).orElse(null);
         String s3Url = "";
 
-        if (!file.getOriginalFilename().isEmpty()) {
+        if (file != null) {
             s3Url = amazonS3Service.uploadFile(file);
         }
 
@@ -126,11 +126,10 @@ public class ProjectService {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
         String s3Url = "";
 
-
-        if (file.getOriginalFilename().isEmpty()) {
-            s3Url = project.getProjectImg();
-        } else {
+        if (file != null) {
             s3Url = amazonS3Service.uploadFile(file);
+        } else {
+            s3Url = project.getProjectImg();
         }
 
         // Project 엔티티의 update 메서드 호출하여 필드 업데이트
@@ -342,7 +341,6 @@ public class ProjectService {
         List<ProjectInvitedResponseDto> invitedProjectDtos = new ArrayList<>();
 
         List<ProjectInvited> invitedProjects = projectInvitedRepository.findByUserUserId(userId);
-        System.out.println(invitedProjects);
         List<Integer> projectIds = new ArrayList<>();
 
         for (ProjectInvited invited : invitedProjects) {
@@ -363,6 +361,10 @@ public class ProjectService {
                         .projectId(project.getProjectId())
                         .entId(project.getEnt().getEntId())
                         .createdAt(invited.getCreatedAt())
+                        .entName(project.getEnt().getEntName())
+                        .projectName(project.getProjectName())
+                        .projectLeaderId(project.getUser().getUserId())
+                        .projectLeaderNickname(project.getUser().getNickname())
                         // 나머지 필드도 동일하게 설정
                         .build();
 
