@@ -61,7 +61,7 @@ const Ent = () => {
                     {/* <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                       <path />
                     </svg> */}
-                    <div class="card__header-text">
+                    <div class="HomeCardHeaderText">
                       <h3 class="card__title">{ent.entName}</h3>
                       <span class="entMainCardTitle">
                         {ent.tagNameList.map((tagName) => (
@@ -70,7 +70,7 @@ const Ent = () => {
                       </span>
                     </div>
                   </div>
-                  <p class="card__description">{ent.entInfo}</p>
+                  <p class="HomeCardDescription">{ent.entInfo}</p>
                 </div>
               </Link>
             </a>

@@ -93,12 +93,10 @@
   color: white;
 }
 
-.card__description {
-  padding: 0 2em 2em;
+.HomeCardDescription {
+  padding: 30px;
   margin: 0;
   color: #d7bdca;
-  font-family: "MockFlowFont";
-  display: -webkit-box;
   overflow: hidden;
 }
 
@@ -197,4 +195,9 @@
 
 .entMainCardTitle b {
   margin-right: 4px;
+}
+
+.HomeCardHeaderText {
+  margin-left: 40px;
+  padding-top: 10px;
 }
