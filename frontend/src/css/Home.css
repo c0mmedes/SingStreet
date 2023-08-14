@@ -57,7 +57,7 @@
   background-color: #000000a6;
   transform: translateY(-100%);
   transition: 0.2s ease-in-out;
-  height: 65px;
+  height: 80px;
 }
 
 .card__arc {
@@ -106,7 +106,7 @@
 }
 
 .card__description {
-  padding: 0 2em 2em;
+  padding: 10px !important;
   margin: 0;
   color: #d7bdca;
   font-family: "MockFlowFont";

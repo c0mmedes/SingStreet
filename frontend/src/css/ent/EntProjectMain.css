@@ -61,10 +61,7 @@
   flex-direction: column;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 1.17em;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  color: black;
+  font-size: 15px;
 }
 
 .pjtPartMember {
