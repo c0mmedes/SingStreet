@@ -92,22 +92,23 @@ const EntProjectMain = ({ userInfo }) => {
         </Link>
       </div>
       <h3>프로젝트 설명 : {project.projectInfo}</h3>
-      <span class="card__status">
-        {project.partList ? (
-          project.partList.map((part) => (
-            <b>
-              {part.partName} - {part.nickname}
-            </b>
-          ))
-        ) : (
-          <div>파트가 없습니다.</div>
-        )}
-      </span>
+
       <div>
         <div className="pjtPartMember">
           <span>파트</span>
           <span>멤버</span>
         </div>
+        <span class="card__status">
+          {project.partList ? (
+            project.partList.map((part) => (
+              <div className="pjtPart_nickname">
+                {part.partName} - {part.nickname}
+              </div>
+            ))
+          ) : (
+            <div>파트가 없습니다.</div>
+          )}
+        </span>
       </div>
       <div className="pjtClick">
         <div onClick={onClickDeleteProject}>프로젝트 삭제</div>
