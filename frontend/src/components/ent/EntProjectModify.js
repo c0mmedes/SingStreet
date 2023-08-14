@@ -10,7 +10,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const [projectName, setProjectName] = useState("");
 	const [projectInfo, setProjectInfo] = useState("");
 	const [projectTagList, setProjectTagList] = useState("");
-	const [projectImg, setProjectImg] = useState("");
+	const [projectImg, setProjectImg] = useState(null);
 	const [isRecruited, setIsRecruited] = useState(true);
 	const [isVisible, setIsVisible] = useState(true);
 	const [partList, setPartList] = useState([{}]);
