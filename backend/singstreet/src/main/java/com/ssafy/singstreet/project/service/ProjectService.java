@@ -59,7 +59,6 @@ public class ProjectService {
         // Ent와 User 엔티티를 가져옴
         Ent ent = entRepository.findById(dto.getEntId()).orElse(null);
         User user = userRepository.findById(dto.getUserId()).orElse(null);
-
         String s3Url = "";
 
         if (file.getOriginalFilename() != "" || !file.getOriginalFilename().equals(null)) {
