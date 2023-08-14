@@ -17,7 +17,7 @@ public class AudioBlockService {
     private ProjectRepository projectRepository;
     private AmazonS3Service amazonS3Service;
     public List<AudioBlock> getBlocksByProjectId(int projectId){
-        return audioBlockRepository.findByProject_ProjectId(projectId);
+        return audioBlockRepository.findByProject_ProjectIdAndIsDeletedFalse(projectId);
     }
     public void addBlock(AudioBlockRequestDTO requestDTO, MultipartFile file){
         String s3url=amazonS3Service.uploadFile(file);

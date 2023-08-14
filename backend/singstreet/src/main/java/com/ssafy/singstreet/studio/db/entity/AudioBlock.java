@@ -2,6 +2,7 @@ package com.ssafy.singstreet.studio.db.entity;
 
 import com.ssafy.singstreet.common.BaseTimeEntity;
 import com.ssafy.singstreet.project.db.entity.Project;
+import com.ssafy.singstreet.user.db.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,14 @@ public class AudioBlock extends BaseTimeEntity {
 
     @Column(name = "nickname")
     private String nickname;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private User user;
+
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
