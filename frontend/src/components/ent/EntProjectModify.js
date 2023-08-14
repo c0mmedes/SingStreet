@@ -82,13 +82,13 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			newPartNameList.push(part.partName);
 			return null;
 		});
-		// 받아온 tagList를 문자열로 만들어서 
+		// 받아온 tagList를 문자열로 만들어서
 		let newTagList = "";
 		newProject.tagList.map((tag) => {
-			newTagList = newTagList.concat("#",tag);
+			newTagList = newTagList.concat("#", tag);
 			return null;
 		});
-		
+
 		setPartNameList(newPartNameList);
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
