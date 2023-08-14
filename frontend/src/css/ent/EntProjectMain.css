@@ -48,3 +48,10 @@
 .entStudioEnter {
   display: flex;
 }
+
+.fi-br-play-alt {
+  font-size: 35px;
+  margin-top: 4px;
+  margin-right: 10px;
+  color: red;
+}
