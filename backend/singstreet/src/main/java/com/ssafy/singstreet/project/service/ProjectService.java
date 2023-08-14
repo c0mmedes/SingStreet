@@ -59,7 +59,11 @@ public class ProjectService {
         Ent ent = entRepository.findById(dto.getEntId()).orElse(null);
         User user = userRepository.findById(dto.getUserId()).orElse(null);
 
-        String s3Url = amazonS3Service.uploadFile(file);
+        String s3Url = "";
+
+        if (file.getSize() != 0) {
+            s3Url = amazonS3Service.uploadFile(file);
+        }
 
         // ProjectSaveRequestDto를 Project 엔티티로 변환하고, Ent와 User를 설정
         Project project = Project.builder()
@@ -119,8 +123,13 @@ public class ProjectService {
     // 프로젝트 수정
     public Project updateProject(Integer projectId, ProjectSaveRequestDto dto, MultipartFile file) {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
+        String s3Url = "";
 
-        String s3Url = amazonS3Service.uploadFile(file);
+        if (file.getSize() == 0) {
+            s3Url = project.getProjectImg();
+        } else {
+            s3Url = amazonS3Service.uploadFile(file);
+        }
 
         // Project 엔티티의 update 메서드 호출하여 필드 업데이트
         project.update(
