@@ -15,12 +15,12 @@ const EntNav = ({ userInfo, myEntList }) => {
                   <span>내 정보</span>
                 </a>
               </Link>
-              <Link to={`/entmain/myentlist`}>
+              <Link to={`/mypage/myentlist`}>
                 <a className="menuLink" href="#">
                   <span>가입한 엔터</span>
                 </a>
               </Link>
-              <Link to={`/entmain/mymusic`}>
+              <Link to={`/mypage/mymusic`}>
                 <a className="menuLink" href="#">
                   <span>내 작품</span>
                 </a>
