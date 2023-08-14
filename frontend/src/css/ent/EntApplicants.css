@@ -39,10 +39,8 @@
   border: 2px solid black;
   font-size: 20px;
   border-radius: 8px;
-  /* width: 970px; */
   height: fit-content;
   padding: 20px;
-  padding-bottom: 0px;
 }
 .applicantHeader h1 {
   font-size: 50px;
