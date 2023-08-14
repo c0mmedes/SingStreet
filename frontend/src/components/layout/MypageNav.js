@@ -25,6 +25,11 @@ const EntNav = ({ userInfo, myEntList }) => {
                   <span>내 작품</span>
                 </a>
               </Link>
+              <Link to={`/mypage/mypageinvitedproject`}>
+                <a className="menuLink" href="#">
+                  <span>내가 받은 프로젝트 초대</span>
+                </a>
+              </Link>
             </div>
             <button class="entNavBtn show-more">탈퇴하기</button>
           </div>

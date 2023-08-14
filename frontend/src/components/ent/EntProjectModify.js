@@ -170,7 +170,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 				type: "application/json",
 			})
 		);
-		console.log(isRecruited);
+		console.log(formData);
 		// 비동기 통신
 		try {
 			const res = await apiInstance.post(`/project/${projectId}`, formData, {
