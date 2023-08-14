@@ -23,7 +23,7 @@ public class AudioBlockService {
         String s3url=amazonS3Service.uploadFile(file);
         AudioBlock audioBlock = null;
         audioBlock.setBlockId(requestDTO.getBlock_id());
-        audioBlock.setId(requestDTO.getId());
+        audioBlock.setTestId(requestDTO.getTest_id());
         audioBlock.setLeft(requestDTO.getLeft().setScale(3, RoundingMode.HALF_UP));
         audioBlock.setTop(requestDTO.getTop().setScale(3, RoundingMode.HALF_UP));
         Project project=projectRepository.findByProjectId(requestDTO.getProject_id());
@@ -48,7 +48,7 @@ public class AudioBlockService {
         existingBlock.setTop(updatedBlock.getTop());
         existingBlock.setFileLocation(updatedBlock.getFileLocation());
         existingBlock.setNickname(updatedBlock.getNickname());
-        existingBlock.setId(updatedBlock.getId());
+        existingBlock.setTestId(updatedBlock.getTestId());
         existingBlock.setFileLocation(updatedBlock.getFileLocation());
         // ... update other fields as necessary ...
 

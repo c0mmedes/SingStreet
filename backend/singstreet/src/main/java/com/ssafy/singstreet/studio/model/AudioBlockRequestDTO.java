@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 public class AudioBlockRequestDTO {
     public int block_id;
-    public int id;
+    public int test_id;
     public int project_id;
     public BigDecimal left;
     public BigDecimal top;

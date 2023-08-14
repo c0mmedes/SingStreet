@@ -1,5 +1,6 @@
 package com.ssafy.singstreet.studio.db.entity;
 
+import com.ssafy.singstreet.common.BaseTimeEntity;
 import com.ssafy.singstreet.project.db.entity.Project;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,21 +21,21 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "audioblock")
-public class AudioBlock {
+@Table(name = "audio_block")
+public class AudioBlock extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
     private Integer blockId;
 
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "test_id")
+    private Integer testId;
 
-    @Column(name = "left", precision = 15, scale = 3)  // Adjust precision as needed.
+    @Column(name = "audio_left", precision = 15, scale = 3)  // Adjust precision as needed.
     private BigDecimal left;
 
-    @Column(name = "top", precision = 15, scale = 3)  // Adjust precision as needed.
+    @Column(name = "audio_top", precision = 15, scale = 3)  // Adjust precision as needed.
     private BigDecimal top;
 
     @Column(name = "file_location")
@@ -44,8 +45,8 @@ public class AudioBlock {
     private String nickname;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
-    private Project project;  // Assuming there's a Project entity with a 'project_id' as primary key.
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 
     // Constructors, getters, setters, and other methods
 
