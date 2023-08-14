@@ -73,7 +73,14 @@
   color: black;
   display: flex;
   justify-content: space-between;
+  font-size: 20px;
 }
-
+.pjtinfotext {
+  border-bottom: 1px solid #0000001a;
+  padding-bottom: 15px;
+}
 .pjtinfoWrap {
+  background-color: #a9a9a930;
+  border-radius: 10px;
+  padding: 14px;
 }
