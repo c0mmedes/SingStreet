@@ -122,7 +122,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
 								</div>
 								<label>엔터 프로필</label>
 								<div className="input_field">
-									<input type="file" name="file" onChange={handleEntImg} required />
+									<input type="file" name="file" onChange={handleEntImg} />
 								</div>
 								<input className="button" type="submit" value="생성하기" />
 							</form>
