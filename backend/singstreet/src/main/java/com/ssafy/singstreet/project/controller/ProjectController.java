@@ -73,6 +73,7 @@ public class ProjectController {
     ) {
         // 토큰 검증 및 인증 실패 처리
         // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+        System.out.println(file);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
