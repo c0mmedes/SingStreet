@@ -27,8 +27,9 @@
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
   justify-content: space-between;
-  height: 400px;
+  height: 450px;
   flex-direction: column;
+  padding: 30px;
 }
 
 .info-item {
