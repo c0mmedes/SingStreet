@@ -65,6 +65,10 @@
 }
 
 .pjtPartMember {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
 }
 .pjtPart_nickname {
+  color: black;
 }
