@@ -82,6 +82,13 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			newPartNameList.push(part.partName);
 			return null;
 		});
+		// 받아온 tagList를 문자열로 만들어서 partList에 저장
+		let newTagList = "";
+		newProject.tagList.map((tag) => {
+			newTagList = newTagList.concat("#",tag);
+			return null;
+		});
+		
 		setPartNameList(newPartNameList);
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
@@ -90,7 +97,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setSingerName(newProject.singerName);
 		setIsRecruited(newProject.isRecruited);
 		setIsVisible(newProject.isVisible);
-		setPartList(newProject.partList);
+		setPartList(newTagList);
 		setUserList(newProject.userList);
 		console.log(isVisible);
 	};
