@@ -98,6 +98,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsRecruited(newProject.isRecruited);
 		setIsVisible(newProject.isVisible);
 		setPartList(newProject.partList);
+		console.log(newTagList);
 		setProjectTagList(newTagList);
 		setUserList(newProject.userList);
 		console.log(isVisible);
