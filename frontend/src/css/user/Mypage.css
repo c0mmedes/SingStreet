@@ -1,6 +1,6 @@
 .myPageMasterWrap {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   margin-left: 200px;
 }
 
@@ -26,7 +26,7 @@
   background-color: #fbfbfb;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 450px;
   flex-direction: column;
   padding: 30px;
