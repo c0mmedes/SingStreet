@@ -29,7 +29,10 @@ const EntCreate = ({ userInfo, isLogin }) => {
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
 	const navigate = useNavigate();
 
-	const onClickEntCreate = async function () {
+	// 생성하기 클릭
+	const onClickEntCreate = async function (e) {
+		e.preventDefault(); // 기본 제출 동작 막기
+
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 엔터 프로필 이미지와, entData를 함께 보내기 위한 작업
 		const formData = new FormData();
@@ -71,7 +74,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
 
 					<div className="row clearfix">
 						<div className="">
-							<form className="entCreateForm">
+							<form className="entCreateForm" onSubmit={onClickEntCreate}>
 								<label>엔터명</label>
 								<div className="input_field">
 									<input
@@ -121,12 +124,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
 								<div className="input_field">
 									<input type="file" name="file" onChange={handleEntImg} required />
 								</div>
-								<input
-									className="button"
-									type="submit"
-									value="생성하기"
-									onClick={onClickEntCreate}
-								/>
+								<input className="button" type="submit" value="생성하기" />
 							</form>
 						</div>
 					</div>
