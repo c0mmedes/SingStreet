@@ -38,7 +38,7 @@
   right: 0;
   z-index: 1;
   /* border-radius: calc(var(--curve) * 1px); */
-  background-color: var(--surface-color);
+  background-color: #000000a6;
   transform: translateY(100%);
   transition: 0.2s ease-in-out;
 }
@@ -114,4 +114,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+}
+.card:hover .card__header {
+  background-color: transparent;
 }
