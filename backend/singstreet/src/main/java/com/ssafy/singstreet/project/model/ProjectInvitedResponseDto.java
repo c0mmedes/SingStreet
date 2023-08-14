@@ -21,4 +21,5 @@ public class ProjectInvitedResponseDto {
     private String projectName;
     private Integer projectLeaderId;
     private String projectLeaderNickname;
+    private Integer projectMemberId; // 프로젝트 초대시 고유값
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Builder
@@ -15,5 +16,5 @@ public class ProjectInvitedRequestDto {
     private Integer projectId;
     private Integer userId;
     private Integer entId;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 }

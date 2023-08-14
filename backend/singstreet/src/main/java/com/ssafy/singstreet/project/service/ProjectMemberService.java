@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -86,32 +87,55 @@ public class ProjectMemberService {
     }
 
     // 프로젝트 초대 수락
-    public void acceptProjectInvite(ProjectJoinDto dto) {
+    public String acceptProjectInvite(ProjectJoinDto dto) {
         Boolean isAccepted = dto.getIsAccept(); // 수락여부
 
         User userId = userRepository.findById(dto.getUserId()).orElse(null);
         Project projectId = projectRepository.findById(dto.getProjectId()).orElse(null);
 
-        ProjectInvited projectInvited = (ProjectInvited) projectInvitedRepository.findByProjectProjectId(dto.getProjectId()).orElse(null);
+        ProjectMember member = projectMemberRepository.findByProjectMemberId_ProjectAndProjectMemberId_User(projectId, userId);
+
+
+        // member가 존재하면 이미 초대를 수락한 상태이므로, 추가 처리를 하지 않고 바로 리턴
+        if (member != null) {
+            return "이미 초대를 수락한 상태입니다.";
+        }
+
+        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndCreatedAt(userId, projectId, dto.getCreatedAt());
+//        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndProjectMemberId(userId, projectId, projectMemberId);
 
         // 확인일시 갱신
-        projectInvited.setConfirmDate(LocalDateTime.now());
+        try {
+            // 이후의 로직 처리
+        } catch (Exception e) {
+            e.printStackTrace(); // 예외 메시지 출력
+        }
+
+        projectInvited.updateConfirmDate();
 
         if (isAccepted) {
             // 초대 수락 -> 프로젝트 초대자 테이블 (승인여부, true)
             projectInvited.accept();
 
+            try {
+                ProjectMember projectMember = ProjectMember.builder()
+                        .projectMemberId(
+                                ProjectMemberId.builder()
+                                        .user(userId)
+                                        .project(projectId)
+                                        .build()
+                        )
+                        .createdAt(LocalDateTime.now())
+                        .isDeleted(false)
+                        .isLeader(false)
+                        .build();
+                projectMemberRepository.save(projectMember);
+                // 이후의 로직 처리
+            } catch (Exception e) {
+                e.printStackTrace(); // 예외 메시지 출력
+            }
             // 프로젝트 멤버 테이블에 멤버 추가
-            ProjectMember projectMember = ProjectMember.builder()
-                    .projectMemberId(
-                            ProjectMemberId.builder()
-                                    .user(userId)
-                                    .project(projectId)
-                                    .build()
-                    )
-                    .createdAt(LocalDateTime.now())
-                    .build();
-            projectMemberRepository.save(projectMember);
+
         } else {
             // 초대 거부 -> 프로젝트 초대자 테이블 (승인여부, false)
             projectInvited.reject();
@@ -119,7 +143,9 @@ public class ProjectMemberService {
 
         // 변경 사항을 저장
         projectInvitedRepository.save(projectInvited);
+        return "성공";
     }
+
 
     // 프로젝트 멤버 목록 조회
     public List<ProjectMemberDto> getProjectMembers(Integer projectId) {

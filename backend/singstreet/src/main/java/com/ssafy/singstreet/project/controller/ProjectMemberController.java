@@ -72,7 +72,6 @@ public class ProjectMemberController {
         }
 
         try {
-            System.out.println(dto.getUserId() + " " +  dto.getProjectId() + " "  + dto.getIsAccept());
             projectMemberService.acceptProjectInvite(dto);
             return ResponseEntity.ok("프로젝트 멤버 수락/거부가 처리되었습니다.");
         } catch (Exception e) {
