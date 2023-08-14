@@ -110,8 +110,16 @@ const EntProjectMain = ({ userInfo }) => {
         </span>
       </div>
       <div className="pjtClick">
-        <div onClick={onClickDeleteProject}>프로젝트 삭제</div>
-        <div onClick={onClickGoToProjectModify}>프로젝트 수정</div>
+        <div
+          className="pjtClickbtn pjtClickbtnDelete"
+          onClick={onClickDeleteProject}>
+          삭제
+        </div>
+        <div
+          className="pjtClickbtn pjtClickbtnModify"
+          onClick={onClickGoToProjectModify}>
+          수정
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@
   padding: 30px;
   min-width: 823px;
 }
+
 .pjtMainHeader {
   display: flex;
   margin-bottom: 20px;
@@ -16,22 +17,27 @@
   width: 250px;
   height: 250px;
 }
+
 .pjtMainHeaderRight {
   padding-left: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .isRecruitedTitle {
   font-size: 25px;
 }
+
 .singName {
   font-size: 80px;
   margin-top: 20px;
 }
+
 .pjtMainHeaderRight_btm {
   display: flex;
 }
+
 .singerName {
   margin-right: 10px;
 }
@@ -43,8 +49,28 @@
 
 .pjtClick {
   display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
-
+.pjtClickbtn {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 100;
+  font-size: 15px;
+  padding: 9px;
+  cursor: pointer;
+  width: 50px;
+  text-align: center;
+}
+.pjtClickbtnDelete {
+  background-color: #ff6262;
+}
+.pjtClickbtnModify {
+  background-color: #8c96ef;
+  margin-left: 10px;
+}
 .entStudioEnter {
   display: flex;
   border-bottom: 1px solid #00000021;
@@ -57,6 +83,7 @@
   margin-right: 10px;
   color: red;
 }
+
 .card__status {
   display: flex;
   flex-direction: column;
@@ -70,17 +97,21 @@
   display: flex;
   justify-content: space-between;
   font-size: 20px;
+  padding-top: 12px;
 }
+
 .pjtPart_nickname {
   color: black;
   display: flex;
   justify-content: space-between;
   font-size: 16px;
 }
+
 .pjtinfotext {
   border-bottom: 1px solid #0000001a;
   padding-bottom: 15px;
 }
+
 .pjtinfoWrap {
   background-color: #a9a9a930;
   border-radius: 10px;
