@@ -133,7 +133,7 @@ const EntProjectMain = ({ userInfo }) => {
           수정
         </div>
         <div
-          className="pjtClickbtn pjtClickbtnInvite"
+          className="pjtClickbtn pjtClickbtnModify"
           onClick={onClickGoToProjectMemberInvite}>
           멤버 초대
         </div>

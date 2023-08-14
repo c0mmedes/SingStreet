@@ -51,6 +51,32 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   };
 
   // 초대하기
+  const onClickInviteButton = async () => {
+    try {
+        const accessToken = sessionStorage.getItem("accessToken");
+        const res = await apiInstance.get(`ent/member/${entId}}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+          },
+        });
+        /*
+              res.data
+              [
+                  {
+                    "applId": 0,
+                    "createAt": "2023-08-07T07:34:01.357Z",
+                    "nickname": "string",
+                    "userId": 0
+                  }
+              ] 
+        */
+        console.log(res.data);
+        setEntMemberList(res.data);
+      } catch {
+        alert("엔터 멤버 목록 불러오기 실패!");
+      }
+  };
+
   return (
     <div>
       
