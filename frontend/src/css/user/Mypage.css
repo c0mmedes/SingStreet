@@ -22,10 +22,12 @@
   background-color: #fbfbfb;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
   border-radius: 5px;
-  /* justify-content: space-between; */
+
   height: 450px;
   flex-direction: column;
   padding: 30px;
+  /* 내 정보 레이아웃 오른쪽으로 옮기려 넣음 */
+  margin-left: 200px;
 }
 
 .info-item {

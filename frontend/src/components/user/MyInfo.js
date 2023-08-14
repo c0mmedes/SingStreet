@@ -5,7 +5,6 @@ const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
   return (
     <div className="user-my-info">
       <div className="user-my-info-wrap">
-        {" "}
         <div className="mypage-title">내 정보</div>
         <div className="myinfoContainer">
           <div className="myinfoLeft">
