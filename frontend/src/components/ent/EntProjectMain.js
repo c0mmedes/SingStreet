@@ -101,9 +101,9 @@ const EntProjectMain = ({ userInfo }) => {
         <span class="card__status">
           {project.partList ? (
             project.partList.map((part) => (
-              <b>
+              <div className="pjtPart_nickname">
                 {part.partName} - {part.nickname}
-              </b>
+              </div>
             ))
           ) : (
             <div>파트가 없습니다.</div>
