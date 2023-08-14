@@ -28,7 +28,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   const getEntMemberList = async () => {
     try {
       const accessToken = sessionStorage.getItem("accessToken");
-      const res = await apiInstance.get(`ent/member/${parseInt(entId)}}`, {
+      const res = await apiInstance.get(`ent/member/${entId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
         },
@@ -52,49 +52,34 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
     }
   };
 
-  const handleMemberSelection = (userId) => {
-    if (selectedMembers.includes(userId)) {
-      setSelectedMembers(selectedMembers.filter((id) => id !== userId));
-    } else {
-      setSelectedMembers([...selectedMembers, userId]);
-    }
-  };
-
-  const onClickInviteButton = async () => {
-    try {
-      const accessToken = sessionStorage.getItem("accessToken");
-      // selectedMembers에 선택된 멤버들의 userId가 들어있습니다.
-      // 이 정보를 이용하여 초대 등의 작업을 진행할 수 있습니다.
-      console.log("Selected Members: ", selectedMembers);
-      // 선택된 멤버들을 서버로 전송하거나 필요한 동작을 수행할 수 있습니다.
-      apiInstance.post(`project/member/`, { selectedMembers }, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
-      });
-    } catch {
-      alert("멤버 초대 실패!");
-    }
+  const onClickMemberInvite = async (userId) => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    const res = await apiInstance.post(`project/member/`,
+    {
+        userId: userId,
+        entId: entId,
+        projectId: projectId,
+    }, 
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+      },
+    });
   };
 
   return (
     <div>
-      <h2>엔터 멤버 초대</h2>
+      <h2>엔터 멤버 목록</h2>
       <ul>
         {entMemberList.map((member) => (
           <li key={member.userId}>
-            <label>
-              <input
-                type="checkbox"
-                checked={selectedMembers.includes(member.userId)}
-                onChange={() => handleMemberSelection(member.userId)}
-              />
-              {member.nickname} ({member.email})
-            </label>
+            {member.nickname}
+            <button onClick={() => onClickMemberInvite(member.userId)}>
+              초대
+            </button>
           </li>
         ))}
       </ul>
-      <button onClick={onClickInviteButton}>선택된 멤버 초대</button>
     </div>
   );
 };
