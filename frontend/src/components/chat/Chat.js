@@ -20,7 +20,7 @@ const Chat = ({userInfo}) => {
       const init = async () => {
         getChatList();
         // 웹소켓 연결
-        const socket = new WebSocket(`wss://i9b110.p.ssafy.io/backend/chatt/${entId}`);
+        const socket = new WebSocket(`wss://i9b110.p.ssafy.io/chatt/${entId}`);
         setWs(socket);
 
         // 메시지 수신 처리
