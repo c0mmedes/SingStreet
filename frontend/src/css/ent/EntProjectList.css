@@ -30,6 +30,8 @@
   height: inherit;
   border-radius: 5px;
   object-fit: cover;
+  position: relative;
+  z-index: 0;
 }
 
 .musicCard .card_title {
@@ -40,6 +42,9 @@
   font-size: 25px;
   margin-top: -50px;
   height: 40px;
+  background-color: black;
+  position: relative;
+  z-index: 1;
 }
 
 .musicCard:hover {
