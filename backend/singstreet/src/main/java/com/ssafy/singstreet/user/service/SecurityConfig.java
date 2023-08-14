@@ -31,13 +31,6 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-<<<<<<< HEAD
-//        configuration.setAllowedOrigins(Arrays.asList("http://i9b110.p.ssafy.io:3000"));
-//         configuration.setAllowedOrigins(Arrays.asList("https://localhost:3000"));
-=======
-         //configuration.setAllowedOrigins(Arrays.asList("http://i9b110.p.ssafy.io:3000"));
-         //configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
->>>>>>> cf5898a03961a133c03320ab5668297047dc47e8
         configuration.setAllowedOrigins(Arrays.asList("https://i9b110.p.ssafy.io","https://localhost:3000/","http://localhost:3000"));
 //        configuration.setAllowedOrigins(Arrays.asList());   //테스트용
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
