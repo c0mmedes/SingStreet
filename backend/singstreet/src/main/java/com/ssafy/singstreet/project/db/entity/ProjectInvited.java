@@ -50,4 +50,8 @@ public class ProjectInvited {
     public void reject() {
         this.isAccepted = false;
     }
+
+    public void updateConfirmDate() {
+        this.confirmDate = LocalDateTime.now();
+    }
 }

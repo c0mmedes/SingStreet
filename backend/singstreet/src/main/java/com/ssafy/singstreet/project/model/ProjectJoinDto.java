@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Builder
@@ -12,8 +13,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectJoinDto {
+    private Integer projectMemberId;
     private Integer projectId;
     private Integer userId;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private Boolean isAccept;
 }
