@@ -26,7 +26,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   const getEntMemberList = async () => {
     try {
       const accessToken = sessionStorage.getItem("accessToken");
-      const res = await apiInstance.get(`ent/member/${entId}}`, {
+      const res = await apiInstance.get(`ent/member/${parseInt(entId)}}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
         },
