@@ -11,7 +11,7 @@ const Ent = () => {
   const apiInstance = api();
   // ref
   const scrollRef = useRef();
-  
+
   useEffect(() => {
     getInitialEntList();
   }, []);
@@ -68,7 +68,7 @@ const Ent = () => {
                     />
                     <div class="card__header-text">
                       <h3 class="card__title">{ent.entName}</h3>
-                      <span class="card__status">
+                      <span class="entMainCardTitle">
                         {ent.tagNameList.map((tagName) => (
                           <b>#{tagName}</b>
                         ))}
