@@ -124,7 +124,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 	// 수정하기 버튼 클릭
 	const onClickProjectModify = async function (e) {
-		// e.preventDefault(); // 기본 제출 동작 막기
+		e.preventDefault(); // 기본 제출 동작 막기
 
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
@@ -241,13 +241,12 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 										placeholder="#뉴진스 #하입보이"
 										value={projectTagList}
 										onChange={handleProjectTagList}
-										required
 									/>
 								</div>
 
 								<label>프로젝트 프로필</label>
 								<div className="input_field">
-									<input type="file" name="file" onChange={handleProjectImg} required />
+									<input type="file" name="file" onChange={handleProjectImg} />
 								</div>
 								<div className="input_field">
 									<label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
