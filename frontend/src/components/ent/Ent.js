@@ -56,7 +56,7 @@ const Ent = () => {
             <a href="#" class="HomeCard">
               <Link to={`/entmain/${ent.entId}/${ent.userId}/${ent.entName}`}>
                 <img src={ent.entImg} class="card__image" alt="" />
-                <div class="card__overlay">
+                <div class="HomeCardOverlay">
                   <div class="card__header">
                     {/* <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                       <path />
