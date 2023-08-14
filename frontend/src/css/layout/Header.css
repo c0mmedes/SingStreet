@@ -1,8 +1,8 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
-* {
+/* * {
   font-weight: 600;
-}
+} */
 
 header {
   width: 100%;
@@ -10,6 +10,7 @@ header {
   background-color: transparent;
   justify-content: center; /* 수평 가운데 정렬 */
   margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 header img {

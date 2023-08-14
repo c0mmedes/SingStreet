@@ -34,7 +34,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
     // 엔터 프로필 이미지와, entData를 함께 보내기 위한 작업
     const formData = new FormData();
     formData.append("file", entImg);
-    const entData ={
+    const entData = {
       entInfo: entInfo,
       entName: entName,
       entTagList: entTagList,
@@ -48,17 +48,13 @@ const EntCreate = ({ userInfo, isLogin }) => {
     );
 
     try {
-      const res = await apiInstance.post(
-        "/ent",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-            "Content-Type": "multipart/form-data",
-            Accept: "application/json", // 추가
-          },
-        }
-      );
+      const res = await apiInstance.post("/ent", formData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json", // 추가
+        },
+      });
       if (res.data) {
         //정상적으로 만들어지면 true
         navigate("/ent");
@@ -72,7 +68,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
   };
   return (
     <div>
-      <div className="form_wrapper">
+      <div className="form_wrapper entCreateFormWrapper">
         <div className="form_container">
           <div className="title_container">
             <h2>엔터 신규 등록</h2>

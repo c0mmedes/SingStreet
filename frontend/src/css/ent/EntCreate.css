@@ -419,3 +419,7 @@
 .input_field input {
   margin-top: 10px;
 }
+
+.entCreateFormWrapper {
+  margin-top: 0;
+}
