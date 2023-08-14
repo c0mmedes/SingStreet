@@ -92,7 +92,7 @@ const EntProjectMain = ({ userInfo }) => {
         </Link>
       </div>
       <div className="pjtinfoWrap">
-        <h3>프로젝트 설명 : {project.projectInfo}</h3>
+        <h3 className="pjtinfotext">{project.projectInfo}</h3>
         <div className="pjtPartMember">
           <span>파트</span>
           <span>멤버</span>
