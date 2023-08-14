@@ -30,7 +30,7 @@ const EntProjectList = () => {
 
   return (
     <div>
-      <form className="entSearchWrap">
+      <form className="entSearchWrap entpjtSearchWrap">
         <input
           placeholder="진행중인 프로젝트 검색. . ."
           type="text"
