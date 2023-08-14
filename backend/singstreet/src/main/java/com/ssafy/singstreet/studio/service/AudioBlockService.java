@@ -22,7 +22,6 @@ public class AudioBlockService {
     public void addBlock(AudioBlockRequestDTO requestDTO, MultipartFile file){
         String s3url=amazonS3Service.uploadFile(file);
         AudioBlock audioBlock = null;
-        audioBlock.setBlockId(requestDTO.getBlockId());
         audioBlock.setTestId(requestDTO.getTestId());
         audioBlock.setLeft(requestDTO.getLeft().setScale(3, RoundingMode.HALF_UP));
         audioBlock.setTop(requestDTO.getTop().setScale(3, RoundingMode.HALF_UP));

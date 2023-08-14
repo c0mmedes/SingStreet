@@ -34,7 +34,10 @@ public class AudioBlockController {
 
     @PutMapping("block/save")
     @ApiOperation(value="블럭 위치를 저장하기")
-    public AudioBlock updateBlock(@RequestParam int id, @RequestBody AudioBlock updatedBlock) {
-        return audioBlockService.updateBlock(id, updatedBlock);
+    public void updateBlock(@RequestBody List<AudioBlock> updatedBlock) {
+        for(int i=0; i<updatedBlock.size(); i++){
+            int id=updatedBlock.get(i).getBlockId();
+            audioBlockService.updateBlock(id, updatedBlock.get(i));
+        }
     }
 }
