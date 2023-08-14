@@ -54,7 +54,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 	//
 	const onClickMemberInvite = async (userId) => {
 		const accessToken = sessionStorage.getItem("accessToken");
-		const res = await apiInstance.post(
+		const res = await apiInstance.put(
 			"project/member",
 			{
 				userId: userId,
