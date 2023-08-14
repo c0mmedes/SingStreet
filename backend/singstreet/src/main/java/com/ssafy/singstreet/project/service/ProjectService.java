@@ -126,7 +126,7 @@ public class ProjectService {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Invalid projectId."));
         String s3Url = "";
 
-        if (file.getOriginalFilename() == "" || file.getOriginalFilename().equals(null)) {
+        if (file.getOriginalFilename() == "" || file.getOriginalFilename() == null) {
             s3Url = project.getProjectImg();
         } else {
             s3Url = amazonS3Service.uploadFile(file);
