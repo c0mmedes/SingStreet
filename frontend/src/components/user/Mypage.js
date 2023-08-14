@@ -8,7 +8,7 @@ const Mypage = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
 
   console.log(userInfo);
   return (
-    <div>
+    <div className="myPageMasterWrap">
       <MypageNavContainer />
       {/* 하위 컴포넌트들이 Outlet에 뜰겁니다 */}
       <Outlet />
