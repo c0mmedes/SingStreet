@@ -71,4 +71,9 @@
 }
 .pjtPart_nickname {
   color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pjtinfoWrap {
 }
