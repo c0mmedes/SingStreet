@@ -4,7 +4,7 @@ import "../../css/chat/Chat.css"
 import OtherChat from "./OtherChat"
 import MyChat from './MyChat';
 
-const Chat = () => {
+const Chat = ({userInfo}) => {
     const [chatList, setChatList] = useState([]);
     const [page, setPage] = useState(0);
     const [isLastPage, setIsLastPage] = useState(false);

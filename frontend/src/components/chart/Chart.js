@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../layout/Footer";
 import "../../css/chart/Chart.css";
 import sampleuni from "../../assets/sampleuni.png";
-const chart = () => {
+const chart = ({userInfo}) => {
   return (
     <div className="chartContainer">
       <div className="chartCard">
