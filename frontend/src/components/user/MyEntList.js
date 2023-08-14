@@ -24,7 +24,7 @@ const MyEntList = ({
           {myEntList.map((myEnt) => (
             <li className="myEntListItem" key={myEnt.entId}>
               <div className="myEntListItemTitleWrap">
-                <img src={myEnt.entImg} alt="엔터프로필이미지" ></img>
+                <img src={myEnt.entImg} alt="엔터프로필이미지"></img>
                 <h3 class="myEntListItemTitle">엔터이름 : {myEnt.entName}</h3>
               </div>
             </li>

@@ -8,8 +8,10 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #f6f6f6;
-  margin-top: 50px;
+  /* 가입된 엔터목록 상자 옮기려고  */
+  /* margin-top: 50px; */
   padding-bottom: 50px;
+  margin-left: 200px;
 }
 
 .myEntListItem {
