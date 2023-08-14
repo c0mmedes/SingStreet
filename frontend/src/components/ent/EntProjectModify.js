@@ -138,7 +138,9 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		const accessToken = sessionStorage.getItem("accessToken");
 		// 프로젝트 프로필 이미지와, projectData를 함께 보내기 위한 작업
 		const formData = new FormData();
-		formData.append("file", projectImg);
+		if (projectImg) {
+			formData.append("file", projectImg);
+		}
 		const projectData = {
 			entId: parseInt(entId),
 			userId: parseInt(userInfo.userId),
