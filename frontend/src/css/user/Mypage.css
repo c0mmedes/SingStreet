@@ -1,5 +1,6 @@
 .myPageMasterWrap {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .user-my-info {
