@@ -22,7 +22,7 @@
   max-width: 100%;
   box-sizing: border-box;
   padding: 25px;
-  margin: 4% auto 0;
+  /* margin: 4% auto 0; */
   position: relative;
   z-index: 1;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
