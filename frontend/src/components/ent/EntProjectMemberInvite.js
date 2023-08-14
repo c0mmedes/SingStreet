@@ -51,7 +51,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			alert("엔터 멤버 목록 불러오기 실패!");
 		}
 	};
-	//
+	// 초대 버튼 누르기 함수
 	const onClickMemberInvite = async (userId) => {
 		const accessToken = sessionStorage.getItem("accessToken");
 		const res = await apiInstance.put(
