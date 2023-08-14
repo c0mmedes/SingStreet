@@ -1,3 +1,7 @@
+.myPageMasterWrap {
+  display: flex;
+}
+
 .user-my-info {
   display: flex;
   flex-direction: column;
