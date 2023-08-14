@@ -77,7 +77,6 @@ public class ProjectController {
         if (authentication == null || !authentication.isAuthenticated()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        System.out.println(file.getOriginalFilename());
         Project project = projectService.updateProject(projectId, dto, file);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
