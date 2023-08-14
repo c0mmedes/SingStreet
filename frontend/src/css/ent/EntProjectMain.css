@@ -50,6 +50,7 @@
 .pjtClick {
   display: flex;
   justify-content: flex-end;
+  margin-top: 10px;
 }
 .pjtClickbtn {
   border: none;
@@ -60,12 +61,15 @@
   font-size: 15px;
   padding: 9px;
   cursor: pointer;
+  width: 50px;
+  text-align: center;
 }
 .pjtClickbtnDelete {
-  background-color: #e11e1e;
+  background-color: #ff6262;
 }
 .pjtClickbtnModify {
-  background-color: #4959e9;
+  background-color: #8c96ef;
+  margin-left: 10px;
 }
 .entStudioEnter {
   display: flex;
