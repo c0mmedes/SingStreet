@@ -53,20 +53,25 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 	};
 	// 초대 버튼 누르기 함수
 	const onClickMemberInvite = async (userId) => {
-		const accessToken = sessionStorage.getItem("accessToken");
-		const res = await apiInstance.put(
-			"project/member",
-			{
-				userId: userId,
-				entId: entId,
-				projectId: projectId,
-			},
-			{
-				headers: {
-					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+		try {
+			const accessToken = sessionStorage.getItem("accessToken");
+			const res = await apiInstance.put(
+				"project/member",
+				{
+					userId: userId,
+					entId: entId,
+					projectId: projectId,
 				},
-			}
-		);
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+					},
+				}
+			);
+			alert("초대 성공");
+		} catch {
+			alert("초대 에러 발생");
+		}
 	};
 
 	return (
@@ -82,6 +87,8 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 					</li>
 				))}
 			</ul>
+			<h2>프로젝트 멤버 목록</h2>
+			
 		</div>
 	);
 };

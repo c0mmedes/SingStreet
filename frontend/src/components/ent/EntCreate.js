@@ -8,7 +8,7 @@ const EntCreate = ({ userInfo, isLogin }) => {
 	const [entTagList, setEntTagList] = useState("");
 	const [isAutoAceepted, setIsAutoAceepted] = useState(true);
 	const [entImg, setEntImg] = useState(null);
-  	const fileInputRef = useRef(null);
+	const fileInputRef = useRef(null);
 	const handleEntName = (e) => {
 		setEntName(e.target.value);
 	};
@@ -28,9 +28,9 @@ const EntCreate = ({ userInfo, isLogin }) => {
 		  fileInputRef.current.value = "";
 		  fileInputRef.current.removeAttribute("required");
 		}
-	  };
-	  
-	  const handleEntImg = (e) => {
+	};
+
+	const handleEntImg = (e) => {
 		const file = e.target.files[0];
 		if (file) {
 		  const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
@@ -47,8 +47,8 @@ const EntCreate = ({ userInfo, isLogin }) => {
 			fileInputRef.current.removeAttribute("required");
 		  }
 		}
-	  };
-	  
+	};
+
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -83,8 +83,13 @@ const EntCreate = ({ userInfo, isLogin }) => {
 					Accept: "application/json", // 추가
 				},
 			});
-			alert("엔터 생성 완료");
-			navigate("/ent");
+			console.log(res);
+			if (res.data === false) {
+				alert("중복된 엔터명입니다!");
+			} else {
+				alert("엔터 생성 완료");
+				navigate("/ent");
+			}
 		} catch (error) {
 			alert("엔터 생성 오류");
 		}
