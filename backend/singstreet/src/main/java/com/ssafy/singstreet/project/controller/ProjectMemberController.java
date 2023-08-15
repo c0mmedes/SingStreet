@@ -75,7 +75,7 @@ public class ProjectMemberController {
             projectMemberService.acceptProjectInvite(dto);
             return ResponseEntity.ok("프로젝트 멤버 수락/거부가 처리되었습니다.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("처리 중 오류가 발생했습니다.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("처리 중 오류가 발생했습니다.");
         }
     }
 
