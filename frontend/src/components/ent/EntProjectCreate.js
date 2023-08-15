@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntProjectCreate.css";
@@ -41,7 +41,71 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const handleIsVisible = (e) => {
 		setIsVisible(e.target.value);
 	};
-
+	const fileInputRef = useRef(null);
+  const handleImageDelete = () => {
+    setProjectImg(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+      fileInputRef.current.removeAttribute("required");
+    }
+  
+    // 이미지 미리보기 초기화
+    const imagePreview = document.querySelector(".image-preview-container");
+    if (imagePreview) {
+      imagePreview.innerHTML = `<img
+        class="defaultImage"
+        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        alt="기본 이미지"
+        height="120px"
+        width="120px"
+      />`;
+    }
+  };
+  
+	  
+	  const handleEntImg = (e) => {
+      const file = e.target.files[0];
+      if (file || file === null) {
+        if (file) {
+          const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
+            type: file.type,
+          });
+          setProjectImg(modifiedFile);
+    
+          if (fileInputRef.current) {
+            fileInputRef.current.setAttribute("required", "required");
+          }
+    
+          // 이미지 미리보기 업데이트
+          const imagePreview = document.querySelector(".image-preview-container");
+          if (imagePreview) {
+            imagePreview.innerHTML = `<img
+              class="previewImage"
+              src="${URL.createObjectURL(modifiedFile)}"
+              alt="엔터 프로필 이미지 미리보기"
+              height="120px"
+              width="120px"
+            />`;
+          }
+        } else {
+		setProjectImg(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.removeAttribute("required");
+          }
+    
+          // 이미지 미리보기 초기화
+          const imagePreview = document.querySelector(".image-preview-container");
+          if (imagePreview) {
+            imagePreview.innerHTML = "";
+          }
+        }
+    
+        // 파일 입력창에 선택한 파일을 설정
+        if (fileInputRef.current) {
+          fileInputRef.current.files = e.target.files;
+        }
+      }
+    };
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -222,10 +286,48 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 									/>
 								</div>
 
-								<label>프로젝트 프로필</label>
+								{/* <label>프로젝트 프로필</label>
 								<div className="input_field">
-									<input type="file" name="file" onChange={handleProjectImg} />
-								</div>
+									<input type="file" name="file" onChange={handleProjectImg} required />
+								</div> */}
+								<label>Project Img</label>
+                <div className="input_field" id="profileImgInputField">
+                  <div className="file-input">
+                    <input
+                      type="file"
+                      name="file"
+                      ref={fileInputRef}
+                      onChange={handleEntImg}
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                    />
+                    <span id="modifybutton" onClick={() => fileInputRef.current.click()}>
+                      이미지 변경
+                    </span>
+                    <span id="deletebutton" onClick={handleImageDelete}>
+                      삭제
+                    </span>
+                  </div>
+                  <div className="image-preview-container">
+                    {projectImg ? (
+                      <img
+                        className="previewImage"
+                        src={URL.createObjectURL(projectImg)}
+                        alt="프로젝트 프로필 이미지 미리보기"
+                        height="120px"
+                        width="120px"
+                      />
+                    ) : (
+                      <img
+                        className="defaultImage"
+                        src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
+                        alt="기본 이미지"
+                        height="120px"
+                        width="120px"
+                      />
+                    )}
+                  </div>
+                </div>
 								<div className="input_field">
 									<label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
 									<select name="isRecruited" value={isRecruited} onChange={handleIsRecruited}>
