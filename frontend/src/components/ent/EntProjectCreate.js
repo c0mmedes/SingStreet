@@ -142,6 +142,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					Accept: "application/json", // 추가
 				},
 			});
+			console.log(res.data);
 			if (res.data) {
 				//정상적으로 만들어지면 true
 				alert(`${projectName}가 생성되었습니다!`);
