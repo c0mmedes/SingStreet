@@ -17,7 +17,6 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   const [singerName, setSingerName] = useState("");
   const [userList, setUserList] = useState([0]);
 
-<<<<<<< HEAD
   const handleProjectName = (e) => {
     setProjectName(e.target.value);
   };
@@ -42,44 +41,14 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   const handleIsVisible = (e) => {
     setIsVisible(e.target.value);
   };
-
-  // axios 인스턴스 생성
-  const apiInstance = api();
-  // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
-  const navigate = useNavigate();
-=======
-	const handleProjectName = (e) => {
-		setProjectName(e.target.value);
-	};
-	const handleProjectInfo = (e) => {
-		setProjectInfo(e.target.value);
-	};
-	const handleProjectTagList = (e) => {
-		setProjectTagList(e.target.value);
-	};
-	const handleSingName = (e) => {
-		setSingName(e.target.value);
-	};
-	const handleSingerName = (e) => {
-		setSingerName(e.target.value);
-	};
-	const handleProjectImg = (e) => {
-		setProjectImg(e.target.files[0]);
-	};
-	const handleIsRecruited = (e) => {
-		setIsRecruited(e.target.value);
-	};
-	const handleIsVisible = (e) => {
-		setIsVisible(e.target.value);
-	};
-	const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null);
   const handleImageDelete = () => {
     setProjectImg(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
       fileInputRef.current.removeAttribute("required");
     }
-  
+
     // 이미지 미리보기 초기화
     const imagePreview = document.querySelector(".image-preview-container");
     if (imagePreview) {
@@ -92,56 +61,54 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
       />`;
     }
   };
-  
-	  
-	  const handleEntImg = (e) => {
-      const file = e.target.files[0];
-      if (file || file === null) {
-        if (file) {
-          const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
-            type: file.type,
-          });
-          setProjectImg(modifiedFile);
-    
-          if (fileInputRef.current) {
-            fileInputRef.current.setAttribute("required", "required");
-          }
-    
-          // 이미지 미리보기 업데이트
-          const imagePreview = document.querySelector(".image-preview-container");
-          if (imagePreview) {
-            imagePreview.innerHTML = `<img
+
+  const handleEntImg = (e) => {
+    const file = e.target.files[0];
+    if (file || file === null) {
+      if (file) {
+        const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
+          type: file.type,
+        });
+        setProjectImg(modifiedFile);
+
+        if (fileInputRef.current) {
+          fileInputRef.current.setAttribute("required", "required");
+        }
+
+        // 이미지 미리보기 업데이트
+        const imagePreview = document.querySelector(".image-preview-container");
+        if (imagePreview) {
+          imagePreview.innerHTML = `<img
               class="previewImage"
               src="${URL.createObjectURL(modifiedFile)}"
               alt="엔터 프로필 이미지 미리보기"
               height="120px"
               width="120px"
             />`;
-          }
-        } else {
-		setProjectImg(null);
-          if (fileInputRef.current) {
-            fileInputRef.current.removeAttribute("required");
-          }
-    
-          // 이미지 미리보기 초기화
-          const imagePreview = document.querySelector(".image-preview-container");
-          if (imagePreview) {
-            imagePreview.innerHTML = "";
-          }
         }
-    
-        // 파일 입력창에 선택한 파일을 설정
+      } else {
+        setProjectImg(null);
         if (fileInputRef.current) {
-          fileInputRef.current.files = e.target.files;
+          fileInputRef.current.removeAttribute("required");
+        }
+
+        // 이미지 미리보기 초기화
+        const imagePreview = document.querySelector(".image-preview-container");
+        if (imagePreview) {
+          imagePreview.innerHTML = "";
         }
       }
-    };
-	// axios 인스턴스 생성
-	const apiInstance = api();
-	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
-	const navigate = useNavigate();
->>>>>>> 464763403c65f45101b9a43d754c4514cc7bba30
+
+      // 파일 입력창에 선택한 파일을 설정
+      if (fileInputRef.current) {
+        fileInputRef.current.files = e.target.files;
+      }
+    }
+  };
+  // axios 인스턴스 생성
+  const apiInstance = api();
+  // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 내 엔터리스트를 불러오고, 엔터소속이 아니면 튕겨내기
@@ -318,41 +285,11 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
                   />
                 </div>
 
-<<<<<<< HEAD
-                <label>프로젝트 프로필</label>
-                <div className="input_field">
-                  <input type="file" name="file" onChange={handleProjectImg} />
-                </div>
-                <div className="input_field">
-                  <label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
-                  <select
-                    name="isRecruited"
-                    value={isRecruited}
-                    onChange={handleIsRecruited}>
-                    <option value="">프로젝트 멤버 모집 여부</option>
-                    <option value="true">모집 중</option>
-                    <option value="false">모집 마감</option>
-                  </select>
-                </div>
-                <div className="input_field">
-                  <label htmlFor="isVisible">
-                    엔터페이지에 프로젝트 공개 여부
-                  </label>
-                  <select
-                    name="isVisible"
-                    value={isVisible}
-                    onChange={handleIsVisible}>
-                    <option value="">엔터페이지에 프로젝트 공개 여부</option>
-                    <option value="true">공개</option>
-                    <option value="false">공개하지 않음</option>
-                  </select>
-                </div>
-=======
-								{/* <label>프로젝트 프로필</label>
+                {/* <label>프로젝트 프로필</label>
 								<div className="input_field">
 									<input type="file" name="file" onChange={handleProjectImg} required />
 								</div> */}
-								<label>Project Img</label>
+                <label>Project Img</label>
                 <div className="input_field" id="profileImgInputField">
                   <div className="file-input">
                     <input
@@ -361,9 +298,11 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
                       ref={fileInputRef}
                       onChange={handleEntImg}
                       accept="image/*"
-                      style={{ display: 'none' }}
+                      style={{ display: "none" }}
                     />
-                    <span id="modifybutton" onClick={() => fileInputRef.current.click()}>
+                    <span
+                      id="modifybutton"
+                      onClick={() => fileInputRef.current.click()}>
                       이미지 변경
                     </span>
                     <span id="deletebutton" onClick={handleImageDelete}>
@@ -390,23 +329,30 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
                     )}
                   </div>
                 </div>
-								<div className="input_field">
-									<label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
-									<select name="isRecruited" value={isRecruited} onChange={handleIsRecruited}>
-										<option value="">프로젝트 멤버 모집 여부</option>
-										<option value="true">모집 중</option>
-										<option value="false">모집 마감</option>
-									</select>
-								</div>
-								<div className="input_field">
-									<label htmlFor="isVisible">엔터페이지에 프로젝트 공개 여부</label>
-									<select name="isVisible" value={isVisible} onChange={handleIsVisible}>
-										<option value="">엔터페이지에 프로젝트 공개 여부</option>
-										<option value="true">공개</option>
-										<option value="false">공개하지 않음</option>
-									</select>
-								</div>
->>>>>>> 464763403c65f45101b9a43d754c4514cc7bba30
+                <div className="input_field">
+                  <label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
+                  <select
+                    name="isRecruited"
+                    value={isRecruited}
+                    onChange={handleIsRecruited}>
+                    <option value="">프로젝트 멤버 모집 여부</option>
+                    <option value="true">모집 중</option>
+                    <option value="false">모집 마감</option>
+                  </select>
+                </div>
+                <div className="input_field">
+                  <label htmlFor="isVisible">
+                    엔터페이지에 프로젝트 공개 여부
+                  </label>
+                  <select
+                    name="isVisible"
+                    value={isVisible}
+                    onChange={handleIsVisible}>
+                    <option value="">엔터페이지에 프로젝트 공개 여부</option>
+                    <option value="true">공개</option>
+                    <option value="false">공개하지 않음</option>
+                  </select>
+                </div>
 
                 <label>파트</label>
                 {renderPartInputs()}
