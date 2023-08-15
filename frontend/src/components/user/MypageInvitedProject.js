@@ -25,7 +25,7 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 			console.log(res.data);
 			setInvitedProjectList(res.data);
 		} catch {
-			alert("프로젝트 목록 가져오기 오류");
+			console.log("초대장 가져오기 오류(초대받은 프로젝트가 없음)");
 		}
 	};
 	// 수락 버튼 누르기

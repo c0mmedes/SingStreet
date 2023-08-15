@@ -71,7 +71,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			);
 			alert("초대 성공");
 		} catch {
-			alert("초대 에러 발생");
+			alert("에러: 이미 초대 받은 사람입니다!");
 		}
 	};
 	//[비동기] 프로젝트 멤버 목록 불러오는 함수
@@ -85,24 +85,12 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			});
 			console.log(res.data);
 			setProjectMemberList(res.data);
-			alert("프로젝트 멤버 목록 불러오기 성공");
 		} catch {
-			alert("불러오기 발생");
+			console.log("프로젝트 멤버 불러오기 에러 발생(프로젝트 멤버가 없습니다.)");
 		}
 	};
 	return (
 		<div>
-			<h2>엔터 멤버 목록</h2>
-			<ul>
-				{entMemberList.map((entMember) => (
-					<li key={entMember.userId}>
-						닉네임 : {entMember.nickname}
-						이메일 : {entMember.email}
-						성별 : {entMember.gender}
-						<button onClick={() => onClickMemberInvite(entMember.userId)}>초대</button>
-					</li>
-				))}
-			</ul>
 			<h2>프로젝트 멤버 목록</h2>
 			<ul>
 				{projectMemberList.map((projectMember) => (
@@ -110,6 +98,17 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 						닉네임 : {projectMember.user.nickname}
 						이메일 : {projectMember.user.email}
 						성별 : {projectMember.user.gender}
+					</li>
+				))}
+			</ul>
+			<h2>목록</h2>
+			<ul>
+				{entMemberList.map((entMember) => (
+					<li key={entMember.userId}>
+						닉네임 : {entMember.nickname}
+						이메일 : {entMember.email}
+						성별 : {entMember.gender}
+						<button onClick={() => onClickMemberInvite(entMember.userId)}>초대</button>
 					</li>
 				))}
 			</ul>
