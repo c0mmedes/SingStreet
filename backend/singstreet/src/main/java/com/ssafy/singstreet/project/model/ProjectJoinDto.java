@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectJoinDto {
-    private Integer projectMemberId;
+//    private Integer projectMemberId;
     private Integer projectId;
     private Integer userId;
     private LocalDateTime createdAt;

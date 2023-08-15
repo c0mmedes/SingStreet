@@ -100,20 +100,21 @@ public class ProjectMemberService {
 
     // 프로젝트 초대 수락
     public String acceptProjectInvite(ProjectJoinDto dto) {
+
+
         Boolean isAccepted = dto.getIsAccept(); // 수락여부
 
         User userId = userRepository.findById(dto.getUserId()).orElse(null);
         Project projectId = projectRepository.findById(dto.getProjectId()).orElse(null);
-
         ProjectMember member = projectMemberRepository.findByProjectMemberId_ProjectAndProjectMemberId_User(projectId, userId);
-
+//            ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProject(userId, projectId);
+        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProject(userId, projectId);
+            // 이후의 로직 처리
 
         // member가 존재하면 이미 초대를 수락한 상태이므로, 추가 처리를 하지 않고 바로 리턴
         if (member != null) {
             return "이미 초대를 수락한 상태입니다.";
         }
-
-        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProject(userId, projectId);
 //        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndCreatedAt(userId, projectId, dto.getCreatedAt());
 //        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndProjectMemberId(userId, projectId, projectMemberId);
 
@@ -170,6 +171,7 @@ public class ProjectMemberService {
                     .isLeader(projectmember.getIsLeader())
                     .isDeleted(projectmember.getIsDeleted())
                     .createdAt(projectmember.getCreatedAt())
+                    .user(projectmember.getUser())
                     .build();
             ProjectMemberDtos.add(responseDTO);
         }
