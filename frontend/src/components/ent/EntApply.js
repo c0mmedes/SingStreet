@@ -4,6 +4,7 @@ import { api } from "../../services/httpService";
 import "../../css/ent/EntCreate.css";
 
 const EntApply = ({ userInfo, isLogin }) => {
+<<<<<<< HEAD
   const [age, setAge] = useState("");
   const [artist, setArtist] = useState("");
   const [audioName, setAudioName] = useState("");
@@ -72,6 +73,77 @@ const EntApply = ({ userInfo, isLogin }) => {
           <div className="title_container">
             <h2>{entName}엔터 지원 하기</h2>
           </div>
+=======
+	const [age, setAge] = useState("");
+	const [artist, setArtist] = useState("");
+	const [audioName, setAudioName] = useState("");
+	const [content, setContent] = useState("");
+	const [entId, setEntId] = useState(useParams().entId);
+	const [hope, setHope] = useState("");
+	const [userId, setUserId] = useState(userInfo.userId);
+	const [entName, setEntName] = useState(useParams().entName);
+	const handleAge = (e) => {
+		setAge(e.target.value);
+	};
+	const handleArtist = (e) => {
+		setArtist(e.target.value);
+	};
+	const handleAudioName = (e) => {
+		setAudioName(e.target.value);
+	};
+	const handleContent = (e) => {
+		setContent(e.target.value);
+	};
+	const handleHope = (e) => {
+		setHope(e.target.value);
+	};
+	// 파라미터에서 가져오는 정보
+	const { entMasterId } = useParams();
+	// axios 인스턴스 생성
+	const apiInstance = api();
+	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+	const navigate = useNavigate();
+
+	const onClickEntApply = async function () {
+		const accessToken = sessionStorage.getItem("accessToken");
+		try {
+			const res = await apiInstance.post(
+				"/ent/apply",
+				{
+					age: age,
+					artist: artist,
+					audioName: audioName,
+					content: content,
+					entId: entId,
+					hope: hope,
+					userId: userId,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+					},
+				}
+			);
+			console.log(res.data);
+			if (res.data) {
+				//정상적으로 만들어지면 true
+				navigate(`/entmain/${entId}/${entMasterId}/${entName}`);
+				alert("엔터 지원 성공!");
+			} else {
+				alert("이미 지원한 엔터입니다!");
+			}
+		} catch (error) {
+			alert("엔터 지원 오류");
+		}
+	};
+	return (
+		<div>
+			<div className="form_wrapper">
+				<div className="form_container">
+					<div className="title_container">
+						<h2>{entName}엔터 지원 하기</h2>
+					</div>
+>>>>>>> 464763403c65f45101b9a43d754c4514cc7bba30
 
           <div className="row clearfix">
             <div className="">
