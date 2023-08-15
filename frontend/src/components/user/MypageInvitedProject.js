@@ -38,7 +38,6 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 		const res = await apiInstance.put(
 			"project/member/joinProject",
 			{
-				createdAt: createdAt,
 				userId: userInfo.userId,
 				projectId: projectId,
 				isAccept: isAccept,
