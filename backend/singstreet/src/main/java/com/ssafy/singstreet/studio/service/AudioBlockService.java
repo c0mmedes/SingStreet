@@ -3,64 +3,94 @@ package com.ssafy.singstreet.studio.service;
 import com.ssafy.singstreet.config.AmazonS3Service;
 import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.project.db.repo.ProjectRepository;
+import com.ssafy.singstreet.project.service.ProjectService;
 import com.ssafy.singstreet.studio.db.entity.AudioBlock;
 import com.ssafy.singstreet.studio.db.repo.AudioBlockRepository;
 import com.ssafy.singstreet.studio.model.AudioBlockRequestDTO;
+import com.ssafy.singstreet.studio.model.AudioBlockResponseDTO;
+import com.ssafy.singstreet.user.db.repo.UserRepository;
+import com.ssafy.singstreet.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class AudioBlockService {
-    private AudioBlockRepository audioBlockRepository;
-    private ProjectRepository projectRepository;
-    private AmazonS3Service amazonS3Service;
-    public List<AudioBlock> getBlocksByProjectId(int projectId){
-        return audioBlockRepository.findByProject_ProjectIdAndIsDeletedFalse(projectId);
+    private final AudioBlockRepository audioBlockRepository;
+    private final ProjectRepository projectRepository;
+    private final AmazonS3Service amazonS3Service;
+    private final UserRepository userRepository;
+
+
+    public List<AudioBlockResponseDTO> getBlocksByProjectId(int projectId){
+        System.out.println("ji");
+        Project project = projectRepository.findByProjectId(projectId);
+        List<AudioBlock> audioBlockList = audioBlockRepository.findByProject_ProjectIdAndIsDeletedFalse(project);
+
+        List<AudioBlockResponseDTO> audioBlockResponseDTOList = audioBlockList.stream().map(this::convertAudioToDto).collect(Collectors.toList());
+
+        return audioBlockResponseDTOList;
     }
-    public void addBlock(AudioBlockRequestDTO requestDTO, MultipartFile file){
+
+
+    public Boolean create(AudioBlockRequestDTO requestDTO, int userId, MultipartFile file){
         System.out.println(requestDTO);
         System.out.println(file);
-        String s3url=amazonS3Service.uploadFile(file);
-        AudioBlock audioBlock = null;
-        audioBlock.setTestId(requestDTO.getTestId());
-        audioBlock.setLeft(requestDTO.getLeft().setScale(3, RoundingMode.HALF_UP));
-        audioBlock.setTop(requestDTO.getTop().setScale(3, RoundingMode.HALF_UP));
-        Project project=projectRepository.findByProjectId(requestDTO.getProjectId());
-        audioBlock.setProject(project);
-        audioBlock.setNickname(requestDTO.getNickname());
-        audioBlock.setFileLocation(s3url);
-        audioBlockRepository.save(audioBlock);
-    }
 
+        String s3Url = "";
 
-    public AudioBlock updateBlock(int id, AudioBlock updatedBlock) {
-        Optional<AudioBlock> optionalBlock = audioBlockRepository.findById(id);
+        if (file == null) {
+            System.out.println("false");
+            return false;
+        }else{
+            s3Url = amazonS3Service.uploadFile(file);
 
-        if (!optionalBlock.isPresent()) {
-            throw new RuntimeException("AudioBlock not found with id: " + id);
         }
+        System.out.println(requestDTO);
+        AudioBlock audioBlock = AudioBlock.builder()
+                .project(projectRepository.findByProjectId(requestDTO.getProjectId()))
+                .user(userRepository.findByUserId(userId))
+                .testId(requestDTO.getTestId())
+                .left(requestDTO.getLeft())
+                .top(requestDTO.getTop())
+                .fileLocation(s3Url)
+                .build();
+        audioBlockRepository.save(audioBlock);
 
-        AudioBlock existingBlock = optionalBlock.get();
-
-        // Update fields. You can optimize this by only updating fields that are changed
-        existingBlock.setLeft(updatedBlock.getLeft());
-        existingBlock.setTop(updatedBlock.getTop());
-        existingBlock.setFileLocation(updatedBlock.getFileLocation());
-        existingBlock.setNickname(updatedBlock.getNickname());
-        existingBlock.setTestId(updatedBlock.getTestId());
-        existingBlock.setFileLocation(updatedBlock.getFileLocation());
-        // ... update other fields as necessary ...
-
-        return audioBlockRepository.save(existingBlock);
+        return true;
     }
 
-    public void deleteBlock(int id){
-        AudioBlock ab=audioBlockRepository.findById(id).get();
-        ab.setIsDeleted(true);
-        audioBlockRepository.save(ab);
+
+//    public AudioBlock updateBlock(int id, AudioBlock updatedBlock) {
+//        Optional<AudioBlock> optionalBlock = audioBlockRepository.findById(id);
+//
+//
+//        return audioBlockRepository.save(existingBlock);
+//    }
+
+    public Boolean deleteBlock(int blockId){
+        AudioBlock audioBlock = audioBlockRepository.findByBlockId(blockId);
+        audioBlock.delete();
+        return true;
+    }
+
+
+    public AudioBlockResponseDTO convertAudioToDto(AudioBlock audioBlock){
+        return AudioBlockResponseDTO.builder()
+                .blockId(audioBlock.getBlockId())
+                .userId(audioBlock.getUser().getUserId())
+                .nickname(audioBlock.getUser().getNickname())
+                .testId(audioBlock.getTestId())
+                .projectId(audioBlock.getProject().getProjectId())
+                .left(audioBlock.getLeft())
+                .top(audioBlock.getTop())
+                .file_location(audioBlock.getFileLocation())
+                .build();
     }
 }

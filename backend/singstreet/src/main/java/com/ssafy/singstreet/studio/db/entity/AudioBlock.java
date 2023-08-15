@@ -3,25 +3,16 @@ package com.ssafy.singstreet.studio.db.entity;
 import com.ssafy.singstreet.common.BaseTimeEntity;
 import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.user.db.entity.User;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
+@DynamicInsert //default를 위헤
 @Table(name = "audio_block")
 public class AudioBlock extends BaseTimeEntity {
 
@@ -52,11 +43,30 @@ public class AudioBlock extends BaseTimeEntity {
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 
-
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    // Constructors, getters, setters, and other methods
+    ///////////////////////////////////////////
+    @PrePersist
+    private void prePersist(){
+        if (isDeleted == null){
+            isDeleted = false;
+        }
+    }
+
+    @Builder
+    public AudioBlock(Project project, User user, int testId, BigDecimal left, BigDecimal top, String fileLocation ){
+        this.project = project;
+        this.user = user;
+        this.testId = testId;
+        this.left =left;
+        this.top = top;
+        this.fileLocation = fileLocation;
+    }
+
+    public void delete(){
+        this.isDeleted = true;
+    }
 
 }
