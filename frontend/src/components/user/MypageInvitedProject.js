@@ -29,7 +29,7 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
       console.log(res.data);
       setInvitedProjectList(res.data);
     } catch {
-      console.log("초대장 가져오기 오류(초대받은 프로젝트가 없음)");
+      alert("프로젝트 목록 가져오기 오류");
     }
   };
   // 수락 버튼 누르기
@@ -57,7 +57,7 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
   return (
     <div className="myEntListContainer">
       <div className="myEntListWrap">
-        <h1>초대 받은 프로젝트</h1>
+        <h1>프로젝트 제의</h1>
         {/* 초대장 불러오기 */}
         {invitedProjectList.filter(
           (project) => project.isAccept === null
