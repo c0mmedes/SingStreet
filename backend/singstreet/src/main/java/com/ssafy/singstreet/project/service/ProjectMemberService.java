@@ -63,11 +63,23 @@ public class ProjectMemberService {
         Ent entId = entRepository.findById(dto.getEntId()).orElse(null);
         User userId = userRepository.findById(dto.getUserId()).orElse(null);
         Project projectId = projectRepository.findById(dto.getProjectId()).orElse(null);
+        List<ProjectInvited> projectInviteds = null;
 
-        Boolean isAccepted = projectInvitedRepository.existsByUserUserIdAndIsAcceptedIsTrue(userId.getUserId());
-        // isAccepted가 true가 아닐 때만 초대 가능
-        if(isAccepted == true) return null;
+        ProjectMember member = projectMemberRepository.findByProjectMemberId_ProjectAndProjectMemberId_User(projectId, userId);
 
+        if (member != null) {
+            return null;
+        }
+
+        if (userId != null && projectId != null) {
+            projectInviteds = projectInvitedRepository.findByUserUserIdAndProjectProjectId(userId.getUserId(), projectId.getProjectId());
+        }
+//        System.out.println(projectInviteds);
+//        Boolean isAccepted = projectInvitedRepository.existsByUserUserIdAndIsAcceptedIsTrue(userId.getUserId());
+//        System.out.println(isAccepted);
+//
+//        // isAccepted가 true가 아닐 때만 초대 가능
+        if(!projectInviteds.isEmpty()) return null;
 
         if (entId == null || userId == null || projectId == null) {
             // entId 또는 userId에 해당하는 Ent 또는 User가 존재하지 않는 경우 처리
@@ -101,15 +113,9 @@ public class ProjectMemberService {
             return "이미 초대를 수락한 상태입니다.";
         }
 
-        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndCreatedAt(userId, projectId, dto.getCreatedAt());
+        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProject(userId, projectId);
+//        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndCreatedAt(userId, projectId, dto.getCreatedAt());
 //        ProjectInvited projectInvited = projectInvitedRepository.findByUserAndProjectAndProjectMemberId(userId, projectId, projectMemberId);
-
-        // 확인일시 갱신
-        try {
-            // 이후의 로직 처리
-        } catch (Exception e) {
-            e.printStackTrace(); // 예외 메시지 출력
-        }
 
         projectInvited.updateConfirmDate();
 
@@ -142,7 +148,7 @@ public class ProjectMemberService {
         }
 
         // 변경 사항을 저장
-        projectInvitedRepository.save(projectInvited);
+        projectInvitedRepository.delete(projectInvited);
         return "성공";
     }
 
