@@ -25,22 +25,27 @@ const EntCreate = ({ userInfo, isLogin }) => {
 	const handleImageDelete = () => {
 		setEntImg(null);
 		if (fileInputRef.current) {
-			fileInputRef.current.value = null; // Reset file input
-			fileInputRef.current.removeAttribute("required"); // Remove required attribute
+		  fileInputRef.current.value = "";
+		  fileInputRef.current.removeAttribute("required");
 		}
 	};
 
 	const handleEntImg = (e) => {
 		const file = e.target.files[0];
 		if (file) {
-			const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
-				type: file.type,
-			});
-			setEntImg(modifiedFile);
-
-			if (fileInputRef.current) {
-				fileInputRef.current.setAttribute("required", "required"); // Add required attribute
-			}
+		  const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
+			type: file.type,
+		  });
+		  setEntImg(modifiedFile);
+	  
+		  if (fileInputRef.current) {
+			fileInputRef.current.setAttribute("required", "required");
+		  }
+		} else {
+		  setEntImg(null);
+		  if (fileInputRef.current) {
+			fileInputRef.current.removeAttribute("required");
+		  }
 		}
 	};
 
@@ -146,53 +151,51 @@ const EntCreate = ({ userInfo, isLogin }) => {
 									<div className="select_arrow"></div>
 								</div>
 								<label>엔터 프로필</label>
-								<div className="input_field" id="entImgInputField">
-									<div className="file-input">
-										<input
-											type="file"
-											name="file"
-											ref={fileInputRef}
-											onChange={handleEntImg}
-											accept="image/*"
-											style={{ display: "none" }} // 숨김
-											required
-										/>
-										<span id="modifybutton" onClick={() => fileInputRef.current.click()}>
-											이미지 변경
-										</span>
-										<span id="deletebutton" onClick={handleImageDelete}>
-											삭제
-										</span>
-									</div>
-
-									<div className="image-preview-container">
-										{entImg ? (
-											<img
-												className="previewImage"
-												src={URL.createObjectURL(entImg)}
-												alt="엔터 프로필 이미지 미리보기"
-												height="120px"
-												width="120px"
-											/>
-										) : (
-											<img
-												className="defaultImage"
-												src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg" // 기본 이미지의 경로를 지정해주세요.
-												alt="기본 이미지"
-												height="120px"
-												width="120px"
-											/>
-										)}
-									</div>
-								</div>
-								<input className="button" type="submit" value="생성하기" />
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+                <div className="input_field" id="entImgInputField">
+                  <div className="file-input">
+                    <input
+                      type="file"
+                      name="file"
+                      ref={fileInputRef}
+                      onChange={handleEntImg}
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                    />
+                    <span id="modifybutton" onClick={() => fileInputRef.current.click()}>
+                      이미지 변경
+                    </span>
+                    <span id="deletebutton" onClick={handleImageDelete}>
+                      삭제
+                    </span>
+                  </div>
+                  <div className="image-preview-container">
+                    {entImg ? (
+                      <img
+                        className="previewImage"
+                        src={URL.createObjectURL(entImg)}
+                        alt="엔터 프로필 이미지 미리보기"
+                        height="120px"
+                        width="120px"
+                      />
+                    ) : (
+                      <img
+                        className="defaultImage"
+                        src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
+                        alt="기본 이미지"
+                        height="120px"
+                        width="120px"
+                      />
+                    )}
+                  </div>
+                </div>
+                <input className="button" type="submit" value="생성하기" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 //  엔터명 (중복확인) 엔터 공개 설정 (자동가입) / 엔터 소개 / 해시태그 / 엔터로고
 export default EntCreate;
