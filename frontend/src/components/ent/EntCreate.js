@@ -79,8 +79,12 @@ const EntCreate = ({ userInfo, isLogin }) => {
 				},
 			});
 			console.log(res);
-			// alert("엔터 생성 완료");
-			// navigate("/ent");
+			if (res.data === false) {
+				alert("중복된 엔터명입니다!");
+			} else {
+				alert("엔터 생성 완료");
+				navigate("/ent");
+			}
 		} catch (error) {
 			alert("엔터 생성 오류");
 		}
