@@ -1,6 +1,9 @@
 package com.ssafy.singstreet.studio.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -8,10 +11,8 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AudioBlockRequestDTO {
-    public int testId;
-    public int projectId;
+public class AudioBlockUpdateResponseDTO {
+    public Integer blockId;
     public BigDecimal left;
     public BigDecimal top;
-    public String blockName;
 }

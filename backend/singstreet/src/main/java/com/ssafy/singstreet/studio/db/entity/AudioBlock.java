@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @NoArgsConstructor
-@DynamicInsert //default를 위헤
+@DynamicInsert // default
 @Table(name = "audio_block")
 public class AudioBlock extends BaseTimeEntity {
 
@@ -23,6 +23,9 @@ public class AudioBlock extends BaseTimeEntity {
 
     @Column(name = "test_id")
     private Integer testId;
+
+    @Column(name = "block_name", nullable = false)
+    private String blockName;
 
     @Column(name = "audio_left", precision = 15, scale = 3)  // Adjust precision as needed.
     private BigDecimal left;
@@ -56,17 +59,26 @@ public class AudioBlock extends BaseTimeEntity {
     }
 
     @Builder
-    public AudioBlock(Project project, User user, int testId, BigDecimal left, BigDecimal top, String fileLocation ){
+    public AudioBlock(Project project, User user, int testId, BigDecimal left, BigDecimal top, String fileLocation, String blockName){
         this.project = project;
         this.user = user;
         this.testId = testId;
         this.left =left;
         this.top = top;
         this.fileLocation = fileLocation;
+        this.blockName = blockName;
     }
 
     public void delete(){
         this.isDeleted = true;
     }
 
+    public void updateBlock(BigDecimal left, BigDecimal top) {
+        this.left = left;
+        this.top = top;
+    }
+
+    public void updateBlock(String blockName) {
+        this.blockName = blockName;
+    }
 }

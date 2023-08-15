@@ -6,8 +6,7 @@ import com.ssafy.singstreet.project.db.repo.ProjectRepository;
 import com.ssafy.singstreet.project.service.ProjectService;
 import com.ssafy.singstreet.studio.db.entity.AudioBlock;
 import com.ssafy.singstreet.studio.db.repo.AudioBlockRepository;
-import com.ssafy.singstreet.studio.model.AudioBlockRequestDTO;
-import com.ssafy.singstreet.studio.model.AudioBlockResponseDTO;
+import com.ssafy.singstreet.studio.model.*;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,26 +60,18 @@ public class AudioBlockService {
                 .left(requestDTO.getLeft())
                 .top(requestDTO.getTop())
                 .fileLocation(s3Url)
+                .blockName(requestDTO.blockName)
                 .build();
         audioBlockRepository.save(audioBlock);
 
         return true;
     }
 
-
-//    public AudioBlock updateBlock(int id, AudioBlock updatedBlock) {
-//        Optional<AudioBlock> optionalBlock = audioBlockRepository.findById(id);
-//
-//
-//        return audioBlockRepository.save(existingBlock);
-//    }
-
     public Boolean deleteBlock(int blockId){
         AudioBlock audioBlock = audioBlockRepository.findByBlockId(blockId);
         audioBlock.delete();
         return true;
     }
-
 
     public AudioBlockResponseDTO convertAudioToDto(AudioBlock audioBlock){
         return AudioBlockResponseDTO.builder()
@@ -90,7 +82,38 @@ public class AudioBlockService {
                 .projectId(audioBlock.getProject().getProjectId())
                 .left(audioBlock.getLeft())
                 .top(audioBlock.getTop())
+                .blockName(audioBlock.getBlockName())
                 .file_location(audioBlock.getFileLocation())
                 .build();
+    }
+
+    public void updateBlock(List<AudioBlockUpdateResponseDTO> blockList) {
+        // blockId를 받아서 그 blockId에 해당하는 left, top을 업데이트
+        for (int i = 0; i < blockList.size(); i++) {
+            Integer blockId = blockList.get(i).getBlockId();
+            AudioBlock audioBlock = audioBlockRepository.findByBlockId(blockId);
+            audioBlock.updateBlock(blockList.get(i).getLeft(), blockList.get(i).getTop());
+            audioBlockRepository.save(audioBlock);
+        }
+    }
+
+    public void updateBlockName(AudioBlockNameUpdateResponseDTO dto) {
+        // blockId를 받아서 그 blockId에 해당하는 blockName을 업데이트
+        AudioBlock audioBlock = audioBlockRepository.findByBlockId(dto.getBlockId());
+        audioBlock.updateBlock(dto.blockName);
+        audioBlockRepository.save(audioBlock);
+    }
+
+
+    public List<AudioBlockResponseDTO> getAnotherBlock(AudioAnotherBlockRequestDto dto) {
+        // dto.getCount 에서 갯수가져오고 project
+        // projectId가 같으면서 delete가 false인것중에 전체에서 dto.getCount보다 뒤에있는 거
+        List<AudioBlock> dtos = audioBlockRepository.findByProjectIdAndIsDeletedFalseWithOffset(dto.getProjectId(), dto.getNumber());
+        List<AudioBlockResponseDTO> list = new ArrayList<>();
+
+        for (int i = 0; i < dtos.size(); i++){
+            list.add(convertAudioToDto(dtos.get(i)));
+        }
+        return list;
     }
 }
