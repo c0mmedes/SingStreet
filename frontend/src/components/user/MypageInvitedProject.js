@@ -54,32 +54,30 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 			<div className="myEntListWrap">
 				<h1>초대 받은 프로젝트</h1>
 				<div className="myEntListItemContainer">
-					{invitedProjectList.map(
-						(project) =>
-							// project.isAccept가 null이 아닐 때만 렌더링
-							project.isAccept !== null && (
-								<li className="myEntListItem" key={project.entId}>
-									<div className="myEntListItemTitleWrap">
-										<h3 className="myEntListItemTitle">엔터 이름 : {project.entName}</h3>
-										<h3 className="myEntListItemTitle">프로젝트 이름 : {project.projectName}</h3>
-										<button
-											onClick={() => {
-												onClickAccept(true, project.projectId, project.createdAt);
-											}}
-										>
-											수락
-										</button>
-										<button
-											onClick={() => {
-												onClickAccept(false, project.projectId, project.createdAt);
-											}}
-										>
-											거절
-										</button>
-									</div>
-								</li>
-							)
-					)}
+					{invitedProjectList
+						.filter((project) => project.isAccept !== null)
+						.map((project) => (
+							<li className="myEntListItem" key={project.entId}>
+								<div className="myEntListItemTitleWrap">
+									<h3 className="myEntListItemTitle">엔터 이름 : {project.entName}</h3>
+									<h3 className="myEntListItemTitle">프로젝트 이름 : {project.projectName}</h3>
+									<button
+										onClick={() => {
+											onClickAccept(true, project.projectId, project.createdAt);
+										}}
+									>
+										수락
+									</button>
+									<button
+										onClick={() => {
+											onClickAccept(false, project.projectId, project.createdAt);
+										}}
+									>
+										거절
+									</button>
+								</div>
+							</li>
+						))}
 				</div>
 			</div>
 		</div>
