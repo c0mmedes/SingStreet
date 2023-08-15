@@ -1,0 +1,15 @@
+.invitePjtBtn {
+  cursor: pointer;
+  width: 100px;
+  background-color: transparent;
+  border: 1px solid black;
+}
+.invitePjtBtnOk {
+  margin-right: 5px;
+}
+.invitePjtBtnOkNo {
+}
+
+.invitePjtWrap {
+  margin-right: 40px;
+}
