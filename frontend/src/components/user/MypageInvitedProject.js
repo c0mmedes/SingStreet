@@ -53,10 +53,10 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 		<div className="myEntListContainer">
 			<div className="myEntListWrap">
 				<h1>초대 받은 프로젝트</h1>
-				<div className="myEntListItemContainer">
-					{invitedProjectList
-						.filter((project) => project.isAccept !== null)
-						.map((project) => (
+				{invitedProjectList
+					.filter((project) => project.isAccept !== null)
+					.map((project) => (
+						<div className="myEntListItemContainer">
 							<li className="myEntListItem" key={project.entId}>
 								<div className="myEntListItemTitleWrap">
 									<h3 className="myEntListItemTitle">엔터 이름 : {project.entName}</h3>
@@ -77,8 +77,8 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 									</button>
 								</div>
 							</li>
-						))}
-				</div>
+						</div>
+					))}
 			</div>
 		</div>
 	);
