@@ -54,7 +54,7 @@ const MypageInvitedProject = ({ userInfo, myEntList }) => {
 				<h1>초대 받은 프로젝트</h1>
 				{/* 초대장 불러오기 */}
 				{invitedProjectList
-					.filter((project) => project.isAccept !== null)
+					.filter((project) => project.isAccept === null)
 					.map((project) => (
 						<div className="myEntListItemContainer">
 							<li className="myEntListItem" key={project.entId}>
