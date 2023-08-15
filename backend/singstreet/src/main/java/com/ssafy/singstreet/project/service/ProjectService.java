@@ -386,7 +386,7 @@ public class ProjectService {
         List<ProjectMember> projectMembers = projectMemberRepository.findByProjectMemberId_Project(project);
         List<User> userList = new ArrayList<>();
         for (ProjectMember projectMember : projectMembers) {
-            userList.add(projectMember.getUser());
+            userList.add(projectMember.getProjectMemberId().getUser());
         }
 
         List<Part> parts = partRepository.findAllByProjectId(projectId);
