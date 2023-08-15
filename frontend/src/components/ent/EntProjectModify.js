@@ -93,6 +93,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			});
 			return null;
 		});
+		console.log(newUserList);
 		// 받아온 tagList를 문자열로 만들어서
 		let newTagList = "";
 		newProject.tagList.map((tag) => {
@@ -110,7 +111,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsVisible(newProject.isVisible);
 		setPartList(newProject.partList);
 		setProjectTagList(newTagList);
-		// setUserList(newUserList);
+		setUserList(newUserList);
 	};
 
 	//[비동기] 프로젝트 멤버 목록 불러오는 함수
