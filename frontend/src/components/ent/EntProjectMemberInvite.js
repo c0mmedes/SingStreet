@@ -49,7 +49,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			console.log(res.data);
 			setEntMemberList(res.data);
 		} catch {
-			alert("엔터 멤버 목록 불러오기 실패!");
+			console.log("엔터 멤버 목록 불러오기 실패!");
 		}
 	};
 	//[비동기] 초대 버튼 누르기 함수
