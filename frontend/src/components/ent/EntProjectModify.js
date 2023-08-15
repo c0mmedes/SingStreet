@@ -18,6 +18,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	const [singName, setSingName] = useState("");
 	const [singerName, setSingerName] = useState("");
 	const [userList, setUserList] = useState([]);
+	const [projectMemberList, setProjectMemberList] = useState([]); // 프로젝트 멤버 리스트
 
 	const handleProjectName = (e) => {
 		setProjectName(e.target.value);
@@ -52,6 +53,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 	useEffect(() => {
 		getProject();
+		getProjectMemberList();
 	}, []);
 
 	// [비동기] 내 프로젝트 정보 가져오기
@@ -76,10 +78,19 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
             }
             isRecruited // 모집여부
         */
-		// 추출한 partName을 partNameList로 옮기기
+		// 추출한 partName을 newPartNameList로 옮기기
 		const newPartNameList = [];
 		newProject.partList.map((part) => {
 			newPartNameList.push(part.partName);
+			return null;
+		});
+		// 추출한 userList를 newUserList로 옮기기
+		const newUserList = [];
+		newProject.partList.map((part) => {
+			newUserList.push({
+				userId: part.userId,
+				nickname: part.nickname,
+			});
 			return null;
 		});
 		// 받아온 tagList를 문자열로 만들어서
@@ -98,17 +109,32 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsRecruited(newProject.isRecruited);
 		setIsVisible(newProject.isVisible);
 		setPartList(newProject.partList);
-		console.log(newTagList);
 		setProjectTagList(newTagList);
-		setUserList(newProject.userList);
-		console.log(isVisible);
+		setUserList(newUserList);
 	};
 
-	// 파트추가
+	//[비동기] 프로젝트 멤버 목록 불러오는 함수
+	const getProjectMemberList = async () => {
+		try {
+			const accessToken = sessionStorage.getItem("accessToken");
+			const res = await apiInstance.get(`project/member/${projectId}`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+				},
+			});
+			console.log(res.data);
+			setProjectMemberList(res.data);
+		} catch {
+			console.log("프로젝트 멤버 불러오기 에러 발생(프로젝트 멤버가 없습니다.)");
+		}
+	};
+
+	// 파트추가, 파트에 해당하는 유저 추가
 	const handleAddPart = () => {
 		if (partNameList.length < 10) {
 			// 최대 10개의 파트까지 추가 가능
 			setPartNameList([...partNameList, ""]); // 새로운 파트 추가
+			setUserList([...userList, ""]); // 새로운 파트에 대한 선택된 유저 추가
 		}
 		console.log(partNameList);
 	};
@@ -116,6 +142,11 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		const updatedPartNameList = [...partNameList];
 		updatedPartNameList[index] = value;
 		setPartNameList(updatedPartNameList);
+	};
+	const handleUserChange = (index, userId) => {
+		const updatedUserList = [...userList];
+		updatedUserList[index] = userId;
+		setUserList(updatedUserList);
 	};
 	const renderPartInputs = () => {
 		return partNameList.map((part, index) => (
@@ -127,6 +158,18 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					onChange={(e) => handlePartChange(index, e.target.value)}
 					required
 				/>
+				{/*여기에 select를 만들어서 * projectMemberList에서 map으로 (projectMember) => <option> </option>태그에 projectMember.user.nickname 를 넣을거고, 선택되면 value = projectMember.user.userId일거야 그리고 선택되면 그걸 index에 맞춰서 userList라는 배열에 저장을 할거거든 ?? 예를 들면 index 0파트에서 선택된 유저는 userList[0]에 userId가 저장이되는거지 이런식으로 코드 짜줄수있어 ? */}
+				<select
+					value={userList[index].userId === -1 ? "" : userList[index].userId} // 선택된 유저의 userId를 저장한 상태와 연결
+					onChange={(e) => handleUserChange(index, e.target.value)}
+				>
+					<option value="">누구에게 파트를 부여할건가요?</option>
+					{projectMemberList.map((projectMember) => (
+						<option key={projectMember.user.userId} value={projectMember.user.userId}>
+							{projectMember.user.nickname}
+						</option>
+					))}
+				</select>
 			</div>
 		));
 	};

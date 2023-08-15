@@ -12,8 +12,6 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 	// 상태관리
 	const [entMemberList, setEntMemberList] = useState([]); // 엔터 멤버 리스트
 	const [projectMemberList, setProjectMemberList] = useState([]); // 프로젝트 멤버 리스트
-	// 선택된 멤버
-	const [selectedMembers, setSelectedMembers] = useState([]);
 
 	useEffect(() => {
 		// 원하는 조건을 확인하고 이전 화면으로 돌아가기
