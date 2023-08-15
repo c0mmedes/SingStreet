@@ -84,15 +84,15 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			newPartNameList.push(part.partName);
 			return null;
 		});
-		// 추출한 userList를 newUserList로 옮기기
-		const newUserList = [];
-		newProject.partList.map((part) => {
-			newUserList.push({
-				userId: part.userId,
-				nickname: part.nickname,
-			});
-			return null;
-		});
+		// // 추출한 userList를 newUserList로 옮기기
+		// const newUserList = [];
+		// newProject.partList.map((part) => {
+		// 	newUserList.push({
+		// 		userId: part.userId,
+		// 		nickname: part.nickname,
+		// 	});
+		// 	return null;
+		// });
 		// 받아온 tagList를 문자열로 만들어서
 		let newTagList = "";
 		newProject.tagList.map((tag) => {
