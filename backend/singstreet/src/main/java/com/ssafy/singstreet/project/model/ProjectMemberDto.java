@@ -19,6 +19,5 @@ public class ProjectMemberDto {
     private LocalDateTime createdAt;
     private Boolean isDeleted;
     private Integer userId;
-    private String nickname;
     private User user;
 }

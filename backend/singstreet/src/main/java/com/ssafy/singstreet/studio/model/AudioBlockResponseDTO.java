@@ -13,6 +13,7 @@ public class AudioBlockResponseDTO {
     public int projectId;
     public int testId;
     public int userId;
+    public String blockName;
     public BigDecimal left;
     public BigDecimal top;
     public String nickname;
