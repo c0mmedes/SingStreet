@@ -110,7 +110,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsVisible(newProject.isVisible);
 		setPartList(newProject.partList);
 		setProjectTagList(newTagList);
-		setUserList(newUserList);
+		// setUserList(newUserList);
 	};
 
 	//[비동기] 프로젝트 멤버 목록 불러오는 함수
@@ -159,7 +159,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					required
 				/>
 				{/*여기에 select를 만들어서 * projectMemberList에서 map으로 (projectMember) => <option> </option>태그에 projectMember.user.nickname 를 넣을거고, 선택되면 value = projectMember.user.userId일거야 그리고 선택되면 그걸 index에 맞춰서 userList라는 배열에 저장을 할거거든 ?? 예를 들면 index 0파트에서 선택된 유저는 userList[0]에 userId가 저장이되는거지 이런식으로 코드 짜줄수있어 ? */}
-				<select
+				{/* <select
 					value={userList[index].userId === -1 ? "" : userList[index].userId} // 선택된 유저의 userId를 저장한 상태와 연결
 					onChange={(e) => handleUserChange(index, e.target.value)}
 				>
@@ -169,7 +169,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 							{projectMember.user.nickname}
 						</option>
 					))}
-				</select>
+				</select> */}
 			</div>
 		));
 	};
