@@ -79,8 +79,8 @@ const EntCreate = ({ userInfo, isLogin }) => {
 				},
 			});
 			console.log(res);
-			alert("엔터 생성 완료");
-			navigate("/ent");
+			// alert("엔터 생성 완료");
+			// navigate("/ent");
 		} catch (error) {
 			alert("엔터 생성 오류");
 		}
