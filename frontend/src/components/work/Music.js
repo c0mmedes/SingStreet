@@ -20,7 +20,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
           </div>
-          <div class="card_title title-white">
+          <div class="card_title title-white music">
             <p>내꺼하자</p>
           </div>
         </div>
@@ -44,7 +44,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>
@@ -76,7 +76,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>
@@ -108,7 +108,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>
@@ -140,7 +140,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>
@@ -172,7 +172,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>{" "}
@@ -204,7 +204,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>{" "}
@@ -236,7 +236,7 @@ const music = () => {
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
-          <div class="card_title title-black">
+          <div class="card_title title-white">
             <p>Card Title</p>
           </div>
         </div>

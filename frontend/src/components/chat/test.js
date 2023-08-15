@@ -3,7 +3,7 @@ import { api } from "../../services/httpService"
 import "../../css/chat/Chat.css"
 import OtherChat from "./OtherChat"
 import MyChat from './MyChat';
-
+import { Client } from "@stomp/stompjs";
 
 const Chat = () => {
     const [chatList, setChatList] = useState([]);
@@ -22,42 +22,51 @@ const Chat = () => {
         getChatList();
         // 웹소켓 연결
         // const socket = new WebSocket(`ws://i9b110.p.ssafy.io/backend/chatt/${entId}`);
-        // const socket = new WebSocket(`ws://localhost:8080/chatt/1`);
-        const socket = new WebSocket(`wss://i9b110.p.ssafy.io/chatt/1`);
-        setWs(socket);
+        // WebSocket 연결
+        const socket = new Client({
+          brokerURL: "ws://localhost:8080/ws",
+          reconnectDelay: 5000,
+          heartbeatIncoming: 4000,
+          heartbeatOutgoing: 4000,
+          onConnect: () => {
+            console.log('socket connected!!!');
+            getChatList();
+            subscribe();
+          },
+          onStompError: (frame) => {
+            console.error(frame);
+            },
+          });
+          // 웹소켓 연결 활성화
+          socket.activate();
+          setWs(socket);
 
-        // 메시지 수신 처리
-        socket.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-          console.log(data);
-          let messageItem = null;
+        const subscribe = () =>{
+          socket.subscribe(`/sub/channel/${entId}`, (message) =>{
+            //메시지 도착 시 처리 로직
+            const data = JSON.parse(message.body);
+            console.log(data);
+            let messageItem = null;
               
-          if (data.nickname === nickname) {
-            messageItem = <MyChat content={data}/>;
-          } else {
-            messageItem = <OtherChat content={data}/>;
-          }
+            if (data.nickname === nickname) {
+              messageItem = <MyChat content={data}/>;
+            } else {
+              messageItem = <OtherChat content={data}/>;
+            }
       
-          setTalk((prevTalk) => [...prevTalk, messageItem]);
-          };
-
-        //컴포넌트 언마운트 시 WebSocket 연결 해제
-        // return () => {
-        //     if (socket) {
-        //       socket.close();
-        //     }
-        //   };
-
+            setTalk((prevTalk) => [...prevTalk, messageItem]);
+          })
+        };
       }
-        init();
-        }, []);
+      init();
+      }, []);
 
         // 스크롤 내리기------------------------------------------
-        useEffect(() => {
-          // 새로운 메시지가 추가될 때마다 스크롤을 아래로 내림
-          if (chatEndRef.current) {
-              chatEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-          }
+      useEffect(() => {
+        // 새로운 메시지가 추가될 때마다 스크롤을 아래로 내림
+        if (chatEndRef.current) {
+          chatEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
       }, [talk,chatList]); // talk 상태가 업데이트될 때마다 실행
 
         
@@ -77,7 +86,7 @@ const Chat = () => {
             entId:1,
           };
     
-          ws.send(JSON.stringify(data));
+          ws.send(`/pub/channel/${entId}`,{}, JSON.stringify(data));
           setContent('');
         }
     }

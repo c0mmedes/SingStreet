@@ -56,6 +56,7 @@ const EntApply = ({ userInfo, isLogin }) => {
 			);
 			console.log(res.data);
 			if (res.data) {
+				//정상적으로 만들어지면 true
 				navigate(`/entmain/${entId}/${entMasterId}/${entName}`);
 				alert("엔터 지원 성공!");
 			} else {
