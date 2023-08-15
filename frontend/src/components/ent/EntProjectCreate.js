@@ -219,7 +219,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
   };
   return (
     <div>
-      <div className="form_wrapper">
+      <div className="form_wrapper entPjtFormWrapper">
         <div className="form_container">
           <div className="title_container">
             <h2>프로젝트 신규 등록</h2>
@@ -357,8 +357,11 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
                 <label>파트</label>
                 {renderPartInputs()}
                 {partList.length < 10 && (
-                  <button type="button" onClick={handleAddPart}>
-                    파트 추가
+                  <button
+                    className="partAddBtn"
+                    type="button"
+                    onClick={handleAddPart}>
+                    파트 +
                   </button>
                 )}
 
