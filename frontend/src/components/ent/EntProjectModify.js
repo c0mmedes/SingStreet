@@ -164,11 +164,11 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					onChange={(e) => handleUserChange(index, e.target.value)}
 				>
 					<option value="">누구에게 파트를 부여할건가요?</option>
-					{/* {projectMemberList.map((projectMember) => (
+					{projectMemberList.map((projectMember) => (
 						<option key={projectMember.user.userId} value={projectMember.user.userId}>
 							{projectMember.user.nickname}
 						</option>
-					))} */}
+					))}
 				</select>
 			</div>
 		));
