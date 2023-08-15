@@ -87,6 +87,8 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 					</li>
 				))}
 			</ul>
+			<h2>프로젝트 멤버 목록</h2>
+			
 		</div>
 	);
 };
