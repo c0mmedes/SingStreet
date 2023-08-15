@@ -223,7 +223,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 
 								<label>프로젝트 프로필</label>
 								<div className="input_field">
-									<input type="file" name="file" onChange={handleProjectImg} required />
+									<input type="file" name="file" onChange={handleProjectImg} />
 								</div>
 								<div className="input_field">
 									<label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
