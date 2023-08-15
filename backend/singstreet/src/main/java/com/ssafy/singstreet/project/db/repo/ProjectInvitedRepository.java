@@ -24,4 +24,10 @@ public interface ProjectInvitedRepository extends JpaRepository<ProjectInvited, 
 //    ProjectInvited findByUserAndProjectAndProjectMemberId(User userId, Project projectId, Integer projectMemberId);
 
     ProjectInvited findByUserAndProjectAndCreatedAt(User userId, Project projectId, LocalDateTime createdAt);
+
+//    ProjectInvited findByUserUserIdAndProjectProjectId(User userId, Project projectId);
+
+    List<ProjectInvited> findByUserUserIdAndProjectProjectId(Integer userId, Integer projectId);
+
+    ProjectInvited findByUserAndProject(User userId, Project projectId);
 }
