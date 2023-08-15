@@ -79,20 +79,15 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
             isRecruited // 모집여부
         */
 		// 추출한 partName을 newPartNameList로 옮기기
-		const newPartNameList = [];
-		newProject.partList.map((part) => {
-			newPartNameList.push(part.partName);
-			return null;
-		});
 		// 추출한 userList를 newUserList로 옮기기
+		const newPartNameList = [];
 		const newUserList = [];
 		newProject.partList.map((part) => {
-			newUserList.push({
-				userId: part.userId,
-				nickname: part.nickname,
-			});
+			newPartNameList.push(part.partName);
+			newUserList.push(part.userId);
 			return null;
 		});
+
 		console.log(newUserList);
 		// 받아온 tagList를 문자열로 만들어서
 		let newTagList = "";
@@ -101,7 +96,6 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 			return null;
 		});
 
-		setPartNameList(newPartNameList);
 		setProjectName(newProject.projectName);
 		setProjectInfo(newProject.projectInfo);
 		setProjectTagList(newProject.projectTagList);
@@ -111,6 +105,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		setIsVisible(newProject.isVisible);
 		setPartList(newProject.partList);
 		setProjectTagList(newTagList);
+		setPartNameList(newPartNameList);
 		setUserList(newUserList);
 	};
 
@@ -135,7 +130,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 		if (partNameList.length < 10) {
 			// 최대 10개의 파트까지 추가 가능
 			setPartNameList([...partNameList, ""]); // 새로운 파트 추가
-			setUserList([...userList, ""]); // 새로운 파트에 대한 선택된 유저 추가
+			setUserList([...userList, -1]); // 새로운 파트에 대한 선택된 유저 추가
 		}
 		console.log(partNameList);
 	};
@@ -146,7 +141,11 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 	};
 	const handleUserChange = (index, userId) => {
 		const updatedUserList = [...userList];
-		updatedUserList[index] = userId;
+		if (userId === "") {
+			updatedUserList[index] = -1;
+		} else {
+			updatedUserList[index] = userId;
+		}
 		setUserList(updatedUserList);
 	};
 	const renderPartInputs = () => {
@@ -160,8 +159,8 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 					required
 				/>
 				{/*여기에 select를 만들어서 * projectMemberList에서 map으로 (projectMember) => <option> </option>태그에 projectMember.user.nickname 를 넣을거고, 선택되면 value = projectMember.user.userId일거야 그리고 선택되면 그걸 index에 맞춰서 userList라는 배열에 저장을 할거거든 ?? 예를 들면 index 0파트에서 선택된 유저는 userList[0]에 userId가 저장이되는거지 이런식으로 코드 짜줄수있어 ? */}
-				{/* <select
-					value={userList[index].userId === -1 ? "" : userList[index].userId} // 선택된 유저의 userId를 저장한 상태와 연결
+				<select
+					value={userList[index].userId === -1 ? "" : userList[index]} // 선택된 유저의 userId를 저장한 상태와 연결
 					onChange={(e) => handleUserChange(index, e.target.value)}
 				>
 					<option value="">누구에게 파트를 부여할건가요?</option>
@@ -170,7 +169,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 							{projectMember.user.nickname}
 						</option>
 					))}
-				</select> */}
+				</select>
 			</div>
 		));
 	};
