@@ -10,8 +10,8 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 	// 화면을 다른 화면으로 넘겨줄때 필요한
 	const navigate = useNavigate();
 	// 상태관리
-	// 엔터 멤버 리스트
-	const [entMemberList, setEntMemberList] = useState([]);
+	const [entMemberList, setEntMemberList] = useState([]); // 엔터 멤버 리스트
+	const [projectMemberList, setProjectMemberList] = useState([]); // 프로젝트 멤버 리스트
 	// 선택된 멤버
 	const [selectedMembers, setSelectedMembers] = useState([]);
 
@@ -22,9 +22,10 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			navigate(-1);
 		}
 		getEntMemberList();
+		getProjectMemberList();
 	}, []);
 
-	// 엔터 멤버 목록을 불러오는 함수
+	//[비동기] 엔터 멤버 목록을 불러오는 함수
 	const getEntMemberList = async () => {
 		try {
 			const accessToken = sessionStorage.getItem("accessToken");
@@ -51,7 +52,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			alert("엔터 멤버 목록 불러오기 실패!");
 		}
 	};
-	// 초대 버튼 누르기 함수
+	//[비동기] 초대 버튼 누르기 함수
 	const onClickMemberInvite = async (userId) => {
 		try {
 			const accessToken = sessionStorage.getItem("accessToken");
@@ -73,25 +74,45 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
 			alert("초대 에러 발생");
 		}
 	};
-
+	//[비동기] 프로젝트 멤버 목록 불러오는 함수
+	const getProjectMemberList = async () => {
+		try {
+			const accessToken = sessionStorage.getItem("accessToken");
+			const res = await apiInstance.get(`project/member/${projectId}`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+				},
+			});
+			console.log(res.data);
+			setProjectMemberList(res.data);
+			alert("프로젝트 멤버 목록 불러오기 성공");
+		} catch {
+			alert("불러오기 발생");
+		}
+	};
 	return (
 		<div>
 			<h2>엔터 멤버 목록</h2>
 			<ul>
-				{entMemberList.map((member) => (
-					<li key={member.userId}>
-						닉네임 : {member.nickname}
-						이메일 : {member.email}
-						성별 : {member.gender}
-						<button onClick={() => onClickMemberInvite(member.userId)}>초대</button>
+				{entMemberList.map((entMember) => (
+					<li key={entMember.userId}>
+						닉네임 : {entMember.nickname}
+						이메일 : {entMember.email}
+						성별 : {entMember.gender}
+						<button onClick={() => onClickMemberInvite(entMember.userId)}>초대</button>
 					</li>
 				))}
 			</ul>
 			<h2>프로젝트 멤버 목록</h2>
 			<ul>
-				<li>
-					
-				</li>
+				{projectMemberList.map((projectMember) => (
+					<li key={projectMember.userId}>
+						닉네임 : {projectMember.nickname}
+						이메일 : {projectMember.email}
+						성별 : {projectMember.gender}
+						<button onClick={() => onClickMemberInvite(projectMember.userId)}>초대</button>
+					</li>
+				))}
 			</ul>
 		</div>
 	);
