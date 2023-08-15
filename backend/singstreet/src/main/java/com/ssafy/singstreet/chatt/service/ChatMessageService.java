@@ -3,6 +3,7 @@ package com.ssafy.singstreet.chatt.service;
 import com.ssafy.singstreet.chatt.db.ChatMessage;
 import com.ssafy.singstreet.chatt.db.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
@@ -10,11 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
 public class ChatMessageService {
-
-    private final ChatMessageRepository messageRepository;
+    @Autowired
+    ChatMessageRepository messageRepository;
 
     public void save(ChatMessage message){
         message.updateDate();

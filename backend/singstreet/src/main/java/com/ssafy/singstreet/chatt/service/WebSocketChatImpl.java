@@ -2,8 +2,8 @@ package com.ssafy.singstreet.chatt.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.singstreet.chatt.config.MessageDecoder;
-import com.ssafy.singstreet.chatt.config.SpringContext;
 import com.ssafy.singstreet.chatt.db.ChatMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -22,16 +22,12 @@ import java.util.*;
 public class WebSocketChatImpl implements WebSocketChat {
     private static Map<Integer, Set<Session>> CHAT_ROOMS = Collections.synchronizedMap(new HashMap<>());//동시접근 막도록 동기화보장
 
-    private ChatMessageService messageService;// 강제 주입할꺼임
-    private ObjectMapper objectMapper;
-    
-    
-    public WebSocketChatImpl(){
-        this.messageService = SpringContext.getBean(ChatMessageService.class); // SpringContext를 통해 강제주입함
+    @Autowired
+    private ChatMessageService messageService;
 
-//        System.out.println("default constructor");
-        this.objectMapper = new ObjectMapper();
-    }
+    @Autowired
+    private ObjectMapper objectMapper = new ObjectMapper();
+
 
 
     @Override
@@ -65,7 +61,7 @@ public class WebSocketChatImpl implements WebSocketChat {
         System.out.println("[Chat] 입력된 메세지 입니다. >" + message);
         message.updateDate();
         String jsonMessage = objectMapper.writeValueAsString(message); // objectMapper를 선언해야 합니다.
-
+        System.out.println(messageService);
 //        messageService.getAll();
         messageService.save(message);
 
