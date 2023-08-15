@@ -52,7 +52,7 @@ public class AudioBlockService {
             s3Url = amazonS3Service.uploadFile(file);
 
         }
-        System.out.println(requestDTO);
+        System.out.println(requestDTO.projectId);
         AudioBlock audioBlock = AudioBlock.builder()
                 .project(projectRepository.findByProjectId(requestDTO.getProjectId()))
                 .user(userRepository.findByUserId(userId))
