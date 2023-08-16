@@ -196,18 +196,6 @@
   outline: none;
 }
 
-.select_arrow {
-  position: absolute;
-  top: calc(50% - 4px);
-  right: 15px;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  border-width: 8px 5px 0 5px;
-  border-style: solid;
-  border-color: #7b7b7b transparent transparent transparent;
-}
-
 .select_option select:hover + .select_arrow,
 .select_option select:focus + .select_arrow {
   border-top-color: #000000;

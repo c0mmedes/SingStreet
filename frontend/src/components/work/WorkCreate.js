@@ -90,15 +90,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
           <div className="row clearfix">
             <div className="">
               <form className="entCreateForm" onSubmit={onClickEntCreate}>
-                <label>공개여부</label>
-                <div className="input_field select_option">
-                  <select onChange={handleIsAutoAceepted}>
-                    <option value="true">공개엔터 (바로 가입)</option>
-                    <option value="false">공개엔터 (승인 대기)</option>
-                  </select>
-                  <div className="select_arrow"></div>
-                </div>
-                <label>노래합작 썸네일</label>
+                <label>노래합작 파일</label>
                 <div className="input_field" id="workImgInputField">
                   <div className="file-input">
                     <input
