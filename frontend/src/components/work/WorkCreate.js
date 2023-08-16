@@ -96,7 +96,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
   };
   return (
     <div>
-      <div className="form_wrapper entCreateFormWrapper">
+      <div className="form_wrapper workCreateFormWrapper">
         <div className="form_container">
           <div className="title_container">
             <h2>엔터 신규 등록</h2>
