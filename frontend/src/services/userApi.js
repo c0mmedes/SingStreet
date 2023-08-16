@@ -1,5 +1,4 @@
 import { api } from "./httpService";
-import { addToMyEntList } from "../modules/user/user";
 // axios 인스턴스 생성
 const apiInstance = api();
 
@@ -13,7 +12,7 @@ const getMyEntList = async () => {
 			},
 		});
 		console.log(res.data);
-		await addToMyEntList(res.data);
+		return res.data; // API 결과인 내 엔터리스트를 리턴
 	} catch (error) {}
 };
 

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../css/user/Login.css";
 import { api } from "../../services/httpService";
 import { getMyEntList } from "../../services/userAPI";
+
 function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList }) {
 	const [inputEmail, setInputEmail] = useState("");
 	const [inputPw, setInputPw] = useState("");
@@ -34,25 +35,17 @@ function Login({ userInfo, myEntList, addUserInfo, setIsLogin, addToMyEntList })
 				userImg: res.data.userImg,
 			});
 			console.log(userInfo.nickname);
-			getMyEntList(myEntList);
-			console.log();
+			getMyEntList();
+			// 내 엔터목록 가져오기
+			const data = await getMyEntList();
+			console.log(data);
+			// 리덕스 스토어에 추가
+			await addToMyEntList(data);
+			console.log(myEntList);
 		} catch (error) {
 			console.log("getUserInfo 실패");
 		}
 	};
-
-	// const getMyEntList = async () => {
-	// 	const accessToken = sessionStorage.getItem("accessToken");
-	// 	try {
-	// 		const res = await apiInstance.get("/ent/myEnt", {
-	// 			headers: {
-	// 				Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-	// 			},
-	// 		});
-	// 		console.log(res.data);
-	// 		addToMyEntList(res.data);
-	// 	} catch (error) {}
-	// };
 
 	const onClickLogin = async function login() {
 		try {

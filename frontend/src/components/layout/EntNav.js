@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/layout/EntNav.css";
 import { getMyEntList } from "../../services/userAPI";
-const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
+const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList, addToMyEntList }) => {
 	/* "entId": 1,
 	"userId": "엔터장 아이디",
 	"entName": "qwe",
@@ -14,9 +14,13 @@ const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		getMyEntList();
-		console.log(myEntList);
-	});
+		async function getMyEntListAndAddToMyEntList() {
+			const data = await getMyEntList();
+			addToMyEntList(data);
+			console.log(myEntList);
+		}
+		getMyEntListAndAddToMyEntList();
+	}, []);
 
 	const onClickApply = () => {
 		if (myEntList && myEntList.length > 0) {
@@ -24,6 +28,9 @@ const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
 			if (!myEntList.some((ent) => parseInt(ent.entId) === parseInt(entId))) {
 				// 엔터 회원이 아님
 				navigate(`/entmain/${entId}/${entMasterId}/${entName}/entapply`);
+			} else {
+				// 엔터소속임
+				alert(`이미 ${entName}소속입니다`);
 			}
 		} else {
 			// 엔터 회원이 아님
@@ -44,11 +51,9 @@ const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
 									</a>
 								</Link>
 							) : (
-								// <Link to={`/entmain/${entId}/${entMasterId}/${entName}/entapply`}>
 								<a className="menuLink" href="#" onClick={onClickApply}>
 									<span>지원 하기</span>
 								</a>
-								// </Link>
 							)}
 						</div>
 						<Link to={`/entmain/${entId}/${entMasterId}/${entName}`}>
