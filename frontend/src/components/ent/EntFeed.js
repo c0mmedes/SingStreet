@@ -150,7 +150,6 @@ const EntFeed = ({ userInfo }) => {
 					<button onClick={onClickSubmit}>등록</button>
 				</div>
 			</div>
-
 			{feedList
 				.slice()
 				.reverse()
