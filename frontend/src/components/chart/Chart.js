@@ -6,6 +6,7 @@ import chart1 from "../../assets/chart1.PNG";
 import chart2 from "../../assets/chart2.PNG";
 import chart3 from "../../assets/chart3.PNG";
 import chart4 from "../../assets/chart4.PNG";
+import chart5 from "../../assets/chart5.PNG";
 const chart = ({ userInfo }) => {
   return (
     <div className="chartContainer">
@@ -104,7 +105,7 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox5">
           {/* <!-- #05 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">05</div>
@@ -131,12 +132,13 @@ const chart = ({ userInfo }) => {
           {/* <!-- Number--> */}
           <div className="chartNumber">06</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover6">
+            <img src={chart5} alt="06" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>체리필터 - 오리 날다</span>
+            <p>고흐하학 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
