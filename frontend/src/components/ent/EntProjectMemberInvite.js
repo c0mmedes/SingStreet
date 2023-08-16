@@ -93,7 +93,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
   return (
     <div className="entPjtMemberInviteContainer">
       <div className="AlreadyMemberList">
-        <h2>프로젝트 멤버 목록</h2>
+        <h2 className="inviteEntPersonTitle">프로젝트 멤버 목록</h2>
         <div className="AlreadyMemberListHeader">
           <span>닉네임</span>
           <span>이메일</span>
@@ -112,7 +112,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
         </ul>
       </div>
       <div className="PossibleInviteMemberList">
-        <h2>초대 가능한 엔터원 목록</h2>
+        <h2 className="inviteEntPersonTitle">초대 가능한 엔터원 목록</h2>
         <div className="PossibleInviteMemberListHeader">
           <span>닉네임</span>
           <span>이메일</span>
