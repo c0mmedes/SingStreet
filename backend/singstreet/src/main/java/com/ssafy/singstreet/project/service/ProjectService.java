@@ -232,6 +232,7 @@ public class ProjectService {
                 .isDestroyed(project.isDestroyed())
                 .originFilename(project.getOriginFilename())
                 .lastEnterDate(project.getLastEnterDate())
+                .createdAt(project.getCreatedAt())
                 .build();
     }
 
@@ -249,6 +250,7 @@ public class ProjectService {
                     .singName(project.getSingName())
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
+                    .createdAt(project.getCreatedAt())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
