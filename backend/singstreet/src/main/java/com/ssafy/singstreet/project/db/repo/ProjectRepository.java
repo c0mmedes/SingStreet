@@ -14,7 +14,9 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
     // 프로젝트id로 상세조회
-    Project findByProjectId(int ProjectId);
+    Project findByProjectId(Integer projectId);
+
+
     // keyword 검색
 //    @Query("SELECT p FROM Project p WHERE " +
 //            "p.projectName LIKE %:keyword% OR " +

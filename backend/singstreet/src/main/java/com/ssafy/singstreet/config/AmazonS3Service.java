@@ -115,7 +115,11 @@ public class AmazonS3Service {
                 contentType = "audio/mpeg"; // .mp3 음원 파일일 경우
             } else if ("wav".equalsIgnoreCase(fileExtension)) {
                 contentType = "audio/wav"; // .wav 음원 파일일 경우
-            }else {
+            } else if ("mp4".equalsIgnoreCase(fileExtension)) {
+                contentType = "video/mp4"; // .mp4 동영상 파일일 경우
+            } else if ("avi".equalsIgnoreCase(fileExtension)) {
+                contentType = "video/x-msvideo"; // .avi 동영상 파일일 경우
+            } else {
                 throw new IllegalArgumentException("Unsupported image format");
             }
 
