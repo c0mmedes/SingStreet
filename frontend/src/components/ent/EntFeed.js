@@ -42,14 +42,14 @@ const EntFeed = ({ userInfo }) => {
       ent: entId,
       title: "dummy",
       content: content,
-      type: type,
+      isNotice: type,
     };
     const res = await apiInstance.post(`/ent/feed`, feedData, {
       headers: {
         Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
       },
     });
-    console.log(`피드 추가 : ${res}`);
+    console.log(res);
     setContent("");
     setType("");
   };
