@@ -293,22 +293,6 @@ img {
   background-color: #f2f2f2;
 }
 
-.feed-post-comment-menu {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.feed-post-comment-menu div {
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-
-.feed-post-comment-menu div:hover {
-  color: var(--main-color);
-}
-
 .feed-post-comments {
   display: none; /* 기본적으로 댓글 부분은 숨겨집니다. */
   padding: 10px;
