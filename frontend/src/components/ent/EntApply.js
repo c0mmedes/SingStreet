@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/ent/EntCreate.css";
+import "../../css/ent/EntApply.css";
 
 const EntApply = ({ userInfo, isLogin }) => {
   const [age, setAge] = useState("");
@@ -68,7 +69,7 @@ const EntApply = ({ userInfo, isLogin }) => {
   };
   return (
     <div>
-      <div className="form_wrapper">
+      <div className="form_wrapper entApplyFormWrapper">
         <div className="form_container">
           <div className="title_container">
             <h2>{entName}엔터 지원 하기</h2>
@@ -88,10 +89,7 @@ const EntApply = ({ userInfo, isLogin }) => {
                     required
                   />
                 </div>
-                {/* <div className="input_field">
-									<input type="radio" id="ex_rd" name="ex_rds"> 
-                  <label for="ex_rd">라디오버튼</label>
-								</div> */}
+
                 <label>선호 아티스트</label>
                 <div className="input_field">
                   <textarea
@@ -104,13 +102,13 @@ const EntApply = ({ userInfo, isLogin }) => {
                   />
                 </div>
                 <label>하고싶은 노래</label>
-                <div className="input_field">
+                <div className="input_field wantMusicInput">
                   <input
                     type="hope"
                     name="hope"
                     value={hope}
                     onChange={handleHope}
-                    required
+                    require
                   />
                 </div>
                 <label>포부</label>
