@@ -94,44 +94,46 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
     <div className="entPjtMemberInviteContainer">
       <div className="AlreadyMemberList">
         <h2>프로젝트 멤버 목록</h2>
-        <div className="AlreadyMemberListGrid">
+        <div className="AlreadyMemberListHeader">
           <span>닉네임</span>
           <span>이메일</span>
           <span>성별</span>
         </div>
-        {projectMemberList.map((projectMember) => (
-          <li
-            className="AlreadyMemberListGridItem"
-            key={projectMember.user.userId}>
-            <span> {projectMember.user.nickname}</span>
-            <span> {projectMember.user.email}</span>
-            <span> {projectMember.user.gender}</span>
-          </li>
-        ))}
+        <ul className="AlreadyMemberListItems">
+          {projectMemberList.map((projectMember) => (
+            <li
+              className="AlreadyMemberListItem"
+              key={projectMember.user.userId}>
+              <span> {projectMember.user.nickname}</span>
+              <span> {projectMember.user.email}</span>
+              <span> {projectMember.user.gender}</span>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="PossibleInviteMemberList">
         <h2>초대 가능한 엔터원 목록</h2>
-        <div className="PossibleInviteMemberListGrid">
+        <div className="PossibleInviteMemberListHeader">
           <span>닉네임</span>
           <span>이메일</span>
           <span>성별</span>
         </div>
-
-        {entMemberList.map((entMember) => (
-          <li className="inviteMemberLi" key={entMember.userId}>
-            닉네임 : {entMember.nickname}
-            이메일 : {entMember.email}
-            성별 : {entMember.gender}
-            <button
-              className="inviteMemberBtn"
-              onClick={() => onClickMemberInvite(entMember.userId)}>
-              초대
-            </button>
-          </li>
-        ))}
+        <ul className="PossibleInviteMemberListItems">
+          {entMemberList.map((entMember) => (
+            <li className="PossibleInviteMemberListItem" key={entMember.userId}>
+              <span> {entMember.nickname}</span>
+              <span> {entMember.email}</span>
+              <span> {entMember.gender}</span>
+              <button
+                className="inviteMemberBtn"
+                onClick={() => onClickMemberInvite(entMember.userId)}>
+                초대
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 };
-
 export default EntProjectMemberInvite;
