@@ -13,9 +13,6 @@ const Home = () => {
       <Link to="/studio">
         <div>studio</div>
       </Link>
-      <div className="mainHomeWrap">
-        <h1>메인영상 넣을거임</h1>
-      </div>
       <ul className="cards">
         <li>
           <a href="" class="card">

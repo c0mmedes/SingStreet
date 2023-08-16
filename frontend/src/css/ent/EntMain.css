@@ -100,7 +100,6 @@ img {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  border: 5px solid black;
 }
 
 .video video {
@@ -322,4 +321,10 @@ img {
 }
 
 .EntTitle {
+  background-color: white;
+  padding: 10px;
+  border-radius: 9px;
+  margin-top: 23px;
+  height: 20px;
+  padding-left: 20px;
 }
