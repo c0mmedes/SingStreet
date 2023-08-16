@@ -125,6 +125,7 @@ public class ProjectController {
                 .isDestroyed(project.isDestroyed())
                 .originFilename(project.getOriginFilename())
                 .lastEnterDate(project.getLastEnterDate())
+                .createdAt(project.getCreatedAt())
                 .build();
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);

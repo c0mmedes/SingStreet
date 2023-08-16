@@ -11,10 +11,9 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @Getter
-@MappedSuperclass   //Entity들이 이를 상속시 필드들 칼럼으로 인식
+@MappedSuperclass                               //Entity들이 이를 상속시 필드들 칼럼으로 인식
 @EntityListeners(AuditingEntityListener.class)  //Auditing기능(시간 자동으로 값 넣어주는..) 포함
 public class BaseTimeEntity {
-
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;

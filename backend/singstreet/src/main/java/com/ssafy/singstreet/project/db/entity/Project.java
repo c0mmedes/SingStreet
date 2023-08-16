@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 @Setter
 @Table(name = "project")
 public class Project extends BaseTimeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
@@ -108,7 +107,6 @@ public class Project extends BaseTimeEntity {
     public void updateMonthlyLikeCount(int currentMonthlyLikes) {
         this.monthlyLikeCount = currentMonthlyLikes;
     }
-
     public void updateAudioFile(String audioFilename) {
         this.audioName = audioFilename;
     }
@@ -117,6 +115,5 @@ public class Project extends BaseTimeEntity {
     }
     public void plusLikeCount() { this.likeCount++; };
     public void minusLikeCount() { this.likeCount--; };
-
 }
 

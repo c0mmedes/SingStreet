@@ -35,8 +35,6 @@ public class WebSocketHandlerImpl extends TextWebSocketHandler implements org.sp
     }
     private ObjectMapper objectMapper = new ObjectMapper();
 
-
-
     @OnOpen
     public void onOpen(Session session, @PathParam("entId") int entId) {
         System.out.println(session.toString());
