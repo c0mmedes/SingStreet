@@ -22,7 +22,9 @@
   font-size: 18px;
   margin: 5px 0;
   color: #333;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .myEntListItem img {
