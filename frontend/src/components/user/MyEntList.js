@@ -16,6 +16,8 @@ const MyEntList = ({
   const navigate = useNavigate();
   // 클릭한 엔터 메인 페이지로 보내는 함수
   const onClickGoToEntMain = (entId,entMasterId,entName) => {
+    alert("클릭했습니다");
+    console.log(`/entmain/${entId}/${entMasterId}/${entName}`);
     navigate(`/entmain/${entId}/${entMasterId}/${entName}`)
   };
 
