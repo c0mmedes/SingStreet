@@ -156,7 +156,7 @@ const EntFeed = ({ userInfo }) => {
 				.map((feed) => (
 					<div className="feed-posts">
 						<div className="feed-post-user">
-							<div>{feed.userId.userImg}</div>
+							{/* <div>{feed.userId.userImg}</div> */}
 							<div>{feed.userId.nickname}</div>
 							<div>{feed.formattedCreatedAt}</div>
 						</div>
