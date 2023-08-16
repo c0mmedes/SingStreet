@@ -35,50 +35,55 @@ import EntProjectMemberInviteContainer from "./containers/ent/EntProjectMemberIn
 // 뮤직(워크)
 import WorkCreateContainer from "./containers/work/WorkCreateContainer";
 const mapStateToProps = (state) => ({
-  userInfo: state.user.userInfo,
-  isLogin: state.user.isLogin,
+	userInfo: state.user.userInfo,
+	isLogin: state.user.isLogin,
 });
 
 function App({ isLogin }) {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/ent" element={<Ent />} />
-      <Route path="/chart" element={<Chart />} />
-      <Route path="/music" element={<Music />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<LoginContainer />} />
-      <Route path="/chat" element={<ChatContainer />} />
-      <Route path="/studio" element={<Studio />} />
-      <Route
-        path="/mypage/*"
-        element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
-        <Route
-          path=""
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyInfoContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="myentlist"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="mypageinvitedproject"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? (
-              <MypageInvitedProjectContainer />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        {/* {<Route
+	return (
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/ent" element={<Ent />} />
+			<Route path="/chart" element={<Chart />} />
+			<Route path="/music" element={<Music />} />
+			<Route path="/register" element={<Register />} />
+			<Route path="/login" element={<LoginContainer />} />
+			<Route path="/chat" element={<ChatContainer />} />
+			<Route path="/studio" element={<Studio />} />
+			{/* 합작 생성 */}
+
+			<Route
+				path="/workcreate"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <WorkCreateContainer /> : <Navigate to="/login" />
+				}
+			/>
+
+			{/*중첩된 라우터 마이페이지 관련*/}
+			<Route path="/mypage/*" element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
+				<Route
+					path=""
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <MyInfoContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="myentlist"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="mypageinvitedproject"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <MypageInvitedProjectContainer /> : <Navigate to="/login" />
+					}
+				/>
+				{/* {<Route
 						path="mymusic"
 						element={
 							// isLogin 상태에 따라 컴포넌트를 선택
@@ -86,98 +91,84 @@ function App({ isLogin }) {
           			}
         		/>
 				} */}
-      </Route>
-      <Route
-        path="/entcreate"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
-        }
-      />
-      {/* 합작 생성 */}
+			</Route>
+			<Route
+				path="/entcreate"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
+				}
+			/>
 
-      <Route
-        path="/workcreate"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <WorkCreateContainer /> : <Navigate to="/login" />
-        }
-      />
-
-      {/* 엔터내 Nav */}
-      <Route
-        path="/entmain/:entId/:entMasterId/:entName/*"
-        element={<EntMain />}>
-        {/* 중첩된 라우트 설정 */}
-        <Route
-          path=""
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntFeed /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entapply"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntApplyContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entapplicants"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entprojectcreate"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectCreateContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entprojectlist"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectListContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entproject/:projectId"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectMainContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entprojectmodify/:projectId"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <EntProjectModifyContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="entprojectmemberinvite/:projectId"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? (
-              <EntProjectMemberInviteContainer />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-      </Route>
-      <Route
-        path="/entproject/studio/:entId/:entMasterId/:entName/:projectId"
-        element={
-          // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <EntProjectStudioContainer /> : <Navigate to="/login" />
-        }
-      />
-    </Routes>
-  );
+			{/*중첩된 라우터 엔터 관련*/}
+			{/* 엔터내 Nav */}
+			<Route path="/entmain/:entId/:entMasterId/:entName/*" element={<EntMain />}>
+				{/* 중첩된 라우트 설정 */}
+				<Route
+					path=""
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntFeed /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entapply"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntApplyContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entapplicants"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntApplicantsContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entprojectcreate"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntProjectCreateContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entprojectlist"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntProjectListContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entproject/:projectId"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntProjectMainContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entprojectmodify/:projectId"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntProjectModifyContainer /> : <Navigate to="/login" />
+					}
+				/>
+				<Route
+					path="entprojectmemberinvite/:projectId"
+					element={
+						// isLogin 상태에 따라 컴포넌트를 선택
+						isLogin ? <EntProjectMemberInviteContainer /> : <Navigate to="/login" />
+					}
+				/>
+			</Route>
+			<Route
+				path="/entproject/studio/:entId/:entMasterId/:entName/:projectId"
+				element={
+					// isLogin 상태에 따라 컴포넌트를 선택
+					isLogin ? <EntProjectStudioContainer /> : <Navigate to="/login" />
+				}
+			/>
+		</Routes>
+	);
 }
 export default connect(mapStateToProps, null)(App);

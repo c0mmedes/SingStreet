@@ -5,29 +5,27 @@ import { connect } from "react-redux";
 import { addUserInfo, setIsLogin } from "../../modules/user/user";
 import WorkCreate from "../../components/work/WorkCreate";
 
-const EntCreateContainer = ({ userInfo, isLogin, addUserInfo, setIsLogin }) => {
-  return (
-    <WorkCreate
-      userInfo={userInfo}
-      isLogin={isLogin}
-      addUserInfo={addUserInfo}
-      setIsLogin={setIsLogin}></WorkCreate>
-  );
+const WorkCreateContainer = ({ userInfo, isLogin, addUserInfo, setIsLogin }) => {
+	return (
+		<WorkCreate
+			userInfo={userInfo}
+			isLogin={isLogin}
+			addUserInfo={addUserInfo}
+			setIsLogin={setIsLogin}
+		></WorkCreate>
+	);
 };
 const mapStateToProps = (state) => ({
-  userInfo: state.user.userInfo,
-  isLogin: state.user.isLogin,
+	userInfo: state.user.userInfo,
+	isLogin: state.user.isLogin,
 });
 const mapDispatchToProps = (dispatch) => ({
-  addUserInfo: (userInfo) => {
-    dispatch(addUserInfo(userInfo));
-  },
-  setIsLogin: () => {
-    dispatch(setIsLogin());
-  },
+	addUserInfo: (userInfo) => {
+		dispatch(addUserInfo(userInfo));
+	},
+	setIsLogin: () => {
+		dispatch(setIsLogin());
+	},
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WorkCreateContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(WorkCreateContainer);
