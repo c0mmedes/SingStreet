@@ -13,7 +13,7 @@ const EntFeed = ({userInfo}) => {
   const apiInstance = api();
   // 피드 쓰기
   const [content, setContent] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState();
 
   useEffect(() => {
     // API 호출을 통해 게시물 데이터를 가져옵니다.
