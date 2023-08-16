@@ -2,7 +2,8 @@
   font-family: "MapleLight";
   src: url("../assets/font/Maplestory\ Light.ttf");
 }
-
+:root {
+}
 * {
   font-family: "MapleLight" !important;
 }
