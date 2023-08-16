@@ -159,7 +159,7 @@ const EntFeed = ({ userInfo }) => {
 						<div className="feed-post-user">
 							<div>{feed.userId.userImg}</div>
 							<div>{feed.userId.nickname}</div>
-							<div>{feed.createdAt}</div>
+							<div>{feed.formattedCreatedAt}</div>
 						</div>
 						<div className="feed-post-content">{feed.content}</div>
 						<div className="feed-post-comment-menu">
