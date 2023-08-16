@@ -7,8 +7,9 @@ import { api } from "../../services/httpService";
 const EntFeed = ({ userInfo }) => {
   // entMain 라우터 경로에 있는 param인 entId, entMasterId, entName를 저장하는 변수
   const { entId, entMasterId, entName } = useParams();
-  // 엔터 정보를 담고 있는 객체
-  const [ent, setEnt] = useState({});
+  const [ent, setEnt] = useState({}); // 엔터 정보를 담고 있는 객체
+  const [page, setPage] = useState(0);
+  const [feedList, setFeedList] = useState([]);
   // axios 객체
   const apiInstance = api();
   // 피드 쓰기
@@ -17,6 +18,7 @@ const EntFeed = ({ userInfo }) => {
 
   useEffect(() => {
     // API 호출을 통해 게시물 데이터를 가져옵니다.
+    getInitialfeedList();
     // API 호출로 엔터 정보 가져옴
     getEnt();
   }, []);
@@ -53,6 +55,27 @@ const EntFeed = ({ userInfo }) => {
     setContent("");
     setType("");
   };
+
+  // 처음에 피드글들을 불러올때
+  const getInitialfeedList = async () => {
+		const res = await apiInstance.get(`/ent/feed/${entId}?page=${page}&size=100`);
+		const initialFeedList = res.data.content;
+		console.log(res.data);
+		setFeedList(initialFeedList);
+		// setIsLastPage(res.data.last);
+	};
+
+  // 더보기로 피드글을 더 불러올 때
+  const onClickMoreFeedList = async () => {
+		// if (isLastPage) return;
+		const nextPage = page + 1;
+		const res = await apiInstance.get(`/ent/feed/${entId}?page=${page}&size=100`);
+		const newFeedList = feedList.concat(res.data.content);
+		console.log(newFeedList);
+		setFeedList(newFeedList);
+		// setIsLastPage(res.data.last);
+		setPage(nextPage);
+	};
 
   return (
     <>
