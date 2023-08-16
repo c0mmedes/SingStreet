@@ -1,8 +1,15 @@
+@font-face {
+  font-family: "SuperDonuts";
+  src: url("../assets/SuperDonuts.ttf") format("woff");
+  src: url("../assets/SuperDonuts.ttf") format("woff2");
+}
+
 :root {
   --surface-color: #fff;
   --curve: 40;
 }
-.mainHomeWrap {
+body {
+  font-family: "SuperDonuts";
 }
 /* * {
   box-sizing: border-box;
