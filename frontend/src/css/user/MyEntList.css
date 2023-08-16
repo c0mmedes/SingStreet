@@ -3,15 +3,12 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  /* width: 50%; */
   margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #f6f6f6;
-  /* 가입된 엔터목록 상자 옮기려고  */
-  /* margin-top: 50px; */
   padding-bottom: 50px;
   margin-left: 200px;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
 }
 
 .myEntListItem {
@@ -29,7 +26,6 @@
   text-align: center;
 }
 
-/* If you'd like to display the images, add some additional styles */
 .myEntListItem img {
   max-width: 100%;
   width: 70px;
