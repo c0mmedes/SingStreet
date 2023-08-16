@@ -324,8 +324,8 @@ const Studio = () => {
               },
             }
           );
+        console.log(`여기에 있는 res.data.content로 setBlockList하겠음.${res.data}`);
         setBlockList(res.data.content);
-        console.log(res.data);
     }
 
 
