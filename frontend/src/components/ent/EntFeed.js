@@ -224,8 +224,11 @@ const EntFeed = ({ userInfo }) => {
 								{/* 댓글 목록 */}
 								{feed.comments.map((comment) => (
 									<div key={comment.createdAt} className="comment">
-										<div className="comment-user">{comment.userId}</div>
-										<div className="comment-createdAt">{comment.createdAt}</div>
+										<div className="comment-user">{comment.nickname}</div>
+										<div className="comment-createdAt">
+											{comment.createdAt[0]}-{comment.createdAt[1]}-{comment.createdAt[2]}{" "}
+											{comment.createdAt[3]}:{comment.createdAt[4]}
+										</div>
 										<div className="comment-content">{comment.content}</div>
 									</div>
 								))}
