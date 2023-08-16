@@ -2,7 +2,8 @@ import React from "react";
 import Footer from "../layout/Footer";
 import "../../css/chart/Chart.css";
 import sampleuni from "../../assets/sampleuni.png";
-const chart = ({userInfo}) => {
+import chart1 from "../../assets/chart1.PNG";
+const chart = ({ userInfo }) => {
   return (
     <div className="chartContainer">
       <div className="chartCard">
@@ -38,8 +39,8 @@ const chart = ({userInfo}) => {
           {/* <!-- Number--> */}
           <div className="chartNumber">02</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlCeWf" alt="02" />
+          <div className="chartCover chartCover2">
+            <img src={chart1} alt="02" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
