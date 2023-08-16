@@ -118,7 +118,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                       삭제
                     </span>
                   </div>
-                  <div className="image-preview-container">
+                  {/* <div className="image-preview-container">
                     {workImg ? (
                       <img
                         className="previewImage"
@@ -136,7 +136,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                         width="120px"
                       />
                     )}
-                  </div>
+                  </div> */}
                 </div>
                 <input className="button" type="submit" value="생성하기" />
               </form>
