@@ -51,7 +51,7 @@ const chart = ({ userInfo }) => {
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>king krule - The Ozz</span>
+            <span>king krule - The Ooz</span>
             <p>하늘 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}

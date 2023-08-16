@@ -1,4 +1,6 @@
 .myEntListWrap {
+  min-width: 90%;
+  min-height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,7 +9,7 @@
   border-radius: 8px;
   background-color: #f6f6f6;
   padding-bottom: 50px;
-  margin-left: 200px;
+  margin-left: 130px;
   box-shadow: 1px 1px 30px 10px #dfe2e4;
 }
 
