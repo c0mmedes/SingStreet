@@ -1,5 +1,5 @@
 .left-side {
-  width: 270px;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   background-color: white;
