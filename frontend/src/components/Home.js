@@ -16,7 +16,7 @@ const Home = () => {
       <div className="mainHomeWrap">
         <h1>메인영상 넣을거임</h1>
       </div>
-      {/* <ul className="cards">
+      <ul className="cards">
         <li>
           <a href="" class="card">
             <img src={myImage} class="card__image" alt="" />
@@ -98,7 +98,7 @@ const Home = () => {
             </div>
           </a>
         </li>
-      </ul> */}
+      </ul>
     </div>
   );
 };
