@@ -12,6 +12,7 @@ const getMyEntList = async () => {
 				Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
 			},
 		});
+		console.log(res.data);
 		await addToMyEntList(res.data);
 	} catch (error) {}
 };

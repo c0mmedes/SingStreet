@@ -1,6 +1,6 @@
 //src/components/layout/EntNav.js
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/layout/EntNav.css";
 import { getMyEntList } from "../../services/userAPI";
 const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
@@ -11,6 +11,25 @@ const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
 	"entInfo": "qwe",
 	"tagNameList": [],
 	"autoAccepted": true */
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		getMyEntList();
+		console.log(myEntList);
+	});
+
+	const onClickApply = () => {
+		if (myEntList && myEntList.length > 0) {
+			console.log("1차검증 통과");
+			if (!myEntList.some((ent) => parseInt(ent.entId) === parseInt(entId))) {
+				// 엔터 회원이 아님
+				navigate(`/entmain/${entId}/${entMasterId}/${entName}/entapply`);
+			}
+		} else {
+			// 엔터 회원이 아님
+			navigate(`/entmain/${entId}/${entMasterId}/${entName}/entapply`);
+		}
+	};
 
 	return (
 		<div>
@@ -25,11 +44,11 @@ const EntNav = ({ entId, entMasterId, entName, userInfo, myEntList }) => {
 									</a>
 								</Link>
 							) : (
-								<Link to={`/entmain/${entId}/${entMasterId}/${entName}/entapply`}>
-									<a className="menuLink" href="#">
-										<span>지원 하기</span>
-									</a>
-								</Link>
+								// <Link to={`/entmain/${entId}/${entMasterId}/${entName}/entapply`}>
+								<a className="menuLink" href="#" onClick={onClickApply}>
+									<span>지원 하기</span>
+								</a>
+								// </Link>
 							)}
 						</div>
 						<Link to={`/entmain/${entId}/${entMasterId}/${entName}`}>
