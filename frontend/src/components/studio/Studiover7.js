@@ -245,7 +245,7 @@ const Studio = () => {
     const blockPlay = (blocks) =>{
         blocks.forEach((block) => {
             console.log("block",block.id);
-            const audio = document.getElementById("audio"+block.id);//블럭과 id같은 audio불러오기
+            const audio = document.getElementById("audio"+block.id);
             console.log("audio",audio);
             if (//플레이 헤드가 현재 블록 내 위치 시
                 block.offsetLeft <= playhead.offsetLeft &&
@@ -296,7 +296,7 @@ const Studio = () => {
         clearInterval(playInterval);
         playhead.style.display = "none";
         playhead.style.left = `${container.offsetLeft}px`;
-        blocks.forEach((block) => { //해당 block과 아이디가 같으면 정지
+        blocks.forEach((block) => {
             const audio = document.getElementById("audio"+block.id);
             audio.pause();
             console.log(block.id);
@@ -389,4 +389,4 @@ const Studio = () => {
 export default Studio;
 
 
-//드래그 수정
+//드래그 안됨

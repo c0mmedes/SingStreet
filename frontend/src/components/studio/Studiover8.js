@@ -387,6 +387,3 @@ const Studio = () => {
 };
 
 export default Studio;
-
-
-//드래그 수정
