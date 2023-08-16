@@ -1,5 +1,5 @@
 .entPjtMemberInviteContainer {
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
   display: flex;
   flex-direction: column;
 }
@@ -70,4 +70,8 @@
 
 .PossibleInviteMemberListItem button {
   flex: 0.2;
+}
+
+.PossibleInviteMemberListItem {
+  margin-bottom: 7px;
 }
