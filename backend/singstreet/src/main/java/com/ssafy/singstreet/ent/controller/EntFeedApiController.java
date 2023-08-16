@@ -1,5 +1,7 @@
 package com.ssafy.singstreet.ent.controller;
 
+import com.ssafy.singstreet.ent.db.entity.Ent;
+import com.ssafy.singstreet.ent.db.repo.EntRepository;
 import com.ssafy.singstreet.ent.model.entFeedCommentDto.EntFeedCommentRequestDto;
 import com.ssafy.singstreet.ent.model.entFeedCommentDto.EntFeedCommentResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedLikeRequestDto;
@@ -7,6 +9,11 @@ import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedCreateRequestDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedUpdateRequestDto;
 import com.ssafy.singstreet.ent.service.EntFeedService;
+import com.ssafy.singstreet.ent.service.EntMemberService;
+import com.ssafy.singstreet.user.db.entity.User;
+import com.ssafy.singstreet.user.db.repo.UserRepository;
+import com.ssafy.singstreet.user.service.SecurityUtil;
+import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +28,10 @@ import org.springframework.web.bind.annotation.*;
 public class EntFeedApiController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EntFeedService feedService;
-
+    private final UserService userService;
+    private final EntMemberService entMemberService;
+    private final EntRepository entr;
+    private final UserRepository userr;
     // Feed -------------------------------------------------------------
     // feed Read
     @GetMapping("/ent/feed/{entId}")
@@ -48,9 +58,14 @@ public class EntFeedApiController {
     @PostMapping("/ent/feed")
     public ResponseEntity<Boolean> createFeed(@RequestBody EntFeedCreateRequestDto requestDto){
         log.debug("[entFeedCreate] EntFeedSaveRequestDto :", requestDto);
-
-
-        return new ResponseEntity(feedService.saveFeed(requestDto), HttpStatus.CREATED);
+        int user_id=userService.getCurrentUserId();
+        Ent ent=entr.findById(requestDto.getEnt()).get();
+        User user=userr.findByUserId(requestDto.getUser());
+        if(entMemberService.findent(user, ent)) {
+            return new ResponseEntity(feedService.saveFeed(requestDto), HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity(false, HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
     // feed Update
