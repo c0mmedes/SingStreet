@@ -4,12 +4,19 @@ import { api } from "../../services/httpService";
 import "../../css/work/WorkCreate.css";
 const WorkCreate = ({ userInfo, isLogin }) => {
   const [isAutoAceepted, setIsAutoAceepted] = useState(true);
+  const [workImg, setWorkImg] = useState(true);
   const fileInputRef = useRef(null);
   const handleIsAutoAceepted = (e) => {
     const value = e.target.value === "true"; // 문자열 "true"를 불리언 true로 변환
     setIsAutoAceepted(value);
   };
-
+  const handleImageDelete = () => {
+    setWorkImg(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+      fileInputRef.current.removeAttribute("required");
+    }
+  };
   const handleWorkImg = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -80,7 +87,6 @@ const WorkCreate = ({ userInfo, isLogin }) => {
           <div className="title_container">
             <h2>노래합작 업로드</h2>
           </div>
-
           <div className="row clearfix">
             <div className="">
               <form className="entCreateForm" onSubmit={onClickEntCreate}>
@@ -92,7 +98,6 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                   </select>
                   <div className="select_arrow"></div>
                 </div>
-
                 <label>노래합작 썸네일</label>
                 <div className="input_field" id="workImgInputField">
                   <div className="file-input">
@@ -114,10 +119,10 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                     </span>
                   </div>
                   <div className="image-preview-container">
-                    {entImg ? (
+                    {workImg ? (
                       <img
                         className="previewImage"
-                        src={URL.createObjectURL(entImg)}
+                        src={URL.createObjectURL(workImg)}
                         alt="엔터 프로필 이미지 미리보기"
                         height="120px"
                         width="120px"
