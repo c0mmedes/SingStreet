@@ -123,16 +123,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
             <li className="PossibleInviteMemberListItem" key={entMember.userId}>
               <span> {entMember.nickname}</span>
               <span> {entMember.email}</span>
-              <span> {entMember.gender}</span>{" "}
-              <button
-                className="inviteMemberBtn"
-                onClick={() => onClickMemberInvite(entMember.userId)}>
-                초대
-              </button>
-            </li>
-          ))}
-          {entMemberList.map((entMember) => (
-            <li className="PossibleInviteMemberListItem" key={entMember.userId}>
+              <span> {entMember.gender}</span>
               <button
                 className="inviteMemberBtn"
                 onClick={() => onClickMemberInvite(entMember.userId)}>
