@@ -21,9 +21,7 @@ const EntFeed = ({ userInfo }) => {
 	const [type, setType] = useState();
 
 	useEffect(() => {
-		// API 호출을 통해 게시물 데이터를 가져옵니다.
 		getInitialfeedList();
-		// API 호출로 엔터 정보 가져옴
 		getEnt();
 	}, []);
 
