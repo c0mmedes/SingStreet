@@ -12,6 +12,11 @@ const Home = () => {
           상우기의 채팅상담@@@@@@@@@@@@@@@@@@@@@@
         </div>
       </Link>
+      <Link to="/studio">
+        <div>
+          studio테스트
+        </div>
+      </Link>
       <ul className="cards">
         <li>
           <a href="" class="card">

@@ -25,7 +25,9 @@ import EntProjectListContainer from "./containers/ent/EntProjectListContainer";
 import MyInfoContainer from "./containers/user/MyInfoContainer";
 import EntProjectMainContainer from "./containers/ent/EntProjectMainContainer";
 import EntProjectStudioContainer from "./containers/ent/EntProjectStudioContainer";
+
 import ChatContainer from "./containers/chat/ChatContainer";
+import Studio from "./components/studio/Studio"
 
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
@@ -42,6 +44,7 @@ function App({ isLogin }) {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<LoginContainer />} />
       <Route path="/chat" element={<ChatContainer />}/>
+      <Route path="/studio" element={<Studio />}/>
       <Route
         path="/mypage/*"
         element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
