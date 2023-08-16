@@ -55,3 +55,8 @@
   grid-gap: 15px;
   list-style: none; /* 목록 항목에 나오는 검은점을 없애기 위한 스타일 */
 }
+.AlreadyMemberListGridItem {
+  width: 324px;
+  display: flex;
+  justify-content: space-between;
+}

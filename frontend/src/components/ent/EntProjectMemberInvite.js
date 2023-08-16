@@ -100,7 +100,9 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
           <span>성별</span>
         </div>
         {projectMemberList.map((projectMember) => (
-          <li key={projectMember.user.userId}>
+          <li
+            className="AlreadyMemberListGridItem"
+            key={projectMember.user.userId}>
             <span> {projectMember.user.nickname}</span>
             <span> {projectMember.user.email}</span>
             <span> {projectMember.user.gender}</span>
