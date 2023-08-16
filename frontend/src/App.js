@@ -17,7 +17,6 @@ import EntCreateContainer from "./containers/ent/EntCreateContainer";
 import EntMain from "./components/ent/EntMain";
 import EntApplyContainer from "./containers/ent/EntApplyContainer";
 import EntApplicantsContainer from "./containers/ent/EntApplicantsContainer";
-import EntFeed from "./components/ent/EntFeed";
 import MyEntListContainer from "./containers/user/MyEntListContainer";
 // 엔터_프로젝트
 import EntProjectCreateContainer from "./containers/ent/EntProjectCreateContainer";
@@ -34,6 +33,7 @@ import MypageInvitedProjectContainer from "./containers/user/MypageInvitedProjec
 import EntProjectMemberInviteContainer from "./containers/ent/EntProjectMemberInviteContainer";
 // 뮤직(워크)
 import WorkCreateContainer from "./containers/work/WorkCreateContainer";
+import EntFeedContainer from "./containers/ent/EntFeedContainer";
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
 	isLogin: state.user.isLogin,
@@ -108,7 +108,7 @@ function App({ isLogin }) {
 					path=""
 					element={
 						// isLogin 상태에 따라 컴포넌트를 선택
-						isLogin ? <EntFeed /> : <Navigate to="/login" />
+						isLogin ? <EntFeedContainer /> : <Navigate to="/login" />
 					}
 				/>
 				<Route
