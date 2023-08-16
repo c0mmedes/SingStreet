@@ -375,7 +375,7 @@ const Studio = () => {
               {/* 버튼들 */}
               <div className="buttonArea">
                 <button id="play" onClick={handlePlay} className="w-btn-neon2">
-                  play!
+                  <ion-icon name="play-outline"></ion-icon>
                 </button>
                 <button id="stop" onClick={handleStop} className="w-btn-neon2">
                   stop!
