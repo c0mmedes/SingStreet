@@ -1,12 +1,16 @@
 package com.ssafy.singstreet.chatt.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.beans.factory.annotation.Value;
 import com.ssafy.singstreet.chatt.service.WebSocketHandlerImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.*;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+import java.time.LocalDateTime;
 
 //@ConditionalOnWebApplication
 @EnableWebSocket//이 어노테이션을 사용하면 스프링 애플리케이션 내에서 WebSocket을 사용할 수 있게 됩니다
@@ -23,8 +27,10 @@ public class WebSocketConfig implements WebSocketConfigurer {//implements WebSoc
 
     //ObjectMapper-> Jackson라이브러리를 사용해 JSON데이터를 자바 객체로 매핑하기 위한 빈
     @Bean
-    public ObjectMapper objectMapper(){
-        return new ObjectMapper();
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule()); // Java 8 날짜 및 시간 모듈 추가
+        return objectMapper;
     }
 
     @Override

@@ -59,7 +59,7 @@ public class EntFeedService {
     }
 
     // feed Save
-    @Transactional
+//    @Transactional
     public boolean saveFeed(EntFeedCreateRequestDto requestDto){
         EntFeed feed = EntFeed.builder()
                 .user(userRepository.findByUserId(requestDto.getUser()))
@@ -67,7 +67,7 @@ public class EntFeedService {
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
                 .fileName(requestDto.getFileName())
-                .isNotice(requestDto.isNotice())
+                .isNotice(requestDto.getIsNotice())
                 .build();
         try {
             feedRepository.save(feed);

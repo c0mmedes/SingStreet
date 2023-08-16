@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServic
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@Import(WebSocketConfig.class)// WebSocket 설정 클래스를 포함시킴
+
 @EnableJpaAuditing
 @SpringBootApplication(exclude= {UserDetailsServiceAutoConfiguration.class})
 public class SingstreetApplication {
@@ -15,5 +15,4 @@ public class SingstreetApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SingstreetApplication.class, args);
 	}
-
 }
