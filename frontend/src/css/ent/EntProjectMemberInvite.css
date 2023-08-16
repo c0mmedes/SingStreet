@@ -25,10 +25,14 @@
   grid-gap: 15px;
 }
 
+.PossibleInviteMemberListGrid,
 .inviteMemberLi {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
+}
+.inviteMemberLi {
+  list-style: none; /* 목록 항목에 나오는 검은점을 없애기 위한 스타일 */
 }
 
 .inviteMemberBtn {
@@ -44,3 +48,10 @@
 /* .inviteMemberBtn:hover {
   background-color: #45a049;
 } */
+
+.AlreadyMemberList li {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+  list-style: none; /* 목록 항목에 나오는 검은점을 없애기 위한 스타일 */
+}
