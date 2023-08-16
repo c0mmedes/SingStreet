@@ -21,27 +21,8 @@ const EntFeed = ({userInfo}) => {
     getEnt();
   },[]);
 
-  // [API]  데이터베이스에 게시물을 추가하는 함수
-  const onClickSubmit = async () => {
-    const accessToken = sessionStorage.getItem("accessToken");
-    const feedData = {
-      ent: entId,
-      title: "dummy",
-      content: content,
-      isNotice: type,
-    };
-    const res = await apiInstance.post(`/ent/feed`, feedData, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-      },
-    });
-    console.log(`피드 추가 : ${res}`);
-    setContent("");
-    setType("");
-  };
-
-  //[API] 엔터 정보를 가져오는 함수
-  const getEnt = async () => {
+   // [API] 엔터 정보를 가져오는 함수
+   const getEnt = async () => {
     const res = await apiInstance.get(`/ent/${entId}`);
     const newEnt = { ...res.data }; // 새로운 객체를 생성하고 res.data의 내용을 복사
     setEnt(newEnt);
@@ -52,6 +33,25 @@ const EntFeed = ({userInfo}) => {
     // "entInfo": "qwe",
     // "tagNameList": [],
     // "autoAccepted": true
+  };
+
+  // [API]  데이터베이스에 게시물을 추가하는 함수
+  const onClickSubmit = async () => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    const feedData = {
+      ent: entId,
+      title: "dummy",
+      content: content,
+      type: type,
+    };
+    const res = await apiInstance.post(`/ent/feed`, feedData, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+      },
+    });
+    console.log(`피드 추가 : ${res}`);
+    setContent("");
+    setType("");
   };
 
   return (
