@@ -4,7 +4,7 @@ import "../../css/ent/EntMain.css";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 
-const EntFeed = ({userInfo}) => {
+const EntFeed = ({ userInfo }) => {
   // entMain 라우터 경로에 있는 param인 entId, entMasterId, entName를 저장하는 변수
   const { entId, entMasterId, entName } = useParams();
   // 엔터 정보를 담고 있는 객체
@@ -19,7 +19,7 @@ const EntFeed = ({userInfo}) => {
     // API 호출을 통해 게시물 데이터를 가져옵니다.
     // API 호출로 엔터 정보 가져옴
     getEnt();
-  },[]);
+  }, []);
 
   // [API]  데이터베이스에 게시물을 추가하는 함수
   const onClickSubmit = async () => {
@@ -58,9 +58,6 @@ const EntFeed = ({userInfo}) => {
     <>
       <div className="profile">
         <h1>{ent.entName}</h1>
-        <span>
-          {ent.entInfo}
-        </span>
         <div className="videos">
           <div className="video">
             <div className="video-time">15.13</div>
@@ -108,7 +105,9 @@ const EntFeed = ({userInfo}) => {
           </div>
         </div>
       </div>
-
+      <div className="EntTitle">
+        <span>{ent.entInfo}</span>
+      </div>
       <div className="post-form">
         <textarea
           value={content}
@@ -117,7 +116,9 @@ const EntFeed = ({userInfo}) => {
         />
         <div className="post-form-bottom">
           <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="" disabled>말머리 선택</option>
+            <option value="" disabled>
+              말머리 선택
+            </option>
             <option value="true">공지사항</option>
             <option value="false">자유</option>
           </select>
