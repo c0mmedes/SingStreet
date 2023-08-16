@@ -25,22 +25,22 @@
   grid-gap: 15px;
 }
 
-li {
+.inviteMemberLi {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
 }
 
-button {
+.inviteMemberBtn {
   width: 80px;
   height: 30px;
-  background-color: #4caf50;
+  background-color: black;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
 
-button:hover {
+/* .inviteMemberBtn:hover {
   background-color: #45a049;
-}
+} */
