@@ -27,57 +27,17 @@ import EntProjectMainContainer from "./containers/ent/EntProjectMainContainer";
 import EntProjectStudioContainer from "./containers/ent/EntProjectStudioContainer";
 
 import ChatContainer from "./containers/chat/ChatContainer";
-<<<<<<< HEAD
 import Studio from "./components/studio/Studio"
 
-=======
 import EntProjectModifyContainer from "./containers/ent/EntProjectModifyContainer";
 import MypageInvitedProjectContainer from "./containers/user/MypageInvitedProjectContainer";
 import EntProjectMemberInviteContainer from "./containers/ent/EntProjectMemberInviteContainer"
->>>>>>> f4f0c701245387f01b98dbc0eb1d0e413158b0f5
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
 	isLogin: state.user.isLogin,
 });
 
 function App({ isLogin }) {
-<<<<<<< HEAD
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/ent" element={<Ent />} />
-      <Route path="/chart" element={<Chart />} />
-      <Route path="/music" element={<Music />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<LoginContainer />} />
-      <Route path="/chat" element={<ChatContainer />}/>
-      <Route path="/studio" element={<Studio />}/>
-      <Route
-        path="/mypage/*"
-        element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
-        <Route
-          path=""
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyInfoContainer /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="myentlist"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyEntListContainer /> : <Navigate to="/login" />
-          }
-        />
-        {/* <Route
-          path="mymusic"
-          element={
-            // isLogin 상태에 따라 컴포넌트를 선택
-            isLogin ? <MyMusic /> : <Navigate to="/mymusic" />
-          }
-        /> */}
-      </Route>
-=======
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
@@ -118,7 +78,6 @@ function App({ isLogin }) {
         		/>
 				} */}
 			</Route>
->>>>>>> f4f0c701245387f01b98dbc0eb1d0e413158b0f5
 
 			<Route
 				path="/entcreate"
