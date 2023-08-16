@@ -98,37 +98,18 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                       name="file"
                       ref={fileInputRef}
                       onChange={handleWorkImg}
-                      accept="image/*"
+                      accept="audio/*,video/*"
                       style={{ display: "none" }}
                     />
                     <span
                       id="modifybutton"
                       onClick={() => fileInputRef.current.click()}>
-                      이미지 변경
+                      오디오 변경
                     </span>
                     <span id="deletebutton" onClick={handleImageDelete}>
                       삭제
                     </span>
                   </div>
-                  {/* <div className="image-preview-container">
-                    {workImg ? (
-                      <img
-                        className="previewImage"
-                        src={URL.createObjectURL(workImg)}
-                        alt="엔터 프로필 이미지 미리보기"
-                        height="120px"
-                        width="120px"
-                      />
-                    ) : (
-                      <img
-                        className="defaultImage"
-                        src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
-                        alt="기본 이미지"
-                        height="120px"
-                        width="120px"
-                      />
-                    )}
-                  </div> */}
                 </div>
                 <input className="button" type="submit" value="생성하기" />
               </form>
