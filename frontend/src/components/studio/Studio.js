@@ -369,8 +369,10 @@ const Studio = () => {
         onDragOver={(e) => e.preventDefault()}>
         <div className="inner">
           <div className="editWrap">
+            {/* 블록올리는 곳 */}
             <div id="editArea" className="editArea">
               <div id="playhead"></div>
+              {/* 버튼들 */}
               <div className="buttonArea">
                 <button id="play" onClick={handlePlay} className="w-btn-neon2">
                   play!

@@ -15,9 +15,11 @@
 }
 
 .studioArea .inner .buttonArea {
-  height: 10%;
-  margin-bottom: 10px;
-  background-color: rgb(5, 75, 75);
+  height: 40px;
+  background-color: #302927;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .studioArea .inner .editArea {
@@ -26,6 +28,7 @@
   height: 603px;
   border-radius: 5px;
   background-color: #3f3a39;
+  position: relative;
 }
 
 #playhead {
@@ -56,19 +59,9 @@
 .w-btn-neon2 {
   position: relative;
   border: none;
-  margin-left: 1%;
-  margin-top: 5px;
-  min-width: 120px;
-  min-height: 40px;
-  background: linear-gradient(
-    90deg,
-    rgba(129, 230, 217, 1) 0%,
-    rgba(79, 209, 197, 1) 100%
-  );
-  border-radius: 1000px;
-  color: darkslategray;
+  width: 50px;
+  height: 30px;
   cursor: pointer;
-  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
   font-weight: 700;
   transition: 0.3s;
 }
