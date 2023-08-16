@@ -22,9 +22,10 @@
 
 .studioArea .inner .editArea {
   display: inline-block;
-  width: 79%;
-  height: 500px;
-  background-color: rgb(0, 0, 0);
+  width: 1430px;
+  height: 603px;
+  border-radius: 5px;
+  background-color: #3f3a39;
 }
 
 #playhead {

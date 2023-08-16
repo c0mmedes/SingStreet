@@ -368,18 +368,18 @@ const Studio = () => {
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}>
         <div className="inner">
-          <div className="buttonArea">
-            <button id="play" onClick={handlePlay} className="w-btn-neon2">
-              play!
-            </button>
-            <button id="stop" onClick={handleStop} className="w-btn-neon2">
-              stop!
-            </button>
-            <button className="w-btn-neon2">음향효과2</button>
-          </div>
           <div className="editWrap">
             <div id="editArea" className="editArea">
               <div id="playhead"></div>
+              <div className="buttonArea">
+                <button id="play" onClick={handlePlay} className="w-btn-neon2">
+                  play!
+                </button>
+                <button id="stop" onClick={handleStop} className="w-btn-neon2">
+                  stop!
+                </button>
+                <button className="w-btn-neon2">음향효과2</button>
+              </div>
             </div>
             <div id="blockListArea" className="blockListArea"></div>
           </div>
