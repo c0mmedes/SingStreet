@@ -91,8 +91,8 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
     }
   };
   return (
-    <div entPjtMemberInviteContainer>
-      <div AlreadyMemberList>
+    <div className="entPjtMemberInviteContainer">
+      <div className="AlreadyMemberList">
         <h2>프로젝트 멤버 목록</h2>
         {projectMemberList.map((projectMember) => (
           <li key={projectMember.user.userId}>
@@ -102,7 +102,7 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
           </li>
         ))}
       </div>
-      <div PossibleInviteMemberList>
+      <div className="PossibleInviteMemberList">
         <h2>초대 가능한 엔터원 목록</h2>
         {entMemberList.map((entMember) => (
           <li key={entMember.userId}>
