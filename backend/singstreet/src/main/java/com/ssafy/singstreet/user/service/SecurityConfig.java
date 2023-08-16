@@ -60,7 +60,7 @@ public class SecurityConfig {
                 .antMatchers("/admin/**").hasRole("admin")
                 .antMatchers("/myuser").hasRole("USER")
                 .antMatchers("/auth/logout").hasRole("USER")
-                .antMatchers( "/chatt/{entId}").hasRole("*")
+//                .antMatchers( "/chatt/{entId}").hasRole("*")
                 .antMatchers(HttpMethod.PUT, "/user").hasRole("USER")
                 .anyRequest().permitAll()
                 .and()
