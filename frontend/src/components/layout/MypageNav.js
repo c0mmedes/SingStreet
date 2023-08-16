@@ -27,7 +27,7 @@ const EntNav = ({ userInfo, myEntList }) => {
               </Link>
               <Link to={`/mypage/mypageinvitedproject`}>
                 <a className="menuLink" href="#">
-                  <span>내가 받은 프로젝트 초대</span>
+                  <span>프로젝트 초대</span>
                 </a>
               </Link>
             </div>
