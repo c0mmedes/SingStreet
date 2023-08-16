@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/user/MyEntList.css";
 import { api } from "../../services/httpService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 const MyEntList = ({
   isLogin,
   userInfo,

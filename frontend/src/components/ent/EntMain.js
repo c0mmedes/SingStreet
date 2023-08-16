@@ -17,6 +17,7 @@ const EntMain = () => {
     getEnt();
   }, []);
 
+  //[API] 엔터 정보를 가져오는 함수
   const getEnt = async () => {
     const res = await apiInstance.get(`/ent/${entId}`);
     const newEnt = { ...res.data }; // 새로운 객체를 생성하고 res.data의 내용을 복사

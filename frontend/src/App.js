@@ -47,6 +47,7 @@ function App({ isLogin }) {
 			<Route path="/register" element={<Register />} />
 			<Route path="/login" element={<LoginContainer />} />
 			<Route path="/chat" element={<ChatContainer />} />
+			<Route path="/studio" element={<Studio />}/>
 			<Route path="/mypage/*" element={isLogin ? <MypageContainer /> : <Navigate to="/login" />}>
 				<Route
 					path=""

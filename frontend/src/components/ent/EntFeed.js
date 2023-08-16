@@ -1,13 +1,25 @@
 //src/components/ent/EntMain.js
 import React, { useEffect, useState } from "react";
 import "../../css/ent/EntMain.css";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 
 const EntFeed = ({userInfo}) => {
+  // entMain 라우터 경로에 있는 param인 entId, entMasterId, entName를 저장하는 변수
+  const { entId, entMasterId, entName } = useParams();
+  // 엔터 정보를 담고 있는 객체
+  const [ent, setEnt] = useState({});
+  // axios 객체
+  const apiInstance = api();
   // 피드 쓰기
   const [content, setContent] = useState("");
   const [type, setType] = useState("");
+
+  useEffect(() => {
+    // API 호출을 통해 게시물 데이터를 가져옵니다.
+    // API 호출로 엔터 정보 가져옴
+    getEnt();
+  },[]);
 
   const handleSubmit = () => {
     // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
@@ -15,19 +27,28 @@ const EntFeed = ({userInfo}) => {
     setContent("");
     setType("");
   };
-  // useEffect(() => {
-  //   // API 호출을 통해 게시물 데이터를 가져옵니다.
-  //   api.get("/board/{type}").then((response) => setContent(response.data));
-  // },
-  //  []);
+
+  //[API] 엔터 정보를 가져오는 함수
+  const getEnt = async () => {
+    const res = await apiInstance.get(`/ent/${entId}`);
+    const newEnt = { ...res.data }; // 새로운 객체를 생성하고 res.data의 내용을 복사
+    setEnt(newEnt);
+    // "entId": 1,
+    // "userId": "엔터장 아이디",
+    // "entName": "qwe",
+    // "entImg": "qwe",
+    // "entInfo": "qwe",
+    // "tagNameList": [],
+    // "autoAccepted": true
+  };
+ 
 
   return (
     <>
       <div className="profile">
-        <h1>헤더(엔터명)</h1>
+        <h1>{ent.entName}</h1>
         <span>
-          엔터설명엔터설명뜨거운 심장으로 노래하는 준혁쿤과
-          상욱쿤엔터설명엔터설명뜨거운 심장으로 노래하는 준혁쿤과 상욱쿤
+          {ent.entInfo}
         </span>
         <div className="videos">
           <div className="video">
