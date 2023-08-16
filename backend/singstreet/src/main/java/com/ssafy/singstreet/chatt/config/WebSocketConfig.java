@@ -1,6 +1,7 @@
 package com.ssafy.singstreet.chatt.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+import java.time.LocalDateTime;
 
 //@ConditionalOnWebApplication
 @Configuration  //SpringBoot의 설정클래스임을 나타냄
@@ -23,8 +26,9 @@ public class WebSocketConfig  {//implements WebSocketMessageBrokerConfigurer
 
     //ObjectMapper-> Jackson라이브러리를 사용해 JSON데이터를 자바 객체로 매핑하기 위한 빈
     @Bean
-    public ObjectMapper objectMapper(){
-        return new ObjectMapper();
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule()); // Java 8 날짜 및 시간 모듈 추가
+        return objectMapper;
     }
-
 }

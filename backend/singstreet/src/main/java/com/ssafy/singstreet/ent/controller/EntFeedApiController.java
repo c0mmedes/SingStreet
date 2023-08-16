@@ -48,6 +48,11 @@ public class EntFeedApiController {
     @PostMapping("/ent/feed")
     public ResponseEntity<Boolean> createFeed(@RequestBody EntFeedCreateRequestDto requestDto){
         log.debug("[entFeedCreate] EntFeedSaveRequestDto :", requestDto);
+        try {
+            System.out.println(requestDto.getIsNotice());
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return new ResponseEntity(feedService.saveFeed(requestDto), HttpStatus.CREATED);
     }

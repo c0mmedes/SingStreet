@@ -14,6 +14,6 @@ public class EntFeedCreateRequestDto {
     private int ent;
     private String title;
     private String content;
-    private boolean isNotice;
+    private Boolean isNotice;
     private String fileName;
 }
