@@ -89,6 +89,7 @@ const EntFeed = ({ userInfo }) => {
 		// setFeedList를 사용하여 해당 게시물의 댓글 목록을 업데이트할 수 있습니다.
 		const accessToken = sessionStorage.getItem("accessToken");
 		const commentData = {
+			userId: userInfo.userId,
 			feedId: feedId,
 			content: comment,
 		};
