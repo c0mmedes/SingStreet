@@ -3,12 +3,11 @@ package com.ssafy.singstreet.chatt.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.singstreet.chatt.config.MessageDecoder;
 import com.ssafy.singstreet.chatt.db.ChatMessage;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -23,7 +22,7 @@ import java.util.*;
 @Component
 @CrossOrigin("*")
 //@RequiredArgsConstructor
-public class WebSocketChatImpl implements WebSocketChat {
+public class WebSocketHandlerImpl extends TextWebSocketHandler implements org.springframework.web.socket.WebSocketHandler {
     private static Map<Integer, Set<Session>> CHAT_ROOMS = Collections.synchronizedMap(new HashMap<>());//동시접근 막도록 동기화보장
 
 //    @Autowired
@@ -32,13 +31,12 @@ public class WebSocketChatImpl implements WebSocketChat {
     private static ApplicationContext applicationContext;
     @Autowired
     public void setApplicationContext(ApplicationContext applicationContext) {
-        WebSocketChatImpl.applicationContext = applicationContext;
+        WebSocketHandlerImpl.applicationContext = applicationContext;
     }
     private ObjectMapper objectMapper = new ObjectMapper();
 
 
 
-    @Override
     @OnOpen
     public void onOpen(Session session, @PathParam("entId") int entId) {
 //        System.out.println(session.toString());
@@ -53,7 +51,6 @@ public class WebSocketChatImpl implements WebSocketChat {
 //        System.out.println("[Chat] 세션이 새로 연결되었습니다. > " + session + ", entId: " + entId);
     }
 
-    @Override
     @OnClose
     public void onClose(Session session, @PathParam("entId") int entId) throws Exception {
         Set<Session> roomSessions = CHAT_ROOMS.get(entId);
@@ -63,7 +60,6 @@ public class WebSocketChatImpl implements WebSocketChat {
         }
     }
 
-    @Override
     @OnMessage
     public void onMessage(ChatMessage message, Session session , @PathParam("entId") int entId) throws Exception {
         System.out.println("[Chat] 입력된 메세지 입니다. >" + message);
