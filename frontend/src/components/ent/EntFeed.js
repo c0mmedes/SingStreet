@@ -55,6 +55,7 @@ const EntFeed = ({ userInfo }) => {
     console.log(res);
     setContent("");
     setType("");
+    window.location.reload(); // 페이지 새로고침
   };
 
   // 처음에 피드글들을 불러올때
@@ -150,7 +151,7 @@ const EntFeed = ({ userInfo }) => {
         </div>
       </div>
 
-      {feedList.map((feed)=>(
+      {feedList.slice().reverse().map((feed)=>(
       <div className="feed-posts">
         <div className="feed-post-user">
           <div>{feed.userId.userImg}</div>
