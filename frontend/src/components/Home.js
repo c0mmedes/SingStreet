@@ -10,6 +10,9 @@ const Home = () => {
       <Link to="/chat">
         <div>상우기의 채팅상담@@@@@@@@@@@@@@@@@@@@@@</div>
       </Link>
+      <Link to="/studio">
+        <div>studio</div>
+      </Link>
       <div className="mainHomeWrap">
         <h1>메인영상 넣을거임</h1>
       </div>
