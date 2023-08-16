@@ -4,6 +4,7 @@ import "../../css/chart/Chart.css";
 import sampleuni from "../../assets/sampleuni.png";
 import chart1 from "../../assets/chart1.PNG";
 import chart2 from "../../assets/chart2.PNG";
+import chart3 from "../../assets/chart3.PNG";
 const chart = ({ userInfo }) => {
   return (
     <div className="chartContainer">
@@ -80,17 +81,18 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox4">
           {/* <!-- #04 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">04</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover4">
+            <img src={chart3} alt="04" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>MC Noriaki - Unstoppable</span>
+            <p>닥터리 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
