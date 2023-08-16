@@ -21,9 +21,21 @@ const EntFeed = ({userInfo}) => {
     getEnt();
   },[]);
 
-  const handleSubmit = () => {
-    // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
-    api.post("/ent/feed", { content });
+  // [API]  데이터베이스에 게시물을 추가하는 함수
+  const onClickSubmit = async () => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    const feedData = {
+      ent: entId,
+      title: "dummy",
+      content: content,
+      isNotice: type,
+    };
+    const res = await apiInstance.post(`/ent/feed`, feedData, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+      },
+    });
+    console.log(`피드 추가 : ${res}`);
     setContent("");
     setType("");
   };
@@ -41,7 +53,6 @@ const EntFeed = ({userInfo}) => {
     // "tagNameList": [],
     // "autoAccepted": true
   };
- 
 
   return (
     <>
@@ -106,11 +117,11 @@ const EntFeed = ({userInfo}) => {
         />
         <div className="post-form-bottom">
           <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="">말머리 선택</option>
-            <option value="type1">공지사항</option>
-            <option value="type2">자유</option>
+            <option value="" disabled>말머리 선택</option>
+            <option value="true">공지사항</option>
+            <option value="false">자유</option>
           </select>
-          <button onClick={handleSubmit}>등록</button>
+          <button onClick={onClickSubmit}>등록</button>
         </div>
       </div>
 
