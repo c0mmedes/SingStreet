@@ -30,7 +30,7 @@ const EntProjectList = () => {
 
   return (
     <div>
-      <form className="entSearchWrap">
+      <form className="entSearchWrap entpjtSearchWrap">
         <input
           placeholder="진행중인 프로젝트 검색. . ."
           type="text"
@@ -43,27 +43,25 @@ const EntProjectList = () => {
       </form>
       <div className="entPjtListWrap">
         {/* 프로젝트 리스트 */}
-        {entProjectList.length !== 0? entProjectList.map((entProject) => (
-          <Link
-          to={`/entmain/${entId}/${entMasterId}/${entName}/entproject/${entProject.projectId}`}
-          >
-            <div key={entProject.projectId} class="cards-list">
-              <div class="musicCard 1">
-                <div class="card_image">
-                  <img 
-                    src={entProject.projectImg}
-                    alt="프로필 이미지" 
-                  />
-                </div>
-                <div class="card_title title-white">
-                  <p>{entProject.projectName}</p>
+        {entProjectList.length !== 0 ? (
+          entProjectList.map((entProject) => (
+            <Link
+              to={`/entmain/${entId}/${entMasterId}/${entName}/entproject/${entProject.projectId}`}>
+              <div key={entProject.projectId} class="cards-list">
+                <div class="musicCard 1">
+                  <div class="card_image">
+                    <img src={entProject.projectImg} alt="프로필 이미지" />
+                  </div>
+                  <div class="card_title title-white pjtCard">
+                    <p>{entProject.projectName}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        )) : 
-        <div> 프로젝트가 없습니다! </div>
-        }
+            </Link>
+          ))
+        ) : (
+          <div> 프로젝트가 없습니다! </div>
+        )}
       </div>
     </div>
   );

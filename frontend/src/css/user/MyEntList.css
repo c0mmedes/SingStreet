@@ -3,20 +3,19 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  width: 50%;
   margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #f6f6f6;
-  margin-top: 50px;
   padding-bottom: 50px;
+  margin-left: 200px;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
 }
 
 .myEntListItem {
-  width: 90%;
   list-style-type: none;
   border-bottom: 1px solid darkgray;
   padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .myEntListItemTitle {
@@ -26,16 +25,14 @@
   text-align: center;
 }
 
-/* If you'd like to display the images, add some additional styles */
 .myEntListItem img {
   max-width: 100%;
-  height: auto;
-  margin-top: 10px;
+  width: 70px;
   border-radius: 5px;
+  margin: 5px;
 }
 
 .myEntListItemContainer {
-  border: 1px solid black;
   width: 600px;
   padding: 30px;
 }

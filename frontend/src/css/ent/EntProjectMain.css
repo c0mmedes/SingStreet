@@ -1,0 +1,122 @@
+@import url("https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css");
+
+.pjtMainWrap {
+  background-color: white;
+  padding: 30px;
+  min-width: 823px;
+  border-radius: 5px;
+}
+
+.pjtMainHeader {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #00000024;
+  padding-bottom: 15px;
+}
+
+.pjtMainHeader img {
+  width: 250px;
+  height: 250px;
+}
+
+.pjtMainHeaderRight {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.isRecruitedTitle {
+  font-size: 25px;
+}
+
+.singName {
+  font-size: 80px;
+  margin-top: 20px;
+}
+
+.pjtMainHeaderRight_btm {
+  display: flex;
+}
+
+.singerName {
+  margin-right: 10px;
+}
+
+.studioBtn {
+  font-size: 35px;
+  color: black;
+}
+
+.pjtClick {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.pjtClickbtn {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 100;
+  font-size: 15px;
+  padding: 9px;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+}
+.pjtClickbtnDelete {
+  background-color: #ff6262;
+}
+.pjtClickbtnModify {
+  background-color: #8c96ef;
+  margin-left: 10px;
+}
+.entStudioEnter {
+  display: flex;
+  border-bottom: 1px solid #00000021;
+  padding-bottom: 10px;
+}
+
+.fi-br-play-alt {
+  font-size: 35px;
+  margin-top: 4px;
+  margin-right: 10px;
+  color: red;
+}
+
+.pjtPartNickWrap {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  width: 300px;
+}
+
+.pjtPartMember {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding-top: 12px;
+}
+
+.pjtPart_nickname {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.pjtinfotext {
+  border-bottom: 1px solid #0000001a;
+  padding-bottom: 15px;
+}
+
+.pjtinfoWrap {
+  background-color: #a9a9a930;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 15px;
+}

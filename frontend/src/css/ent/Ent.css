@@ -3,7 +3,7 @@
   --curve: 40;
 }
 
-.cards {
+.HomeCards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
@@ -12,7 +12,7 @@
   list-style-type: none;
 }
 
-.card {
+.HomeCard {
   position: relative;
   display: block;
   height: 350px;
@@ -26,7 +26,7 @@
   height: 400px;
 }
 
-.card__overlay {
+.HomeCardOverlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -39,8 +39,9 @@
   transition: 0.2s ease-in-out;
 }
 
-.card:hover .card__overlay {
+.HomeCard:hover .HomeCardOverlay {
   transform: translateY(0);
+  background-color: transparent;
 }
 
 .card__header {
@@ -56,7 +57,7 @@
   height: 65px;
 }
 
-.card__arc {
+/* .card__arc {
   width: 80px;
   height: 80px;
   position: absolute;
@@ -67,19 +68,11 @@
 
 .card__arc path {
   fill: var(--surface-color);
-  /* d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z"); */
-}
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+} */
 
-.card:hover .card__header {
+.HomeCard:hover .card__header {
   transform: translateY(0);
-}
-
-.card__thumb {
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-left: 20px;
 }
 
 .card__title {
@@ -98,16 +91,15 @@
 
 .card__status {
   font-size: 0.8em;
-  color: #d7bdca;
+  color: white;
 }
 
-.card__description {
-  padding: 0 2em 2em;
+.HomeCardDescription {
+  padding: 30px;
   margin: 0;
   color: #d7bdca;
-  font-family: "MockFlowFont";
-  display: -webkit-box;
   overflow: hidden;
+  background-color: #000000a8;
 }
 
 /* 엔터 검색 */
@@ -193,4 +185,21 @@
     text-shadow 0.3s box-shadow 0.3s;
   -moz-transition: background 0.3s color 0.2s, text-shadow 0.3s box-shadow 0.3s;
   transition: background 0.3s color 0.2s, text-shadow 0.3s box-shadow 0.3s;
+}
+
+.entMainCardTitle {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: #ffffff8c;
+}
+
+.entMainCardTitle b {
+  margin-right: 4px;
+}
+
+.HomeCardHeaderText {
+  margin-left: 40px;
+  padding-top: 10px;
 }

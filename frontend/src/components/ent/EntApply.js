@@ -28,7 +28,7 @@ const EntApply = ({ userInfo, isLogin }) => {
 		setHope(e.target.value);
 	};
 	// 파라미터에서 가져오는 정보
-	const {entMasterId} = useParams();
+	const { entMasterId } = useParams();
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -54,6 +54,7 @@ const EntApply = ({ userInfo, isLogin }) => {
 					},
 				}
 			);
+			console.log(res.data);
 			if (res.data) {
 				//정상적으로 만들어지면 true
 				navigate(`/entmain/${entId}/${entMasterId}/${entName}`);

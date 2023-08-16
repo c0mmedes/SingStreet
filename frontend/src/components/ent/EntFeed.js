@@ -4,14 +4,14 @@ import "../../css/ent/EntMain.css";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 
-const EntFeed = () => {
+const EntFeed = ({userInfo}) => {
   // 피드 쓰기
   const [content, setContent] = useState("");
   const [type, setType] = useState("");
 
   const handleSubmit = () => {
     // 여기서 API 호출을 통해 데이터베이스에 게시물을 추가합니다.
-    api.post("/board", { content });
+    api.post("/ent/feed", { content });
     setContent("");
     setType("");
   };
@@ -25,6 +25,10 @@ const EntFeed = () => {
     <>
       <div className="profile">
         <h1>헤더(엔터명)</h1>
+        <span>
+          엔터설명엔터설명뜨거운 심장으로 노래하는 준혁쿤과
+          상욱쿤엔터설명엔터설명뜨거운 심장으로 노래하는 준혁쿤과 상욱쿤
+        </span>
         <div className="videos">
           <div className="video">
             <div className="video-time">15.13</div>
@@ -81,22 +85,38 @@ const EntFeed = () => {
         />
         <div className="post-form-bottom">
           <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="">타입 선택</option>
+            <option value="">말머리 선택</option>
             <option value="type1">공지사항</option>
             <option value="type2">자유</option>
           </select>
-          <button onClick={handleSubmit}>게시하기</button>
+          <button onClick={handleSubmit}>등록</button>
         </div>
       </div>
 
-      {/* <div className="feed-posts">
-          {posts.map((post) => (
-            <div key={post.id} className="post">
-              <div className="post-content">{post.content}</div>
-              <div className="post-date">{post.date}</div>
-            </div>
-          ))}
-        </div> */}
+      <div className="feed-posts">
+        {/* {posts.map((post) => (
+          <div key={post.id} className="post">
+            <div className="post-content">{post.content}</div>
+            <div className="post-date">{post.date}</div>
+          </div>
+        ))} */}
+        <div className="feed-post-user">
+          <div>프로필사진</div>
+          <div>유저닉네임</div>
+          <div>글작성 시간</div>
+        </div>
+        <div className="feed-post-content">
+          글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
+          내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
+          내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
+          내용
+        </div>
+        <div className="feed-post-comment-menu">
+          <div>좋아요n개</div>
+          <div>댓글n개</div>
+        </div>
+        <div className="feed-post-comments">코멘트들 보이는 영역</div>
+      </div>
     </>
   );
 };
