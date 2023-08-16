@@ -10,19 +10,10 @@ const Home = () => {
       <Link to="/chat">
         <div>상우기의 채팅상담@@@@@@@@@@@@@@@@@@@@@@</div>
       </Link>
-<<<<<<< HEAD
-      <Link to="/studio">
-        <div>
-          studio테스트
-        </div>
-      </Link>
-      <ul className="cards">
-=======
       <div className="mainHomeWrap">
         <h1>메인영상 넣을거임</h1>
       </div>
       {/* <ul className="cards">
->>>>>>> f4f0c701245387f01b98dbc0eb1d0e413158b0f5
         <li>
           <a href="" class="card">
             <img src={myImage} class="card__image" alt="" />
