@@ -12,6 +12,7 @@ import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedResponseDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedCreateRequestDto;
 import com.ssafy.singstreet.ent.model.entFeedDto.EntFeedUpdateRequestDto;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
+import com.ssafy.singstreet.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -30,6 +31,7 @@ public class EntFeedService {
     private final EntFeedRepository feedRepository;
     private final EntLikeRepository likeRepository;
     private final EntFeedCommentRepository commentRepository;
+    private final UserService userService;
 
 
     // Feed=========================================================
@@ -61,8 +63,10 @@ public class EntFeedService {
     // feed Save
 //    @Transactional
     public boolean saveFeed(EntFeedCreateRequestDto requestDto){
+        int userId = userService.getCurrentUserId();
+
         EntFeed feed = EntFeed.builder()
-                .user(userRepository.findByUserId(requestDto.getUser()))
+                .user(userRepository.findByUserId(userId))
                 .ent(repository.findByEntIdAndIsDeleted(requestDto.getEnt(),false))
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
@@ -77,6 +81,7 @@ public class EntFeedService {
             }
         } catch (Exception e) {
             // 예외 처리
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -171,19 +176,17 @@ public class EntFeedService {
         return true;
     }
 
-
-
-
     // convert ------------------------------------------
     public EntFeedResponseDto convertFeedToDto(EntFeed feed){
         return EntFeedResponseDto.builder()
                 .feedId(feed.getFeedId())
-                .userId(feed.getUser().getUserId())
+                .userId(feed.getUser())
                 .entId(feed.getEnt().getEntId())
                 .content(feed.getContent())
                 .filename(feed.getFileName())
                 .isNotice(feed.getIsNotice())
                 .title(feed.getTitle())
+                .createdAt(feed.getCreatedAt())
                 .build();
     }
     public EntFeedCommentResponseDto convertCommentToDto(EntFeedComment comment){
