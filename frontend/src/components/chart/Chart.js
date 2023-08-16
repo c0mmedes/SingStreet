@@ -7,6 +7,8 @@ import chart2 from "../../assets/chart2.PNG";
 import chart3 from "../../assets/chart3.PNG";
 import chart4 from "../../assets/chart4.PNG";
 import chart5 from "../../assets/chart5.PNG";
+import chart6 from "../../assets/chart6.PNG";
+import chart7 from "../../assets/chart7.PNG";
 const chart = ({ userInfo }) => {
   return (
     <div className="chartContainer">
@@ -127,7 +129,7 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox6">
           {/* <!-- #06 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">06</div>
@@ -149,17 +151,18 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox7">
           {/* <!-- #07 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">07</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover7">
+            <img src={chart6} alt="07" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>Anri - I CAN'T STOP THE LONELY!</span>
+            <p>바흐전기 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
@@ -170,17 +173,18 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox8">
           {/* <!-- #08 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">08</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover8">
+            <img src={chart7} alt="07" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>박명수 - 잔혹한 천사의 테제</span>
+            <p>초전도체 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
@@ -191,17 +195,18 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox9">
           {/* <!-- #09 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">09</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover9">
+            <img src={chart3} alt="03" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>Viagra boys - Punk Rock Loser</span>
+            <p>닥터리 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
@@ -212,17 +217,18 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox10">
           {/* <!-- #10 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">10</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover2">
+            <img src={chart1} alt="02" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>Sound garden - Black Hole Sun</span>
+            <p>하늘 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
