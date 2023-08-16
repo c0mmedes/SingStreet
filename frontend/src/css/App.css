@@ -1,11 +1,3 @@
-/* @font-face {
-  font-family: "MapleLight";
-  src: url("../assets/font/Maplestory\ Light.ttf");
-} */
-
-/* * {
-  font-family: "MapleLight" !important;
-} */
 body {
   background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
   margin: 0;
