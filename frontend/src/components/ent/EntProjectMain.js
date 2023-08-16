@@ -109,7 +109,7 @@ const EntProjectMain = ({ userInfo }) => {
           <span>파트</span>
           <span>멤버</span>
         </div>
-        <span class="card__status">
+        <span class="pjtPartNickWrap">
           {project.partList ? (
             project.partList.map((part) => (
               <div className="pjtPart_nickname">

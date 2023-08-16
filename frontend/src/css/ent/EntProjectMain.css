@@ -85,12 +85,13 @@
   color: red;
 }
 
-.card__status {
+.pjtPartNickWrap {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 15px;
+  width: 300px;
 }
 
 .pjtPartMember {
