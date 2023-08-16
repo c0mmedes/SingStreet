@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../css/work/Music.css";
+import { Link } from "react-router-dom";
+import { api } from "../../services/httpService";
 
 const music = () => {
   return (
@@ -256,6 +258,11 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+      </div>
+      <div className="MusicCreatebtnWrap">
+        <Link to="/musiccreate">
+          <button className="musicCreatebtn">노래합작 올리기!</button>
+        </Link>
       </div>
     </div>
   );

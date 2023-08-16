@@ -85,12 +85,20 @@ function App({ isLogin }) {
         		/>
 				} */}
       </Route>
-
       <Route
         path="/entcreate"
         element={
           // isLogin 상태에 따라 컴포넌트를 선택
           isLogin ? <EntCreateContainer /> : <Navigate to="/login" />
+        }
+      />
+      {/* 합작 생성 */}
+
+      <Route
+        path="/musiccreate"
+        element={
+          // isLogin 상태에 따라 컴포넌트를 선택
+          isLogin ? <MusicCreateContainer /> : <Navigate to="/login" />
         }
       />
 
