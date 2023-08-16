@@ -259,9 +259,9 @@ const music = () => {
           </div>
         </div>
       </div>
-      <div className="MusicCreatebtnWrap">
-        <Link to="/musiccreate">
-          <button className="musicCreatebtn">노래합작 올리기!</button>
+      <div className="WorkCreatebtnWrap">
+        <Link to="/workcreate">
+          <button className="workCreatebtn">노래합작 올리기!</button>
         </Link>
       </div>
     </div>

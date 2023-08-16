@@ -32,6 +32,8 @@ import Studio from "./components/studio/Studio";
 import EntProjectModifyContainer from "./containers/ent/EntProjectModifyContainer";
 import MypageInvitedProjectContainer from "./containers/user/MypageInvitedProjectContainer";
 import EntProjectMemberInviteContainer from "./containers/ent/EntProjectMemberInviteContainer";
+// 뮤직(워크)
+import WorkCreateContainer from "./containers/work/WorkCreateContainer";
 const mapStateToProps = (state) => ({
   userInfo: state.user.userInfo,
   isLogin: state.user.isLogin,
@@ -95,10 +97,10 @@ function App({ isLogin }) {
       {/* 합작 생성 */}
 
       <Route
-        path="/musiccreate"
+        path="/workcreate"
         element={
           // isLogin 상태에 따라 컴포넌트를 선택
-          isLogin ? <MusicCreateContainer /> : <Navigate to="/login" />
+          isLogin ? <WorkCreateContainer /> : <Navigate to="/login" />
         }
       />
 
