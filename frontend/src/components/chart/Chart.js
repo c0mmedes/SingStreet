@@ -5,6 +5,7 @@ import sampleuni from "../../assets/sampleuni.png";
 import chart1 from "../../assets/chart1.PNG";
 import chart2 from "../../assets/chart2.PNG";
 import chart3 from "../../assets/chart3.PNG";
+import chart4 from "../../assets/chart4.PNG";
 const chart = ({ userInfo }) => {
   return (
     <div className="chartContainer">
@@ -108,12 +109,13 @@ const chart = ({ userInfo }) => {
           {/* <!-- Number--> */}
           <div className="chartNumber">05</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover5">
+            <img src={chart4} alt="05" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>최성 - Blue snail</span>
+            <p>WXY 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
