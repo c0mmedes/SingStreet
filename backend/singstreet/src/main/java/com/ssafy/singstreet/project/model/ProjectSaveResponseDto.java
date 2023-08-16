@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @NoArgsConstructor
@@ -27,5 +28,12 @@ public class ProjectSaveResponseDto {
     private boolean isDestroyed;
     private String originFilename;
     private LocalDate lastEnterDate;
+    private LocalDate createdAt;
+
+    // createdAt 필드를 원하는 형식으로 포맷하여 반환하는 메서드
+    public String getFormattedCreatedAt() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return createdAt.format(formatter);
+    }
 
 }
