@@ -3,6 +3,7 @@ import Footer from "../layout/Footer";
 import "../../css/chart/Chart.css";
 import sampleuni from "../../assets/sampleuni.png";
 import chart1 from "../../assets/chart1.PNG";
+import chart2 from "../../assets/chart2.PNG";
 const chart = ({ userInfo }) => {
   return (
     <div className="chartContainer">
@@ -23,7 +24,8 @@ const chart = ({ userInfo }) => {
           </div>
           {/* <!-- Name --> */}
           <div className="chartName chartName1">
-            <span> 아야츠노유니 - 내꺼 하는 법</span> <p>준혁엔터</p>
+            <span> 아야츠노유니 - 내꺼 하는 법</span>
+            <p>준혁엔터</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
@@ -34,7 +36,7 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox2">
           {/* <!-- #02 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">02</div>
@@ -44,7 +46,8 @@ const chart = ({ userInfo }) => {
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Feels</span> Calvin Harris
+            <span>king krule - The Ozz</span>
+            <p>하늘 엔터테인먼트</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
@@ -55,17 +58,18 @@ const chart = ({ userInfo }) => {
         {/* <!-- Separator --> */}
         <div className="separator"></div>
 
-        <div className="chartBox">
+        <div className="chartBox chartBox3">
           {/* <!-- #03 --> */}
           {/* <!-- Number--> */}
           <div className="chartNumber">03</div>
           {/* <!-- Cover --> */}
-          <div className="chartCover">
-            <img src="http://bit.ly/2vlRum1" alt="03" />
+          <div className="chartCover chartCover3">
+            <img src={chart2} alt="03" />
           </div>
           {/* <!-- Name --> */}
           <div className="chartName">
-            <span>Attention</span> Charlie Puth
+            <span>걸스데이 - 좋은날</span>
+            <p>걸걸오란씨</p>
           </div>
           {/* <!-- Button --> */}
           <div className="link">
