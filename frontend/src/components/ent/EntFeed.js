@@ -8,8 +8,9 @@ const EntFeed = ({ userInfo }) => {
   // entMain 라우터 경로에 있는 param인 entId, entMasterId, entName를 저장하는 변수
   const { entId, entMasterId, entName } = useParams();
   const [ent, setEnt] = useState({}); // 엔터 정보를 담고 있는 객체
-  const [page, setPage] = useState(0);
-  const [feedList, setFeedList] = useState([]);
+  const [page, setPage] = useState(0); // 페이지 번호 
+	const [isLastPage, setIsLastPage] = useState(false); // 마지막페이지인지
+  const [feedList, setFeedList] = useState([]); // 피드리스트
   // axios 객체
   const apiInstance = api();
   // 피드 쓰기
@@ -62,18 +63,18 @@ const EntFeed = ({ userInfo }) => {
 		const initialFeedList = res.data.content;
 		console.log(res.data);
 		setFeedList(initialFeedList);
-		// setIsLastPage(res.data.last);
+		setIsLastPage(res.data.last);
 	};
 
   // 더보기로 피드글을 더 불러올 때
   const onClickMoreFeedList = async () => {
-		// if (isLastPage) return;
+		if (isLastPage) return;
 		const nextPage = page + 1;
 		const res = await apiInstance.get(`/ent/feed/${entId}?page=${page}&size=100`);
 		const newFeedList = feedList.concat(res.data.content);
 		console.log(newFeedList);
 		setFeedList(newFeedList);
-		// setIsLastPage(res.data.last);
+		setIsLastPage(res.data.last);
 		setPage(nextPage);
 	};
 
@@ -149,23 +150,15 @@ const EntFeed = ({ userInfo }) => {
         </div>
       </div>
 
+      {feedList.map((feed)=>(
       <div className="feed-posts">
-        {/* {posts.map((post) => (
-          <div key={post.id} className="post">
-            <div className="post-content">{post.content}</div>
-            <div className="post-date">{post.date}</div>
-          </div>
-        ))} */}
         <div className="feed-post-user">
-          <div>프로필사진</div>
-          <div>유저닉네임</div>
-          <div>글작성 시간</div>
+          <div>{feed.userId.userImg}</div>
+          <div>{feed.userId.nickname}</div>
+          <div>{feed.createdAt}</div>
         </div>
         <div className="feed-post-content">
-          글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
-          내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
-          내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글 내용글
-          내용
+          {feed.content}
         </div>
         <div className="feed-post-comment-menu">
           <div>좋아요n개</div>
@@ -173,6 +166,7 @@ const EntFeed = ({ userInfo }) => {
         </div>
         <div className="feed-post-comments">코멘트들 보이는 영역</div>
       </div>
+        ))}
     </>
   );
 };
