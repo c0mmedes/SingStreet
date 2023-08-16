@@ -1,0 +1,11 @@
+.entPjtMemberInviteContainer {
+  border: 1px solid black;
+  padding: 30px;
+}
+
+.AlreadyMemberList {
+  border-bottom: 1px solid black;
+}
+
+.PossibleInviteMemberList {
+}
