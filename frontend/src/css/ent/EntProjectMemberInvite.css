@@ -1,11 +1,46 @@
 .entPjtMemberInviteContainer {
-  border: 1px solid black;
   padding: 30px;
+  background-color: white;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.AlreadyMemberList,
+.PossibleInviteMemberList {
+  display: grid;
+  grid-gap: 15px;
 }
 
 .AlreadyMemberList {
   border-bottom: 1px solid black;
+  padding-bottom: 30px;
 }
 
-.PossibleInviteMemberList {
+.AlreadyMemberListGrid,
+.PossibleInviteMemberListGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+
+li {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+
+button {
+  width: 80px;
+  height: 30px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
 }

@@ -94,6 +94,11 @@ const EntProjectMemberInvite = ({ myEntList, userInfo }) => {
     <div className="entPjtMemberInviteContainer">
       <div className="AlreadyMemberList">
         <h2>프로젝트 멤버 목록</h2>
+        <div className="AlreadyMemberListGrid">
+          <span>닉네임</span>
+          <span>이메일</span>
+          <span>성별</span>
+        </div>
         {projectMemberList.map((projectMember) => (
           <li key={projectMember.user.userId}>
             {projectMember.user.nickname}
