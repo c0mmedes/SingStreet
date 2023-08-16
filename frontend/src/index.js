@@ -10,7 +10,7 @@ import Footer from "./components/layout/Footer.js";
 import rootReducer from "./modules/index";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { PersistGate } from "redux-persist/integration/react";
-
+import "./css/index.css";
 const store = createStore(rootReducer, composeWithDevTools());
 const persistor = persistStore(store);
 
