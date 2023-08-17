@@ -4,16 +4,16 @@ const apiInstance = api();
 
 //[API] 내 엔터 리스트 불러오기
 const getMyEntList = async () => {
-	const accessToken = sessionStorage.getItem("accessToken");
-	try {
-		const res = await apiInstance.get("/ent/myEnt", {
-			headers: {
-				Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-			},
-		});
-		console.log(res.data);
-		return res.data; // API 결과인 내 엔터리스트를 리턴
-	} catch (error) {}
+  const accessToken = sessionStorage.getItem("accessToken");
+  try {
+    const res = await apiInstance.get("/ent/myEnt", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+      },
+    });
+    console.log(res.data);
+    return res.data; // API 결과인 내 엔터리스트를 리턴
+  } catch (error) {}
 };
 
 export { getMyEntList };
