@@ -13,12 +13,12 @@ import myImage8 from "../assets/chart3.PNG";
 const Home = () => {
   return (
     <div>
-      <Link to="/chat">
+      {/* <Link to="/chat">
         <div>상우기의 채팅상담@@@@@@@@@@@@@@@@@@@@@@</div>
       </Link>
       <Link to="/studio">
         <div>studio</div>
-      </Link>
+      </Link> */}
       <ul className="cards">
         <li>
           <a href="" class="card">

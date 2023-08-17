@@ -7,6 +7,10 @@ a {
   background-color: #ffffff;
 }
 
+.MyChatWrap .namebox{
+  height: 5px;
+}
+
 .MyChatWrap .chat {
   display: flex;
   align-items: flex-start;
