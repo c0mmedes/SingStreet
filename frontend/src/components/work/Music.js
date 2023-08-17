@@ -1,9 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../../css/work/Music.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
+import "../../css/work/Music.css";
 
 const music = () => {
+  // axios 인스턴스 생성
+  const apiInstance = api();
+  // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
+  const navigate = useNavigate();
+
   return (
     <div>
       <form className="entSearchWrap">
