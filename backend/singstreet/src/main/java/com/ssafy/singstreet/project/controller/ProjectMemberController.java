@@ -2,10 +2,7 @@ package com.ssafy.singstreet.project.controller;
 
 import com.ssafy.singstreet.project.db.entity.Project;
 import com.ssafy.singstreet.project.db.entity.ProjectInvited;
-import com.ssafy.singstreet.project.model.ProjectInvitedMemberDto;
-import com.ssafy.singstreet.project.model.ProjectInvitedRequestDto;
-import com.ssafy.singstreet.project.model.ProjectJoinDto;
-import com.ssafy.singstreet.project.model.ProjectMemberDto;
+import com.ssafy.singstreet.project.model.*;
 import com.ssafy.singstreet.project.service.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -112,4 +109,21 @@ public class ProjectMemberController {
         }
         return new ResponseEntity<>(invitedMembers, HttpStatus.OK);
     }
+
+//    // 내가 속한 프로젝트 목록
+//    @GetMapping("myProject/{userId}")
+//    public ResponseEntity<List<ProjectSaveResponseDto>> getProjectInvitedMembers(@PathVariable Integer userId) {
+//        // 토큰 검증 및 인증 실패 처리
+//        // 액세스 토큰을 추출하여 Spring Security의 SecurityContextHolder를 통해 인증 정보를 가져옴
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null || !authentication.isAuthenticated()) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
+//
+//        List<ProjectInvitedMemberDto> invitedMembers = projectMemberService.getMyProject(projectId);
+//        if (invitedMembers == null || invitedMembers.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(invitedMembers, HttpStatus.OK);
+//    }
 }

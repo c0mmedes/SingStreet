@@ -48,4 +48,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findAllByOrderByMonthlyLikeCountDesc();
 
     List<Project> findByEntAndIsDestroyed(Ent ent, boolean b);
+
+    @Query("SELECT p FROM Project p WHERE p.user = :user")
+    List<Project> findAllByUser(@Param("user") User user);
 }
