@@ -84,34 +84,52 @@ const EntFeed = ({ userInfo }) => {
 	const addComment = async (feedId) => {
 		const comment = commentInputs[feedId];
 		if (!comment) {
-			// 댓글 내용이 없을 경우 처리
-			return;
+		// 댓글 내용이 없을 경우 처리
+		return;
 		}
-
+	
 		const accessToken = sessionStorage.getItem("accessToken");
 		const commentData = {
-			userId: userInfo.userId,
-			feedId: feedId,
-			content: comment,
+		userId: userInfo.userId,
+		feedId: feedId,
+		content: comment,
 		};
+		try {
 		const res = await apiInstance.post(`/ent/feed/comment`, commentData, {
 			headers: {
-				Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+			Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		console.log("댓글추가API");
 		console.log(res);
-		 
-		setCommentInputs({ ...commentInputs, [feedId]: "" });// 댓글 작성이 성공하면 해당 피드에 대한 댓글 입력 상태를 초기화
-		window.location.reload(); // 페이지 새로고침
-	};
+	
+		// 댓글 작성이 성공하면 해당 피드에 대한 댓글 입력 상태를 초기화
+		setCommentInputs({ ...commentInputs, [feedId]: "" });
+	
+		// 해당 피드의 댓글 목록만 업데이트
+		const updatedFeedList = feedList.map((feed) => {
+			if (feed.feedId === feedId) {
+			return { ...feed, comments: [...feed.comments, res.data] };
+			}
+			return feed;
+		});
+	
+		setFeedList(updatedFeedList);
+		} catch (error) {
+		console.error("댓글 작성 오류:", error);
+		}
+  	};
 
 	// [API] 댓글 목록을 가져오는 함수
 	const getCommentsForFeed = async (feedId) => {
+		try {
 		const res = await apiInstance.get(`/ent/feed/comment/${feedId}`);
-		console.log(res.data);
 		return res.data; // 댓글 목록 배열 반환
-	};
+		} catch (error) {
+		console.error("Error fetching comments:", error);
+		return []; // 에러 발생 시 빈 배열 반환
+		}
+  	};
 
 	return (
 		<>
@@ -188,54 +206,58 @@ const EntFeed = ({ userInfo }) => {
 				.slice()
 				.reverse()
 				.map((feed) => (
-					<div className="feed-posts">
-						<div className="feed-post-user">
-							{/* <div>{feed.userId.userImg}</div> */}
-							<div>{feed.userId.nickname}</div>
-							<div>{feed.formattedCreatedAt}</div>
-						</div>
-						<div className="feed-post-content">{feed.content}</div>
-						<button
-							onClick={async () => {
-								// 클릭 시 해당 피드의 댓글 목록을 가져옴
-								const comments = await getCommentsForFeed(feed.feedId);
-								// 댓글 목록을 렌더링하기 위해 feed 객체에 comments를 추가하여 업데이트
-								setFeedList((prevFeedList) => {
-									return prevFeedList.map((prevFeed) => {
-										if (prevFeed.feedId === feed.feedId) {
-											return { ...prevFeed, comments: comments };
-										}
-										return prevFeed;
-									});
-								});
-								// 댓글 보기/숨기기 토글
-								setShowComments({ ...showComments, [feed.feedId]: !showComments[feed.feedId] });
-							}}
-						>
-							{showComments[feed.feedId] ? "댓글 숨기기" : "댓글 보기"}
-						</button>
-						{showComments[feed.feedId] && (
-							<div className="comment-section">
-								{/* 댓글 입력 폼 */}
-								<textarea
-    								value={commentInputs[feed.feedId] || ""}
-    								onChange={(e) => setCommentInputs({ ...commentInputs, [feed.feedId]: e.target.value })}
-    								placeholder="댓글을 입력하세요."
-								/>
-								<button onClick={() => addComment(feed.feedId, commentInputs[feed.feedId])}>댓글 작성</button>
-								{/* 댓글 목록 */}
-								{feed.comments.map((comment) => (
-									<div key={comment.createdAt} className="comment">
-										<div className="comment-user">{comment.nickname}</div>
-										<div className="comment-createdAt">
-											{comment.createdAt[0]}-{comment.createdAt[1]}-{comment.createdAt[2]}{" "}
-											{parseInt(comment.createdAt[3]) + 9}:{comment.createdAt[4]}
-										</div>
-										<div className="comment-content">{comment.content}</div>
-									</div>
-								))}
+					<div className="feed-posts" key={feed.feedId}>
+					<div className="feed-post-user">
+						{/* 유저 프로필 이미지 */}
+						<div>{feed.userId.userImg}</div>
+						{/* 유저 닉네임 */}
+						<div>{feed.userId.nickname}</div>
+						{/* 게시물 작성 시간 */}
+						<div>{feed.formattedCreatedAt}</div>
+					</div>
+					{/* 피드 내용 */}
+					<div className="feed-post-content">{feed.content}</div>
+					<button
+						onClick={async () => {
+						// 클릭 시 해당 피드의 댓글 목록을 가져옴
+						const comments = await getCommentsForFeed(feed.feedId);
+						// 댓글 목록을 렌더링하기 위해 feed 객체에 comments를 추가하여 업데이트
+						setFeedList((prevFeedList) => {
+							return prevFeedList.map((prevFeed) => {
+							if (prevFeed.feedId === feed.feedId) {
+								return { ...prevFeed, comments: comments };
+							}
+							return prevFeed;
+							});
+						});
+						// 댓글 보기/숨기기 토글
+						setShowComments({ ...showComments, [feed.feedId]: !showComments[feed.feedId] });
+						}}
+					>
+						{showComments[feed.feedId] ? "댓글 숨기기" : "댓글 보기"}
+					</button>
+					{showComments[feed.feedId] && (
+						<div className="comment-section">
+						{/* 댓글 입력 폼 */}
+						<textarea
+							value={commentInputs[feed.feedId] || ""}
+							onChange={(e) => setCommentInputs({ ...commentInputs, [feed.feedId]: e.target.value })}
+							placeholder="댓글을 입력하세요."
+						/>
+						<button onClick={() => addComment(feed.feedId)}>댓글 작성</button>
+						{/* 댓글 목록 */}
+						{feed.comments.map((comment) => (
+							<div key={comment.createdAt} className="comment">
+							<div className="comment-user">{comment.nickname}</div>
+							<div className="comment-createdAt">
+								{comment.createdAt[0]}-{comment.createdAt[1]}-{comment.createdAt[2]}{" "}
+								{parseInt(comment.createdAt[3]) + 9}:{comment.createdAt[4]}
 							</div>
-						)}
+							<div className="comment-content">{comment.content}</div>
+							</div>
+						))}
+						</div>
+					)}
 					</div>
 				))}
 		</>
