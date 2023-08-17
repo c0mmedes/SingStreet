@@ -63,7 +63,7 @@ const Chat = ({ userInfo }) => {
 	}, [talk, chatList]); // talk 상태가 업데이트될 때마다 실행
 
 	const getChatList = async () => {
-		const res = await apiInstance.get(`/chatting/${entId}?page=${page}&size=100`);
+		const res = await apiInstance.get(`/chatting/${entId}?page=3&size=100`);
 		setChatList(res.data.content);
 		setIsLastPage(res.data.last);
 		console.log(res.data);
