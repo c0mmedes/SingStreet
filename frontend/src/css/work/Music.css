@@ -1,11 +1,10 @@
 /* Music.css */
-.cards-list {
+.music-cards-list {
 	z-index: 0;
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 20px; /* 조절 가능한 간격 설정 */
 }
 
 .musicCard {

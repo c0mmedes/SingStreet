@@ -47,7 +47,7 @@ const Music = () => {
 				</select>
 			</form>
 
-			<div class="cards-list">
+			<div class="music-cards-list">
 				{musicList.map((music) => (
 					<div class="musicCard 1" onClick={() => toggleModal(music.projectId)}>
 						<div class="card_image">
