@@ -6,13 +6,6 @@ import "../../css/work/MusicDetail.css";
 const MusicDetail = ({ isOpen, onClose, projectId }) => {
 	const [project, setProject] = useState([]);
 
-	useEffect(() => {
-		getProject();
-	}, []);
-
-	if (!isOpen) {
-		return null;
-	}
 	// axios 인스턴스
 	const apiInstance = api();
 
@@ -41,6 +34,14 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 			alert("작품 정보 불러오기 실패!");
 		}
 	};
+
+	useEffect(() => {
+		getProject();
+	}, []);
+
+	if (!isOpen) {
+		return null;
+	}
 
 	return (
 		<div className="modal">
