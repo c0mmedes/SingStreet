@@ -1,6 +1,7 @@
 import React from "react";
 import "../../css/user/Mypage.css";
-import "../../css/user/Myinfo.css";
+import "../../css/user/MyInfo.css";
+
 const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
   return (
     <div className="user-my-info">
