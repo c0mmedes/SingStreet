@@ -84,7 +84,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
           <div className="title_container">
             <h2>노래합작 업로드</h2>
           </div>
-          <div className="row clearfix">
+          <div className="row">
             <div className="">
               <form className="entCreateForm" onSubmit={onClickWorkCreate}>
                 {/*업로드할 작품 선택*/}
@@ -106,7 +106,6 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                       onChange={handleWork}
                       // accept="audio/*,video/*"
                     />
-                    
                   </div>
                 </div>
                 <input className="button" type="submit" value="생성하기" />
