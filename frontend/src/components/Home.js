@@ -7,7 +7,7 @@ import myImage3 from "../assets/chart4.PNG";
 import myImage4 from "../assets/chart1.PNG";
 import myImage5 from "../assets/chart5.PNG";
 import myImage6 from "../assets/chart7.PNG";
-import myImage7 from "../assets/chart8.PNG";
+import myImage7 from "../assets/chart8.png";
 import myImage8 from "../assets/chart3.PNG";
 
 const Home = () => {
@@ -25,10 +25,6 @@ const Home = () => {
             <img src={myImage} class="card__image" alt="" />
             <div class="card__overlay">
               <div class="card__header">
-                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                  <path />
-                </svg>
-
                 <div class="card__header-text">
                   <h3 class="card__title">B110 엔터</h3>
                   <span class="card__status">
@@ -48,10 +44,6 @@ const Home = () => {
             <img src={myImage2} class="card__image" alt="" />
             <div class="card__overlay">
               <div class="card__header">
-                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                  <path />
-                </svg>
-
                 <div class="card__header-text">
                   <h3 class="card__title">걸걸오란씨 엔터테인먼트</h3>
                   <span class="card__status">#걸걸오란씨 #반모 #09 #10</span>
