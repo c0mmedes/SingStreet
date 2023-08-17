@@ -14,7 +14,7 @@ const chart = ({ userInfo }) => {
     <div className="chartContainer">
       <div className="chartCard">
         <div className="chartTitle ">
-          <h1>月刊차트</h1>
+          <h1>월간차트!</h1>
           <p>
             The world liked a lot of music this month.
             <br />

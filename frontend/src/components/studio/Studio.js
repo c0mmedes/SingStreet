@@ -362,6 +362,7 @@ const Studio = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div
       className="studioArea"
       onDrop={handleDrop}
@@ -382,6 +383,32 @@ const Studio = () => {
           </div>
           <div id="blockListArea" className="blockListArea"></div>
         </div>
+=======
+    <div className="studioContainer">
+      <div
+        className="studioArea"
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}>
+        <div className="inner">
+          <div className="editWrap">
+            {/* 블록올리는 곳 */}
+            <div id="editArea" className="editArea">
+              <div id="playhead"></div>
+              {/* 버튼들 */}
+              <div className="buttonArea">
+                <button id="play" onClick={handlePlay} className="w-btn-neon2">
+                  <ion-icon name="play-outline"></ion-icon>
+                </button>
+                <button id="stop" onClick={handleStop} className="w-btn-neon2">
+                  stop!
+                </button>
+                <button className="w-btn-neon2">음향효과2</button>
+              </div>
+            </div>
+            <div id="blockListArea" className="blockListArea"></div>
+          </div>
+        </div>
+>>>>>>> 2fce052de249844d6bf778d9d6b5d20b68041657
       </div>
     </div>
   );

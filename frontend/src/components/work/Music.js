@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../css/work/Music.css";
+import { Link } from "react-router-dom";
+import { api } from "../../services/httpService";
 
 const music = () => {
   return (
@@ -24,6 +26,7 @@ const music = () => {
             <p>내꺼하자</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -32,6 +35,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -40,6 +44,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -48,6 +53,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -56,6 +62,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -64,6 +71,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -72,6 +80,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -80,6 +89,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -88,6 +98,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -96,6 +107,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -104,6 +116,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -112,6 +125,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -120,6 +134,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -128,6 +143,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -136,6 +152,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -144,6 +161,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -152,6 +170,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -160,6 +179,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -168,6 +188,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -175,7 +196,8 @@ const music = () => {
           <div class="card_title title-white">
             <p>Card Title</p>
           </div>
-        </div>{" "}
+        </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -184,6 +206,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -192,6 +215,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -200,6 +224,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -207,7 +232,8 @@ const music = () => {
           <div class="card_title title-white">
             <p>Card Title</p>
           </div>
-        </div>{" "}
+        </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -216,6 +242,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -224,6 +251,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 3">
           <div class="card_image">
             <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
@@ -232,6 +260,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 4">
           <div class="card_image">
             <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
@@ -240,6 +269,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 1">
           <div class="card_image">
             <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
@@ -248,6 +278,7 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+
         <div class="musicCard 2">
           <div class="card_image">
             <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
@@ -256,6 +287,11 @@ const music = () => {
             <p>Card Title</p>
           </div>
         </div>
+      </div>
+      <div className="WorkCreatebtnWrap">
+        <Link to="/workcreate">
+          <button className="workCreatebtn">노래합작 올리기!</button>
+        </Link>
       </div>
     </div>
   );

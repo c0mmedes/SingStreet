@@ -6,19 +6,25 @@ import { addUserInfo, setIsLogin } from "../../modules/user/user";
 import EntCreate from "../../components/ent/EntCreate";
 
 const EntCreateContainer = ({ userInfo, isLogin, addUserInfo, setIsLogin }) => {
-	return <EntCreate userInfo={userInfo} isLogin={isLogin} addUserInfo={addUserInfo} setIsLogin={setIsLogin}></EntCreate>;
+  return (
+    <EntCreate
+      userInfo={userInfo}
+      isLogin={isLogin}
+      addUserInfo={addUserInfo}
+      setIsLogin={setIsLogin}></EntCreate>
+  );
 };
 const mapStateToProps = (state) => ({
-	userInfo: state.user.userInfo,
-	isLogin: state.user.isLogin,
+  userInfo: state.user.userInfo,
+  isLogin: state.user.isLogin,
 });
 const mapDispatchToProps = (dispatch) => ({
-	addUserInfo: (userInfo) => {
-		dispatch(addUserInfo(userInfo));
-	},
-	setIsLogin: () => {
-		dispatch(setIsLogin());
-	},
+  addUserInfo: (userInfo) => {
+    dispatch(addUserInfo(userInfo));
+  },
+  setIsLogin: () => {
+    dispatch(setIsLogin());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EntCreateContainer);

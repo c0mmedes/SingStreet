@@ -1,29 +1,16 @@
-import React from "react";
 import { connect } from "react-redux";
 import { addUserInfo, setIsLogin, addToMyEntList } from "../../modules/user/user";
-import EntNav from "../../components/layout/EntNav";
+import EntFeed from "../../components/ent/EntFeed";
 
-const EntNavContainer = ({
-	entId,
-	entMasterId,
-	entName,
-	userInfo,
-	addUserInfo,
-	myEntList,
-	setIsLogin,
-	addToMyEntList,
-}) => {
+const EntFeedContainer = ({ userInfo, addUserInfo, myEntList, setIsLogin, addToMyEntList }) => {
 	return (
-		<EntNav
-			entId={entId}
-			entMasterId={entMasterId}
-			entName={entName}
+		<EntFeed
 			userInfo={userInfo}
 			addUserInfo={addUserInfo}
 			myEntList={myEntList}
 			setIsLogin={setIsLogin}
 			addToMyEntList={addToMyEntList}
-		></EntNav>
+		></EntFeed>
 	);
 };
 const mapStateToProps = (state) => ({
@@ -43,4 +30,4 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EntNavContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EntFeedContainer);
