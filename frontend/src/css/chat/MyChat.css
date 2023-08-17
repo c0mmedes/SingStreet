@@ -4,7 +4,7 @@ a {
 
 .MyChatWrap {
   /* padding: 40px 0; */
-  background-color: #a8c0d6;
+  background-color: #ffffff;
 }
 
 .MyChatWrap .chat {
@@ -76,6 +76,7 @@ a {
 
 .MyChatWrap .chattime {
   text-align: right;
-  font-size: 3px;
+  font-size: 1px;
   margin-bottom: 5px;
+  color: #9c9c9c;
 }

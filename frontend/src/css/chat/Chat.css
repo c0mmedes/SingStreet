@@ -1,21 +1,25 @@
 .area {
-  background-color: #a8c0d6;
-  width: 370px;
-  height: 500px;
+  padding-top: 10px;
+  background-color: #ffffff;
+  width: 450px;
+  height: 591px;
   position: relative;
   text-align: left;
+  margin-left: 30px;
+  border-radius: 10px;
 }
 
 .area textarea {
   position: sticky;
   bottom: 5px;
-  width: 92%;
+  width: 217px;
   left: 0.5%;
-  height: 20px;
+  height: 35px;
   border-radius: 10px;
   border: 0;
   padding: 10px;
   resize: none;
+  background-color: #e8f1f8;
 }
 
 .area textarea:focus {

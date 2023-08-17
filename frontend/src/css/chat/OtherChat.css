@@ -5,7 +5,7 @@ a {
 
 .OtherChatWrap {
     /* padding: 40px 0; */
-    background-color: #A8C0D6;
+    background-color: #ffffff;
 }
 
 .OtherChatWrap .chat {
@@ -76,6 +76,7 @@ a {
 }
 
 .OtherChatWrap .chattime{
-    font-size: 3px;
+    font-size: 1px;
     margin-bottom: 5px;
+    color: #9c9c9c;
 }
