@@ -200,6 +200,7 @@ const EntFeed = ({ userInfo }) => {
             </div>
             <div className="feed-post-content">{feed.content}</div>
             <button
+              className="showHideBtn"
               onClick={async () => {
                 // 클릭 시 해당 피드의 댓글 목록을 가져옴
                 const comments = await getCommentsForFeed(feed.feedId);
@@ -234,6 +235,7 @@ const EntFeed = ({ userInfo }) => {
                   placeholder="댓글을 입력하세요."
                 />
                 <button
+                  className="commentSubmitBtn"
                   onClick={() =>
                     addComment(feed.feedId, commentInputs[feed.feedId])
                   }>
@@ -242,12 +244,14 @@ const EntFeed = ({ userInfo }) => {
                 {/* 댓글 목록 */}
                 {feed.comments.map((comment) => (
                   <div key={comment.createdAt} className="comment">
-                    <div className="comment-user">{comment.nickname}</div>
-                    <div className="comment-createdAt">
-                      {comment.createdAt[0]}-{comment.createdAt[1]}-
-                      {comment.createdAt[2]}{" "}
-                      {parseInt(comment.createdAt[3]) + 9}:
-                      {comment.createdAt[4]}
+                    <div className="commentNameCreatedAt">
+                      <div className="comment-user">{comment.nickname}</div>
+                      <div className="comment-createdAt">
+                        {comment.createdAt[0]}-{comment.createdAt[1]}-
+                        {comment.createdAt[2]}{" "}
+                        {parseInt(comment.createdAt[3]) + 9}:
+                        {comment.createdAt[4]}
+                      </div>
                     </div>
                     <div className="comment-content">{comment.content}</div>
                   </div>
