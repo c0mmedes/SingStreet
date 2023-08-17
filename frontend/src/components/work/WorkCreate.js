@@ -29,14 +29,6 @@ const WorkCreate = ({ userInfo, isLogin }) => {
     makeProjectList(); 
   },[]);
 
-  // const handleImageDelete = () => {
-  //   setWorkImg(null);
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.value = "";
-  //     fileInputRef.current.removeAttribute("required");
-  //   }
-  // };
-
   // 작품 파일
   const handleWork = (e) => {
     setWork(e.target.files[0]);
@@ -94,6 +86,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                 <div>
                   <label>업로드할 프로젝트 선택</label>
                   <select onChange={handleProject}>
+                    <option value="" disabled hidden>작품을 업로드할 프로젝트 선택</option>
                     {myProjectList.map((project)=>(
                       <option key={project.projectId} value={project.projectId}>
                         {project.projectName}
