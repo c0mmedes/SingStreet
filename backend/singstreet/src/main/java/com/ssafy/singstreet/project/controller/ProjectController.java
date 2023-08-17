@@ -124,6 +124,7 @@ public class ProjectController {
                 .isCompleted(project.isCompleted())
                 .isDestroyed(project.isDestroyed())
                 .originFilename(project.getOriginFilename())
+                .audioName(project.getAudioName())
                 .lastEnterDate(project.getLastEnterDate())
                 .createdAt(project.getCreatedAt())
                 .build();

@@ -233,6 +233,7 @@ public class ProjectService {
                 .originFilename(project.getOriginFilename())
                 .lastEnterDate(project.getLastEnterDate())
                 .createdAt(project.getCreatedAt())
+                .audioName(project.getAudioName())
                 .build();
     }
 
@@ -311,6 +312,7 @@ public class ProjectService {
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
                     .userId(project.getUser().getUserId())
+                    .audioName(project.getAudioName())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
@@ -339,6 +341,7 @@ public class ProjectService {
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
                     .isDestroyed(project.isDestroyed())
+                    .audioName(project.getAudioName())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }

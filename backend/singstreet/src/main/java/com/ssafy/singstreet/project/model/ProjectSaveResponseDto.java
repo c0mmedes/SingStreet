@@ -30,6 +30,7 @@ public class ProjectSaveResponseDto {
     private String originFilename;
     private LocalDate lastEnterDate;
     private LocalDateTime createdAt;
+    private String audioName;
 
 //     createdAt 필드를 원하는 형식으로 포맷하여 반환하는 메서드
 //    public String getFormattedCreatedAt() {
