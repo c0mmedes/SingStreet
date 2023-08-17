@@ -5,7 +5,7 @@ import OtherChat from "./OtherChat";
 import MyChat from "./MyChat";
 import SockJS from "sockjs-client";
 
-const Chat = ({ userInfo }) => {
+const Chat = ({ propsEntId, userInfo }) => {
 	const [chatList, setChatList] = useState([]);
 	const [page, setPage] = useState(0);
 	const [isLastPage, setIsLastPage] = useState(false);
@@ -13,7 +13,7 @@ const Chat = ({ userInfo }) => {
 	const [nickname, setNickname] = useState(userInfo.nickname);
 	const [talk, setTalk] = useState([]);
 	const [content, setContent] = useState("");
-	const [entId, setEntId] = useState(1);
+	const [entId, setEntId] = useState(propsEntId);
 	const chatEndRef = useRef(null); // 마지막 메시지 요소에 대한 ref 생성
 	const apiInstance = api();
 
@@ -24,7 +24,7 @@ const Chat = ({ userInfo }) => {
 			// const socket = new WebSocket(`ws://i9b110.p.ssafy.io/backend/chatt/${entId}`);
 			// const socket = new WebSocket(`ws://localhost:8080/chatt/1`);
 
-			const socket = new WebSocket("wss://i9b110.p.ssafy.io/ws/chatt/1");
+			const socket = new WebSocket(`wss://i9b110.p.ssafy.io/ws/chatt/${entId}`);
 			// const socket = new WebSocket('wss://i9b110.p.ssafy.io:3000/ws');
 			// const stomp = new SockJS("https://i9b110.p.ssafy.io/backend/chat");
 			setWs(socket);
@@ -74,7 +74,7 @@ const Chat = ({ userInfo }) => {
 			const data = {
 				nickname: nickname,
 				content: content,
-				entId: 1,
+				entId: entId,
 			};
 
 			ws.send(JSON.stringify(data));

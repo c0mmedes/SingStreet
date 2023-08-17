@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { addUserInfo, setIsLogin } from "../../modules/user/user";
 import Chat from "../../components/chat/Chat";
 
-const ChatContainer = ({ userInfo, isLogin, setIsLogin }) => {
-	return <Chat userInfo={userInfo} isLogin={isLogin} setIsLogin={setIsLogin}></Chat>;
+const ChatContainer = ({ userInfo, isLogin, setIsLogin, entId }) => {
+	return <Chat userInfo={userInfo} isLogin={isLogin} setIsLogin={setIsLogin} propsEntId={entId}></Chat>;
 };
 
 const mapStateToProps = (state) => ({

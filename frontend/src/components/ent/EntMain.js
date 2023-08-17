@@ -40,7 +40,7 @@ const EntMain = () => {
 					<div className="main-container">
 						<Outlet />
 					</div>
-					<ChatContainer />
+					<ChatContainer entId={entId} />
 				</div>
 			</div>
 		</div>
