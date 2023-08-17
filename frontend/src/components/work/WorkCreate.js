@@ -8,7 +8,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
   // const [isAutoAceepted, setIsAutoAceepted] = useState(true);
   const [work, setWork] = useState(null);
   const [myProjectList, setMyProjectList] = useState([]);
-  const [projectId, setProjectId] = useState(0);
+  const [projectId, setProjectId] = useState("");
   // const fileInputRef = useRef(null);
 
   // axios 인스턴스 생성
@@ -86,7 +86,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                 <div>
                   <label>업로드할 프로젝트 선택</label>
                   <select onChange={handleProject}>
-                    <option value="" disabled >작품을 업로드할 프로젝트 선택</option>
+                    <option value="" disabled hidden>작품을 업로드할 프로젝트 선택</option>
                     {myProjectList.map((project)=>(
                       <option key={project.projectId} value={project.projectId}>
                         {project.projectName}
