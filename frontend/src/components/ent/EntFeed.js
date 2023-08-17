@@ -257,7 +257,7 @@ const EntFeed = ({ userInfo }) => {
 						/>
 						<button onClick={() => addComment(feed.feedId)}>댓글 작성</button>
 						{/* 댓글 목록 */}
-						{feed.comments.map((comment) => (
+						{feed.comments && feed.comments.length > 0 && (feed.comments.map((comment) =>(
 							<div key={comment.createdAt} className="comment">
 							<div className="comment-user">{comment.nickname}</div>
 							<div className="comment-createdAt">
@@ -266,7 +266,7 @@ const EntFeed = ({ userInfo }) => {
 							</div>
 							<div className="comment-content">{comment.content}</div>
 							</div>
-						))}
+						)))}
 						</div>
 					)}
 					</div>
