@@ -25,9 +25,9 @@ const Chat = () => {
         // const socket = new WebSocket(`ws://i9b110.p.ssafy.io/backend/chatt/${entId}`);
         // const socket = new WebSocket(`ws://localhost:8080/chatt/1`);
 
-        // const socket = new WebSocket('wss://i9b110.p.ssafy.io/websocket/chatt/1');
-        const socket = new WebSocket('wss://i9b110.p.ssafy.io:3000/ws');
-        const stomp = new SockJS("https://i9b110.p.ssafy.io/backend/chat/1");
+        const socket = new WebSocket('wss://i9b110.p.ssafy.io/ws/chatt/1');
+        // const socket = new WebSocket('wss://i9b110.p.ssafy.io:3000/ws');
+        // const stomp = new SockJS("https://i9b110.p.ssafy.io/backend/chat");
         setWs(socket);
 
         // 메시지 수신 처리

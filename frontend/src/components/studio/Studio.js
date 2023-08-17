@@ -34,7 +34,7 @@ const Studio = () => {
   //초기설정 -
   useEffect(() => {
     const init = async () => {
-      const provider = new WebsocketProvider("ws://localhost:8080/chatt",1,ydoc);
+      const provider = new WebsocketProvider('wss://i9b110.p.ssafy.io/ws/chatt',1,ydoc);
       setProvider(provider);
       //초기설정
       const newEnhancerNode = audioCtx.createBiquadFilter(); //audio컨텍스트에서 이퀄라이저 노드를 생성
