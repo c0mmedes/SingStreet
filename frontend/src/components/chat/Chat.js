@@ -35,7 +35,6 @@ const Chat = ({ propsEntId, userInfo }) => {
 				console.log(data);
 				let messageItem = null;
 
-
 				if (data.nickname === nickname) {
 					messageItem = <MyChat content={data} />;
 				} else {
