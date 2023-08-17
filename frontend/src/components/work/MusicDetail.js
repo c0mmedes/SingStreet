@@ -36,8 +36,10 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 	};
 
 	useEffect(() => {
-		getProject();
-	}, []);
+		if (isOpen) {
+			getProject();
+		}
+	}, [isOpen]);
 
 	if (!isOpen) {
 		return null;
