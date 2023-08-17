@@ -16,7 +16,7 @@ const Home = () => {
       <div className="mainHomeWrap">
         <h1>메인영상 넣을거임</h1>
       </div>
-      {/* <ul className="cards">
+      <ul className="cards">
         <li>
           <a href="" class="card">
             <img src={myImage} class="card__image" alt="" />
@@ -25,11 +25,7 @@ const Home = () => {
                 <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                   <path />
                 </svg>
-                <img
-                  class="card__thumb"
-                  src="https://i.imgur.com/7D7I6dI.png"
-                  alt=""
-                />
+
                 <div class="card__header-text">
                   <h3 class="card__title">B110 엔터</h3>
                   <span class="card__status">
@@ -38,8 +34,8 @@ const Home = () => {
                 </div>
               </div>
               <p class="card__description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Asperiores, blanditiis?
+                안녕하세요 주로 뉴진스 노래를 커버하는 가상엔터 B110엔터입니다!
+                모두 자유롭게
               </p>
             </div>
           </a>
@@ -52,11 +48,7 @@ const Home = () => {
                 <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                   <path />
                 </svg>
-                <img
-                  class="card__thumb"
-                  src="https://i.imgur.com/sjLMNDM.png"
-                  alt=""
-                />
+
                 <div class="card__header-text">
                   <h3 class="card__title">kim Cattrall</h3>
                   <span class="card__status">3 hours ago</span>
@@ -81,11 +73,7 @@ const Home = () => {
                 <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                   <path />
                 </svg>
-                <img
-                  class="card__thumb"
-                  src="https://i.imgur.com/sjLMNDM.png"
-                  alt=""
-                />
+
                 <div class="card__header-text">
                   <h3 class="card__title">kim Cattrall</h3>
                   <span class="card__status">3 hours ago</span>
@@ -98,7 +86,7 @@ const Home = () => {
             </div>
           </a>
         </li>
-      </ul> */}
+      </ul>
     </div>
   );
 };
