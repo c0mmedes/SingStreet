@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/user/Mypage.css";
-
+import "../../css/user/Myinfo.css";
 const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
   return (
     <div className="user-my-info">
@@ -8,7 +8,7 @@ const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
         <div className="mypage-title">내 정보</div>
         <div className="myinfoContainer">
           <div className="myinfoLeft">
-            <div className="info-item">
+            <div className="info-item infoItem2">
               <label className="info-label">프로필</label>
               <img
                 src={userInfo.userImg}
@@ -18,7 +18,7 @@ const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
             </div>
           </div>
           <div className="myinfoRight">
-            <div className="info-item">
+            <div className="info-item infoItem2">
               <label className="info-label">이메일</label>
               <div className="info-value">{userInfo.email}</div>
             </div>
