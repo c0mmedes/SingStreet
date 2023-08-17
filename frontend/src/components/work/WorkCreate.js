@@ -61,6 +61,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
     }
     try {
       const res = await apiInstance.post(`/file/upload/video/${projectId}`,
+      formData,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
@@ -91,6 +92,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
               <form className="entCreateForm" onSubmit={onClickWorkCreate}>
                 {/*업로드할 작품 선택*/}
                 <div>
+                  <label>업로드할 프로젝트 선택</label>
                   <select onChange={handleProject}>
                     {myProjectList.map((project)=>(
                       <option key={project.projectId} value={project.projectId}>
