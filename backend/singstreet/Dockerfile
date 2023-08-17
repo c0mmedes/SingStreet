@@ -8,7 +8,7 @@ LABEL maintainer="human646581@gmail.com"
 VOLUME /tmp
 
 # Copy your application jar file to the docker image
-ARG JAR_FILE=build/libs/singstreet-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/demo-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
 
 # Execute the application
