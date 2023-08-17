@@ -17,11 +17,14 @@ const WorkCreate = ({ userInfo, isLogin }) => {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    const projectList = getMyProjectList(userInfo.userId);
-    console.log(projectList);
-    const filteredProjectList = projectList.filter(project => project.userId === userInfo.userId);
-    console.log(filteredProjectList);
-    setMyProjectList(filteredProjectList);
+    async function makeProjectList () { 
+      const projectList = await getMyProjectList(userInfo.userId);
+      console.log(projectList);
+      const filteredProjectList = projectList.filter(project => project.userId === userInfo.userId);
+      console.log(filteredProjectList);
+      setMyProjectList(filteredProjectList);
+    }
+    makeProjectList(); 
   },[]);
 
   // const handleImageDelete = () => {
