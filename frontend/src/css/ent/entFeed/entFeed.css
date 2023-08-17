@@ -5,14 +5,21 @@
   border-radius: 5px;
   padding: 10px;
 }
-.commentSubmitBtn,
-.showHideBtn {
+.commentSubmitBtn {
   width: 100px;
   height: 30px;
   background-color: transparent;
   border-radius: 5px;
 }
 
+.showHideBtn {
+  width: 100px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding-left: 10px;
+}
 .comment {
   display: flex;
   flex-direction: column;
@@ -30,8 +37,14 @@
 .comment-createdAt {
   margin-bottom: 10px;
   color: #00000075;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
 }
 
 .comment-content {
   padding-left: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid #a9a9a945;
+  padding-bottom: 12px;
 }
