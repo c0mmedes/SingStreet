@@ -13,7 +13,6 @@ const Studio = () => {
   );
   const [enhancerNode, setEnhancerNode] = useState(null);
   const [playhead, setPlayhead] = useState(null);
-  const [currentTop, setCurrentTop] = useState(10);
   const [container, setContainer] = useState(
     document.getElementById("editArea")
   ); //컨테이너 요소를 저장하는 상태변수
@@ -30,7 +29,7 @@ const Studio = () => {
   const apiInstance = api();
   // const [audioBlock, setAudioBlock] = useState(null); //업로드 오디오 파일
   const [userId, setUserId] = useState("1");
-  const [projectId, setProjectId] = useState(4);
+  const [projectId, setProjectId] = useState(1);
   const [blockId, setBlockId] = useState(null);
   const myMap = ydoc.getMap("myMap");
   const listMap = ydoc.getMap("listMap");
@@ -38,8 +37,8 @@ const Studio = () => {
   //초기설정 -
   useEffect(() => {
     const init = async () => {
-      const provider = new WebsocketProvider('wss://i9b110.p.ssafy.io/ws/chatt',1,ydoc);
-      // const provider = new WebsocketProvider('ws://localhost:8080/chatt',2,ydoc);
+      // const provider = new WebsocketProvider('wss://i9b110.p.ssafy.io/ws/chatt',1,ydoc);
+      const provider = new WebsocketProvider('ws://localhost:8080/chatt',1,ydoc);
       setProvider(provider);
       //초기설정
       const newEnhancerNode = audioCtx.createBiquadFilter(); //audio컨텍스트에서 이퀄라이저 노드를 생성
@@ -125,10 +124,9 @@ const Studio = () => {
       // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
       myMap.observe(() => {//myMap의 내용이 변경될 때마다 실행
         console.log("Map Observe");
-        console.log(myMap)
         myMap.forEach((block, id) => {    //MyMap의 모든 항목에 대해 반복, block:현재 순회중인 항목의 값/ id:항목의 고유 식별자
           if(id){
-              const blockElement = document.getElementById(myMap.get(id).blockId);
+              const blockElement = document.getElementById(id);
               console.log(blockElement)
               // console.log("[observe]-blockElement",blockElement);
               if (blockElement) {
@@ -148,7 +146,7 @@ const Studio = () => {
   //2-1. -----------------------------block초기설정-----------------------------
   const setblock = (insertBlock) => {
     console.log(insertBlock);
-    let block = myMap.get("block"+insertBlock.blockId);
+    let block = myMap.get(insertBlock.blockId);
 
     //블록이 없다면 yMap에 (ID, 해당Block)업데이트
     console.log(block);
@@ -160,7 +158,7 @@ const Studio = () => {
         left : insertBlock.left,
         top : insertBlock.top
       };
-      myMap.set("block"+insertBlock.blockId, block); // -> yMap.oberve()실행됨
+      myMap.set(insertBlock.blockId, block); // -> yMap.oberve()실행됨
       console.log("insertBlock",myMap);
     }
 
@@ -185,19 +183,18 @@ const Studio = () => {
         setLocation(blockElement, left, top);
         // console.log("[dragHandler] - blockElement",blockElement);
         // console.log("insertBlock.id",insertBlock.blockId);
-        let newBlock = {
-          left : left,
-          top : top,
-          blockId : insertBlock.blockId,
-          projectId : insertBlock.projectId,
-          blockName : insertBlock.blockName
-        }
-        
-        myMap.set("block"+insertBlock.blockId, newBlock);
+        myMap.set(insertBlock.blockId, 
+          {
+            left : left,
+            top : top,
+            blockId : insertBlock.blockId,
+            projectId : insertBlock.projectId,
+            blockName : insertBlock.blockName
+          });
           console.log("Drag ",myMap)
         console.log("bye---------------------------------");
         console.log(insertBlock.blockId);
-        console.log(myMap.get("block"+insertBlock.blockId));
+        console.log(myMap.get(insertBlock.blockId));
       }
       blockElement.ondrag = dragHandler; // 해당
     }
@@ -263,12 +260,10 @@ const Studio = () => {
           newBlock.style.textAlign = "center";
           newBlock.style.lineHeight = "50px";
           newBlock.style.fontSize = "10px";
-          // newBlock.style.left =
-          //   ((blockCounter * 100) % (container.clientWidth - 100)) + "px";
-          // newBlock.style.top =
-          //   Math.floor(blockCounter / (blockListArea.clientWidth / 100)) * 100 + "px";
-          newBlock.style.left = 1220+"px";
-          newBlock.style.top = currentTop +"px";
+          newBlock.style.left =
+            ((blockCounter * 100) % (container.clientWidth - 100)) + "px";
+          newBlock.style.top =
+            Math.floor(blockCounter / (container.clientWidth / 100)) * 100 + "px";
           newBlock.innerHTML = file.blockName;
           container.appendChild(newBlock);
       
@@ -360,13 +355,12 @@ const Studio = () => {
     formData.append("file", file); //오디오 파일 넣기
     const block = {
       testId: blockCounter,
-      left: 1220,
-      top: currentTop,
+      left: 100,
+      top: 100,
       blockName: file.name,
       projectId: projectId,
     };
     setBlockCounter(blockCounter+1);
-    setCurrentTop(currentTop + 60);
 
     formData.append(
       "AudioBlockRequestDTO",
@@ -404,37 +398,9 @@ const Studio = () => {
   //새로 저장된 음원들 가져오기
   const getNewBlockList = async () => {};
 
+  const update = async(block) =>{
 
-  // 현재 블럭들 저장
-  const update = async(blockId) =>{
-    const accessToken = sessionStorage.getItem("accessToken");
-    const requestDtoList = [];
-    //전체 자료
-    myMap.forEach((block,id) => { 
-      // let block = myMap.get(id);
-      console.log(block)
-      let requestDto = {
-        blockId : block.blockId,
-        left : block.left,
-        top : block.top
-      };
-      requestDtoList.push(requestDto);
-      })
-
-    const res = await apiInstance.put("/block/update",requestDtoList, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-        Accept: "application/json", // 추가
-      },
-    });
   }
-
-
-
-  //-------------------mergy-----------------------
-  
-
-
 
 
   return (
@@ -458,7 +424,6 @@ const Studio = () => {
                 </button>
                 <button className="w-btn-neon2">음향효과2</button>
                 <button onClick={update} className="w-btn-neon2">SAVE</button>
-                <button onClick={update} className="w-btn-neon2">Merge</button>
               </div>
             </div>
             <div id="blockListArea" className="blockListArea"></div>
