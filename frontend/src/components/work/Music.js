@@ -42,6 +42,9 @@ const Music = () => {
 							</div>
 							<div class="card_title title-white music">
 								<p>{music.projectName}</p>
+								<p>
+									{music.singName} - {music.singerName}
+								</p>
 							</div>
 						</div>
 					</Link>
