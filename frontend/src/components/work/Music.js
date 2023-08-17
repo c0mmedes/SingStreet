@@ -35,14 +35,16 @@ const Music = () => {
 			<div class="cards-list">
 				{/* 뮤직리스트 */}
 				{musicList.map((music) => (
-					<div class="musicCard 1">
-						<div class="card_image">
-							<img src="https://i.redd.it/b3esnz5ra34y.jpg" />
+					<Link to={`/music/${music.projectId}`}>
+						<div class="musicCard 1">
+							<div class="card_image">
+								<img src={music.projectImg} />
+							</div>
+							<div class="card_title title-white music">
+								<p>{music.projectName}</p>
+							</div>
 						</div>
-						<div class="card_title title-white music">
-							<p>{music.projectName}</p>
-						</div>
-					</div>
+					</Link>
 				))}
 
 				{
