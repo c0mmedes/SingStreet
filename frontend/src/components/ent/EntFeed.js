@@ -229,7 +229,7 @@ const EntFeed = ({ userInfo }) => {
 										<div className="comment-user">{comment.nickname}</div>
 										<div className="comment-createdAt">
 											{comment.createdAt[0]}-{comment.createdAt[1]}-{comment.createdAt[2]}{" "}
-											{comment.createdAt[3]}:{comment.createdAt[4]}
+											{parseInt(comment.createdAt[3]) + 9}:{comment.createdAt[4]}
 										</div>
 										<div className="comment-content">{comment.content}</div>
 									</div>
