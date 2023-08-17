@@ -29,18 +29,11 @@ const Chat = ({ propsEntId, userInfo }) => {
 			// const stomp = new SockJS("https://i9b110.p.ssafy.io/backend/chat");
 			setWs(socket);
 
-<<<<<<< HEAD
-        // const socket = new WebSocket('wss://i9b110.p.ssafy.io/ws/chatt/1');
-        const socket = new WebSocket('wss://i9b110.p.ssafy.io:3000/ws');
-        // const stomp = new SockJS("https://i9b110.p.ssafy.io/backend/chat");
-        setWs(socket);
-=======
 			// 메시지 수신 처리
 			socket.onmessage = (event) => {
 				const data = JSON.parse(event.data);
 				console.log(data);
 				let messageItem = null;
->>>>>>> 9dbb4ea4dd010602ae075120af7b4da5d48b98dd
 
 				if (data.nickname === nickname) {
 					messageItem = <MyChat content={data} />;
