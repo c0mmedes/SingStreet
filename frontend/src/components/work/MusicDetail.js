@@ -52,7 +52,22 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 			</button>
 			<div className="modal-content">
 				{/* 모달 내용 */}
-				<h2>모달 창 내용 - Project ID: {projectId}</h2>
+				<h2>프로젝트 명 : {project.projectName}</h2>
+				{/* <img src={project.projectImg} alt="프로젝트 이미지" /> */}
+				<h2>원곡 가수: {project.singerName}</h2>
+				<h2>원곡 노래 : {project.singName}</h2>
+				<div>
+					{/* Conditional rendering을 사용하여 재생 가능한 미디어 플레이어를 나타냄 */}
+					{project.originFilename ? (
+						<video controls>
+							<source src={project.originFilename} type="video/mp4" />
+							<source src={project.originFilename} type="audio/mpeg" />
+							브라우저가 미디어를 지원하지 않습니다.
+						</video>
+					) : (
+						<p>재생 가능한 미디어 파일이 없습니다.</p>
+					)}
+				</div>
 			</div>
 		</div>
 	);
