@@ -5,7 +5,7 @@ import myImage from "../assets/sample1.png";
 import myImage2 from "../assets/chart2.PNG";
 import myImage3 from "../assets/chart4.PNG";
 import myImage4 from "../assets/chart1.PNG";
-import myImage4 from "../assets/chart5.PNG";
+import myImage5 from "../assets/chart5.PNG";
 
 const Home = () => {
   return (
