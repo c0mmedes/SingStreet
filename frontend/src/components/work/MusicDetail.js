@@ -3,22 +3,44 @@ import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/work/MusicDetail.css";
 
-/* //라우터 방식으로 구현했을때 쓰려했던거
-const MusicDetail = () => {
-	// axios 인스턴스
-	const apiInstance = api();
-	// 라우터 파라미터에서 가져올 entId 변수
-	const { projectId } = useParams();
-
-	return <div></div>;
-
-    export default MusicDetail;
-}; */
-
 const MusicDetail = ({ isOpen, onClose, projectId }) => {
+	const [project, setProject] = useState([]);
+
+	useEffect(() => {
+		getProject();
+	}, []);
+
 	if (!isOpen) {
 		return null;
 	}
+	// axios 인스턴스
+	const apiInstance = api();
+
+	const getProject = async () => {
+		try {
+			const accessToken = sessionStorage.getItem("accessToken");
+			const res = await apiInstance.get(`project/detail/${projectId}`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+				},
+			});
+			/*
+            res.data
+            [
+                {
+                  "applId": 0,
+                  "createAt": "2023-08-07T07:34:01.357Z",
+                  "nickname": "string",
+                  "userId": 0
+                }
+            ] 
+      */
+			console.log(res.data);
+			setProject(res.data);
+		} catch {
+			alert("작품 정보 불러오기 실패!");
+		}
+	};
 
 	return (
 		<div className="modal">
@@ -34,3 +56,15 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 };
 
 export default MusicDetail;
+
+/* //라우터 방식으로 구현했을때 쓰려했던거
+const MusicDetail = () => {
+	// axios 인스턴스
+	const apiInstance = api();
+	// 라우터 파라미터에서 가져올 entId 변수
+	const { projectId } = useParams();
+
+	return <div></div>;
+
+    export default MusicDetail;
+}; */
