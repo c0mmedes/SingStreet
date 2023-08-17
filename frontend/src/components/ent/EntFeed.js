@@ -171,10 +171,10 @@ const EntFeed = ({ userInfo }) => {
 				/>
 				<div className="post-form-bottom">
 					<select value={type} onChange={(e) => setType(e.target.value)}>
-						<option value="" disabled>
+						<option value="" disabled hidden>
 							말머리 선택
 						</option>
-						<option value="true">공지사항</option>
+						<option value="true">공고</option>
 						<option value="false">자유</option>
 					</select>
 					<button onClick={onClickSubmit}>등록</button>

@@ -330,7 +330,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 								<div className="input_field">
 									<label htmlFor="isRecruited">프로젝트 멤버 모집 여부</label>
 									<select name="isRecruited" value={isRecruited} onChange={handleIsRecruited}>
-										<option value="" disabled>프로젝트 멤버 모집 여부</option>
+										<option value="" disabled hidden>프로젝트 멤버 모집 여부</option>
 										<option value="true">모집 중</option>
 										<option value="false">모집 마감</option>
 									</select>
@@ -338,7 +338,7 @@ const EntProjectCreate = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
 								<div className="input_field">
 									<label htmlFor="isVisible">엔터페이지에 프로젝트 공개 여부</label>
 									<select name="isVisible" value={isVisible} onChange={handleIsVisible}>
-										<option value="" disabled>엔터페이지에 프로젝트 공개 여부</option>
+										<option value="" disabled hidden>엔터페이지에 프로젝트 공개 여부</option>
 										<option value="true">공개</option>
 										<option value="false">공개하지 않음</option>
 									</select>

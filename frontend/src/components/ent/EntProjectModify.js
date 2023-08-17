@@ -165,7 +165,7 @@ const EntProjectModify = ({ userInfo, isLogin, myEntList, addToMyEntList }) => {
         <select
           value={userList[index] === -1 ? "" : userList[index]} // 선택된 유저의 userId를 저장한 상태와 연결
           onChange={(e) => handleUserChange(index, e.target.value)}>
-          <option value="">누구에게 파트를 부여할건가요?</option>
+          <option value="" disabled hidden>누구에게 파트를 부여할건가요?</option>
           {projectMemberList.map((projectMember) => (
             <option
               key={projectMember.user.userId}
