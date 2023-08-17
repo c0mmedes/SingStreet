@@ -71,6 +71,23 @@ const Studio = () => {
         console.log(blockList);
       }
     }
+        // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
+    myMap.observe(() => {//myMap의 내용이 변경될 때마다 실행
+        console.log("myMapObserve");
+        console.log(myMap);
+        myMap.forEach((block, testId) => {    //MyMap의 모든 항목에 대해 반복, block:현재 순회중인 항목의 값/ id:항목의 고유 식별자
+          if(testId){
+              console.log("[observe] - block,id",block, testId);
+              const blockElement = document.getElementById(testId);
+              console.log("[observe]-blockElement",blockElement);
+              if (blockElement) {
+              setLocation(blockElement, block.left, block.top);
+              } else {
+                  createAudioFile();
+              }
+          }
+        });
+      }); // 2-3. end--------------------------------------------------------------
 
     loadAndCreateAudioBlocks();
     init();
@@ -88,6 +105,7 @@ const Studio = () => {
     //가져온 음원 블럭들을 AudioBlock으로 만들어주기
     if(blockList){
       blockList.forEach(block => {
+        console.log(block);
         createAudioFile(block);
         // setblock(AudioFile);
         // setblock(new Audio(block.file_location));
@@ -121,31 +139,6 @@ const Studio = () => {
   //2.end=============================================Yjs초기설정end=========================================================================
 
 
-      // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
-      myMap.observe(() => {//myMap의 내용이 변경될 때마다 실행
-        console.log("myMapObserve");
-        console.log(myMap);
-        myMap.forEach((block, testId) => {    //MyMap의 모든 항목에 대해 반복, block:현재 순회중인 항목의 값/ id:항목의 고유 식별자
-          if(testId){
-              console.log("[observe] - block,id",block, testId);
-              const blockElement = document.getElementById(testId);
-              console.log("[observe]-blockElement",blockElement);
-              if (blockElement) {
-              setLocation(blockElement, block.left, block.top);
-              } else {
-                  createAudioFile();
-              }
-          }
-        });
-      }); // 2-3. end--------------------------------------------------------------
-
-
-
-
-
-
-
-
   //2-1. -----------------------------block초기설정-----------------------------
   const setblock = (insertBlock) => {
     console.log("------setBlock------");
@@ -156,7 +149,6 @@ const Studio = () => {
     // console.log("2. insertBlock",block);
 
     //블록이 없다면 yMap에 (ID, 해당Block)업데이트
-    console.log(block);
     if (!block) {
       myMap.set(insertBlock.testId, insertBlock); // -> yMap.oberve()실행됨
     }
@@ -243,17 +235,68 @@ const Studio = () => {
 
   //Audio파일 셋팅=====================================
   const createAudioFile = (file) => {
-      console.log(file)
+    if(file instanceof  Blob){
+      const reader = new FileReader(); // 파일을 읽기 위한 FileReader객체 생성
+    console.log("[createAudioFile]-file",file);
+    //파일 성공적으로 읽으면 실행할 콜백 함수 정의
+    reader.onload = (e) => {
+      // const blockId = "block" + blockCounter;
+      const blockId = blockCounter;
+      const audioElement = new Audio();
+      audioElement.src = e.target.result; // FileReader로 읽은
+      // audioElement.id = "audio" + blockId;  // 블럭의 고유ID값 할당
+      audioElement.id = "audio" + blockId; // 블럭의 고유ID값 할당
+
+      //오디오의 메타데이터 로드 완료시 실행되는 이벤트 리스너 추가
+      audioElement.addEventListener("loadedmetadata", () => {
+        const duration = audioElement.duration; //오디오의 총 재생 시간
+        const width = duration;
+        document.body.appendChild(audioElement);
+        const color = "#" + Math.floor(Math.random() * 16777215).toString(16); //랜덤한 색상 코드를 생성
+        // const container = document.getElementById("blockListArea"); //블록 추가할 컨테이너 가져와서
+        // setContainer(container);
+        const newBlock = document.createElement("div"); //새로운 div생성
+        //새로운 블럭 관련 설정--------
+        newBlock.id = blockId;
+        newBlock.className = "block";
+        newBlock.style.backgroundColor = color;
+        newBlock.style.width = width + "px";
+        //ondrag속성 지정해줘야함<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        console.log("[onLoad createAudioFile]-file", file);
+        newBlock.style.height = "50px";
+        newBlock.style.display = "inline-block";
+        newBlock.style.position = "absolute";
+        newBlock.style.textAlign = "center";
+        newBlock.style.lineHeight = "50px";
+        newBlock.style.fontSize = "10px";
+        newBlock.style.left =
+          ((blockCounter * 100) % (container.clientWidth - 100)) + "px";
+        newBlock.style.top =
+          Math.floor(blockCounter / (container.clientWidth / 100)) * 100 + "px";
+        //newBlock.contentEditable = "true"; //블록의 내용을 편집 가능하도록 설정
+        newBlock.innerHTML = file.name; //블록의 내용을 설정
+        container.appendChild(newBlock); //새로운 블록을 컨테이너에 추가
+
+        newBlock.addEventListener("click", () => {
+          setSelectedBlock(newBlock);
+        });
+      });
+    };
+    console.log("[endCreateAudioFile]-file", file);
+    console.log("[endCreateAudioFile]-blockList", blockList);
+    reader.readAsDataURL(file); // FileReader 객체를 사용하여 주어진 파일을 데이터 URL로 읽어들이는 역할을 합니다.
+    }else{
         const blockId = blockCounter;
         const audioElement = new Audio(file.file_location);
-        audioElement.id = "audio" + file.testId;
+        audioElement.id = "audio" + blockId;
       
         audioElement.addEventListener("loadedmetadata", () => {
           const duration = audioElement.duration;
           document.body.appendChild(audioElement);
           const color = "#" + Math.floor(Math.random() * 16777215).toString(16);
           const newBlock = document.createElement("div");
-          newBlock.id = file.testId;
+          newBlock.id = blockId;
           newBlock.className = "block";
           newBlock.style.backgroundColor = color;
           newBlock.style.width = duration + "px";
@@ -267,15 +310,15 @@ const Studio = () => {
             ((blockCounter * 100) % (container.clientWidth - 100)) + "px";
           newBlock.style.top =
             Math.floor(blockCounter / (container.clientWidth / 100)) * 100 + "px";
-          newBlock.innerHTML = file.blockName;
+          newBlock.innerHTML = file.blockName; // URL을 내용으로 설정
           container.appendChild(newBlock);
       
           newBlock.addEventListener("click", () => {
             setSelectedBlock(newBlock);
           });
-          console.log(newBlock);
-          setblock(file);
         });
+      };
+    
   };
   //==================================================
 
@@ -345,7 +388,6 @@ const Studio = () => {
     blocks.forEach((block) => {
       //해당 block과 아이디가 같으면 정지
       const audio = document.getElementById("audio" + block.id);
-      console.log(audio)
       audio.pause();
       console.log(block.id);
     });
@@ -363,7 +405,6 @@ const Studio = () => {
       blockName: file.name,
       projectId: projectId,
     };
-    setBlockCounter(blockCounter+1);
 
     formData.append(
       "AudioBlockRequestDTO",
