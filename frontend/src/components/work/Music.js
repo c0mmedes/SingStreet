@@ -16,7 +16,7 @@ const Music = () => {
 
 	const getInitialMusicList = async () => {
 		const res = await apiInstance.get(`/project/music`);
-		const initialMusicList = res.data.content;
+		const initialMusicList = res.data;
 		console.log(res.data);
 		setMusicList(initialMusicList);
 	};
