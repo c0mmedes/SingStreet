@@ -7,6 +7,7 @@ import MusicDetail from "./MusicDetail"; // 모달 컴포넌트 임포트
 const Music = () => {
 	const [musicList, setMusicList] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 여부 상태
+	const [selectedProjectId, setSelectedProjectId] = useState();
 	// axios 인스턴스 생성
 	const apiInstance = api();
 	// 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -16,8 +17,14 @@ const Music = () => {
 		getInitialMusicList();
 	}, []);
 
-	// 모달 토글 함수
+	/* // 모달 토글 함수
 	const toggleModal = () => {
+		setIsModalOpen(!isModalOpen);
+	}; */
+	// 모달 토글 함수
+	const toggleModal = (projectId) => {
+		console.log(projectId);
+		setSelectedProjectId(projectId); // 선택한 music의 projectId 저장
 		setIsModalOpen(!isModalOpen);
 	};
 
@@ -40,25 +47,8 @@ const Music = () => {
 			</form>
 
 			<div class="cards-list">
-				{/* //뮤직리스트 라우터형식으로 구현
 				{musicList.map((music) => (
-					<Link to={`/music/${music.projectId}`}>
-						<div class="musicCard 1">
-							<div class="card_image">
-								<img src={music.projectImg} />
-							</div>
-							<div class="card_title title-white music">
-								<p>{music.projectName}</p>
-								<p>
-									{music.singName} - {music.singerName}
-								</p>
-							</div>
-						</div>
-					</Link>
-        ))} */}
-
-				{musicList.map((music) => (
-					<div class="musicCard 1" onClick={toggleModal}>
+					<div class="musicCard 1" onClick={() => toggleModal(music.projectId)}>
 						<div class="card_image">
 							<img src={music.projectImg} />
 						</div>
@@ -72,45 +62,61 @@ const Music = () => {
 				))}
 
 				{/* 모달 */}
-				<MusicDetail isOpen={isModalOpen} onClose={toggleModal} />
+				<MusicDetail isOpen={isModalOpen} onClose={toggleModal} projectId={selectedProjectId} />
 
+				{/* //뮤직리스트 라우터형식으로 구현
+        {musicList.map((music) => (
+          <Link to={`/music/${music.projectId}`}>
+          <div class="musicCard 1">
+          <div class="card_image">
+          <img src={music.projectImg} />
+          </div>
+          <div class="card_title title-white music">
+          <p>{music.projectName}</p>
+          <p>
+          {music.singName} - {music.singerName}
+          </p>
+          </div>
+          </div>
+          </Link>
+        ))} */}
 				{
 					// 더미 데이터
 					/* <div class="musicCard 1">
           <div class="card_image">
-            <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
+          <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
+          </div>
+          <div class="card_title title-white">
+          <p>Card Title</p>
+          </div>
+          </div>
+          
+          <div class="musicCard 2">
+          <div class="card_image">
+          <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
           </div>
           <div class="card_title title-white">
             <p>Card Title</p>
           </div>
-        </div>
-
-        <div class="musicCard 2">
-          <div class="card_image">
-            <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
           </div>
-          <div class="card_title title-white">
-            <p>Card Title</p>
-          </div>
-        </div>
-
-        <div class="musicCard 3">
+          
+          <div class="musicCard 3">
           <div class="card_image">
-            <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
+          <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
           </div>
           <div class="card_title">
-            <p>Card Title</p>
+          <p>Card Title</p>
           </div>
-        </div>
-
-        <div class="musicCard 4">
+          </div>
+          
+          <div class="musicCard 4">
           <div class="card_image">
-            <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
+          <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
           </div>
           <div class="card_title title-white">
-            <p>Card Title</p>
+          <p>Card Title</p>
           </div>
-        </div> */
+          </div> */
 				}
 			</div>
 			<div className="WorkCreatebtnWrap">

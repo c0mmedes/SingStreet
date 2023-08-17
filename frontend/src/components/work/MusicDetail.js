@@ -15,7 +15,7 @@ const MusicDetail = () => {
     export default MusicDetail;
 }; */
 
-const MusicDetail = ({ isOpen, onClose }) => {
+const MusicDetail = ({ isOpen, onClose, projectId }) => {
 	if (!isOpen) {
 		return null;
 	}
@@ -27,7 +27,7 @@ const MusicDetail = ({ isOpen, onClose }) => {
 			</button>
 			<div className="modal-content">
 				{/* 모달 내용 */}
-				<h2>모달 창 내용</h2>
+				<h2>모달 창 내용 - Project ID: {projectId}</h2>
 			</div>
 		</div>
 	);
