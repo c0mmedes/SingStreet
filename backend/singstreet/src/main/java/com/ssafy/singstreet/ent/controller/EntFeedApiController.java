@@ -60,7 +60,9 @@ public class EntFeedApiController {
         log.debug("[entFeedCreate] EntFeedSaveRequestDto :", requestDto);
         int user_id=userService.getCurrentUserId();
         Ent ent=entr.findById(requestDto.getEnt()).get();
-        User user=userr.findByUserId(requestDto.getUser());
+        User user=userr.findByUserId(user_id);
+        System.out.println(user_id);
+        System.out.println(entMemberService.findent(user, ent));
         if(entMemberService.findent(user, ent)) {
             return new ResponseEntity(feedService.saveFeed(requestDto), HttpStatus.CREATED);
         }else{
