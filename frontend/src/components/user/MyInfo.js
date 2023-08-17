@@ -8,7 +8,7 @@ const MyInfo = ({ isLogin, userInfo, addUserInfo, setIsLogin }) => {
         <div className="mypage-title">내 정보</div>
         <div className="myinfoContainer">
           <div className="myinfoLeft">
-            <div className="info-item">
+            <div className="info-item infoItem2">
               <label className="info-label">프로필</label>
               <img
                 src={userInfo.userImg}
