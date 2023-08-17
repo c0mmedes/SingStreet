@@ -106,14 +106,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                       onChange={handleWork}
                       // accept="audio/*,video/*"
                     />
-                {/*     <span
-                      id="modifybutton"
-                      onClick={() => fileInputRef.current.click()}>
-                      오디오 변경
-                    </span>
-                    <span id="deletebutton" onClick={handleImageDelete}>
-                      삭제
-                    </span> */}
+                    
                   </div>
                 </div>
                 <input className="button" type="submit" value="생성하기" />
