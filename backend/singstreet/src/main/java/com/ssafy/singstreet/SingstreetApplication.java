@@ -1,6 +1,6 @@
 package com.ssafy.singstreet;
 
-import com.ssafy.singstreet.chatt.config.WebSocketConfig;
+//import com.ssafy.singstreet.chatt.config.WebSocketConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;

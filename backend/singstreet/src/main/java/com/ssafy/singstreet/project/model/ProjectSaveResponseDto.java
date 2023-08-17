@@ -32,9 +32,9 @@ public class ProjectSaveResponseDto {
     private LocalDateTime createdAt;
 
 //     createdAt 필드를 원하는 형식으로 포맷하여 반환하는 메서드
-    public String getFormattedCreatedAt() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return createdAt.format(formatter);
-    }
+//    public String getFormattedCreatedAt() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        return createdAt.format(formatter);
+//    }
 
 }
