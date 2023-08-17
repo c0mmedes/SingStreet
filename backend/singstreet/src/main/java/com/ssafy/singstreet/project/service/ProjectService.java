@@ -288,11 +288,17 @@ public class ProjectService {
     // 내 프로젝트 조회
     public List<ProjectSaveResponseDto> getMyProject(int userId) {
         User user = userRepository.findById(userId).orElse(null);
+
+        try {
+        System.out.println(projectRepository.findAllByUser(user));
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         if (user == null) {
                 throw new IllegalArgumentException("Invalid userId.");
         }
-
-        List<Project> projects = projectRepository.findByUser(user);
+        List<Project> projects = projectRepository.findAllByUser(user);
         List<ProjectSaveResponseDto> projectResponseDTOs = new ArrayList<>();
 
         for (Project project : projects) {
@@ -304,6 +310,7 @@ public class ProjectService {
                     .singName(project.getSingName())
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
+                    .userId(project.getUser().getUserId())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
