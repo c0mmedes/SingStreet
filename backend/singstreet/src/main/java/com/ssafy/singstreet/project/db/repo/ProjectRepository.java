@@ -2,6 +2,7 @@ package com.ssafy.singstreet.project.db.repo;
 
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.project.db.entity.Project;
+import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
 import com.ssafy.singstreet.user.db.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,4 +52,8 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     @Query("SELECT p FROM Project p WHERE p.user = :user")
     List<Project> findAllByUser(@Param("user") User user);
+
+//    List<ProjectSaveResponseDto> findByIsDestroyedFalseAndOriginFilenameIsNotNull();
+
+    List<Project> findAllByIsDestroyedFalseAndOriginFilenameIsNotNull();
 }
