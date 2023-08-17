@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link ,useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/work/Music.css";
 
-const music = () => {
+const Music = () => {
   // axios 인스턴스 생성
   const apiInstance = api();
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
@@ -302,4 +302,4 @@ const music = () => {
   );
 };
 
-export default music;
+export default Music;
