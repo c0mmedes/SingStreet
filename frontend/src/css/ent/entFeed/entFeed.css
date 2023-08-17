@@ -48,4 +48,6 @@
   padding-bottom: 12px;
 }
 .btnmovetoright {
+  display: flex;
+  justify-content: flex-end;
 }

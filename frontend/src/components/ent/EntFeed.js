@@ -224,16 +224,18 @@ const EntFeed = ({ userInfo }) => {
             {showComments[feed.feedId] && (
               <div className="comment-section">
                 {/* 댓글 입력 폼 */}
-                <textarea
-                  value={commentInputs[feed.feedId] || ""}
-                  onChange={(e) =>
-                    setCommentInputs({
-                      ...commentInputs,
-                      [feed.feedId]: e.target.value,
-                    })
-                  }
-                  placeholder="댓글을 입력하세요."
-                />
+                <div>
+                  <textarea
+                    value={commentInputs[feed.feedId] || ""}
+                    onChange={(e) =>
+                      setCommentInputs({
+                        ...commentInputs,
+                        [feed.feedId]: e.target.value,
+                      })
+                    }
+                    placeholder="댓글을 입력하세요."
+                  />
+                </div>
                 <div className="btnmovetoright">
                   <button
                     className="commentSubmitBtn"
