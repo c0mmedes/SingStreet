@@ -20,9 +20,11 @@ const WorkCreate = ({ userInfo, isLogin }) => {
     async function makeProjectList () { 
       const projectList = await getMyProjectList(userInfo.userId);
       console.log(projectList);
-      const filteredProjectList = projectList.filter(project => parseInt(project.userId) === parseInt(userInfo.userId));
-      console.log(filteredProjectList);
-      setMyProjectList(filteredProjectList);
+      if(projectList){
+        const filteredProjectList = projectList.filter(project => parseInt(project.userId) === parseInt(userInfo.userId));
+        console.log(filteredProjectList);
+        setMyProjectList(filteredProjectList);
+      }
     }
     makeProjectList(); 
   },[]);
