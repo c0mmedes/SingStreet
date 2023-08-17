@@ -103,7 +103,6 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                       name="file"
                       onChange={handleWork}
                       accept="audio/*,video/*"
-                      style={{ display: "none" }}
                     />
                 {/*     <span
                       id="modifybutton"
