@@ -84,41 +84,52 @@ const EntFeed = ({ userInfo }) => {
 	const addComment = async (feedId) => {
 		const comment = commentInputs[feedId];
 		if (!comment) {
-		// 댓글 내용이 없을 경우 처리
-		return;
+		  // 댓글 내용이 없을 경우 처리
+		  return;
 		}
-	
+	  
 		const accessToken = sessionStorage.getItem("accessToken");
 		const commentData = {
-		userId: userInfo.userId,
-		feedId: feedId,
-		content: comment,
+		  userId: userInfo.userId,
+		  feedId: feedId,
+		  content: comment,
 		};
 		try {
-		const res = await apiInstance.post(`/ent/feed/comment`, commentData, {
+		  const res = await apiInstance.post(`/ent/feed/comment`, commentData, {
 			headers: {
-			Authorization: `Bearer ${accessToken}`,
+			  Authorization: `Bearer ${accessToken}`,
 			},
-		});
-		console.log("댓글추가API");
-		console.log(res);
-	
-		// 댓글 작성이 성공하면 해당 피드에 대한 댓글 입력 상태를 초기화
-		setCommentInputs({ ...commentInputs, [feedId]: "" });
-	
-		// 해당 피드의 댓글 목록만 업데이트
-		const updatedFeedList = feedList.map((feed) => {
+		  });
+		  console.log("댓글추가API");
+		  console.log(res);
+	  
+		  // 댓글 작성이 성공하면 해당 피드에 대한 댓글 입력 상태를 초기화
+		  setCommentInputs({ ...commentInputs, [feedId]: "" });
+	  
+		  // 해당 피드의 댓글 목록만 업데이트
+		  const updatedFeedList = feedList.map((feed) => {
 			if (feed.feedId === feedId) {
-			return { ...feed, comments: [...feed.comments, res.data] };
+			  return { ...feed, comments: [...feed.comments, res.data] };
 			}
 			return feed;
-		});
-	
-		setFeedList(updatedFeedList);
+		  });
+	  
+		  setFeedList(updatedFeedList); // 피드 리스트 업데이트
+	  
+		  // 댓글 추가 후 댓글 목록을 다시 불러와서 업데이트
+		  const updatedComments = await getCommentsForFeed(feedId);
+		  setFeedList((prevFeedList) => {
+			return prevFeedList.map((prevFeed) => {
+			  if (prevFeed.feedId === feedId) {
+				return { ...prevFeed, comments: updatedComments };
+			  }
+			  return prevFeed;
+			});
+		  });
 		} catch (error) {
-		console.error("댓글 작성 오류:", error);
+		  console.error("댓글 작성 오류:", error);
 		}
-  	};
+	  };
 
 	// [API] 댓글 목록을 가져오는 함수
 	const getCommentsForFeed = async (feedId) => {
