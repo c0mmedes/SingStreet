@@ -1,3 +1,4 @@
+// MusicDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
@@ -5,9 +6,13 @@ import "../../css/work/MusicDetail.css";
 
 const MusicDetail = ({ isOpen, onClose, projectId }) => {
 	const [project, setProject] = useState([]);
-
 	// axios 인스턴스
 	const apiInstance = api();
+
+	const onCloseModal = () => {
+		setProject([]); // 모달을 닫을 때 project 상태 초기화
+		onClose(); // 원래의 onClose 함수 호출
+	};
 
 	const getProject = async () => {
 		try {
@@ -48,7 +53,7 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 	return (
 		<div className="modal">
 			<div className="modal-content">
-				<button className="close-button" onClick={onClose}>
+				<button className="close-button" onClick={onCloseModal}>
 					닫기
 				</button>
 				{/* 모달 내용 */}

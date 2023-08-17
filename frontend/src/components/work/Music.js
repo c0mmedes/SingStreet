@@ -1,3 +1,4 @@
+// Music.js
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/httpService";
@@ -23,7 +24,7 @@ const Music = () => {
 	}; */
 	// 모달 토글 함수
 	const toggleModal = (projectId) => {
-		console.log(projectId);
+		// console.log(projectId);
 		setSelectedProjectId(projectId); // 선택한 music의 projectId 저장
 		setIsModalOpen(!isModalOpen);
 	};
