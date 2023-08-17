@@ -12,7 +12,7 @@ const EntFeed = ({ userInfo }) => {
 	const [page, setPage] = useState(0); // 페이지 번호
 	const [isLastPage, setIsLastPage] = useState(false); // 마지막페이지인지
 	const [feedList, setFeedList] = useState([]); // 피드리스트
-	const [commentContent, setCommentContent] = useState(""); // 댓글 내용
+	const [commentInputs, setCommentInputs] = useState({});
 	const [showComments, setShowComments] = useState({}); // 댓글 보기 여부
 	// axios 객체
 	const apiInstance = api();
@@ -81,10 +81,13 @@ const EntFeed = ({ userInfo }) => {
 	};
 
 	//[API] 댓글 추가 함수
-	const addComment = async (feedId, comment) => {
-		// API 호출을 통해 댓글 생성 후, 해당 게시물의 comments에 추가
-		// 댓글 추가 후 서버에서 업데이트된 댓글 목록을 받아온다면,
-		// setFeedList를 사용하여 해당 게시물의 댓글 목록을 업데이트할 수 있습니다.
+	const addComment = async (feedId) => {
+		const comment = commentInputs[feedId];
+		if (!comment) {
+			// 댓글 내용이 없을 경우 처리
+			return;
+		}
+
 		const accessToken = sessionStorage.getItem("accessToken");
 		const commentData = {
 			userId: userInfo.userId,
@@ -98,7 +101,8 @@ const EntFeed = ({ userInfo }) => {
 		});
 		console.log("댓글추가API");
 		console.log(res);
-		setCommentContent("");
+		 
+		setCommentInputs({ ...commentInputs, [feedId]: "" });// 댓글 작성이 성공하면 해당 피드에 대한 댓글 입력 상태를 초기화
 		window.location.reload(); // 페이지 새로고침
 	};
 
@@ -214,11 +218,11 @@ const EntFeed = ({ userInfo }) => {
 							<div className="comment-section">
 								{/* 댓글 입력 폼 */}
 								<textarea
-									value={commentContent}
-									onChange={(e) => setCommentContent(e.target.value)}
-									placeholder="댓글을 입력하세요."
+    								value={commentInputs[feed.feedId] || ""}
+    								onChange={(e) => setCommentInputs({ ...commentInputs, [feed.feedId]: e.target.value })}
+    								placeholder="댓글을 입력하세요."
 								/>
-								<button onClick={() => addComment(feed.feedId, commentContent)}>댓글 작성</button>
+								<button onClick={() => addComment(feed.feedId, commentInputs[feed.feedId])}>댓글 작성</button>
 								{/* 댓글 목록 */}
 								{feed.comments.map((comment) => (
 									<div key={comment.createdAt} className="comment">
