@@ -16,7 +16,6 @@ const MyEntList = ({
   const navigate = useNavigate();
   // 클릭한 엔터 메인 페이지로 보내는 함수
   const onClickGoToEntMain = (entId,entMasterId,entName) => {
-    alert("클릭했습니다");
     console.log(`/entmain/${entId}/${entMasterId}/${entName}`);
     navigate(`/entmain/${entId}/${entMasterId}/${entName}`)
   };
@@ -28,7 +27,7 @@ const MyEntList = ({
         <h1>가입된 엔터목록</h1>
         <div className="myEntListItemContainer">
           {myEntList.map((myEnt) => (
-            <li className="myEntListItem" key={myEnt.entId} onClick={()=>onClickGoToEntMain(myEnt.entId,myEnt.userId,myEnt.entName)}>
+            <li className="myEntListItem" key={myEnt.entId} onClick={()=>onClickGoToEntMain(myEnt.entId,myEnt.userId,myEnt.entName)} style={{ cursor: "pointer" }}>
               <div className="myEntListItemTitleWrap">
                 <img src={myEnt.entImg} alt="엔터프로필이미지"></img>
                 <h3 class="myEntListItemTitle">엔터이름 : {myEnt.entName}</h3>

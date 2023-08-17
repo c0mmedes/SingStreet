@@ -16,7 +16,21 @@ const getMyEntList = async () => {
 	} catch (error) {}
 };
 
-export { getMyEntList };
+//[API] 내 프로젝트 리스트 불러오기
+const getMyProjectList = async (userId) => {
+	const accessToken = sessionStorage.getItem("accessToken");
+	try {
+		const res = await apiInstance.get(`/project/user/${userId}`, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+			},
+		});
+		console.log(res.data);
+		return res.data; // API 결과인 내 프로젝트리스트를 리턴
+	} catch (error) {}
+};
+
+export { getMyEntList,getMyProjectList };
 
 // async function login(user, success, fail) {
 // 	await apiInstance.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);

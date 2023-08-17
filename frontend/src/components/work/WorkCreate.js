@@ -1,76 +1,72 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/work/WorkCreate.css";
-const WorkCreate = ({ userInfo, isLogin }) => {
-  const [isAutoAceepted, setIsAutoAceepted] = useState(true);
-  const [workImg, setWorkImg] = useState(true);
-  const fileInputRef = useRef(null);
-  const handleIsAutoAceepted = (e) => {
-    const value = e.target.value === "true"; // 문자열 "true"를 불리언 true로 변환
-    setIsAutoAceepted(value);
-  };
-  const handleImageDelete = () => {
-    setWorkImg(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-      fileInputRef.current.removeAttribute("required");
-    }
-  };
-  const handleWorkImg = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const modifiedFile = new File([file], `${Date.now()}-${file.name}`, {
-        type: file.type,
-      });
-      setWorkImg(modifiedFile);
+import { getMyProjectList } from "../../services/userAPI";
 
-      if (fileInputRef.current) {
-        fileInputRef.current.setAttribute("required", "required");
-      }
-    } else {
-      setWorkImg(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.removeAttribute("required");
-      }
-    }
-  };
+const WorkCreate = ({ userInfo, isLogin }) => {
+  // const [isAutoAceepted, setIsAutoAceepted] = useState(true);
+  const [work, setWork] = useState(null);
+  const [myProjectList, setMyProjectList] = useState([]);
+  const [projectId, setProjectId] = useState("");
+  // const fileInputRef = useRef(null);
 
   // axios 인스턴스 생성
   const apiInstance = api();
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
   const navigate = useNavigate();
 
+  useEffect(() => {
+    async function makeProjectList() {
+      const projectList = await getMyProjectList(userInfo.userId);
+      console.log(projectList);
+      if (projectList) {
+        const filteredProjectList = projectList.filter(
+          (project) => parseInt(project.userId) === parseInt(userInfo.userId)
+        );
+        console.log(filteredProjectList);
+        setMyProjectList(filteredProjectList);
+      }
+    }
+    makeProjectList();
+  }, []);
+
+  // 작품 파일
+  const handleWork = (e) => {
+    setWork(e.target.files[0]);
+  };
+  const handleProject = (e) => {
+    setProjectId(e.target.value);
+  };
+
   // 생성하기 클릭
-  const onClickEntCreate = async function (e) {
+  const onClickWorkCreate = async function (e) {
     e.preventDefault(); // 기본 제출 동작 막기
 
+    if (!projectId) {
+      alert("선택된 프로젝트가 없습니다!");
+      return;
+    }
+
     const accessToken = sessionStorage.getItem("accessToken");
-    // 엔터 프로필 이미지와, entData를 함께 보내기 위한 작업
     const formData = new FormData();
-    formData.append("file", workImg);
-
-    const entData = {
-      isAutoAccepted: isAutoAceepted,
-    };
-    formData.append(
-      "requestDto",
-      new Blob([JSON.stringify(entData)], {
-        type: "application/json",
-      })
-    );
-
+    if (work) {
+      formData.append("file", work);
+    }
     try {
-      const res = await apiInstance.post("/ent", formData, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-          "Content-Type": "multipart/form-data",
-          Accept: "application/json", // 추가
-        },
-      });
+      const res = await apiInstance.post(
+        `/file/upload/video/${projectId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(res);
       if (res.data === false) {
-        alert("중복된 엔터명입니다!");
+        alert("비동기 오류 났어요!");
       } else {
         alert("노래합작 생성 완료");
         navigate("/music");
@@ -84,31 +80,35 @@ const WorkCreate = ({ userInfo, isLogin }) => {
     <div>
       <div className="form_wrapper workCreateFormWrapper">
         <div className="form_container">
-          <div className="title_container">
+          <div className="worktitle_container">
             <h2>노래합작 업로드</h2>
           </div>
-          <div className="row clearfix">
+          <div className="row">
             <div className="">
-              <form className="entCreateForm" onSubmit={onClickEntCreate}>
+              <form className="workCreateForm" onSubmit={onClickWorkCreate}>
+                {/*업로드할 작품 선택*/}
+                <div>
+                  <label>업로드할 프로젝트 선택</label>
+                  <select value={projectId} onChange={handleProject}>
+                    <option value="" disabled hidden>
+                      작품을 업로드할 프로젝트 선택
+                    </option>
+                    {myProjectList.map((project) => (
+                      <option key={project.projectId} value={project.projectId}>
+                        {project.projectName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <label>노래합작 파일</label>
-                <div className="input_field" id="workImgInputField">
-                  <div className="file-input">
+                <div className="input-work-file" id="workImgInputField">
+                  <div className="input-work-file">
                     <input
                       type="file"
                       name="file"
-                      ref={fileInputRef}
-                      onChange={handleWorkImg}
-                      accept="audio/*,video/*"
-                      style={{ display: "none" }}
+                      onChange={handleWork}
+                      // accept="audio/*,video/*"
                     />
-                    <span
-                      id="modifybutton"
-                      onClick={() => fileInputRef.current.click()}>
-                      오디오 변경
-                    </span>
-                    <span id="deletebutton" onClick={handleImageDelete}>
-                      삭제
-                    </span>
                   </div>
                 </div>
                 <input className="button" type="submit" value="생성하기" />
