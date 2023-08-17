@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
-import "../../css/work/";
+import "../../css/work/MusicDetail.css";
 
 // const MusicDetail = () => {
 // 	// axios 인스턴스
