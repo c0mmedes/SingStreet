@@ -24,7 +24,9 @@ const Chat = () => {
         // const socket = new WebSocket(`ws://i9b110.p.ssafy.io/backend/chatt/${entId}`);
         // const socket = new WebSocket(`ws://localhost:8080/chatt/1`);
 
-        const socket = new WebSocket('wss://i9b110.p.ssafy.io/backend/chatt/1');
+        // const socket = new WebSocket('wss://i9b110.p.ssafy.io/backend/chatt/1');
+        const socket = new WebSocket('wss://i9b110.p.ssafy.io:3000/backend/chatt/1');
+
 
         setWs(socket);
 
