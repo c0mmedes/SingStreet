@@ -34,6 +34,7 @@ import EntProjectMemberInviteContainer from "./containers/ent/EntProjectMemberIn
 // 뮤직(워크)
 import WorkCreateContainer from "./containers/work/WorkCreateContainer";
 import EntFeedContainer from "./containers/ent/EntFeedContainer";
+import MusicDetailContainer from "./containers/work/MusicDetailContainer";
 const mapStateToProps = (state) => ({
 	userInfo: state.user.userInfo,
 	isLogin: state.user.isLogin,
@@ -46,6 +47,7 @@ function App({ isLogin }) {
 			<Route path="/ent" element={<Ent />} />
 			<Route path="/chart" element={<Chart />} />
 			<Route path="/music" element={<Music />} />
+			<Route path="/music/:projectId" element={<MusicDetailContainer />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/login" element={<LoginContainer />} />
 			<Route path="/chat" element={<ChatContainer />} />
