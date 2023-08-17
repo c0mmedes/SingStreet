@@ -12,3 +12,26 @@
   background-color: transparent;
   border-radius: 5px;
 }
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.commentNameCreatedAt {
+  display: flex;
+}
+
+.comment-user {
+  margin-right: 30px;
+}
+
+.comment-createdAt {
+  margin-bottom: 10px;
+  color: #00000075;
+}
+
+.comment-content {
+  padding-left: 10px;
+}
