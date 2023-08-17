@@ -98,8 +98,8 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                   </select>
                 </div>
                 <label>노래합작 파일</label>
-                <div className="input_field" id="workImgInputField">
-                  <div className="file-input">
+                <div className="input-work-file" id="workImgInputField">
+                  <div className="input-work-file">
                     <input
                       type="file"
                       name="file"
