@@ -429,4 +429,17 @@ public class ProjectService {
 
         return projectInfoDtos;
     }
+
+    public List<ProjectSaveResponseDto> getAllMusicProjects() {
+        List<ProjectSaveResponseDto> list= new ArrayList<>();
+
+        List<Project> projectList = projectRepository.findAllByIsDestroyedFalseAndOriginFilenameIsNotNull();
+
+        for(Project project : projectList) {
+            list.add(convertToDto(project));
+        }
+
+        return list;
+    }
+
 }
