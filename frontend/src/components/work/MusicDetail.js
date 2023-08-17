@@ -47,10 +47,10 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 
 	return (
 		<div className="modal">
-			<button className="close-button" onClick={onClose}>
-				닫기
-			</button>
 			<div className="modal-content">
+				<button className="close-button" onClick={onClose}>
+					닫기
+				</button>
 				{/* 모달 내용 */}
 				<h2>프로젝트 명 : {project.projectName}</h2>
 				{/* <img src={project.projectImg} alt="프로젝트 이미지" /> */}
