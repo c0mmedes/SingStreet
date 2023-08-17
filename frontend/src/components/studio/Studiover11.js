@@ -29,7 +29,7 @@ const Studio = () => {
   const apiInstance = api();
   // const [audioBlock, setAudioBlock] = useState(null); //업로드 오디오 파일
   const [userId, setUserId] = useState("1");
-  const [projectId, setProjectId] = useState(1);
+  const [projectId, setProjectId] = useState("1");
 
   //초기설정 -
   useEffect(() => {
@@ -53,8 +53,8 @@ const Studio = () => {
       newPlayhead.draggable = true;
       newPlayhead.style.position = "absolute";
     //   newPlayhead.style.left = `${container.offsetLeft}px`;
-        newPlayhead.style.left = `0px`;
-        newPlayhead.style.height="100%";
+    newPlayhead.style.left = `0px`;
+    newPlayhead.style.height="100%";
       setPlayhead(newPlayhead);
 
       // getBlockList(); -> 블럭 가져오기(서버에서도 음원 가져와)
@@ -76,9 +76,6 @@ const Studio = () => {
     const listMap = ydoc.getMap("listMap");
 
     if(!listMap.get("blockList")){
-        if(!blockList){
-            getBlockList();
-        }
         listMap.set("blockList",blockList);
     }
     
@@ -173,7 +170,6 @@ const Studio = () => {
     } // 2-2.end -------------------------------------------------------------
 
     listMap.observe(()=>{
-        console.log(listMap);
         // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
     myMap.observe(() => {//myMap의 내용이 변경될 때마다 실행
         console.log("myMapObserve");
@@ -401,7 +397,7 @@ const Studio = () => {
 
   //저장된 음원전체 가져오기-> back에서 구현-------------------------------------------------------
   const getBlockList = async () => {
-    const res = await apiInstance.get(`/block/${projectId}`);
+    const res = await apiInstance.get(`/block/get/${projectId}`);
     console.log(res.data);
     setBlockList(res.data.content);
     console.log(res.data);

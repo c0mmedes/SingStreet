@@ -29,7 +29,7 @@ const Studio = () => {
   const apiInstance = api();
   // const [audioBlock, setAudioBlock] = useState(null); //업로드 오디오 파일
   const [userId, setUserId] = useState("1");
-  const [projectId, setProjectId] = useState(1);
+  const [projectId, setProjectId] = useState("1");
 
   //초기설정 -
   useEffect(() => {
@@ -53,8 +53,8 @@ const Studio = () => {
       newPlayhead.draggable = true;
       newPlayhead.style.position = "absolute";
     //   newPlayhead.style.left = `${container.offsetLeft}px`;
-        newPlayhead.style.left = `0px`;
-        newPlayhead.style.height="100%";
+    newPlayhead.style.left = `0px`;
+    newPlayhead.style.height="100%";
       setPlayhead(newPlayhead);
 
       // getBlockList(); -> 블럭 가져오기(서버에서도 음원 가져와)
@@ -73,15 +73,6 @@ const Studio = () => {
   useEffect(() => {
     const myMap = ydoc.getMap("myMap");
 
-    const listMap = ydoc.getMap("listMap");
-
-    if(!listMap.get("blockList")){
-        if(!blockList){
-            getBlockList();
-        }
-        listMap.set("blockList",blockList);
-    }
-    
 
     //2-1. -----------------------------block초기설정-----------------------------
     const setblock = (insertBlock) => {
@@ -119,7 +110,7 @@ const Studio = () => {
           setLocation(blockElement, left, top);
           console.log("[dragHandler] - blockElement",blockElement);
           console.log("insertBlock.id",insertBlock.testId);
-          myMap.set(insertBlock.testId, 
+          myMap.set(insertBlock.id, 
             {
                 left: left,
                 top: top,
@@ -172,26 +163,23 @@ const Studio = () => {
       setblock(blockList[blockList.length - 1]);
     } // 2-2.end -------------------------------------------------------------
 
-    listMap.observe(()=>{
-        console.log(listMap);
-        // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
+    // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
     myMap.observe(() => {//myMap의 내용이 변경될 때마다 실행
-        console.log("myMapObserve");
-        console.log(myMap);
-        myMap.forEach((block, testId) => {    //MyMap의 모든 항목에 대해 반복, block:현재 순회중인 항목의 값/ id:항목의 고유 식별자
-          if(testId){
-              console.log("[observe] - block,id",block, testId);
-              const blockElement = document.getElementById(testId);
-              console.log("[observe]-blockElement",blockElement);
-              if (blockElement) {
-              setLocation(blockElement, block.left, block.top);
-              } else {
-                  createAudioFile();
-              }
-          }
-        });
-      }); // 2-3. end--------------------------------------------------------------
-    })
+      console.log("myMapObserve");
+      console.log(myMap);
+      myMap.forEach((block, testId) => {    //MyMap의 모든 항목에 대해 반복, block:현재 순회중인 항목의 값/ id:항목의 고유 식별자
+        if(testId){
+            console.log("[observe] - block,id",block, testId);
+            const blockElement = document.getElementById(testId);
+            console.log("[observe]-blockElement",blockElement);
+            if (blockElement) {
+            setLocation(blockElement, block.left, block.top);
+            } else {
+                createAudioFile();
+            }
+        }
+      });
+    }); // 2-3. end--------------------------------------------------------------
   }, [blockList]);
   //2.end=============================================Yjs초기설정end=========================================================================
 
@@ -401,7 +389,7 @@ const Studio = () => {
 
   //저장된 음원전체 가져오기-> back에서 구현-------------------------------------------------------
   const getBlockList = async () => {
-    const res = await apiInstance.get(`/block/${projectId}`);
+    const res = await apiInstance.get(`/block/get/${projectId}`);
     console.log(res.data);
     setBlockList(res.data.content);
     console.log(res.data);

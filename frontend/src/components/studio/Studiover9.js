@@ -5,7 +5,7 @@ import "./Studio.css";
 import { api } from "../../services/httpService";
 
 const Studio = () => {
-  const [blockCounter, setBlockCounter] = useState(1);
+  const [blockCounter, setBlockCounter] = useState(0);
   const [playInterval, setPlayInterval] = useState(null);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [audioCtx, setAudioCtx] = useState(
@@ -29,7 +29,7 @@ const Studio = () => {
   const apiInstance = api();
   // const [audioBlock, setAudioBlock] = useState(null); //업로드 오디오 파일
   const [userId, setUserId] = useState("1");
-  const [projectId, setProjectId] = useState(1);
+  const [projectId, setProjectId] = useState("1");
 
   //초기설정 -
   useEffect(() => {
@@ -53,8 +53,8 @@ const Studio = () => {
       newPlayhead.draggable = true;
       newPlayhead.style.position = "absolute";
     //   newPlayhead.style.left = `${container.offsetLeft}px`;
-        newPlayhead.style.left = `0px`;
-        newPlayhead.style.height="100%";
+    newPlayhead.style.left = `0px`;
+    newPlayhead.style.height="100%";
       setPlayhead(newPlayhead);
 
       // getBlockList(); -> 블럭 가져오기(서버에서도 음원 가져와)
@@ -68,42 +68,28 @@ const Studio = () => {
   }, []);
 
 
-
+  
   // 2.================================================Yjs관련 초기 설정=================================================================
   useEffect(() => {
     const myMap = ydoc.getMap("myMap");
 
-    const listMap = ydoc.getMap("listMap");
-
-    if(!listMap.get("blockList")){
-        if(!blockList){
-            getBlockList();
-        }
-        listMap.set("blockList",blockList);
-    }
-    
-
     //2-1. -----------------------------block초기설정-----------------------------
     const setblock = (insertBlock) => {
       console.log("------setBlock------");
-      console.log("1[setBlock]-insertBlock",insertBlock);
-      let block = myMap.get(insertBlock.testId);
+      // console.log("1:",insertBlock);
+      let block = myMap.get(insertBlock.id);
       // console.log("2. insertBlock",block);
 
       //블록이 없다면 yMap에 (ID, 해당Block)업데이트
       if (!block) {
-        myMap.set(insertBlock.testId, insertBlock); // -> yMap.oberve()실행됨
+        myMap.set(insertBlock.id, insertBlock); // -> yMap.oberve()실행됨
       }
-      console.log("[useEffect]-[setBlock]-block",block);
-      console.log("[useEffect]-[setBlock]-insertBlock",insertBlock);
-      console.log("[useEffect]-[setBlock]-myMap.block",myMap.get(insertBlock.testId));
       // console.log("3. block:",insertBlock);
 
       //2-1-2. ------------해당 블럭을 찾아서 위치 조정 및 이벤트 추가-------------------
-      const blockElement = document.getElementById(insertBlock.testId);
+      const blockElement = document.getElementById(insertBlock.id);
       blockElement.setAttribute("draggable", "true");
       setLocation(blockElement, insertBlock.left, insertBlock.top);
-      // 드래그 관련 함수
       const dragStartHandler = (e) => {
         const offsetLeft = e.clientX - e.target.offsetLeft;
         const offsetTop = e.clientY - e.target.offsetTop;
@@ -117,33 +103,12 @@ const Studio = () => {
           const top = event.clientY - offsetTop;
 
           setLocation(blockElement, left, top);
-          console.log("[dragHandler] - blockElement",blockElement);
-          console.log("insertBlock.id",insertBlock.testId);
-          myMap.set(insertBlock.testId, 
-            {
-                left: left,
-                top: top,
-                testId: insertBlock.testId,
-                blockName: insertBlock.blockName, 
-                projectId:projectId
-            });
-          console.log(myMap.get(insertBlock.id));
-          console.log(left, top);
-          console.log(myMap);
-
+          myMap.set(insertBlock.id, { left: left, top: top });
         };
         blockElement.ondrag = dragHandler; // 해당
       };
       blockElement.ondragstart = dragStartHandler;
     }; //2-1. ------------------------블럭 초기화 end----------------------------------
-
-    // if(blockList){
-    //     blockList.forEach(block => {
-    //         setblock(block);
-    //     });
-    // }
-    
-    
 
     // 2-2. -------------------------<blockList업데이트>--------------------
     console.log("container", container);
@@ -163,35 +128,28 @@ const Studio = () => {
     // }
     // setBlockCounter(blockCounter + 1);//블록 카운터 수 증가----------------------------------------------------------
 
-    console.log("[useEffect]-blockList", blockList);
-
+    console.log("blockList:", blockList);
     if (!blockList) {
       //처음에 null이면 실행 -> api통해 전체 블럭리스트 가져오기
     } else {
-      console.log("[useEffect] else-blockList[blockList.length - 1]", blockList[blockList.length - 1]);
+      console.log("null아니면", blockList[blockList.length - 1]);
       setblock(blockList[blockList.length - 1]);
     } // 2-2.end -------------------------------------------------------------
 
-    listMap.observe(()=>{
-        console.log(listMap);
-        // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
-    myMap.observe(() => {//myMap의 내용이 변경될 때마다 실행
-        console.log("myMapObserve");
-        console.log(myMap);
-        myMap.forEach((block, testId) => {    //MyMap의 모든 항목에 대해 반복, block:현재 순회중인 항목의 값/ id:항목의 고유 식별자
-          if(testId){
-              console.log("[observe] - block,id",block, testId);
-              const blockElement = document.getElementById(testId);
-              console.log("[observe]-blockElement",blockElement);
-              if (blockElement) {
-              setLocation(blockElement, block.left, block.top);
-              } else {
-                  createAudioFile();
-              }
-          }
-        });
-      }); // 2-3. end--------------------------------------------------------------
-    })
+    // 2-3. --------------------------<YMap업데이트 화면공유>--------------------
+    myMap.observe(() => {
+      console.log("myMapObserve");
+      myMap.forEach((block, id) => {
+        // console.log(block, id);
+        const blockElement = document.getElementById(id);
+        // console.log(blockElement);
+        if (blockElement) {
+          setLocation(blockElement, block.left, block.top);
+        } else {
+          createAudioFile();
+        }
+      });
+    }); // 2-3. end--------------------------------------------------------------
   }, [blockList]);
   //2.end=============================================Yjs초기설정end=========================================================================
 
@@ -205,27 +163,22 @@ const Studio = () => {
 
     const file = e.dataTransfer.files[0]; // 드롭된 파일 중 첫번째 파일 가져오기
 
-    console.log("[handleDrop]-file",file);
+    console.log(file);
     //이미 있는 block이면 종료
     if (!file) {
-      console.log("[handleDrop]-file (if)",file);
+      console.log("이미 있는거임");
     } else {
-      console.log("[handleDrop]-new file (else)",file);
+      console.log("New!");
       // setAudioBlock(file);
       addBlock(file); //파일 업로드
       createAudioFile(file);
     }
   };
-  //block 위치 조정-----------------------------------------------------------------------------
-  const setLocation = (element, left, top) => {//div이동
-    element.style.left = `${left}px`;
-    element.style.top = `${top}px`;
-  };
 
   //Audio파일 셋팅=====================================
   const createAudioFile = (file) => {
     const reader = new FileReader(); // 파일을 읽기 위한 FileReader객체 생성
-    console.log("[createAudioFile]-file",file);
+
     //파일 성공적으로 읽으면 실행할 콜백 함수 정의
     reader.onload = (e) => {
       // const blockId = "block" + blockCounter;
@@ -251,13 +204,12 @@ const Studio = () => {
         newBlock.style.width = width + "px";
         //ondrag속성 지정해줘야함<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-        console.log("[onLoad createAudioFile]-file", file);
+        console.log("file>>>>>", file.name);
         newBlock.style.height = "50px";
         newBlock.style.display = "inline-block";
         newBlock.style.position = "absolute";
         newBlock.style.textAlign = "center";
         newBlock.style.lineHeight = "50px";
-        newBlock.style.fontSize = "10px";
         newBlock.style.left =
           ((blockCounter * 100) % (container.clientWidth - 100)) + "px";
         newBlock.style.top =
@@ -271,28 +223,22 @@ const Studio = () => {
         });
         //blockList갱신
         const block = {
-          testId: blockCounter,
-          projectId: projectId, //------------------->{projectId}이런식으로 수정필요
+          id: blockCounter,
+          projectId: 1, //------------------->{projectId}이런식으로 수정필요
           left: (blockCounter * 100) % (container.clientWidth - 100),
           top: Math.floor(blockCounter / (container.clientWidth / 100)) * 100,
-          blockName:file.name
         };
-        console.log("[createAudioBlock]newBLOCK!!!!!!!!!!!!!!!",block);
         if (blockList) {
           const prevBlockList = [...blockList, block];
-          console.log("[createAudioBlock] if(blockList)-prevBlockList", prevBlockList);
-          console.log("[createAudioBlock] if(blockList)-blockList", blockList)
+          console.log("if", prevBlockList);
           setBlockList(prevBlockList); // 기존 배열에 새로운 블록 추가
         } else {
-          setBlockList([block]);    //useEffect발생
-          console.log("[createAudioBlock] else-blockList", blockList);
+          setBlockList([block]);
+          console.log("else", blockList);
         }
         setBlockCounter(blockCounter + 1); //블록 카운터 수 증가
       });
     };
-
-    console.log("[endCreateAudioFile]-file", file);
-    console.log("[endCreateAudioFile]-blockList", blockList);
     reader.readAsDataURL(file); // FileReader 객체를 사용하여 주어진 파일을 데이터 URL로 읽어들이는 역할을 합니다.
   };
   //==================================================
@@ -370,6 +316,7 @@ const Studio = () => {
 
   //Audio파일 서버에 추가----->new Audio Insert에서 실행---------------------------------------------
   const addBlock = async (file) => {
+    console.log("addBlock임다", file);
     const accessToken = sessionStorage.getItem("accessToken");
     const formData = new FormData();
     formData.append("file", file); //오디오 파일 넣기
@@ -396,12 +343,12 @@ const Studio = () => {
       },
     });
     setBlockList(res.data.content);
-    console.log("addBlock",res);
+    console.log(res.data);
   };
 
   //저장된 음원전체 가져오기-> back에서 구현-------------------------------------------------------
   const getBlockList = async () => {
-    const res = await apiInstance.get(`/block/${projectId}`);
+    const res = await apiInstance.get(`/block/get/${projectId}`);
     console.log(res.data);
     setBlockList(res.data.content);
     console.log(res.data);
@@ -410,10 +357,12 @@ const Studio = () => {
   //새로 저장된 음원들 가져오기
   const getNewBlockList = async () => {};
 
-  const update = async(block) =>{
-
-  }
-
+  //block 위치 조정-----------------------------------------------------------------------------
+  const setLocation = (element, left, top) => {
+    // console.log(element,left,top);
+    element.style.left = `${left}px`;
+    element.style.top = `${top}px`;
+  };
 
   return (
     <div className="studioContainer">
@@ -435,7 +384,6 @@ const Studio = () => {
                   stop!
                 </button>
                 <button className="w-btn-neon2">음향효과2</button>
-                <button onClick={update} className="w-btn-neon2">SAVE</button>
               </div>
             </div>
             <div id="blockListArea" className="blockListArea"></div>
@@ -448,4 +396,4 @@ const Studio = () => {
 
 export default Studio;
 
-//화면 공유 안됨
+//드래그 수정
