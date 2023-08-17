@@ -85,7 +85,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                 {/*업로드할 작품 선택*/}
                 <div>
                   <label>업로드할 프로젝트 선택</label>
-                  <select onChange={handleProject}>
+                  <select value={projectId} onChange={handleProject}>
                     <option value="" disabled hidden>작품을 업로드할 프로젝트 선택</option>
                     {myProjectList.map((project)=>(
                       <option key={project.projectId} value={project.projectId}>
