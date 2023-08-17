@@ -334,8 +334,101 @@
 }
 
 .workCreateFormWrapper {
-  margin-top: 0 !important;
+  margin: 0 auto;
+  background-color: white;
+  width: 540px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 25px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+  border-radius: 5px;
 }
+
+/* 폼 제목 스타일 */
+.workCreateFormWrapper h2 {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  margin: 0;
+}
+
+/* 폼의 행, 열 스타일 */
+.workCreateFormWrapper .row {
+  margin: 10px -15px;
+}
+.workCreateFormWrapper .row > div {
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.workCreateFormWrapper .col_half {
+  width: 50%;
+  float: left;
+}
+
+/* 인풋 필드 스타일 */
+.workCreateFormWrapper .input_field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* 텍스트 입력 스타일 */
+.workCreateFormWrapper input[type="text"] {
+  width: 100%;
+  padding: 8px 10px 9px 15px;
+  height: 35px;
+  border: 0;
+  background-color: inherit;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 파일 입력 스타일 */
+.file-input {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+/* 이미지 프리뷰 스타일 */
+.previewImage,
+.defaultImage {
+  border: 1px solid #e9e7e7;
+  border-radius: 5px;
+  max-width: 100%;
+  display: block;
+  margin-top: 10px;
+}
+
+/* 기타 스타일 */
+.workCreateFormWrapper input[type="submit"] {
+  background-color: white;
+  height: 45px;
+  line-height: 30px;
+  width: 100%;
+  border: 1px solid black;
+  cursor: pointer;
+  color: black;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+}
+.workCreateFormWrapper input[type="submit"]:hover {
+  background: black;
+  color: white;
+}
+
 /* ... 이전 CSS 스타일 ... */
 
 .file-input {

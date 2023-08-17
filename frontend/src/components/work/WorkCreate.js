@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/httpService";
 import "../../css/work/WorkCreate.css";
@@ -16,24 +16,26 @@ const WorkCreate = ({ userInfo, isLogin }) => {
   // 페이지 이동을 위한 useNavigate를 사용하기 위한 변수 선언
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    async function makeProjectList () { 
+  useEffect(() => {
+    async function makeProjectList() {
       const projectList = await getMyProjectList(userInfo.userId);
       console.log(projectList);
-      if(projectList){
-        const filteredProjectList = projectList.filter(project => parseInt(project.userId) === parseInt(userInfo.userId));
+      if (projectList) {
+        const filteredProjectList = projectList.filter(
+          (project) => parseInt(project.userId) === parseInt(userInfo.userId)
+        );
         console.log(filteredProjectList);
         setMyProjectList(filteredProjectList);
       }
     }
-    makeProjectList(); 
-  },[]);
+    makeProjectList();
+  }, []);
 
   // 작품 파일
   const handleWork = (e) => {
     setWork(e.target.files[0]);
   };
-  const handleProject = (e) =>{
+  const handleProject = (e) => {
     setProjectId(e.target.value);
   };
 
@@ -41,25 +43,27 @@ const WorkCreate = ({ userInfo, isLogin }) => {
   const onClickWorkCreate = async function (e) {
     e.preventDefault(); // 기본 제출 동작 막기
 
-    if(!projectId){
+    if (!projectId) {
       alert("선택된 프로젝트가 없습니다!");
       return;
     }
 
     const accessToken = sessionStorage.getItem("accessToken");
     const formData = new FormData();
-    if(work){
+    if (work) {
       formData.append("file", work);
     }
     try {
-      const res = await apiInstance.post(`/file/upload/video/${projectId}`,
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await apiInstance.post(
+        `/file/upload/video/${projectId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Bearer 토큰 포함
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(res);
       if (res.data === false) {
         alert("비동기 오류 났어요!");
@@ -76,18 +80,20 @@ const WorkCreate = ({ userInfo, isLogin }) => {
     <div>
       <div className="form_wrapper workCreateFormWrapper">
         <div className="form_container">
-          <div className="title_container">
+          <div className="worktitle_container">
             <h2>노래합작 업로드</h2>
           </div>
           <div className="row">
             <div className="">
-              <form className="entCreateForm" onSubmit={onClickWorkCreate}>
+              <form className="workCreateForm" onSubmit={onClickWorkCreate}>
                 {/*업로드할 작품 선택*/}
                 <div>
                   <label>업로드할 프로젝트 선택</label>
                   <select value={projectId} onChange={handleProject}>
-                    <option value="" disabled hidden>작품을 업로드할 프로젝트 선택</option>
-                    {myProjectList.map((project)=>(
+                    <option value="" disabled hidden>
+                      작품을 업로드할 프로젝트 선택
+                    </option>
+                    {myProjectList.map((project) => (
                       <option key={project.projectId} value={project.projectId}>
                         {project.projectName}
                       </option>
