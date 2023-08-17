@@ -234,13 +234,15 @@ const EntFeed = ({ userInfo }) => {
                   }
                   placeholder="댓글을 입력하세요."
                 />
-                <button
-                  className="commentSubmitBtn"
-                  onClick={() =>
-                    addComment(feed.feedId, commentInputs[feed.feedId])
-                  }>
-                  댓글 작성
-                </button>
+                <div className="btnmovetoright">
+                  <button
+                    className="commentSubmitBtn"
+                    onClick={() =>
+                      addComment(feed.feedId, commentInputs[feed.feedId])
+                    }>
+                    댓글 작성
+                  </button>
+                </div>
                 {/* 댓글 목록 */}
                 {feed.comments.map((comment) => (
                   <div key={comment.createdAt} className="comment">
