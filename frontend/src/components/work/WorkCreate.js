@@ -88,13 +88,15 @@ const WorkCreate = ({ userInfo, isLogin }) => {
             <div className="">
               <form className="entCreateForm" onSubmit={onClickWorkCreate}>
                 {/*업로드할 작품 선택*/}
-                <select onChange={handleProject}>
-                  {myProjectList.map((project)=>(
-                    <option key={project.projectId} value={project.projectId}>
-                      {project.projectName}
-                    </option>
-                  ))}
-                </select>
+                <div>
+                  <select onChange={handleProject}>
+                    {myProjectList.map((project)=>(
+                      <option key={project.projectId} value={project.projectId}>
+                        {project.projectName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <label>노래합작 파일</label>
                 <div className="input_field" id="workImgInputField">
                   <div className="file-input">
@@ -102,7 +104,7 @@ const WorkCreate = ({ userInfo, isLogin }) => {
                       type="file"
                       name="file"
                       onChange={handleWork}
-                      accept="audio/*,video/*"
+                      // accept="audio/*,video/*"
                     />
                 {/*     <span
                       id="modifybutton"
