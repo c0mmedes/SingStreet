@@ -61,7 +61,7 @@ const MusicDetail = ({ isOpen, onClose, projectId }) => {
 				{/* <img src={project.projectImg} alt="프로젝트 이미지" /> */}
 				<h2>원곡 가수: {project.singerName}</h2>
 				<h2>원곡 노래 : {project.singName}</h2>
-				<div>
+				<div className="video-container">
 					{/* Conditional rendering을 사용하여 재생 가능한 미디어 플레이어를 나타냄 */}
 					{project.originFilename ? (
 						<video controls>
