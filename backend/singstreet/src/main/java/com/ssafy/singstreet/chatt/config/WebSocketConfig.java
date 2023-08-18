@@ -29,7 +29,7 @@ public class WebSocketConfig implements WebSocketConfigurer {//implements WebSoc
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new WebSocketHandlerImpl(), "/backend/chatt/{entId}")
+        registry.addHandler(new WebSocketHandlerImpl(), "/chatt/{entId}")
                 .setAllowedOrigins("*");
     }
 

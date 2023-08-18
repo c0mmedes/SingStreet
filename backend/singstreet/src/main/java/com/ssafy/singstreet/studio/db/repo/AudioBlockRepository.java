@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AudioBlockRepository extends JpaRepository<AudioBlock, Integer> {
-    List<AudioBlock> findByProject_ProjectIdAndIsDeletedFalse(Project projectId);
 
+    List<AudioBlock> findAllByProjectAndIsDeletedIsFalse(Project project);
     AudioBlock findByBlockId(int blockId);
 
     // 새로운 메서드 추가

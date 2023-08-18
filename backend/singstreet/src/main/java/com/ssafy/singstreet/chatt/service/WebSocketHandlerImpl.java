@@ -39,7 +39,7 @@ public class WebSocketHandlerImpl extends TextWebSocketHandler implements org.sp
 
     @OnOpen
     public void onOpen(Session session, @PathParam("entId") int entId) {
-        System.out.println(session.toString());
+//        System.out.println(session.toString());
         if (!CHAT_ROOMS.containsKey(entId)) {
             CHAT_ROOMS.put(entId, new HashSet<>());
         }

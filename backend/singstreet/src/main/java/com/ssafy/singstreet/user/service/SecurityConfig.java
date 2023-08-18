@@ -31,7 +31,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://i9b110.p.ssafy.io","https://localhost:3000/","http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("https://i9b110.p.ssafy.io","https://localhost:3000/","http://localhost:3000","http://localhost:3000/"));
 //        configuration.setAllowedOrigins(Arrays.asList());   //테스트용
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
@@ -60,7 +60,8 @@ public class SecurityConfig {
                 .antMatchers("/admin/**").hasRole("admin")
                 .antMatchers("/myuser").hasRole("USER")
                 .antMatchers("/auth/logout").hasRole("USER")
-//                .antMatchers( "/chatt/{entId}").hasRole("*")
+                .antMatchers( "/chatt/{entId}").permitAll()
+//                .antMatchers("/ws/**").permitAll()
                 .antMatchers(HttpMethod.PUT, "/user").hasRole("USER")
                 .anyRequest().permitAll()
                 .and()

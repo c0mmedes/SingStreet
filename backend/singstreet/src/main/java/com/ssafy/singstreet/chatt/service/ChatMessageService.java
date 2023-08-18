@@ -26,6 +26,6 @@ public class ChatMessageService {
     }
 
     public Slice<ChatMessage> getMessagesWithPagination(int entId,int page, int size){
-        return messageRepository.findAllByEntId(entId,PageRequest.of(page,size,Sort.by("createdAt")));
+        return messageRepository.findAllByEntId(entId,PageRequest.of(page,size,Sort.by(Sort.Direction.DESC,"createdAt")));
     }
 }

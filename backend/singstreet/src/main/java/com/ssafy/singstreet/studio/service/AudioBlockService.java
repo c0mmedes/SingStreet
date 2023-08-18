@@ -29,17 +29,27 @@ public class AudioBlockService {
 
 
     public List<AudioBlockResponseDTO> getBlocksByProjectId(int projectId){
-        System.out.println("ji");
         Project project = projectRepository.findByProjectId(projectId);
-        List<AudioBlock> audioBlockList = audioBlockRepository.findByProject_ProjectIdAndIsDeletedFalse(project);
-
+        System.out.println(project.getProjectId());
+        List<AudioBlock> audioBlockList = audioBlockRepository.findAllByProjectAndIsDeletedIsFalse(project);
+        if(audioBlockList == null){
+            return null;
+        }
         List<AudioBlockResponseDTO> audioBlockResponseDTOList = audioBlockList.stream().map(this::convertAudioToDto).collect(Collectors.toList());
 
         return audioBlockResponseDTOList;
     }
 
+    public AudioBlockResponseDTO getBlockByBlockId(int blockId){
+        System.out.println(blockId);
+        AudioBlock audioBlock = audioBlockRepository.findByBlockId(blockId);
+        System.out.println(audioBlock);
+        AudioBlockResponseDTO audioBlockResponseDTO = convertAudioToDto(audioBlock);
+        return audioBlockResponseDTO;
+    }
 
-    public Boolean create(AudioBlockRequestDTO requestDTO, int userId, MultipartFile file){
+
+    public Integer create(AudioBlockRequestDTO requestDTO, int userId, MultipartFile file){
         System.out.println(requestDTO);
         System.out.println(file);
 
@@ -47,7 +57,7 @@ public class AudioBlockService {
 
         if (file == null) {
             System.out.println("false");
-            return false;
+            return null;
         }else{
             s3Url = amazonS3Service.uploadFile(file);
 
@@ -64,7 +74,7 @@ public class AudioBlockService {
                 .build();
         audioBlockRepository.save(audioBlock);
 
-        return true;
+        return audioBlock.getBlockId();
     }
 
     public Boolean deleteBlock(int blockId){
