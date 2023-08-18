@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 // @RequiredArgsConstructor
 // @RestController
 public class ChattingController {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    // private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private final ChatMessageService messageService;
+    // private final ChatMessageService messageService;
 
     // @GetMapping("/chatting/{entId}")
     // public ResponseEntity<Slice<ChatMessage>> read(@PathVariable int entId, @RequestParam int page, @RequestParam int size){
