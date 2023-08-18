@@ -22,7 +22,9 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+//	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+//	implementation 'com.google.code.gson:gson:2.8.8'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
@@ -46,7 +48,8 @@ dependencies {
 //	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	implementation 'software.amazon.awssdk:s3:2.17.93' // 최신 버전 사용
 	implementation 'commons-fileupload:commons-fileupload:1.4' // 버전은 최신 버전으로 수정
-	implementation 'com.google.code.gson:gson:2.8.5'
+
+
 }
 
 tasks.named('test') {

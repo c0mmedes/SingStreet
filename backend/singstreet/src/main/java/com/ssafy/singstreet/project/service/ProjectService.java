@@ -232,6 +232,8 @@ public class ProjectService {
                 .isDestroyed(project.isDestroyed())
                 .originFilename(project.getOriginFilename())
                 .lastEnterDate(project.getLastEnterDate())
+                .createdAt(project.getCreatedAt())
+                .audioName(project.getAudioName())
                 .build();
     }
 
@@ -249,6 +251,7 @@ public class ProjectService {
                     .singName(project.getSingName())
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
+                    .createdAt(project.getCreatedAt())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
@@ -286,11 +289,17 @@ public class ProjectService {
     // 내 프로젝트 조회
     public List<ProjectSaveResponseDto> getMyProject(int userId) {
         User user = userRepository.findById(userId).orElse(null);
+
+        try {
+        System.out.println(projectRepository.findAllByUser(user));
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         if (user == null) {
                 throw new IllegalArgumentException("Invalid userId.");
         }
-
-        List<Project> projects = projectRepository.findByUser(user);
+        List<Project> projects = projectRepository.findAllByUser(user);
         List<ProjectSaveResponseDto> projectResponseDTOs = new ArrayList<>();
 
         for (Project project : projects) {
@@ -302,6 +311,8 @@ public class ProjectService {
                     .singName(project.getSingName())
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
+                    .userId(project.getUser().getUserId())
+                    .audioName(project.getAudioName())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
@@ -330,6 +341,7 @@ public class ProjectService {
                     .projectInfo(project.getProjectInfo())
                     .projectImg(project.getProjectImg())
                     .isDestroyed(project.isDestroyed())
+                    .audioName(project.getAudioName())
                     .build();
             projectResponseDTOs.add(responseDTO);
         }
@@ -420,4 +432,17 @@ public class ProjectService {
 
         return projectInfoDtos;
     }
+
+    public List<ProjectSaveResponseDto> getAllMusicProjects() {
+        List<ProjectSaveResponseDto> list= new ArrayList<>();
+
+        List<Project> projectList = projectRepository.findAllByIsDestroyedFalseAndOriginFilenameIsNotNull();
+
+        for(Project project : projectList) {
+            list.add(convertToDto(project));
+        }
+
+        return list;
+    }
+
 }

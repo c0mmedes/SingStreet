@@ -124,7 +124,9 @@ public class ProjectController {
                 .isCompleted(project.isCompleted())
                 .isDestroyed(project.isDestroyed())
                 .originFilename(project.getOriginFilename())
+                .audioName(project.getAudioName())
                 .lastEnterDate(project.getLastEnterDate())
+                .createdAt(project.getCreatedAt())
                 .build();
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
@@ -139,6 +141,17 @@ public class ProjectController {
         }
         return new ResponseEntity<>(projectResponsePage, HttpStatus.OK);
     }
+
+    // 작품이 등록된 프로젝트 조회
+    @GetMapping("/music")
+    public ResponseEntity<List<ProjectSaveResponseDto>> getAllMusicProjects() {
+        List<ProjectSaveResponseDto> musicProjects = projectService.getAllMusicProjects();
+        if (musicProjects.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(musicProjects, HttpStatus.OK);
+    }
+
 
     // 프로젝트 페이징 키워드 검색
     @GetMapping("/{keyword}")

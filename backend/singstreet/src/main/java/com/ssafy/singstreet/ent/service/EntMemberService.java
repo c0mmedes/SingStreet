@@ -11,6 +11,7 @@ import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyDetailResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyRequestDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntApplyResponseDto;
 import com.ssafy.singstreet.ent.model.entMemberDto.EntMemberResponseDto;
+import com.ssafy.singstreet.user.db.entity.User;
 import com.ssafy.singstreet.user.db.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,6 @@ public class EntMemberService {
     private final UserRepository userRepository;
     private final EntRepository repository;
     private final EntMemberRepository memberRepository;
-
     // 지원자 ---------------------------------------------------------------
     //지원자 목록
     public List<EntApplyResponseDto> readAppl(int requestEntId){
@@ -42,7 +42,9 @@ public class EntMemberService {
 
         return convertApplyDetailToDto(apply);
     }
-
+    public boolean findent(User user, Ent ent){
+        return memberRepository.findByUserAndEnt(user, ent) != null;
+    }
     // 지원자 등록
     public boolean saveAppl(EntApplyRequestDto requestDto){
         // 지원자가 confirm이 되었는지 확인

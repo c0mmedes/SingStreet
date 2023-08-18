@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -43,17 +44,21 @@ public class ProjectFileController {
     }
 
 
-    @PutMapping("/upload/video")
-    public ResponseEntity<String> uploadVideo(@RequestBody ProjectFileDto dto) {
+    @PostMapping("/upload/video/{projectId}")
+    public ResponseEntity<String> uploadVideo(
+            @RequestPart(value = "file", required = false) MultipartFile file,
+            @PathVariable(value = "projectId", required = false) Integer projectId
+    ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         try {
-            projectFileUploadService.uploadVideo(dto);
+            projectFileUploadService.uploadVideo(file, projectId);
             return ResponseEntity.ok("Video uploaded successfully");
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error uploading video");
         }
     }

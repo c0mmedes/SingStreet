@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
@@ -31,11 +32,12 @@ public class ProjectFileUploadService {
         projectRepository.save(project);
     }
 
-    // 영상 업로드
-    public void uploadVideo(ProjectFileDto dto) throws Exception {
-        Project project = projectRepository.findById(dto.getProjectId()).orElseThrow(Exception::new);
+    public void uploadVideo(MultipartFile file, Integer projectId) {
+        System.out.println(projectId);
+        Project project = projectRepository.findByProjectId(projectId);
 
-        String s3Url = amazonS3Service.uploadFile(dto.getMultipartFile());
+        System.out.println(project);
+        String s3Url = amazonS3Service.uploadFile(file);
 
         project.updateOriginFilename(s3Url);
         projectRepository.save(project);

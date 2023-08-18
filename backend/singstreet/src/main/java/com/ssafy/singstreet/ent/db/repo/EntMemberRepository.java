@@ -18,4 +18,6 @@ public interface EntMemberRepository extends JpaRepository<EntMember, EntMemberI
 //    List<Ent> findMyEnt(@Param("user") User user);
 
     List<EntMember> findAllByUserAndIsDeleted(User user, Boolean isDeleted);
+
+    EntMember findByUserAndEnt(User user, Ent ent);
 }

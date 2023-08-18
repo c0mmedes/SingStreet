@@ -4,6 +4,7 @@ import com.ssafy.singstreet.user.db.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -21,4 +22,7 @@ public class ProjectInfoDto {
     private List<String> tagList;
     private List<User> userlist;
     private Boolean isVisible;
+    private LocalDateTime createdAt;
+
+
 }

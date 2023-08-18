@@ -2,6 +2,7 @@ package com.ssafy.singstreet.project.db.repo;
 
 import com.ssafy.singstreet.ent.db.entity.Ent;
 import com.ssafy.singstreet.project.db.entity.Project;
+import com.ssafy.singstreet.project.model.ProjectSaveResponseDto;
 import com.ssafy.singstreet.user.db.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,9 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
     // 프로젝트id로 상세조회
-    Project findByProjectId(int ProjectId);
+    Project findByProjectId(Integer projectId);
+
+
     // keyword 검색
 //    @Query("SELECT p FROM Project p WHERE " +
 //            "p.projectName LIKE %:keyword% OR " +
@@ -46,4 +49,11 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findAllByOrderByMonthlyLikeCountDesc();
 
     List<Project> findByEntAndIsDestroyed(Ent ent, boolean b);
+
+    @Query("SELECT p FROM Project p WHERE p.user = :user")
+    List<Project> findAllByUser(@Param("user") User user);
+
+//    List<ProjectSaveResponseDto> findByIsDestroyedFalseAndOriginFilenameIsNotNull();
+
+    List<Project> findAllByIsDestroyedFalseAndOriginFilenameIsNotNull();
 }
