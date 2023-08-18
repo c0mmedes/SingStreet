@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class ChatMessageService {
-    // @Autowired
+    @Autowired
     ChatMessageRepository messageRepository;
 
     public void save(ChatMessage message){
