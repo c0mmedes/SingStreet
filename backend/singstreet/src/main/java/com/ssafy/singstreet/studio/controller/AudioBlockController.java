@@ -22,7 +22,7 @@ public class AudioBlockController {
 
     @PostMapping("/add")
     @ApiOperation(value="블럭 추가하는 메서드입니다.")
-    public ResponseEntity<Boolean> addBlock(
+    public ResponseEntity<Integer> addBlock(
             @RequestPart(value="AudioBlockRequestDTO", required=false) AudioBlockRequestDTO requestDTO,
             @RequestPart(value = "file", required = false) MultipartFile file){
         int userId = userService.getCurrentUserId();
@@ -32,10 +32,17 @@ public class AudioBlockController {
         return new ResponseEntity<>(audioBlockService.create(requestDTO, userId, file), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{project_id}")
+    @GetMapping("/{projectId}")
     @ApiOperation(value="프로젝트 아이디로 블럭들 가져오기")
-    public ResponseEntity<List<AudioBlockResponseDTO>> getBlocks(@PathVariable("project_id") int projectId){
+    public ResponseEntity<List<AudioBlockResponseDTO>> getBlocks(@PathVariable("projectId") int projectId){
+        System.out.println(projectId);
         return new ResponseEntity<>(audioBlockService.getBlocksByProjectId(projectId),HttpStatus.OK);
+    }
+
+    @GetMapping("/read/{blockId}")
+    public ResponseEntity<AudioBlockResponseDTO> getBlock(@PathVariable("blockId") int blockId){
+        System.out.println(blockId);
+        return new ResponseEntity<>(audioBlockService.getBlockByBlockId(blockId),HttpStatus.OK);
     }
 
     @PutMapping("/update")
