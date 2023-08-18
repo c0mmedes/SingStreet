@@ -11,22 +11,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+// @Service
 public class ChatMessageService {
-    @Autowired
-    ChatMessageRepository messageRepository;
+    // // @Autowired
+    // ChatMessageRepository messageRepository;
 
-    public void save(ChatMessage message){
-        message.updateDate();
-        messageRepository.save(message);
-    }
+    // public void save(ChatMessage message){
+    //     message.updateDate();
+    //     messageRepository.save(message);
+    // }
 
-    public List<ChatMessage> getAll(){
-        return messageRepository.findAll();
-    }
+    // public List<ChatMessage> getAll(){
+    //     return messageRepository.findAll();
+    // }
 
-    public Slice<ChatMessage> getMessagesWithPagination(int entId,int page, int size){
-        return messageRepository.findAllByEntId(entId,PageRequest.of(page,size,Sort.by(Sort.Direction.DESC,"createdAt")));
-    }
+    // public Slice<ChatMessage> getMessagesWithPagination(int entId,int page, int size){
+    //     return messageRepository.findAllByEntId(entId,PageRequest.of(page,size,Sort.by(Sort.Direction.DESC,"createdAt")));
+    // }
 }
 

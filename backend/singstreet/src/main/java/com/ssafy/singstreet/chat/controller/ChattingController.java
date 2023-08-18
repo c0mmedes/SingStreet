@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-// @RequiredArgsConstructor
-// @RestController
+@RequiredArgsConstructor
+@RestController
 public class ChattingController {
-    // private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
-    // private final ChatMessageService messageService;
+    private final ChatMessageService messageService;
 
-    // @GetMapping("/chatting/{entId}")
-    // public ResponseEntity<Slice<ChatMessage>> read(@PathVariable int entId, @RequestParam int page, @RequestParam int size){
-    //     log.debug("[readChattPage]");
+    @GetMapping("/chatting/{entId}")
+    public ResponseEntity<Slice<ChatMessage>> read(@PathVariable int entId, @RequestParam int page, @RequestParam int size){
+        log.debug("[readChattPage]");
 
-    //     return new ResponseEntity(messageService.getMessagesWithPagination(entId,page,size), HttpStatus.OK);
-    // }
+        return new ResponseEntity(messageService.getMessagesWithPagination(entId,page,size), HttpStatus.OK);
+    }
 
 }
