@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+input:focus {
+  outline: none;
+}
+
+label {
+  color: black;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.LoginWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  height: 500px;
+  margin-top: 50px !important;
+  z-index: 30;
+  color: black;
+  background-color: #fbfbfb;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 0;
+}
+.PwdInput,
+.IdInput {
+  height: 30px;
+  border: 0px;
+  background-color: inherit;
+  border-bottom: 2px solid black;
+}
+
+.IdInput::placeholder {
+  font-weight: 100;
+  color: black;
+}
+
+.loginBtn {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: #fff;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+ion-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.b2 {
+  margin-top: 15px;
+}
+
+.registerQ {
+  font-size: 15px;
+  color: #00000080;
+}
+
+.registerLink {
+  font-size: 15px;
+}
+
+.register {
+  margin-left: 11px;
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.LoginContainer{
+  height: 100vh;
+}

@@ -1,0 +1,46 @@
+.area {
+  padding-top: 10px;
+  background-color: #ffffff;
+  width: 450px;
+  height: 591px;
+  position: relative;
+  text-align: left;
+  margin-left: 30px;
+  border-radius: 10px;
+}
+
+.area textarea {
+  position: sticky;
+  bottom: 5px;
+  width: 217px;
+  left: 0.5%;
+  height: 35px;
+  border-radius: 10px;
+  border: 0;
+  padding: 10px;
+  resize: none;
+  background-color: #e8f1f8;
+}
+
+.area textarea:focus {
+  /* -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5); */
+  border: 2px solid #d6ff43;
+  background: #fafafa;
+  outline: none;
+  left: 0.3%;
+}
+
+.area .chatArea {
+  height: 90%;
+  overflow: auto; /* 스크롤바 표시를 위한 속성 추가 */
+}
+
+.area .inputArea {
+  height: 10%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

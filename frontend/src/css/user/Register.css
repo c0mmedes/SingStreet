@@ -1,0 +1,85 @@
+.RegisterWrap {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 60px;
+  border-radius: 5px;
+  margin: auto;
+  background-color: white;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+  width: fit-content;
+  margin-top: 50px;
+}
+
+.RegisterForm {
+  width: 300px;
+}
+
+.resisterH1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.inputbox input {
+  border-bottom: 2px solid black;
+}
+
+.inputbox select {
+  height: 30px;
+}
+
+.RegisterInput {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  border: none;
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
+button:focus {
+  outline: none;
+}
+
+.CheckBtn {
+  border-radius: 5px;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.signBtn {
+  height: 30px;
+  border-radius: 5px;
+  width: 100%;
+  border: 2px solid black;
+  background-color: transparent;
+  margin-top: 15px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.file-input #modifybutton {
+  color: black;
+}
+
+.file-input #deletebutton {
+  color: black;
+}
+
+.file-input span {
+  display: inline-block;
+  padding: 3px 10px;
+  /* background-color: #007bff; */
+  color: black;
+  border-radius: 5px;
+}

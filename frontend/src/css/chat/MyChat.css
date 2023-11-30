@@ -1,0 +1,86 @@
+a {
+  text-decoration: none;
+}
+
+.MyChatWrap {
+  /* padding: 40px 0; */
+  background-color: #ffffff;
+}
+
+.MyChatWrap .namebox{
+  height: 5px;
+}
+
+.MyChatWrap .chat {
+  display: flex;
+  align-items: flex-start;
+  /* padding: 20px; */
+}
+
+.MyChatWrap .chat .icon {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.MyChatWrap .chat .icon i {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  font-size: 2.5rem;
+  color: #aaa;
+  transform: translateX(-50%);
+}
+
+.MyChatWrap .chat .textbox {
+  position: relative;
+  display: inline-block;
+  max-width: calc(100% - 70px);
+  padding: 10px;
+  margin-bottom: 7px;
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+.MyChatWrap .chat .textbox::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  font-size: 1.5rem;
+}
+
+.MyChatWrap .ch1 .textbox {
+  margin-left: 20px;
+  background-color: #ddd;
+}
+
+.MyChatWrap .ch1 .textbox::before {
+  left: -11px;
+  content: "◀";
+  color: #ddd;
+}
+
+.MyChatWrap .ch2 {
+  flex-direction: row-reverse;
+}
+
+.MyChatWrap .ch2 .textbox {
+  margin-right: 20px;
+  background-color: #f9eb54;
+}
+
+.MyChatWrap .ch2 .textbox::before {
+  right: -11px;
+  content: "▶";
+  color: #f9eb54;
+}
+
+.MyChatWrap .chattime {
+  text-align: right;
+  font-size: 1px;
+  margin-bottom: 5px;
+  color: #9c9c9c;
+}

@@ -1,0 +1,55 @@
+.comment-section textarea {
+  height: 47px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+  width: 97%;
+  margin-bottom: 5px;
+}
+.commentSubmitBtn {
+  width: 100px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.showHideBtn {
+  width: 100px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding-left: 10px;
+}
+.comment {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.commentNameCreatedAt {
+  display: flex;
+}
+
+.comment-user {
+  margin-right: 30px;
+}
+
+.comment-createdAt {
+  color: #00000075;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+}
+
+.comment-content {
+  padding-left: 10px;
+  padding-top: 15px;
+  border-bottom: 1px solid #a9a9a945;
+  padding-bottom: 12px;
+}
+.btnmovetoright {
+  display: flex;
+  justify-content: flex-end;
+}

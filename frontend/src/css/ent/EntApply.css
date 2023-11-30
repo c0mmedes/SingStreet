@@ -1,0 +1,10 @@
+.wantMusicInput input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 30px;
+  padding-left: 15px;
+}
+.entApplyFormWrapper[type="text"] {
+  padding: 0px 10px 0px 35px;
+}

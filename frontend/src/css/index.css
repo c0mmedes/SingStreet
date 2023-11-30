@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "MapleLight";
+  src: url("../assets/font/Maplestory\ Bold.ttf");
+}
+* {
+  font-family: "MapleLight";
+}

@@ -1,0 +1,54 @@
+.myEntListWrap {
+  min-width: 90%;
+  min-height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+  padding-bottom: 50px;
+  margin-left: 130px;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+}
+
+.myEntListItem {
+  list-style-type: none;
+  border-bottom: 1px solid darkgray;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.myEntListItemTitle {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.myEntListItem img {
+  max-width: 100%;
+  width: 70px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.myEntListItemContainer {
+  width: 600px;
+  padding: 30px;
+}
+
+.myEntListItemTitleWrap {
+  display: flex;
+}
+
+.myEntListItemTitleWrap :first-child {
+  margin-right: 15px;
+}
+
+.myEntListContainer {
+  height: 100vh;
+}

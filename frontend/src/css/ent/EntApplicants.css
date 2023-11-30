@@ -1,0 +1,123 @@
+.entApplicantsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin: 0 auto;
+  max-width: 1310px;
+  height: 100vh;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 30px 10px #dfe2e4;
+  padding: 40px;
+  height: auto;
+}
+.entApplicantsRight {
+  padding-top: 70px;
+  font-size: 26px;
+}
+
+.applicantItem {
+  list-style-type: none;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #dfe2e4;
+}
+.applicantItem:last-child {
+  border-bottom: none;
+}
+.applicantItem::before {
+  content: counter(li-counter) ". ";
+  counter-increment: li-counter; /* 카운터 증가 */
+  margin-right: 10px;
+}
+.applicantHeader {
+  justify-content: space-between;
+  display: flex;
+  border: 2px solid black;
+  font-size: 20px;
+  border-radius: 8px;
+  height: fit-content;
+  padding: 20px;
+}
+.applicantHeader h1 {
+  font-size: 50px;
+}
+
+.applicantOl {
+  border: 2px solid black;
+  height: 400px;
+  border-radius: 6px;
+  margin-top: 50px;
+  padding: 30px;
+  list-style-type: decimal;
+  counter-reset: li-counter; /* 순서 카운터 초기화 */
+}
+
+.applicantHeaderTable {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #0000002b;
+}
+.applicantHeaderTable div {
+  flex: 1;
+  font-weight: bold;
+}
+
+.applicantItemBtn {
+}
+
+.applicantHeaderTable div,
+.applicantItem > div {
+  flex: 1;
+  padding: 0 10px; /* 여기에서 패딩을 조정하여 간격을 일치시킵니다 */
+}
+
+.applicantItem::before {
+  padding-left: 10px; /* 순서 번호를 약간 띄워서 순서와 이름의 시작 지점을 일치시킵니다 */
+}
+
+.applicantHeaderTable div {
+  width: 33%;
+}
+
+.applicantItemBtn {
+  width: 30%;
+}
+.applicantItem1 {
+  width: 30%;
+  padding-left: 309px;
+}
+.applicantItem2 {
+  width: 30%;
+  padding-left: 150px;
+}
+
+.aht2 {
+  padding-left: 60px !important;
+}
+
+.applicantItemBtn input {
+  width: 60px;
+  height: 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.applicantItemBtn :first-child {
+  background-color: #b1acf9;
+  margin-right: 6px;
+}
+.applicantItemBtn :last-child {
+  background-color: #f8a0a0;
+}
+
+.applicantItemBtn input {
+  cursor: pointer;
+}

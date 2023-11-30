@@ -1,0 +1,91 @@
+.left-side {
+  min-width: 250px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+  padding-top: 50px;
+  padding-left: 10px;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+@media (max-width: 750px) {
+  .left-side {
+    display: none;
+  }
+}
+/* 
+.side-wrapper:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+} */
+
+.side-menu {
+  padding: 20px;
+}
+
+.side-title {
+  padding-bottom: 20px;
+}
+.side-title2 span {
+  font-size: 25px;
+}
+.side-title3 {
+  /* padding-top: 20px; */
+}
+
+.side-menu a {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--main-color);
+  text-decoration: none;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.side-menu a:last-child {
+  margin-bottom: 0;
+}
+
+.menuLink span,
+.side-title3 a span {
+  font-size: 25px;
+  color: black;
+}
+
+.entNavBtn {
+  background-color: transparent;
+  border: none;
+  color: var(--body-color);
+  cursor: pointer;
+}
+
+.projectLinkWrap {
+  margin-left: 5px;
+}
+
+.pjtMenuLink1 {
+  margin-bottom: 3px;
+  margin-top: 5px;
+}
+
+.pjtLink {
+  margin-bottom: 4px;
+}
+.side-menu a:hover {
+  color: var(--highlight-color); /* Change to your desired hover color */
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.side-menu a:active {
+  transform: translateY(0);
+}
+.side-menu .active {
+  border-bottom: 2px solid var(--highlight-color);
+  padding-bottom: 5px;
+}

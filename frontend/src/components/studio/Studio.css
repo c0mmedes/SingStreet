@@ -1,0 +1,110 @@
+.studioContainer {
+  padding: 30px;
+}
+/* .studioArea {
+  height: 540px;
+  width: 100%;
+  margin: auto;
+} */
+
+.studioArea .inner {
+  margin: auto;
+  width: 100%;
+  height: 95%;
+}
+
+.studioArea .inner .buttonArea {
+  background-color: #302927;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.studioArea .inner .editArea {
+  display: inline-block;
+  width: 1430px;
+  height: 603px;
+  border-radius: 5px;
+  background-color: #3f3a39;
+  position: relative;
+}
+
+#playhead {
+  position: absolute;
+  height: 500px;
+  width: 2px;
+  background-color: #f00;
+  display: none;
+}
+
+.studioArea .inner .blockListArea {
+  display: inline-block;
+  margin-left: 30px;
+  height: 600px;
+  width: 340px;
+  background-color: #3f3a39;
+  border-radius: 5px;
+}
+
+.draggable {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  position: absolute;
+  cursor: pointer;
+}
+
+.w-btn-neon2 {
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.w-btn-neon2 ion-icon {
+  margin-right: 5px;
+}
+.w-btn-neon2:hover {
+  transform: scale(1.2);
+}
+
+.w-btn-neon2:hover::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00ffcb;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 0.3s both;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+.editWrap {
+  display: flex;
+}

@@ -31,7 +31,7 @@
 //    private static ApplicationContext applicationContext;
 //    @Autowired
 //    private ChatMessageService messageService;
-
+//
 //    public void setApplicationContext(ApplicationContext applicationContext) {
 //        WebSocketHandlerImpl.applicationContext = applicationContext;
 //    }

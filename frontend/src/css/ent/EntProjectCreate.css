@@ -1,0 +1,18 @@
+.input_field {
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+
+.entPjtFormWrapper {
+  margin-left: 130px;
+}
+
+.partAddBtn {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+  border: none;
+  margin-bottom: 10px;
+}
